@@ -1,5 +1,5 @@
 {
-  "npmScope": "nx-cli",
+  "npmScope": "dev-workspace",
   "affected": { "defaultBase": "master" },
   "implicitDependencies": {
     "package.json": { "dependencies": "*", "devDependencies": "*" },
