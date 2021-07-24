@@ -1,7 +1,225 @@
 {
   "version": 2,
-  "projects": {},
+  "projects": {
+    "angular-nx-cli": {
+      "projectType": "application",
+      "root": "apps/angular/nx-cli",
+      "sourceRoot": "apps/angular/nx-cli/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "build": {
+          "executor": "@angular-devkit/build-angular:browser",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/angular/nx-cli",
+            "index": "apps/angular/nx-cli/src/index.html",
+            "main": "apps/angular/nx-cli/src/main.ts",
+            "polyfills": "apps/angular/nx-cli/src/polyfills.ts",
+            "tsConfig": "apps/angular/nx-cli/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/angular/nx-cli/src/favicon.ico",
+              "apps/angular/nx-cli/src/assets"
+            ],
+            "styles": [
+              "apps/angular/nx-cli/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/angular/nx-cli/src/environments/environment.ts",
+                  "with": "apps/angular/nx-cli/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "executor": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "angular-nx-cli:build:production"
+            },
+            "development": {
+              "browserTarget": "angular-nx-cli:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "angular-nx-cli:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/angular/nx-cli/src/**/*.ts",
+              "apps/angular/nx-cli/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/angular/nx-cli"
+          ],
+          "options": {
+            "jestConfig": "apps/angular/nx-cli/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "angular-nx-cli-e2e": {
+      "root": "apps/angular/nx-cli-e2e",
+      "sourceRoot": "apps/angular/nx-cli-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/angular/nx-cli-e2e/cypress.json",
+            "tsConfig": "apps/angular/nx-cli-e2e/tsconfig.e2e.json",
+            "devServerTarget": "angular-nx-cli:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "angular-nx-cli:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/angular/nx-cli-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "electron-nx-cli": {
+      "root": "apps/electron/nx-cli",
+      "sourceRoot": "apps/electron/nx-cli/src",
+      "projectType": "application",
+      "prefix": "electron-nx-cli",
+      "targets": {
+        "build": {
+          "executor": "nx-electron:build",
+          "options": {
+            "outputPath": "dist/apps/electron/nx-cli",
+            "main": "apps/electron/nx-cli/src/main.ts",
+            "tsConfig": "apps/electron/nx-cli/tsconfig.app.json",
+            "assets": [
+              "apps/electron/nx-cli/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/electron/nx-cli/src/environments/environment.ts",
+                  "with": "apps/electron/nx-cli/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "nx-electron:execute",
+          "options": {
+            "buildTarget": "electron-nx-cli:build"
+          }
+        },
+        "package": {
+          "executor": "nx-electron:package",
+          "options": {
+            "name": "electron-nx-cli",
+            "frontendProject": "nx-cli",
+            "outputPath": "dist/packages",
+            "prepackageOnly": true
+          }
+        },
+        "make": {
+          "executor": "nx-electron:make",
+          "options": {
+            "name": "electron-nx-cli",
+            "frontendProject": "nx-cli",
+            "outputPath": "dist/executables"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/electron/nx-cli/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/electron/nx-cli"
+          ],
+          "options": {
+            "jestConfig": "apps/electron/nx-cli/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "defaultCollection": "@nrwl/angular"
+  },
+  "generators": {
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "angular-nx-cli"
 }
