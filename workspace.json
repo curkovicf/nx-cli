@@ -1,31 +1,27 @@
 {
   "version": 2,
   "projects": {
-    "angular-nx-cli": {
+    "nx-cli-angular-nx-cli": {
       "projectType": "application",
-      "root": "apps/angular/nx-cli",
-      "sourceRoot": "apps/angular/nx-cli/src",
-      "prefix": "nx-cli",
+      "root": "apps/nx-cli/angular/nx-cli",
+      "sourceRoot": "apps/nx-cli/angular/nx-cli/src",
+      "prefix": "dev-workspace",
       "targets": {
         "build": {
           "executor": "@angular-devkit/build-angular:browser",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/angular/nx-cli",
-            "index": "apps/angular/nx-cli/src/index.html",
-            "main": "apps/angular/nx-cli/src/main.ts",
-            "polyfills": "apps/angular/nx-cli/src/polyfills.ts",
-            "tsConfig": "apps/angular/nx-cli/tsconfig.app.json",
+            "outputPath": "dist/apps/nx-cli/angular/nx-cli",
+            "index": "apps/nx-cli/angular/nx-cli/src/index.html",
+            "main": "apps/nx-cli/angular/nx-cli/src/main.ts",
+            "polyfills": "apps/nx-cli/angular/nx-cli/src/polyfills.ts",
+            "tsConfig": "apps/nx-cli/angular/nx-cli/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "apps/angular/nx-cli/src/favicon.ico",
-              "apps/angular/nx-cli/src/assets"
+              "apps/nx-cli/angular/nx-cli/src/favicon.ico",
+              "apps/nx-cli/angular/nx-cli/src/assets"
             ],
-            "styles": [
-              "apps/angular/nx-cli/src/styles.scss"
-            ],
+            "styles": ["apps/nx-cli/angular/nx-cli/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -44,8 +40,8 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "apps/angular/nx-cli/src/environments/environment.ts",
-                  "with": "apps/angular/nx-cli/src/environments/environment.prod.ts"
+                  "replace": "apps/nx-cli/angular/nx-cli/src/environments/environment.ts",
+                  "with": "apps/nx-cli/angular/nx-cli/src/environments/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"
@@ -65,10 +61,10 @@
           "executor": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-nx-cli:build:production"
+              "browserTarget": "nx-cli-angular-nx-cli:build:production"
             },
             "development": {
-              "browserTarget": "angular-nx-cli:build:development"
+              "browserTarget": "nx-cli-angular-nx-cli:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,73 +72,67 @@
         "extract-i18n": {
           "executor": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-nx-cli:build"
+            "browserTarget": "nx-cli-angular-nx-cli:build"
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "apps/angular/nx-cli/src/**/*.ts",
-              "apps/angular/nx-cli/src/**/*.html"
+              "apps/nx-cli/angular/nx-cli/src/**/*.ts",
+              "apps/nx-cli/angular/nx-cli/src/**/*.html"
             ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/angular/nx-cli"
-          ],
+          "outputs": ["coverage/apps/nx-cli/angular/nx-cli"],
           "options": {
-            "jestConfig": "apps/angular/nx-cli/jest.config.js",
+            "jestConfig": "apps/nx-cli/angular/nx-cli/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "angular-nx-cli-e2e": {
-      "root": "apps/angular/nx-cli-e2e",
-      "sourceRoot": "apps/angular/nx-cli-e2e/src",
+    "nx-cli-angular-nx-cli-e2e": {
+      "root": "apps/nx-cli/angular/nx-cli-e2e",
+      "sourceRoot": "apps/nx-cli/angular/nx-cli-e2e/src",
       "projectType": "application",
       "targets": {
         "e2e": {
           "executor": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/angular/nx-cli-e2e/cypress.json",
-            "tsConfig": "apps/angular/nx-cli-e2e/tsconfig.e2e.json",
-            "devServerTarget": "angular-nx-cli:serve:development"
+            "cypressConfig": "apps/nx-cli/angular/nx-cli-e2e/cypress.json",
+            "tsConfig": "apps/nx-cli/angular/nx-cli-e2e/tsconfig.e2e.json",
+            "devServerTarget": "nx-cli-angular-nx-cli:serve:development"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-nx-cli:serve:production"
+              "devServerTarget": "nx-cli-angular-nx-cli:serve:production"
             }
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/angular/nx-cli-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/nx-cli/angular/nx-cli-e2e/**/*.{js,ts}"]
           }
         }
       }
     },
-    "electron-nx-cli": {
-      "root": "apps/electron/nx-cli",
-      "sourceRoot": "apps/electron/nx-cli/src",
+    "nx-cli-electron-nx-cli": {
+      "root": "apps/nx-cli/electron/nx-cli",
+      "sourceRoot": "apps/nx-cli/electron/nx-cli/src",
       "projectType": "application",
-      "prefix": "electron-nx-cli",
+      "prefix": "nx-cli-electron-nx-cli",
       "targets": {
         "build": {
           "executor": "nx-electron:build",
           "options": {
-            "outputPath": "dist/apps/electron/nx-cli",
-            "main": "apps/electron/nx-cli/src/main.ts",
-            "tsConfig": "apps/electron/nx-cli/tsconfig.app.json",
-            "assets": [
-              "apps/electron/nx-cli/src/assets"
-            ]
+            "outputPath": "dist/apps/nx-cli/electron/nx-cli",
+            "main": "apps/nx-cli/electron/nx-cli/src/main.ts",
+            "tsConfig": "apps/nx-cli/electron/nx-cli/tsconfig.app.json",
+            "assets": ["apps/nx-cli/electron/nx-cli/src/assets"]
           },
           "configurations": {
             "production": {
@@ -151,8 +141,8 @@
               "inspect": false,
               "fileReplacements": [
                 {
-                  "replace": "apps/electron/nx-cli/src/environments/environment.ts",
-                  "with": "apps/electron/nx-cli/src/environments/environment.prod.ts"
+                  "replace": "apps/nx-cli/electron/nx-cli/src/environments/environment.ts",
+                  "with": "apps/nx-cli/electron/nx-cli/src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -161,13 +151,13 @@
         "serve": {
           "executor": "nx-electron:execute",
           "options": {
-            "buildTarget": "electron-nx-cli:build"
+            "buildTarget": "nx-cli-electron-nx-cli:build"
           }
         },
         "package": {
           "executor": "nx-electron:package",
           "options": {
-            "name": "electron-nx-cli",
+            "name": "nx-cli-electron-nx-cli",
             "frontendProject": "nx-cli",
             "outputPath": "dist/packages",
             "prepackageOnly": true
@@ -176,7 +166,7 @@
         "make": {
           "executor": "nx-electron:make",
           "options": {
-            "name": "electron-nx-cli",
+            "name": "nx-cli-electron-nx-cli",
             "frontendProject": "nx-cli",
             "outputPath": "dist/executables"
           }
@@ -184,18 +174,58 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
+            "lintFilePatterns": ["apps/nx-cli/electron/nx-cli/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/nx-cli/electron/nx-cli"],
+          "options": {
+            "jestConfig": "apps/nx-cli/electron/nx-cli/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "nx-cli-electron-util-ipc-handlers": {
+      "root": "libs/nx-cli/electron/util-ipc-handlers",
+      "sourceRoot": "libs/nx-cli/electron/util-ipc-handlers/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
             "lintFilePatterns": [
-              "apps/electron/nx-cli/**/*.ts"
+              "libs/nx-cli/electron/util-ipc-handlers/**/*.ts"
             ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/electron/nx-cli"
-          ],
+          "outputs": ["coverage/libs/nx-cli/electron/util-ipc-handlers"],
           "options": {
-            "jestConfig": "apps/electron/nx-cli/jest.config.js",
+            "jestConfig": "libs/nx-cli/electron/util-ipc-handlers/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "nx-cli-shared-data-ipc": {
+      "root": "libs/nx-cli/shared/data-ipc",
+      "sourceRoot": "libs/nx-cli/shared/data-ipc/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/nx-cli/shared/data-ipc/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/nx-cli/shared/data-ipc"],
+          "options": {
+            "jestConfig": "libs/nx-cli/shared/data-ipc/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -221,5 +251,5 @@
       "style": "scss"
     }
   },
-  "defaultProject": "angular-nx-cli"
+  "defaultProject": "nx-cli-electron-nx-cli"
 }

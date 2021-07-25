@@ -1,8 +1,13 @@
 {
   "npmScope": "dev-workspace",
-  "affected": { "defaultBase": "master" },
+  "affected": {
+    "defaultBase": "master"
+  },
   "implicitDependencies": {
-    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
     ".eslintrc.json": "*"
   },
   "tasksRunnerOptions": {
@@ -17,14 +22,29 @@
     }
   },
   "targetDependencies": {
-    "build": [{ "target": "build", "projects": "dependencies" }]
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
   },
   "projects": {
-    "angular-nx-cli": { "tags": [] },
-    "angular-nx-cli-e2e": {
-      "tags": [],
-      "implicitDependencies": ["angular-nx-cli"]
+    "nx-cli-angular-nx-cli": {
+      "tags": []
     },
-    "electron-nx-cli": { "tags": [] }
+    "nx-cli-angular-nx-cli-e2e": {
+      "tags": [],
+      "implicitDependencies": ["nx-cli-angular-nx-cli"]
+    },
+    "nx-cli-electron-nx-cli": {
+      "tags": []
+    },
+    "nx-cli-electron-util-ipc-handlers": {
+      "tags": []
+    },
+    "nx-cli-shared-data-ipc": {
+      "tags": []
+    }
   }
 }
