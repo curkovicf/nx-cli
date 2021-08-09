@@ -1,5 +1,7 @@
 @import "styles/global.mixins";
 
 :host {
-
+  h1 {
+    color: orange;
+  }
 }

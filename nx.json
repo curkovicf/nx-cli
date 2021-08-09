@@ -37,6 +37,9 @@
       "tags": [],
       "implicitDependencies": ["nx-cli-angular-nx-cli"]
     },
+    "nx-cli-angular-shell": {
+      "tags": []
+    },
     "nx-cli-electron-nx-cli": {
       "tags": []
     },
@@ -48,6 +51,9 @@
     },
     "nx-cli-shared-data-events": {
       "tags": []
+    },
+    "shared-angular-material-util-material": {
+      "tags": ["angular", "angular-material"]
     }
   }
 }

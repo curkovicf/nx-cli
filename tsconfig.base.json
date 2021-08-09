@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@dev-workspace/nx-cli/angular/shell": [
+        "libs/nx-cli/angular/shell/src/index.ts"
+      ],
       "@dev-workspace/nx-cli/electron/shell": [
         "libs/nx-cli/electron/shell/src/index.ts"
       ],
@@ -23,6 +26,9 @@
       ],
       "@dev-workspace/nx-cli/shared/data-events": [
         "libs/nx-cli/shared/data-events/src/index.ts"
+      ],
+      "@dev-workspace/shared/angular/material/util-material": [
+        "libs/shared/angular/material/util-material/src/index.ts"
       ]
     }
   },

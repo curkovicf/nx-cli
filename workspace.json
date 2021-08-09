@@ -120,6 +120,31 @@
         }
       }
     },
+    "nx-cli-angular-shell": {
+      "projectType": "library",
+      "root": "libs/nx-cli/angular/shell",
+      "sourceRoot": "libs/nx-cli/angular/shell/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/nx-cli/angular/shell"],
+          "options": {
+            "jestConfig": "libs/nx-cli/angular/shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/nx-cli/angular/shell/src/**/*.ts",
+              "libs/nx-cli/angular/shell/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "nx-cli-electron-nx-cli": {
       "root": "apps/nx-cli/electron/nx-cli",
       "sourceRoot": "apps/nx-cli/electron/nx-cli/src",
@@ -248,6 +273,31 @@
           "options": {
             "jestConfig": "libs/nx-cli/shared/data-events/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-angular-material-util-material": {
+      "projectType": "library",
+      "root": "libs/shared/angular/material/util-material",
+      "sourceRoot": "libs/shared/angular/material/util-material/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/angular/material/util-material"],
+          "options": {
+            "jestConfig": "libs/shared/angular/material/util-material/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/angular/material/util-material/src/**/*.ts",
+              "libs/shared/angular/material/util-material/src/**/*.html"
+            ]
           }
         }
       }

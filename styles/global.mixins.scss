@@ -1,0 +1,135 @@
+@mixin center-flex-X() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin center-flex-Y() {
+  @include center-flex-X;
+  flex-direction: column;
+}
+
+@mixin cursor-pointer() {
+  cursor: pointer;
+  user-select: none;
+}
+
+@mixin hide-scroll-bar() {
+  &::-webkit-scrollbar {
+    display: none !important;
+  }
+}
+
+@mixin absolute-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin absolute-center-Y {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin absolute-center-X {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin box($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin box-max() {
+  width: 100%;
+  height: 100%;
+}
+
+@mixin position($position, $top: null, $right: null, $bottom: null, $left: null) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin flex-wrap() {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@mixin center-with-margin() {
+  margin: 0 auto;
+}
+
+@mixin text-ellipsis() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin default-btn-layout() {
+  background-color: whitesmoke;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+@mixin separator_top($width) {
+  @if ($width) {
+    width: $width;
+  } @else {
+    width: 100%;
+  }
+  border-top: 1px solid #e1e4e8;
+  height: 1px;
+}
+
+@mixin separator_bot($width) {
+  @if ($width) {
+    width: $width;
+  } @else {
+    width: 100%;
+  }
+  border-bottom: 1px solid #e1e4e8;
+  height: 1px;
+}
+
+@mixin default_border($location) {
+  @if($location == top) {
+    border-top: 1px solid #e1e4e8;
+  } @else if($location == right) {
+    border-right: 1px solid #e1e4e8;
+  } @else if($location == bottom) {
+    border-bottom: 1px solid #e1e4e8;
+  } @else if($location == left) {
+    border-left: 1px solid #e1e4e8;
+  } @else {
+    border: 1px solid #e1e4e8;
+  }
+}
+
+@mixin input_focus($focus) {
+  padding: 0.1rem 0.7em;
+  border-radius: 4px;
+  border: 1px solid #ced4da;
+
+  &:focus {
+    @if ($focus == default) {
+      color: #495057;
+      background-color: #fff;
+      border-color: #80bdff;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+    } @else {
+      color: #495057;
+      background-color: #fff;
+      border-color: red;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, .25);
+    }
+  }
+}
