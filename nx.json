@@ -52,6 +52,9 @@
     "nx-cli-shared-data-events": {
       "tags": []
     },
+    "shared-angular-material-ui-progress-bar": {
+      "tags": []
+    },
     "shared-angular-material-util-material": {
       "tags": ["angular", "angular-material"]
     }

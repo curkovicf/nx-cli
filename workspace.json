@@ -9,7 +9,9 @@
       "targets": {
         "build": {
           "executor": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/nx-cli/angular/nx-cli",
             "index": "apps/nx-cli/angular/nx-cli/src/index.html",
@@ -21,7 +23,10 @@
               "apps/nx-cli/angular/nx-cli/src/favicon.ico",
               "apps/nx-cli/angular/nx-cli/src/assets"
             ],
-            "styles": ["apps/nx-cli/angular/nx-cli/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/nx-cli/angular/nx-cli/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -86,7 +91,9 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/nx-cli/angular/nx-cli"],
+          "outputs": [
+            "coverage/apps/nx-cli/angular/nx-cli"
+          ],
           "options": {
             "jestConfig": "apps/nx-cli/angular/nx-cli/jest.config.js",
             "passWithNoTests": true
@@ -115,7 +122,9 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/nx-cli/angular/nx-cli-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/nx-cli/angular/nx-cli-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -128,7 +137,9 @@
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/nx-cli/angular/shell"],
+          "outputs": [
+            "coverage/libs/nx-cli/angular/shell"
+          ],
           "options": {
             "jestConfig": "libs/nx-cli/angular/shell/jest.config.js",
             "passWithNoTests": true
@@ -157,7 +168,9 @@
             "outputPath": "dist/apps/nx-cli/electron/nx-cli",
             "main": "apps/nx-cli/electron/nx-cli/src/main.ts",
             "tsConfig": "apps/nx-cli/electron/nx-cli/tsconfig.app.json",
-            "assets": ["apps/nx-cli/electron/nx-cli/src/assets"]
+            "assets": [
+              "apps/nx-cli/electron/nx-cli/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -199,12 +212,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/nx-cli/electron/nx-cli/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/nx-cli/electron/nx-cli/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/nx-cli/electron/nx-cli"],
+          "outputs": [
+            "coverage/apps/nx-cli/electron/nx-cli"
+          ],
           "options": {
             "jestConfig": "apps/nx-cli/electron/nx-cli/jest.config.js",
             "passWithNoTests": true
@@ -220,12 +237,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/nx-cli/electron/shell/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/nx-cli/electron/shell/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/nx-cli/electron/shell"],
+          "outputs": [
+            "coverage/libs/nx-cli/electron/shell"
+          ],
           "options": {
             "jestConfig": "libs/nx-cli/electron/shell/jest.config.js",
             "passWithNoTests": true
@@ -248,7 +269,9 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/nx-cli/electron/util-event-handlers"],
+          "outputs": [
+            "coverage/libs/nx-cli/electron/util-event-handlers"
+          ],
           "options": {
             "jestConfig": "libs/nx-cli/electron/util-event-handlers/jest.config.js",
             "passWithNoTests": true
@@ -264,15 +287,46 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/nx-cli/shared/data-events/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/nx-cli/shared/data-events/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/nx-cli/shared/data-events"],
+          "outputs": [
+            "coverage/libs/nx-cli/shared/data-events"
+          ],
           "options": {
             "jestConfig": "libs/nx-cli/shared/data-events/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-angular-material-ui-progress-bar": {
+      "projectType": "library",
+      "root": "libs/shared/angular/material/ui-progress-bar",
+      "sourceRoot": "libs/shared/angular/material/ui-progress-bar/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/shared/angular/material/ui-progress-bar"
+          ],
+          "options": {
+            "jestConfig": "libs/shared/angular/material/ui-progress-bar/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/angular/material/ui-progress-bar/src/**/*.ts",
+              "libs/shared/angular/material/ui-progress-bar/src/**/*.html"
+            ]
           }
         }
       }
@@ -285,7 +339,9 @@
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/angular/material/util-material"],
+          "outputs": [
+            "coverage/libs/shared/angular/material/util-material"
+          ],
           "options": {
             "jestConfig": "libs/shared/angular/material/util-material/jest.config.js",
             "passWithNoTests": true

@@ -27,6 +27,9 @@
       "@dev-workspace/nx-cli/shared/data-events": [
         "libs/nx-cli/shared/data-events/src/index.ts"
       ],
+      "@dev-workspace/shared/angular/material/ui-progress-bar": [
+        "libs/shared/angular/material/ui-progress-bar/src/index.ts"
+      ],
       "@dev-workspace/shared/angular/material/util-material": [
         "libs/shared/angular/material/util-material/src/index.ts"
       ]

@@ -1,6 +1,9 @@
 @import "styles/global.mixins";
 
 :host {
+  display: block;
+  @include box-max;
+
   h1 {
     color: orange;
   }
