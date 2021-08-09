@@ -5,7 +5,7 @@ import { getInstalledPackages } from './get-installed-packages.function';
 export function getInstalledPackagesForMany(paths: string[]): Package[][] {
   const installedPackages: Package[][] = [];
 
-  paths.forEach(path => {
+  paths.forEach((path) => {
     try {
       installedPackages.push(getInstalledPackages(path));
     } catch (error) {

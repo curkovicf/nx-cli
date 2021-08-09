@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'nx-cli-shared-data-ipc',
+  displayName: 'nx-cli-electron-shell',
   preset: '../../../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -10,5 +10,5 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../../coverage/libs/nx-cli/shared/data-ipc',
+  coverageDirectory: '../../../../coverage/libs/nx-cli/electron/shell',
 };

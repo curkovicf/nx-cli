@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-namespace
-export namespace IpcData {
+export namespace IpcEventDtos {
   export interface Package {
     name: string;
     version: string;
@@ -19,6 +19,6 @@ export namespace IpcData {
   export enum TaskAction {
     INSTALL,
     INSTALL_SAVE_DEV,
-    REMOVE
+    REMOVE,
   }
 }

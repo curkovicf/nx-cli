@@ -1,10 +1,11 @@
-import { IpcData } from '@dev-workspace/nx-cli/shared/data-ipc';
-import TaskAction = IpcData.TaskAction;
-import Operation = IpcData.Operation;
-import { spawnPromise } from '../factory/process.function';
+import { IpcEventDtos } from '@dev-workspace/nx-cli/shared/data-events';
+import TaskAction = IpcEventDtos.TaskAction;
+import Operation = IpcEventDtos.Operation;
+import { spawnPromise } from '../factories/process.function';
 
-export async function applyOperations(operationDto: Operation): Promise<string> {
-
+export async function applyOperations(
+  operationDto: Operation
+): Promise<string> {
   for await (const operation of operationDto.tasks) {
     let args;
 

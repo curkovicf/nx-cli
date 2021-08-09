@@ -40,10 +40,13 @@
     "nx-cli-electron-nx-cli": {
       "tags": []
     },
-    "nx-cli-electron-util-ipc-handlers": {
+    "nx-cli-electron-shell": {
       "tags": []
     },
-    "nx-cli-shared-data-ipc": {
+    "nx-cli-electron-util-event-handlers": {
+      "tags": []
+    },
+    "nx-cli-shared-data-events": {
       "tags": []
     }
   }

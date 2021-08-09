@@ -3,26 +3,13 @@
  * between the frontend to the electron backend.
  */
 
-import { app, ipcMain } from 'electron';
-import { environment } from '../../environments/environment';
-import { isNxProject } from '@dev-workspace/nx-cli/electron/util-ipc-handlers';
+import { ipcMain } from 'electron';
+import { Shell } from '@dev-workspace/nx-cli/electron/shell';
 
 export default class ElectronEvents {
   static bootstrapElectronEvents(): Electron.IpcMain {
-    const isNxProjectBool = isNxProject('/home/filip/Documents/Projects/hobi/resume-portfolio');
-    console.log(isNxProjectBool);
     return ipcMain;
   }
 }
 
-// Retrieve app version
-ipcMain.handle('get-app-version', (event) => {
-  console.log(`Fetching application version... [v${environment.version}]`);
-
-  return environment.version;
-});
-
-// Handle App termination
-ipcMain.on('quit', (event, code) => {
-  app.exit(code);
-});
+Shell.listenEvents();

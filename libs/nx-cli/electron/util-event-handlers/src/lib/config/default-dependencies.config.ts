@@ -28,5 +28,5 @@ export const defaultDependenciesConfig: string[] = [
   'ts-node',
   'tslint',
   'typescript',
-  'tslib'
+  'tslib',
 ];

@@ -1,4 +1,4 @@
-import { BrowserWindow, shell, screen } from 'electron';
+import { BrowserWindow, shell, screen, nativeTheme } from 'electron';
 import { rendererAppName, rendererAppPort } from './constants';
 import { environment } from '../environments/environment';
 import { join } from 'path';
@@ -113,7 +113,7 @@ export default class App {
 
   static main(app: Electron.App, browserWindow: typeof BrowserWindow) {
     // we pass the Electron.App object and the
-    // Electron.BrowserWindow into this function
+    // Electron.BrowserWindow into this functions
     // so this class has no dependencies. This
     // makes the code easier to write tests for
 
@@ -123,5 +123,7 @@ export default class App {
     App.application.on('window-all-closed', App.onWindowAllClosed); // Quit when all windows are closed.
     App.application.on('ready', App.onReady); // App is ready to load data
     App.application.on('activate', App.onActivate); // App is activated
+
+    nativeTheme.themeSource = 'light';
   }
 }

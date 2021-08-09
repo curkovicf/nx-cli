@@ -187,45 +187,66 @@
         }
       }
     },
-    "nx-cli-electron-util-ipc-handlers": {
-      "root": "libs/nx-cli/electron/util-ipc-handlers",
-      "sourceRoot": "libs/nx-cli/electron/util-ipc-handlers/src",
+    "nx-cli-electron-shell": {
+      "root": "libs/nx-cli/electron/shell",
+      "sourceRoot": "libs/nx-cli/electron/shell/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/nx-cli/electron/shell/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/nx-cli/electron/shell"],
+          "options": {
+            "jestConfig": "libs/nx-cli/electron/shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "nx-cli-electron-util-event-handlers": {
+      "root": "libs/nx-cli/electron/util-event-handlers",
+      "sourceRoot": "libs/nx-cli/electron/util-event-handlers/src",
       "projectType": "library",
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/nx-cli/electron/util-ipc-handlers/**/*.ts"
+              "libs/nx-cli/electron/util-event-handlers/**/*.ts"
             ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/nx-cli/electron/util-ipc-handlers"],
+          "outputs": ["coverage/libs/nx-cli/electron/util-event-handlers"],
           "options": {
-            "jestConfig": "libs/nx-cli/electron/util-ipc-handlers/jest.config.js",
+            "jestConfig": "libs/nx-cli/electron/util-event-handlers/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "nx-cli-shared-data-ipc": {
-      "root": "libs/nx-cli/shared/data-ipc",
-      "sourceRoot": "libs/nx-cli/shared/data-ipc/src",
+    "nx-cli-shared-data-events": {
+      "root": "libs/nx-cli/shared/data-events",
+      "sourceRoot": "libs/nx-cli/shared/data-events/src",
       "projectType": "library",
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/nx-cli/shared/data-ipc/**/*.ts"]
+            "lintFilePatterns": ["libs/nx-cli/shared/data-events/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/nx-cli/shared/data-ipc"],
+          "outputs": ["coverage/libs/nx-cli/shared/data-events"],
           "options": {
-            "jestConfig": "libs/nx-cli/shared/data-ipc/jest.config.js",
+            "jestConfig": "libs/nx-cli/shared/data-events/jest.config.js",
             "passWithNoTests": true
           }
         }

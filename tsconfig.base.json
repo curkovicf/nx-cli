@@ -15,11 +15,14 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@dev-workspace/nx-cli/electron/util-ipc-handlers": [
-        "libs/nx-cli/electron/util-ipc-handlers/src/index.ts"
+      "@dev-workspace/nx-cli/electron/shell": [
+        "libs/nx-cli/electron/shell/src/index.ts"
       ],
-      "@dev-workspace/nx-cli/shared/data-ipc": [
-        "libs/nx-cli/shared/data-ipc/src/index.ts"
+      "@dev-workspace/nx-cli/electron/util-event-handlers": [
+        "libs/nx-cli/electron/util-event-handlers/src/index.ts"
+      ],
+      "@dev-workspace/nx-cli/shared/data-events": [
+        "libs/nx-cli/shared/data-events/src/index.ts"
       ]
     }
   },
