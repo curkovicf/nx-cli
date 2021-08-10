@@ -115,7 +115,7 @@ export default class App {
 
   static main(app: Electron.App, browserWindow: typeof BrowserWindow) {
     // we pass the Electron.App object and the
-    // Electron.BrowserWindow into this functions
+    // Electron.BrowserWindow into this handlers
     // so this class has no dependencies. This
     // makes the code easier to write tests for
 

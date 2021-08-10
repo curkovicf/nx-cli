@@ -1,3 +1,5 @@
+import { NxApp, NxLibrary } from '@dev-workspace/nx-cli/angular/projects/data-access/projects';
+
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace IpcEventDtos {
   export interface Package {
@@ -23,4 +25,9 @@ export namespace IpcEventDtos {
   }
 
   export type ProjectPath = string;
+
+  export interface Projects {
+    apps: NxApp[];
+    libs: NxLibrary[];
+  }
 }

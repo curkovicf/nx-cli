@@ -1,5 +1,5 @@
 <button (click)='onClick()'>CLICK</button>
 
-<p *ngFor='let project of (projectsStore.projects$ | async)'>
+<p *ngFor='let project of (projectsStore.apps$ | async)'>
   {{ project.name }}
 </p>
