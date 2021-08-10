@@ -8,6 +8,8 @@ export namespace IpcEvents {
   export const installedPackagesForMany: EventChannel = { fromAngular: 'GET_INSTALLED_PACKAGES_ALL_PROJECTS', fromNode: 'GET_INSTALLED_PACKAGES_ALL_PROJECTS_RESULT' };
   export const applyOperation: EventChannel = { fromAngular: 'APPLY_OPERATION', fromNode: 'APPLY_OPERATION_RESULT' };
   export const githubAuth: EventChannel = { fromAngular: 'GITHUB_AUTH', fromNode: 'GITHUB_AUTH_RESULT' };
+
+  export const projects: EventChannel = { fromAngular: 'GET_PROJECTS', fromNode: 'GET_PROJECTS_RESULT' };
 }
 
 

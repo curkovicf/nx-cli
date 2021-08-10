@@ -9,9 +9,7 @@
       "targets": {
         "build": {
           "executor": "@angular-devkit/build-angular:browser",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/nx-cli/angular/nx-cli",
             "index": "apps/nx-cli/angular/nx-cli/src/index.html",
@@ -91,9 +89,7 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/nx-cli/angular/nx-cli"
-          ],
+          "outputs": ["coverage/apps/nx-cli/angular/nx-cli"],
           "options": {
             "jestConfig": "apps/nx-cli/angular/nx-cli/jest.config.js",
             "passWithNoTests": true
@@ -122,8 +118,112 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
+            "lintFilePatterns": ["apps/nx-cli/angular/nx-cli-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "nx-cli-angular-projects-data-access-projects": {
+      "projectType": "library",
+      "root": "libs/nx-cli/angular/projects/data-access/projects",
+      "sourceRoot": "libs/nx-cli/angular/projects/data-access/projects/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/nx-cli/angular/projects/data-access/projects"
+          ],
+          "options": {
+            "jestConfig": "libs/nx-cli/angular/projects/data-access/projects/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
             "lintFilePatterns": [
-              "apps/nx-cli/angular/nx-cli-e2e/**/*.{js,ts}"
+              "libs/nx-cli/angular/projects/data-access/projects/src/**/*.ts",
+              "libs/nx-cli/angular/projects/data-access/projects/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "nx-cli-angular-projects-feature-project-list": {
+      "projectType": "library",
+      "root": "libs/nx-cli/angular/projects/feature/project-list",
+      "sourceRoot": "libs/nx-cli/angular/projects/feature/project-list/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/nx-cli/angular/projects/feature/project-list"
+          ],
+          "options": {
+            "jestConfig": "libs/nx-cli/angular/projects/feature/project-list/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/nx-cli/angular/projects/feature/project-list/src/**/*.ts",
+              "libs/nx-cli/angular/projects/feature/project-list/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "nx-cli-angular-projects-ui-project-list-item": {
+      "projectType": "library",
+      "root": "libs/nx-cli/angular/projects/ui/project-list-item",
+      "sourceRoot": "libs/nx-cli/angular/projects/ui/project-list-item/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/nx-cli/angular/projects/ui/project-list-item"
+          ],
+          "options": {
+            "jestConfig": "libs/nx-cli/angular/projects/ui/project-list-item/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/nx-cli/angular/projects/ui/project-list-item/src/**/*.ts",
+              "libs/nx-cli/angular/projects/ui/project-list-item/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "nx-cli-angular-shared-util-events-proxy": {
+      "projectType": "library",
+      "root": "libs/nx-cli/angular/shared/util-events-proxy",
+      "sourceRoot": "libs/nx-cli/angular/shared/util-events-proxy/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/nx-cli/angular/shared/util-events-proxy"],
+          "options": {
+            "jestConfig": "libs/nx-cli/angular/shared/util-events-proxy/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/nx-cli/angular/shared/util-events-proxy/src/**/*.ts",
+              "libs/nx-cli/angular/shared/util-events-proxy/src/**/*.html"
             ]
           }
         }
@@ -137,9 +237,7 @@
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/nx-cli/angular/shell"
-          ],
+          "outputs": ["coverage/libs/nx-cli/angular/shell"],
           "options": {
             "jestConfig": "libs/nx-cli/angular/shell/jest.config.js",
             "passWithNoTests": true
@@ -168,9 +266,7 @@
             "outputPath": "dist/apps/nx-cli/electron/nx-cli",
             "main": "apps/nx-cli/electron/nx-cli/src/main.ts",
             "tsConfig": "apps/nx-cli/electron/nx-cli/tsconfig.app.json",
-            "assets": [
-              "apps/nx-cli/electron/nx-cli/src/assets"
-            ]
+            "assets": ["apps/nx-cli/electron/nx-cli/src/assets"]
           },
           "configurations": {
             "production": {
@@ -212,16 +308,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/nx-cli/electron/nx-cli/**/*.ts"
-            ]
+            "lintFilePatterns": ["apps/nx-cli/electron/nx-cli/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/nx-cli/electron/nx-cli"
-          ],
+          "outputs": ["coverage/apps/nx-cli/electron/nx-cli"],
           "options": {
             "jestConfig": "apps/nx-cli/electron/nx-cli/jest.config.js",
             "passWithNoTests": true
@@ -237,16 +329,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/nx-cli/electron/shell/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/nx-cli/electron/shell/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/nx-cli/electron/shell"
-          ],
+          "outputs": ["coverage/libs/nx-cli/electron/shell"],
           "options": {
             "jestConfig": "libs/nx-cli/electron/shell/jest.config.js",
             "passWithNoTests": true
@@ -269,9 +357,7 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/nx-cli/electron/util-event-handlers"
-          ],
+          "outputs": ["coverage/libs/nx-cli/electron/util-event-handlers"],
           "options": {
             "jestConfig": "libs/nx-cli/electron/util-event-handlers/jest.config.js",
             "passWithNoTests": true
@@ -287,16 +373,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/nx-cli/shared/data-events/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/nx-cli/shared/data-events/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/nx-cli/shared/data-events"
-          ],
+          "outputs": ["coverage/libs/nx-cli/shared/data-events"],
           "options": {
             "jestConfig": "libs/nx-cli/shared/data-events/jest.config.js",
             "passWithNoTests": true
@@ -312,9 +394,7 @@
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/shared/angular/material/ui-progress-bar"
-          ],
+          "outputs": ["coverage/libs/shared/angular/material/ui-progress-bar"],
           "options": {
             "jestConfig": "libs/shared/angular/material/ui-progress-bar/jest.config.js",
             "passWithNoTests": true
@@ -339,9 +419,7 @@
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/shared/angular/material/util-material"
-          ],
+          "outputs": ["coverage/libs/shared/angular/material/util-material"],
           "options": {
             "jestConfig": "libs/shared/angular/material/util-material/jest.config.js",
             "passWithNoTests": true

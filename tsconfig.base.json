@@ -15,6 +15,18 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@dev-workspace/nx-cli/angular/projects/data-access/projects": [
+        "libs/nx-cli/angular/projects/data-access/projects/src/index.ts"
+      ],
+      "@dev-workspace/nx-cli/angular/projects/feature/project-list": [
+        "libs/nx-cli/angular/projects/feature/project-list/src/index.ts"
+      ],
+      "@dev-workspace/nx-cli/angular/projects/ui/project-list-item": [
+        "libs/nx-cli/angular/projects/ui/project-list-item/src/index.ts"
+      ],
+      "@dev-workspace/nx-cli/angular/shared/util-events-proxy": [
+        "libs/nx-cli/angular/shared/util-events-proxy/src/index.ts"
+      ],
       "@dev-workspace/nx-cli/angular/shell": [
         "libs/nx-cli/angular/shell/src/index.ts"
       ],

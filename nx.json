@@ -37,6 +37,18 @@
       "tags": [],
       "implicitDependencies": ["nx-cli-angular-nx-cli"]
     },
+    "nx-cli-angular-projects-data-access-projects": {
+      "tags": []
+    },
+    "nx-cli-angular-projects-feature-project-list": {
+      "tags": []
+    },
+    "nx-cli-angular-projects-ui-project-list-item": {
+      "tags": []
+    },
+    "nx-cli-angular-shared-util-events-proxy": {
+      "tags": []
+    },
     "nx-cli-angular-shell": {
       "tags": []
     },

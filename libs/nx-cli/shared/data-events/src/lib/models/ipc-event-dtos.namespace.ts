@@ -21,4 +21,6 @@ export namespace IpcEventDtos {
     INSTALL_SAVE_DEV,
     REMOVE,
   }
+
+  export type ProjectPath = string;
 }

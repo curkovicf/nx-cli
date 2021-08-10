@@ -67,9 +67,11 @@ export default class App {
       height: height,
       show: false,
       webPreferences: {
-        contextIsolation: true,
+        contextIsolation: false,
         backgroundThrottling: false,
-        preload: join(__dirname, 'preload.js'),
+        // preload: join(__dirname, 'preload.js'),
+        nodeIntegration: true,
+        enableRemoteModule: true
       },
     });
     App.mainWindow.setMenu(null);
