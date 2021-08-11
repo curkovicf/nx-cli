@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { ProjectsStore } from '@dev-workspace/nx-cli/angular/projects/data-access/projects';
 
@@ -7,10 +7,18 @@ import { ProjectsStore } from '@dev-workspace/nx-cli/angular/projects/data-acces
   templateUrl: './project-list.component.html',
   styleUrls: ['./project-list.component.scss']
 })
-export class ProjectListComponent {
+export class ProjectListComponent implements OnInit {
   constructor(public projectsStore: ProjectsStore) {}
 
-  onClick() {
+  ngOnInit(): void {
     this.projectsStore.getAllProjects();
+  }
+
+  public refresh(): void {
+    this.projectsStore.getAllProjects();
+  }
+
+  public triggerSearch(searchKey: string): void {
+
   }
 }

@@ -231,6 +231,33 @@
         }
       }
     },
+    "nx-cli-angular-projects-ui-list-item-badge": {
+      "projectType": "library",
+      "root": "libs/nx-cli/angular/projects/ui/list-item-badge",
+      "sourceRoot": "libs/nx-cli/angular/projects/ui/list-item-badge/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/nx-cli/angular/projects/ui/list-item-badge"
+          ],
+          "options": {
+            "jestConfig": "libs/nx-cli/angular/projects/ui/list-item-badge/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/nx-cli/angular/projects/ui/list-item-badge/src/**/*.ts",
+              "libs/nx-cli/angular/projects/ui/list-item-badge/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "nx-cli-angular-projects-ui-project-list-item": {
       "projectType": "library",
       "root": "libs/nx-cli/angular/projects/ui/project-list-item",
@@ -253,6 +280,31 @@
             "lintFilePatterns": [
               "libs/nx-cli/angular/projects/ui/project-list-item/src/**/*.ts",
               "libs/nx-cli/angular/projects/ui/project-list-item/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "nx-cli-angular-projects-ui-search-bar": {
+      "projectType": "library",
+      "root": "libs/nx-cli/angular/projects/ui/search-bar",
+      "sourceRoot": "libs/nx-cli/angular/projects/ui/search-bar/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/nx-cli/angular/projects/ui/search-bar"],
+          "options": {
+            "jestConfig": "libs/nx-cli/angular/projects/ui/search-bar/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/nx-cli/angular/projects/ui/search-bar/src/**/*.ts",
+              "libs/nx-cli/angular/projects/ui/search-bar/src/**/*.html"
             ]
           }
         }

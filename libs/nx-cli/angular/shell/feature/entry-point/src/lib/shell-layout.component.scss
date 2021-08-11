@@ -11,7 +11,6 @@
   }
 
   & > main {
-    width: 100%;
-    flex: auto;
+    @include box(100%, calc(100% - #{$top-nav-height}));
   }
 }

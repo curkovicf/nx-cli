@@ -27,8 +27,14 @@
       "@dev-workspace/nx-cli/angular/projects/feature/project-list": [
         "libs/nx-cli/angular/projects/feature/project-list/src/index.ts"
       ],
+      "@dev-workspace/nx-cli/angular/projects/ui/list-item-badge": [
+        "libs/nx-cli/angular/projects/ui/list-item-badge/src/index.ts"
+      ],
       "@dev-workspace/nx-cli/angular/projects/ui/project-list-item": [
         "libs/nx-cli/angular/projects/ui/project-list-item/src/index.ts"
+      ],
+      "@dev-workspace/nx-cli/angular/projects/ui/search-bar": [
+        "libs/nx-cli/angular/projects/ui/search-bar/src/index.ts"
       ],
       "@dev-workspace/nx-cli/angular/shared/util-events-proxy": [
         "libs/nx-cli/angular/shared/util-events-proxy/src/index.ts"

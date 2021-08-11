@@ -1,0 +1,29 @@
+@import "styles/global.mixins";
+@import "styles/global.variables";
+
+:host {
+  display: block;
+  padding: 0.5rem 1.5rem;
+  @include box(100%, 2.2rem);
+  @include center-flex-X;
+  justify-content: flex-start;
+
+  & > .name {
+    display: inline-block;
+    color: #3d3d3d;
+    font-weight: 500;
+    font-size: 0.9rem;
+    width: 100%;
+    @include text-ellipsis;
+  }
+
+  & p, h5 {
+    margin: 0;
+  }
+
+  &:hover {
+    background-color: lightgray;
+    border-radius: 4px;
+    @include cursor-pointer;
+  }
+}

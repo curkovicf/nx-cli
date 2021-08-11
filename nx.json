@@ -49,7 +49,13 @@
     "nx-cli-angular-projects-feature-project-list": {
       "tags": []
     },
+    "nx-cli-angular-projects-ui-list-item-badge": {
+      "tags": []
+    },
     "nx-cli-angular-projects-ui-project-list-item": {
+      "tags": []
+    },
+    "nx-cli-angular-projects-ui-search-bar": {
       "tags": []
     },
     "nx-cli-angular-shared-util-events-proxy": {

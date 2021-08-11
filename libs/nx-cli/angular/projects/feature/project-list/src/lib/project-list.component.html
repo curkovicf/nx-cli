@@ -1,5 +1,32 @@
-<button (click)='onClick()'>CLICK</button>
+<section class='header-wrapper'>
+  <header>
+    <p>installed apps & libs</p>
 
-<p *ngFor='let project of (projectsStore.apps$ | async)'>
-  {{ project.name }}
-</p>
+    <img
+      [ngStyle]="{'visibility': 'visible'}"
+      matRipple
+      src='assets/refresh_icon.svg'
+      alt='Refresh icon'
+      (click)='refresh()'>
+  </header>
+
+  <div class='search-wrapper'>
+    <dev-workspace-search-bar (oninput)='triggerSearch($event)'></dev-workspace-search-bar>
+  </div>
+</section>
+
+<div class='projects-list'>
+  <dev-workspace-project-list-item
+    *ngFor='let app of (projectsStore.apps$ | async)'
+    [package]='app'
+  >
+    <dev-workspace-list-item-badge></dev-workspace-list-item-badge>
+  </dev-workspace-project-list-item>
+
+  <dev-workspace-project-list-item
+    *ngFor='let lib of (projectsStore.libs$ | async)'
+    [package]='lib'
+  >
+    <dev-workspace-list-item-badge [libraryBadgeType]='lib.type'></dev-workspace-list-item-badge>
+  </dev-workspace-project-list-item>
+</div>

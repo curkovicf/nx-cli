@@ -1,9 +1,42 @@
-:host {
-  display: block;
+@import "styles/global.mixins";
+@import "styles/global.variables";
 
-  p {
-    display: block;
-    color: green;
-    font-size: 2rem;
+:host {
+  @include center-flex-Y;
+  @include box-max;
+
+  & > .header-wrapper {
+    padding: 0.5rem 1rem;
+    @include box(100%, 8rem);
+
+    & > header {
+      padding: 0.4rem;
+      border-radius: 5px;
+      @include box(100%, 3rem);
+      @include center-flex-X;
+      justify-content: space-between;
+
+      & > p {
+        text-transform: uppercase;
+        color: black;
+        font-weight: 400;
+        margin: 0;
+      }
+
+      & > img {
+        @include cursor-pointer;
+        @include box(1rem, 1rem);
+      }
+    }
+
+    & > .search-wrapper {
+      border-radius: 5px;
+      @include box(100%, 2.7rem);
+    }
+  }
+
+  & > .projects-list {
+    overflow-y: auto;
+    @include box(100%, calc(100% - 8rem));
   }
 }
