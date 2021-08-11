@@ -150,6 +150,60 @@
         }
       }
     },
+    "nx-cli-angular-projects-feature-project-actions": {
+      "projectType": "library",
+      "root": "libs/nx-cli/angular/projects/feature/project-actions",
+      "sourceRoot": "libs/nx-cli/angular/projects/feature/project-actions/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/nx-cli/angular/projects/feature/project-actions"
+          ],
+          "options": {
+            "jestConfig": "libs/nx-cli/angular/projects/feature/project-actions/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/nx-cli/angular/projects/feature/project-actions/src/**/*.ts",
+              "libs/nx-cli/angular/projects/feature/project-actions/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "nx-cli-angular-projects-feature-project-detail": {
+      "projectType": "library",
+      "root": "libs/nx-cli/angular/projects/feature/project-detail",
+      "sourceRoot": "libs/nx-cli/angular/projects/feature/project-detail/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/nx-cli/angular/projects/feature/project-detail"
+          ],
+          "options": {
+            "jestConfig": "libs/nx-cli/angular/projects/feature/project-detail/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/nx-cli/angular/projects/feature/project-detail/src/**/*.ts",
+              "libs/nx-cli/angular/projects/feature/project-detail/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "nx-cli-angular-projects-feature-project-list": {
       "projectType": "library",
       "root": "libs/nx-cli/angular/projects/feature/project-list",

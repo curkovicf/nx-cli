@@ -40,6 +40,12 @@
     "nx-cli-angular-projects-data-access-projects": {
       "tags": []
     },
+    "nx-cli-angular-projects-feature-project-actions": {
+      "tags": []
+    },
+    "nx-cli-angular-projects-feature-project-detail": {
+      "tags": []
+    },
     "nx-cli-angular-projects-feature-project-list": {
       "tags": []
     },

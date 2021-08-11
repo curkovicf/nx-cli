@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProjectListComponent } from './project-list.component';
+import { ProjectDetailComponent } from './project-detail.component';
 
 @NgModule({
   imports: [CommonModule],
   declarations: [
-    ProjectListComponent
+    ProjectDetailComponent
   ],
   exports: [
-    ProjectListComponent
+    ProjectDetailComponent
   ]
 })
-export class ProjectsListModule {}
+export class ProjectDetailModule {}

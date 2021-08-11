@@ -4,4 +4,14 @@
 :host {
   display: block;
   @include box-max;
+  @include center-flex-Y;
+
+  & > dev-workspace-top-nav {
+    height: $top-nav-height;
+  }
+
+  & > main {
+    width: 100%;
+    flex: auto;
+  }
 }

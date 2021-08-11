@@ -18,6 +18,12 @@
       "@dev-workspace/nx-cli/angular/projects/data-access/projects": [
         "libs/nx-cli/angular/projects/data-access/projects/src/index.ts"
       ],
+      "@dev-workspace/nx-cli/angular/projects/feature/project-actions": [
+        "libs/nx-cli/angular/projects/feature/project-actions/src/index.ts"
+      ],
+      "@dev-workspace/nx-cli/angular/projects/feature/project-detail": [
+        "libs/nx-cli/angular/projects/feature/project-detail/src/index.ts"
+      ],
       "@dev-workspace/nx-cli/angular/projects/feature/project-list": [
         "libs/nx-cli/angular/projects/feature/project-list/src/index.ts"
       ],
