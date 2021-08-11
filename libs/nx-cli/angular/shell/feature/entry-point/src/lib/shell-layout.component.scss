@@ -1,0 +1,7 @@
+@import 'styles/global.mixins';
+@import 'styles/global.variables';
+
+:host {
+  display: block;
+  @include box-max;
+}

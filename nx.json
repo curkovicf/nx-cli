@@ -49,7 +49,16 @@
     "nx-cli-angular-shared-util-events-proxy": {
       "tags": []
     },
-    "nx-cli-angular-shell": {
+    "nx-cli-angular-shell-feature-entry-point": {
+      "tags": []
+    },
+    "nx-cli-angular-shell-ui-chips-bar": {
+      "tags": []
+    },
+    "nx-cli-angular-shell-ui-home-layout": {
+      "tags": []
+    },
+    "nx-cli-angular-shell-ui-top-nav": {
       "tags": []
     },
     "nx-cli-electron-nx-cli": {

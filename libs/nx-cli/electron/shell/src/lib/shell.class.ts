@@ -1,7 +1,7 @@
 import { app, ipcMain } from 'electron';
 
 import { IpcEvents } from '@dev-workspace/nx-cli/shared/data-events';
-import { ProjectsEventHandler } from '../../../util-event-handlers/src/lib/handlers/projects-event-handler.class';
+import { ProjectsEventHandler } from '@dev-workspace/nx-cli/electron/util-event-handlers';
 
 export class Shell {
   static listenEvents(): void {

@@ -1,9 +1,8 @@
-import { IpcData } from '@dev-workspace/nx-cli/shared/data-ipc';
-import Package = IpcData.Package;
 import { getInstalledPackages } from './get-installed-packages.function';
+import { IpcEventDtos } from '@dev-workspace/nx-cli/shared/data-events';
 
-export function getInstalledPackagesForMany(paths: string[]): Package[][] {
-  const installedPackages: Package[][] = [];
+export function getInstalledPackagesForMany(paths: string[]): IpcEventDtos.Package[][] {
+  const installedPackages: IpcEventDtos.Package[][] = [];
 
   paths.forEach((path) => {
     try {

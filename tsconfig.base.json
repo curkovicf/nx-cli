@@ -27,8 +27,17 @@
       "@dev-workspace/nx-cli/angular/shared/util-events-proxy": [
         "libs/nx-cli/angular/shared/util-events-proxy/src/index.ts"
       ],
-      "@dev-workspace/nx-cli/angular/shell": [
-        "libs/nx-cli/angular/shell/src/index.ts"
+      "@dev-workspace/nx-cli/angular/shell/feature/entry-point": [
+        "libs/nx-cli/angular/shell/feature/entry-point/src/index.ts"
+      ],
+      "@dev-workspace/nx-cli/angular/shell/ui/chips-bar": [
+        "libs/nx-cli/angular/shell/ui/chips-bar/src/index.ts"
+      ],
+      "@dev-workspace/nx-cli/angular/shell/ui/home-layout": [
+        "libs/nx-cli/angular/shell/ui/home-layout/src/index.ts"
+      ],
+      "@dev-workspace/nx-cli/angular/shell/ui/top-nav": [
+        "libs/nx-cli/angular/shell/ui/top-nav/src/index.ts"
       ],
       "@dev-workspace/nx-cli/electron/shell": [
         "libs/nx-cli/electron/shell/src/index.ts"

@@ -1,0 +1,17 @@
+<div class="ng-icon-wrapper">
+  <img
+    src="assets/lab_icon.png"
+    height="30"
+    alt="Lab flask icon">
+</div>
+
+<div class="nav-links">
+  <a
+    *ngFor="let nav_item of nav_links"
+    [routerLink]="[nav_item.link]"
+    routerLinkActive="active"
+    matRipple
+    matRippleColor="rgba(245, 245, 245, 0.4)">
+    {{nav_item.text}}
+  </a>
+</div>

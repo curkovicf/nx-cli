@@ -229,17 +229,17 @@
         }
       }
     },
-    "nx-cli-angular-shell": {
+    "nx-cli-angular-shell-feature-entry-point": {
       "projectType": "library",
-      "root": "libs/nx-cli/angular/shell",
-      "sourceRoot": "libs/nx-cli/angular/shell/src",
+      "root": "libs/nx-cli/angular/shell/feature/entry-point",
+      "sourceRoot": "libs/nx-cli/angular/shell/feature/entry-point/src",
       "prefix": "dev-workspace",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/nx-cli/angular/shell"],
+          "outputs": ["coverage/libs/nx-cli/angular/shell/feature/entry-point"],
           "options": {
-            "jestConfig": "libs/nx-cli/angular/shell/jest.config.js",
+            "jestConfig": "libs/nx-cli/angular/shell/feature/entry-point/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -247,8 +247,83 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/nx-cli/angular/shell/src/**/*.ts",
-              "libs/nx-cli/angular/shell/src/**/*.html"
+              "libs/nx-cli/angular/shell/feature/entry-point/src/**/*.ts",
+              "libs/nx-cli/angular/shell/feature/entry-point/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "nx-cli-angular-shell-ui-chips-bar": {
+      "projectType": "library",
+      "root": "libs/nx-cli/angular/shell/ui/chips-bar",
+      "sourceRoot": "libs/nx-cli/angular/shell/ui/chips-bar/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/nx-cli/angular/shell/ui/chips-bar"],
+          "options": {
+            "jestConfig": "libs/nx-cli/angular/shell/ui/chips-bar/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/nx-cli/angular/shell/ui/chips-bar/src/**/*.ts",
+              "libs/nx-cli/angular/shell/ui/chips-bar/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "nx-cli-angular-shell-ui-home-layout": {
+      "projectType": "library",
+      "root": "libs/nx-cli/angular/shell/ui/home-layout",
+      "sourceRoot": "libs/nx-cli/angular/shell/ui/home-layout/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/nx-cli/angular/shell/ui/home-layout"],
+          "options": {
+            "jestConfig": "libs/nx-cli/angular/shell/ui/home-layout/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/nx-cli/angular/shell/ui/home-layout/src/**/*.ts",
+              "libs/nx-cli/angular/shell/ui/home-layout/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "nx-cli-angular-shell-ui-top-nav": {
+      "projectType": "library",
+      "root": "libs/nx-cli/angular/shell/ui/top-nav",
+      "sourceRoot": "libs/nx-cli/angular/shell/ui/top-nav/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/nx-cli/angular/shell/ui/top-nav"],
+          "options": {
+            "jestConfig": "libs/nx-cli/angular/shell/ui/top-nav/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/nx-cli/angular/shell/ui/top-nav/src/**/*.ts",
+              "libs/nx-cli/angular/shell/ui/top-nav/src/**/*.html"
             ]
           }
         }
