@@ -13,12 +13,8 @@
     color: #3d3d3d;
     font-weight: 500;
     font-size: 0.9rem;
-    width: 100%;
+    margin-left: .7rem;
     @include text-ellipsis;
-  }
-
-  & p, h5 {
-    margin: 0;
   }
 
   &:hover {

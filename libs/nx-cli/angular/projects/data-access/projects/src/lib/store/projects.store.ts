@@ -29,8 +29,10 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
 
     this.eventsProxyService.getAllProjects(testPath)
       .pipe(
-        take(1),
-        tap((projects: IpcEventDtos.Projects) => this.patchState({ libs: projects.libs, apps: projects.apps }))
+        tap((projects: IpcEventDtos.Projects) => {
+          console.log(projects);
+          this.patchState({ libs: projects.libs, apps: projects.apps })
+        })
       )
       .subscribe();
   }

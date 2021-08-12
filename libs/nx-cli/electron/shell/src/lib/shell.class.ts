@@ -13,7 +13,11 @@ export class Shell {
     //  Get all libs & apps
     ipcMain.on(IpcEvents.projects.fromAngular, (event, nxProjectPath) => {
       const projectsHandler = new ProjectsEventHandler(nxProjectPath);
-      event.returnValue = projectsHandler.findProjects(nxProjectPath);
+
+      projectsHandler.findProjects(nxProjectPath)
+      projectsHandler.getNameOfAllProjectsWithinNxJsonFile();
+
+      event.returnValue = projectsHandler.getProjects();
     });
   }
 }
