@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { NxApp } from '@dev-workspace/nx-cli/angular/projects/data-access/projects';
+import { NxProject } from '@dev-workspace/nx-cli/angular/projects/data-access/projects';
 
 @Component({
   selector: 'dev-workspace-project-list-item',
@@ -8,5 +8,5 @@ import { NxApp } from '@dev-workspace/nx-cli/angular/projects/data-access/projec
 })
 export class ProjectListItemComponent {
   @Input()
-  package: NxApp | undefined;
+  project: NxProject | undefined;
 }

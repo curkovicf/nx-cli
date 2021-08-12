@@ -1,12 +1,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { NxApp, NxLibrary, NxLibraryType } from '@dev-workspace/nx-cli/angular/projects/data-access/projects';
-import { IpcEventDtos } from '@dev-workspace/nx-cli/shared/data-events';
+import { NxProject, NxProjectType } from '@dev-workspace/nx-cli/angular/projects/data-access/projects';
 
 export class ProjectsEventHandler {
-  private apps: NxApp[] = [];
-  private libs: NxLibrary[] = [];
+  public projects: NxProject[] = [];
 
   constructor(private nxProjectRootPath: string) {}
 
@@ -26,11 +24,7 @@ export class ProjectsEventHandler {
       }
 
       if (matchingNameCounter > 1) {
-        if (this.isApp(pwd)) {
-          this.apps.push({ name: this.getProjectName(pwd), path: pwd, nameInNxJson: '' });
-        } else {
-          this.libs.push({ name: this.getProjectName(pwd), path: pwd, type: this.getLibraryType(pwd), nameInNxJson: '' });
-        }
+        this.projects.push({ name: this.getProjectName(pwd), path: pwd, type: this.getProjectType(pwd), nameInNxJson: '' });
       }
 
     });
@@ -48,8 +42,8 @@ export class ProjectsEventHandler {
       files.includes('src');
   }
 
-  private getLibraryType(pwd: string): NxLibraryType | undefined {
-    const libraryTypes = Object.values(NxLibraryType);
+  private getProjectType(pwd: string): NxProjectType | undefined {
+    const libraryTypes = Object.values(NxProjectType);
     const keywords = this.trimPathToSourcePath(pwd)
       .split('/')
       .filter(item => item !== '' && item !== '/')
@@ -72,19 +66,18 @@ export class ProjectsEventHandler {
   }
 
   private getProjectName(pwd: string): string {
-    const splittedPath = pwd.split('/');
-    return splittedPath[splittedPath.length - 1];
+    const splitPath = pwd.split('/');
+    return splitPath[splitPath.length - 1];
   }
 
   public getNameOfAllProjectsWithinNxJsonFile(): void {
-    const projects = [...this.apps, ...this.libs];
     const pathToWorkspaceJson = this.nxProjectRootPath + '/workspace.json';
     const workspaceJson = JSON.parse(fs.readFileSync(pathToWorkspaceJson, 'utf8'));
 
     Object.entries(workspaceJson.projects).forEach(([key, value]) => {
         const currentProjectPath = value['root'];
 
-        projects.forEach(project => {
+        this.projects.forEach(project => {
           const trimmedPath = this.trimPathToSourcePath(project.path).substring(1);
 
           if (currentProjectPath === trimmedPath) {
@@ -94,9 +87,5 @@ export class ProjectsEventHandler {
       }
     );
 
-  }
-
-  public getProjects(): IpcEventDtos.Projects {
-    return { apps: this.apps, libs: this.libs };
   }
 }

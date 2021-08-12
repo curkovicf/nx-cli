@@ -1,4 +1,5 @@
-export enum NxLibraryType {
+export enum NxProjectType {
+  app = 'app',
   data = 'data',
   util = 'util',
   feature = 'feature',

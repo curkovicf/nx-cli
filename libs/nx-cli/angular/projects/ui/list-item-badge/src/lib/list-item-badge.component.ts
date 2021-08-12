@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NxLibraryType } from '@dev-workspace/nx-cli/angular/projects/data-access/projects';
+import { NxProjectType } from '@dev-workspace/nx-cli/angular/projects/data-access/projects';
 
 @Component({
   selector: 'dev-workspace-list-item-badge',
@@ -8,11 +8,11 @@ import { NxLibraryType } from '@dev-workspace/nx-cli/angular/projects/data-acces
 })
 export class ListItemBadgeComponent implements OnInit {
   @Input()
-  set libraryBadgeType(libraryType: NxLibraryType | undefined) {
+  set projectType(libraryType: NxProjectType | undefined) {
     this.initAccentColor(libraryType)
   };
 
-  public badgeType: NxLibraryType | undefined;
+  public badgeType: NxProjectType | undefined;
   public accentColor = '';
 
   ngOnInit(): void {
@@ -21,21 +21,21 @@ export class ListItemBadgeComponent implements OnInit {
     }
   }
 
-  private initAccentColor(projectType: NxLibraryType | undefined): void {
+  private initAccentColor(projectType: NxProjectType | undefined): void {
     switch (projectType) {
-      case NxLibraryType.data:
+      case NxProjectType.data:
         this.accentColor = 'skyblue';
         break;
-      case NxLibraryType.util:
+      case NxProjectType.util:
         this.accentColor = 'grey';
         break;
-      case NxLibraryType.feature:
+      case NxProjectType.feature:
         this.accentColor = 'orange';
         break;
-      case NxLibraryType.ui:
+      case NxProjectType.ui:
         this.accentColor = 'yellow';
         break;
-      case NxLibraryType.shell:
+      case NxProjectType.shell:
         break;
       default:
         this.accentColor = 'black';

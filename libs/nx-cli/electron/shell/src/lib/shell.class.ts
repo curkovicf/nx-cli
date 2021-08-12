@@ -17,7 +17,7 @@ export class Shell {
       projectsHandler.findProjects(nxProjectPath)
       projectsHandler.getNameOfAllProjectsWithinNxJsonFile();
 
-      event.returnValue = projectsHandler.getProjects();
+      event.returnValue = projectsHandler.projects;
     });
   }
 }

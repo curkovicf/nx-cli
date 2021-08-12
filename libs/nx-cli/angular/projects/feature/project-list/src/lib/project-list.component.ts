@@ -18,7 +18,7 @@ export class ProjectListComponent implements OnInit {
     this.projectsStore.getAllProjects();
   }
 
-  public triggerSearch(searchKey: string): void {
-
+  public triggerSearch(keyword: string): void {
+    this.projectsStore.filterProjects(keyword);
   }
 }
