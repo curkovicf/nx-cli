@@ -6,6 +6,7 @@ import { NxProject } from '../models/nx-project.model';
 
 export interface ProjectsState {
   projects: NxProject[];
+  projectsLoadedInView: NxProject[];
   selected: NxProject | undefined;
 }
 
@@ -14,11 +15,12 @@ export interface ProjectsState {
 })
 export class ProjectsStore extends ComponentStore<ProjectsState> {
   readonly projects$ = this.select(state => state.projects);
+  readonly projectsLoadedInView$ = this.select(state => state.projectsLoadedInView);
   readonly selected$ = this.select(state => state.selected);
 
 
   constructor(private eventsProxyService: EventsProxyService) {
-    super(<ProjectsState>{ apps: [], libs: [], projects: [], selected: undefined });
+    super(<ProjectsState>{ projects: [], projectsLoadedInView: [], selected: undefined });
   }
 
   public getAllProjects(): void {
@@ -27,7 +29,7 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
     this.eventsProxyService.getAllProjects(testPath)
       .pipe(
         take(1),
-        tap((projects: NxProject[]) => this.patchState({ projects }))
+        tap((projects: NxProject[]) => this.patchState({ projects, projectsLoadedInView: projects }))
       )
       .subscribe();
   }
@@ -36,7 +38,7 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
     this.projects$
       .pipe(
         take(1),
-        tap(projects => this.patchState({ projects: projects.filter(project => project.name.includes(keyword)) }))
+        tap(projects => this.patchState({ projectsLoadedInView: projects.filter(project => project.name.includes(keyword)) }))
       )
       .subscribe();
   }

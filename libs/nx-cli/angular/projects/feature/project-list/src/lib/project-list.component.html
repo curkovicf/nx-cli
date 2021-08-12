@@ -17,7 +17,7 @@
 
 <div class='projects-list'>
   <dev-workspace-project-list-item
-    *ngFor='let project of (projectsStore.projects$ | async)'
+    *ngFor='let project of (projectsStore.projectsLoadedInView$ | async)'
     [project]='project'
   >
     <dev-workspace-list-item-badge [projectType]='project.type'></dev-workspace-list-item-badge>
