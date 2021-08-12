@@ -1,0 +1,39 @@
+@import 'styles/global.mixins';
+@import 'styles/global.variables';
+
+:host {
+  position: relative;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 3rem;
+  @include center-flex-X;
+  @include box-max;
+
+  & > .left-section {
+    background-color: #fafbfc;
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+    @include box(21rem, 100%);
+    @include default_border(all);
+    @include center-flex-Y;
+    justify-content: space-between;
+    min-width: 21rem;
+  }
+
+  & > .middle-section {
+    flex: 1;
+    height: 100%;
+    background-color: #fafbfc;
+    @include default_border(top);
+    @include default_border(bottom);
+  }
+
+  & > .right-section {
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+    background-color: #fafbfc;
+    @include default_border(all);
+    @include box(20rem, 100%);
+    min-width: 20rem;
+  }
+}

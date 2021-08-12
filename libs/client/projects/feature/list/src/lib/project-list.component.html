@@ -1,0 +1,32 @@
+<section class="header-wrapper">
+  <header>
+    <p>installed apps & libs</p>
+
+    <div class="refresh-icon-wrapper" matRipple>
+      <img
+        [ngStyle]="{ visibility: 'visible' }"
+        src="assets/refresh_icon.svg"
+        alt="Refresh icon"
+        (click)="refresh()"
+      />
+    </div>
+  </header>
+
+  <div class="search-wrapper">
+    <dev-workspace-search-bar
+      (oninput)="triggerSearch($event)"
+    ></dev-workspace-search-bar>
+  </div>
+</section>
+
+<div class="projects-list">
+  <dev-workspace-project-list-item
+    *ngFor="let project of projectsStore.projectsLoadedInView$ | async"
+    [project]="project"
+    (click)="onSelectProject(project)"
+  >
+    <dev-workspace-list-item-badge
+      [projectType]="project.type"
+    ></dev-workspace-list-item-badge>
+  </dev-workspace-project-list-item>
+</div>

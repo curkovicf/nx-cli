@@ -15,56 +15,56 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@dev-workspace/nx-cli/angular/projects/data-access/projects": [
-        "libs/nx-cli/angular/projects/data-access/projects/src/index.ts"
+      "@nx-cli/app/shell/feature/event-handlers": [
+        "libs/app/shell/feature/event-handlers/src/index.ts"
       ],
-      "@dev-workspace/nx-cli/angular/projects/feature/project-actions": [
-        "libs/nx-cli/angular/projects/feature/project-actions/src/index.ts"
+      "@nx-cli/app/shell/feature/events": [
+        "libs/app/shell/feature/events/src/index.ts"
       ],
-      "@dev-workspace/nx-cli/angular/projects/feature/project-detail": [
-        "libs/nx-cli/angular/projects/feature/project-detail/src/index.ts"
+      "@nx-cli/client/projects/data-access/store": [
+        "libs/client/projects/data-access/store/src/index.ts"
       ],
-      "@dev-workspace/nx-cli/angular/projects/feature/project-list": [
-        "libs/nx-cli/angular/projects/feature/project-list/src/index.ts"
+      "@nx-cli/client/projects/feature/actions": [
+        "libs/client/projects/feature/actions/src/index.ts"
       ],
-      "@dev-workspace/nx-cli/angular/projects/ui/list-item-badge": [
-        "libs/nx-cli/angular/projects/ui/list-item-badge/src/index.ts"
+      "@nx-cli/client/projects/feature/detail": [
+        "libs/client/projects/feature/detail/src/index.ts"
       ],
-      "@dev-workspace/nx-cli/angular/projects/ui/project-list-item": [
-        "libs/nx-cli/angular/projects/ui/project-list-item/src/index.ts"
+      "@nx-cli/client/projects/feature/list": [
+        "libs/client/projects/feature/list/src/index.ts"
       ],
-      "@dev-workspace/nx-cli/angular/projects/ui/search-bar": [
-        "libs/nx-cli/angular/projects/ui/search-bar/src/index.ts"
+      "@nx-cli/client/projects/ui/list-item": [
+        "libs/client/projects/ui/list-item/src/index.ts"
       ],
-      "@dev-workspace/nx-cli/angular/shared/util-events-proxy": [
-        "libs/nx-cli/angular/shared/util-events-proxy/src/index.ts"
+      "@nx-cli/client/projects/ui/list-item-badge": [
+        "libs/client/projects/ui/list-item-badge/src/index.ts"
       ],
-      "@dev-workspace/nx-cli/angular/shell/feature/entry-point": [
-        "libs/nx-cli/angular/shell/feature/entry-point/src/index.ts"
+      "@nx-cli/client/projects/ui/search-bar": [
+        "libs/client/projects/ui/search-bar/src/index.ts"
       ],
-      "@dev-workspace/nx-cli/angular/shell/ui/chips-bar": [
-        "libs/nx-cli/angular/shell/ui/chips-bar/src/index.ts"
+      "@nx-cli/client/shared/ui/material-modules": [
+        "libs/client/shared/ui/material-modules/src/index.ts"
       ],
-      "@dev-workspace/nx-cli/angular/shell/ui/home-layout": [
-        "libs/nx-cli/angular/shell/ui/home-layout/src/index.ts"
+      "@nx-cli/client/shared/ui/progress-bar": [
+        "libs/client/shared/ui/progress-bar/src/index.ts"
       ],
-      "@dev-workspace/nx-cli/angular/shell/ui/top-nav": [
-        "libs/nx-cli/angular/shell/ui/top-nav/src/index.ts"
+      "@nx-cli/client/shared/util/ipc-events-proxy": [
+        "libs/client/shared/util/ipc-events-proxy/src/index.ts"
       ],
-      "@dev-workspace/nx-cli/electron/shell": [
-        "libs/nx-cli/electron/shell/src/index.ts"
+      "@nx-cli/client/shell/feature/shell-layout": [
+        "libs/client/shell/feature/shell-layout/src/index.ts"
       ],
-      "@dev-workspace/nx-cli/electron/util-event-handlers": [
-        "libs/nx-cli/electron/util-event-handlers/src/index.ts"
+      "@nx-cli/client/shell/ui/chips-bar": [
+        "libs/client/shell/ui/chips-bar/src/index.ts"
       ],
-      "@dev-workspace/nx-cli/shared/data-events": [
-        "libs/nx-cli/shared/data-events/src/index.ts"
+      "@nx-cli/client/shell/ui/projects-layout": [
+        "libs/client/shell/ui/projects-layout/src/index.ts"
       ],
-      "@dev-workspace/shared/angular/material/ui-progress-bar": [
-        "libs/shared/angular/material/ui-progress-bar/src/index.ts"
+      "@nx-cli/client/shell/ui/top-nav": [
+        "libs/client/shell/ui/top-nav/src/index.ts"
       ],
-      "@dev-workspace/shared/angular/material/util-material": [
-        "libs/shared/angular/material/util-material/src/index.ts"
+      "@nx-cli/shared/data/ipc-events": [
+        "libs/shared/data/ipc-events/src/index.ts"
       ]
     }
   },

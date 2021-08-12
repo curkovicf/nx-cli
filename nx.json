@@ -1,5 +1,5 @@
 {
-  "npmScope": "dev-workspace",
+  "npmScope": "nx-cli",
   "affected": {
     "defaultBase": "master"
   },
@@ -30,66 +30,66 @@
     ]
   },
   "projects": {
-    "nx-cli-angular-nx-cli": {
+    "app": {
       "tags": []
     },
-    "nx-cli-angular-nx-cli-e2e": {
+    "app-shell-feature-event-handlers": {
+      "tags": []
+    },
+    "app-shell-feature-events": {
+      "tags": []
+    },
+    "client": {
+      "tags": []
+    },
+    "client-e2e": {
       "tags": [],
-      "implicitDependencies": ["nx-cli-angular-nx-cli"]
+      "implicitDependencies": ["client"]
     },
-    "nx-cli-angular-projects-data-access-projects": {
+    "client-projects-data-access-store": {
       "tags": []
     },
-    "nx-cli-angular-projects-feature-project-actions": {
+    "client-projects-feature-actions": {
       "tags": []
     },
-    "nx-cli-angular-projects-feature-project-detail": {
+    "client-projects-feature-detail": {
       "tags": []
     },
-    "nx-cli-angular-projects-feature-project-list": {
+    "client-projects-feature-list": {
       "tags": []
     },
-    "nx-cli-angular-projects-ui-list-item-badge": {
+    "client-projects-ui-list-item": {
       "tags": []
     },
-    "nx-cli-angular-projects-ui-project-list-item": {
+    "client-projects-ui-list-item-badge": {
       "tags": []
     },
-    "nx-cli-angular-projects-ui-search-bar": {
+    "client-projects-ui-search-bar": {
       "tags": []
     },
-    "nx-cli-angular-shared-util-events-proxy": {
-      "tags": []
-    },
-    "nx-cli-angular-shell-feature-entry-point": {
-      "tags": []
-    },
-    "nx-cli-angular-shell-ui-chips-bar": {
-      "tags": []
-    },
-    "nx-cli-angular-shell-ui-home-layout": {
-      "tags": []
-    },
-    "nx-cli-angular-shell-ui-top-nav": {
-      "tags": []
-    },
-    "nx-cli-electron-nx-cli": {
-      "tags": []
-    },
-    "nx-cli-electron-shell": {
-      "tags": []
-    },
-    "nx-cli-electron-util-event-handlers": {
-      "tags": []
-    },
-    "nx-cli-shared-data-events": {
-      "tags": []
-    },
-    "shared-angular-material-ui-progress-bar": {
-      "tags": []
-    },
-    "shared-angular-material-util-material": {
+    "client-shared-ui-material-modules": {
       "tags": ["angular", "angular-material"]
+    },
+    "client-shared-ui-progress-bar": {
+      "tags": []
+    },
+    "client-shared-util-ipc-events-proxy": {
+      "tags": []
+    },
+    "client-shell-feature-shell-layout": {
+      "tags": []
+    },
+    "client-shell-ui-chips-bar": {
+      "tags": []
+    },
+    "client-shell-ui-projects-layout": {
+      "tags": []
+    },
+    "client-shell-ui-top-nav": {
+      "tags": []
+    },
+    "shared-data-ipc-events": {
+      "tags": []
     }
   }
 }

@@ -1,453 +1,19 @@
 {
   "version": 2,
   "projects": {
-    "nx-cli-angular-nx-cli": {
-      "projectType": "application",
-      "root": "apps/nx-cli/angular/nx-cli",
-      "sourceRoot": "apps/nx-cli/angular/nx-cli/src",
-      "prefix": "dev-workspace",
-      "targets": {
-        "build": {
-          "executor": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/apps/nx-cli/angular/nx-cli",
-            "index": "apps/nx-cli/angular/nx-cli/src/index.html",
-            "main": "apps/nx-cli/angular/nx-cli/src/main.ts",
-            "polyfills": "apps/nx-cli/angular/nx-cli/src/polyfills.ts",
-            "tsConfig": "apps/nx-cli/angular/nx-cli/tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "apps/nx-cli/angular/nx-cli/src/favicon.ico",
-              "apps/nx-cli/angular/nx-cli/src/assets"
-            ],
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "apps/nx-cli/angular/nx-cli/src/styles.scss"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "apps/nx-cli/angular/nx-cli/src/environments/environment.ts",
-                  "with": "apps/nx-cli/angular/nx-cli/src/environments/environment.prod.ts"
-                }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "executor": "@angular-devkit/build-angular:dev-server",
-          "configurations": {
-            "production": {
-              "browserTarget": "nx-cli-angular-nx-cli:build:production"
-            },
-            "development": {
-              "browserTarget": "nx-cli-angular-nx-cli:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "executor": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "nx-cli-angular-nx-cli:build"
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/nx-cli/angular/nx-cli/src/**/*.ts",
-              "apps/nx-cli/angular/nx-cli/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/nx-cli/angular/nx-cli"],
-          "options": {
-            "jestConfig": "apps/nx-cli/angular/nx-cli/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "nx-cli-angular-nx-cli-e2e": {
-      "root": "apps/nx-cli/angular/nx-cli-e2e",
-      "sourceRoot": "apps/nx-cli/angular/nx-cli-e2e/src",
-      "projectType": "application",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/nx-cli/angular/nx-cli-e2e/cypress.json",
-            "tsConfig": "apps/nx-cli/angular/nx-cli-e2e/tsconfig.e2e.json",
-            "devServerTarget": "nx-cli-angular-nx-cli:serve:development"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "nx-cli-angular-nx-cli:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/nx-cli/angular/nx-cli-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "nx-cli-angular-projects-data-access-projects": {
-      "projectType": "library",
-      "root": "libs/nx-cli/angular/projects/data-access/projects",
-      "sourceRoot": "libs/nx-cli/angular/projects/data-access/projects/src",
-      "prefix": "dev-workspace",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/nx-cli/angular/projects/data-access/projects"
-          ],
-          "options": {
-            "jestConfig": "libs/nx-cli/angular/projects/data-access/projects/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/nx-cli/angular/projects/data-access/projects/src/**/*.ts",
-              "libs/nx-cli/angular/projects/data-access/projects/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "nx-cli-angular-projects-feature-project-actions": {
-      "projectType": "library",
-      "root": "libs/nx-cli/angular/projects/feature/project-actions",
-      "sourceRoot": "libs/nx-cli/angular/projects/feature/project-actions/src",
-      "prefix": "dev-workspace",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/nx-cli/angular/projects/feature/project-actions"
-          ],
-          "options": {
-            "jestConfig": "libs/nx-cli/angular/projects/feature/project-actions/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/nx-cli/angular/projects/feature/project-actions/src/**/*.ts",
-              "libs/nx-cli/angular/projects/feature/project-actions/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "nx-cli-angular-projects-feature-project-detail": {
-      "projectType": "library",
-      "root": "libs/nx-cli/angular/projects/feature/project-detail",
-      "sourceRoot": "libs/nx-cli/angular/projects/feature/project-detail/src",
-      "prefix": "dev-workspace",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/nx-cli/angular/projects/feature/project-detail"
-          ],
-          "options": {
-            "jestConfig": "libs/nx-cli/angular/projects/feature/project-detail/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/nx-cli/angular/projects/feature/project-detail/src/**/*.ts",
-              "libs/nx-cli/angular/projects/feature/project-detail/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "nx-cli-angular-projects-feature-project-list": {
-      "projectType": "library",
-      "root": "libs/nx-cli/angular/projects/feature/project-list",
-      "sourceRoot": "libs/nx-cli/angular/projects/feature/project-list/src",
-      "prefix": "dev-workspace",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/nx-cli/angular/projects/feature/project-list"
-          ],
-          "options": {
-            "jestConfig": "libs/nx-cli/angular/projects/feature/project-list/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/nx-cli/angular/projects/feature/project-list/src/**/*.ts",
-              "libs/nx-cli/angular/projects/feature/project-list/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "nx-cli-angular-projects-ui-list-item-badge": {
-      "projectType": "library",
-      "root": "libs/nx-cli/angular/projects/ui/list-item-badge",
-      "sourceRoot": "libs/nx-cli/angular/projects/ui/list-item-badge/src",
-      "prefix": "dev-workspace",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/nx-cli/angular/projects/ui/list-item-badge"
-          ],
-          "options": {
-            "jestConfig": "libs/nx-cli/angular/projects/ui/list-item-badge/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/nx-cli/angular/projects/ui/list-item-badge/src/**/*.ts",
-              "libs/nx-cli/angular/projects/ui/list-item-badge/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "nx-cli-angular-projects-ui-project-list-item": {
-      "projectType": "library",
-      "root": "libs/nx-cli/angular/projects/ui/project-list-item",
-      "sourceRoot": "libs/nx-cli/angular/projects/ui/project-list-item/src",
-      "prefix": "dev-workspace",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/nx-cli/angular/projects/ui/project-list-item"
-          ],
-          "options": {
-            "jestConfig": "libs/nx-cli/angular/projects/ui/project-list-item/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/nx-cli/angular/projects/ui/project-list-item/src/**/*.ts",
-              "libs/nx-cli/angular/projects/ui/project-list-item/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "nx-cli-angular-projects-ui-search-bar": {
-      "projectType": "library",
-      "root": "libs/nx-cli/angular/projects/ui/search-bar",
-      "sourceRoot": "libs/nx-cli/angular/projects/ui/search-bar/src",
-      "prefix": "dev-workspace",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/nx-cli/angular/projects/ui/search-bar"],
-          "options": {
-            "jestConfig": "libs/nx-cli/angular/projects/ui/search-bar/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/nx-cli/angular/projects/ui/search-bar/src/**/*.ts",
-              "libs/nx-cli/angular/projects/ui/search-bar/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "nx-cli-angular-shared-util-events-proxy": {
-      "projectType": "library",
-      "root": "libs/nx-cli/angular/shared/util-events-proxy",
-      "sourceRoot": "libs/nx-cli/angular/shared/util-events-proxy/src",
-      "prefix": "dev-workspace",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/nx-cli/angular/shared/util-events-proxy"],
-          "options": {
-            "jestConfig": "libs/nx-cli/angular/shared/util-events-proxy/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/nx-cli/angular/shared/util-events-proxy/src/**/*.ts",
-              "libs/nx-cli/angular/shared/util-events-proxy/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "nx-cli-angular-shell-feature-entry-point": {
-      "projectType": "library",
-      "root": "libs/nx-cli/angular/shell/feature/entry-point",
-      "sourceRoot": "libs/nx-cli/angular/shell/feature/entry-point/src",
-      "prefix": "dev-workspace",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/nx-cli/angular/shell/feature/entry-point"],
-          "options": {
-            "jestConfig": "libs/nx-cli/angular/shell/feature/entry-point/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/nx-cli/angular/shell/feature/entry-point/src/**/*.ts",
-              "libs/nx-cli/angular/shell/feature/entry-point/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "nx-cli-angular-shell-ui-chips-bar": {
-      "projectType": "library",
-      "root": "libs/nx-cli/angular/shell/ui/chips-bar",
-      "sourceRoot": "libs/nx-cli/angular/shell/ui/chips-bar/src",
-      "prefix": "dev-workspace",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/nx-cli/angular/shell/ui/chips-bar"],
-          "options": {
-            "jestConfig": "libs/nx-cli/angular/shell/ui/chips-bar/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/nx-cli/angular/shell/ui/chips-bar/src/**/*.ts",
-              "libs/nx-cli/angular/shell/ui/chips-bar/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "nx-cli-angular-shell-ui-home-layout": {
-      "projectType": "library",
-      "root": "libs/nx-cli/angular/shell/ui/home-layout",
-      "sourceRoot": "libs/nx-cli/angular/shell/ui/home-layout/src",
-      "prefix": "dev-workspace",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/nx-cli/angular/shell/ui/home-layout"],
-          "options": {
-            "jestConfig": "libs/nx-cli/angular/shell/ui/home-layout/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/nx-cli/angular/shell/ui/home-layout/src/**/*.ts",
-              "libs/nx-cli/angular/shell/ui/home-layout/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "nx-cli-angular-shell-ui-top-nav": {
-      "projectType": "library",
-      "root": "libs/nx-cli/angular/shell/ui/top-nav",
-      "sourceRoot": "libs/nx-cli/angular/shell/ui/top-nav/src",
-      "prefix": "dev-workspace",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/nx-cli/angular/shell/ui/top-nav"],
-          "options": {
-            "jestConfig": "libs/nx-cli/angular/shell/ui/top-nav/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/nx-cli/angular/shell/ui/top-nav/src/**/*.ts",
-              "libs/nx-cli/angular/shell/ui/top-nav/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "nx-cli-electron-nx-cli": {
-      "root": "apps/nx-cli/electron/nx-cli",
-      "sourceRoot": "apps/nx-cli/electron/nx-cli/src",
+    "app": {
+      "root": "apps/app",
+      "sourceRoot": "apps/app/src",
       "projectType": "application",
       "prefix": "nx-cli-electron-nx-cli",
       "targets": {
         "build": {
           "executor": "nx-electron:build",
           "options": {
-            "outputPath": "dist/apps/nx-cli/electron/nx-cli",
-            "main": "apps/nx-cli/electron/nx-cli/src/main.ts",
-            "tsConfig": "apps/nx-cli/electron/nx-cli/tsconfig.app.json",
-            "assets": ["apps/nx-cli/electron/nx-cli/src/assets"]
+            "outputPath": "dist/apps/app",
+            "main": "apps/app/src/main.ts",
+            "tsConfig": "apps/app/tsconfig.app.json",
+            "assets": ["apps/app/src/assets"]
           },
           "configurations": {
             "production": {
@@ -456,8 +22,8 @@
               "inspect": false,
               "fileReplacements": [
                 {
-                  "replace": "apps/nx-cli/electron/nx-cli/src/environments/environment.ts",
-                  "with": "apps/nx-cli/electron/nx-cli/src/environments/environment.prod.ts"
+                  "replace": "apps/app/src/environments/environment.ts",
+                  "with": "apps/app/src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -466,7 +32,7 @@
         "serve": {
           "executor": "nx-electron:execute",
           "options": {
-            "buildTarget": "nx-cli-electron-nx-cli:build"
+            "buildTarget": "app:build"
           }
         },
         "package": {
@@ -489,95 +55,193 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/nx-cli/electron/nx-cli/**/*.ts"]
+            "lintFilePatterns": ["apps/app/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/nx-cli/electron/nx-cli"],
+          "outputs": ["coverage/apps/app"],
           "options": {
-            "jestConfig": "apps/nx-cli/electron/nx-cli/jest.config.js",
+            "jestConfig": "apps/app/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "nx-cli-electron-shell": {
-      "root": "libs/nx-cli/electron/shell",
-      "sourceRoot": "libs/nx-cli/electron/shell/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/nx-cli/electron/shell/**/*.ts"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/nx-cli/electron/shell"],
-          "options": {
-            "jestConfig": "libs/nx-cli/electron/shell/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "nx-cli-electron-util-event-handlers": {
-      "root": "libs/nx-cli/electron/util-event-handlers",
-      "sourceRoot": "libs/nx-cli/electron/util-event-handlers/src",
+    "app-shell-feature-event-handlers": {
+      "root": "libs/app/shell/feature/event-handlers",
+      "sourceRoot": "libs/app/shell/feature/event-handlers/src",
       "projectType": "library",
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/nx-cli/electron/util-event-handlers/**/*.ts"
+              "libs/app/shell/feature/event-handlers/**/*.ts"
             ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/nx-cli/electron/util-event-handlers"],
+          "outputs": ["coverage/libs/app/shell/feature/event-handlers"],
           "options": {
-            "jestConfig": "libs/nx-cli/electron/util-event-handlers/jest.config.js",
+            "jestConfig": "libs/app/shell/feature/event-handlers/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "nx-cli-shared-data-events": {
-      "root": "libs/nx-cli/shared/data-events",
-      "sourceRoot": "libs/nx-cli/shared/data-events/src",
+    "app-shell-feature-events": {
+      "root": "libs/app/shell/feature/events",
+      "sourceRoot": "libs/app/shell/feature/events/src",
       "projectType": "library",
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/nx-cli/shared/data-events/**/*.ts"]
+            "lintFilePatterns": ["libs/app/shell/feature/events/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/nx-cli/shared/data-events"],
+          "outputs": ["coverage/libs/app/shell/feature/events"],
           "options": {
-            "jestConfig": "libs/nx-cli/shared/data-events/jest.config.js",
+            "jestConfig": "libs/app/shell/feature/events/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "shared-angular-material-ui-progress-bar": {
+    "client": {
+      "projectType": "application",
+      "root": "apps/client",
+      "sourceRoot": "apps/client/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "build": {
+          "executor": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/client",
+            "index": "apps/client/src/index.html",
+            "main": "apps/client/src/main.ts",
+            "polyfills": "apps/client/src/polyfills.ts",
+            "tsConfig": "apps/client/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": ["apps/client/src/favicon.ico", "apps/client/src/assets"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/client/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/client/src/environments/environment.ts",
+                  "with": "apps/client/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "executor": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "client:build:production"
+            },
+            "development": {
+              "browserTarget": "client:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "client:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/client/src/**/*.ts",
+              "apps/client/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/client"],
+          "options": {
+            "jestConfig": "apps/client/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "client-e2e": {
+      "root": "apps/client-e2e",
+      "sourceRoot": "apps/client-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/client-e2e/cypress.json",
+            "tsConfig": "apps/client-e2e/tsconfig.e2e.json",
+            "devServerTarget": "client:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "client:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/client-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "client-projects-data-access-store": {
       "projectType": "library",
-      "root": "libs/shared/angular/material/ui-progress-bar",
-      "sourceRoot": "libs/shared/angular/material/ui-progress-bar/src",
+      "root": "libs/client/projects/data-access/store",
+      "sourceRoot": "libs/client/projects/data-access/store/src",
       "prefix": "dev-workspace",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/angular/material/ui-progress-bar"],
+          "outputs": ["coverage/libs/client/projects/data-access/store"],
           "options": {
-            "jestConfig": "libs/shared/angular/material/ui-progress-bar/jest.config.js",
+            "jestConfig": "libs/client/projects/data-access/store/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -585,24 +249,24 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/shared/angular/material/ui-progress-bar/src/**/*.ts",
-              "libs/shared/angular/material/ui-progress-bar/src/**/*.html"
+              "libs/client/projects/data-access/store/src/**/*.ts",
+              "libs/client/projects/data-access/store/src/**/*.html"
             ]
           }
         }
       }
     },
-    "shared-angular-material-util-material": {
+    "client-projects-feature-actions": {
       "projectType": "library",
-      "root": "libs/shared/angular/material/util-material",
-      "sourceRoot": "libs/shared/angular/material/util-material/src",
+      "root": "libs/client/projects/feature/actions",
+      "sourceRoot": "libs/client/projects/feature/actions/src",
       "prefix": "dev-workspace",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/angular/material/util-material"],
+          "outputs": ["coverage/libs/client/projects/feature/actions"],
           "options": {
-            "jestConfig": "libs/shared/angular/material/util-material/jest.config.js",
+            "jestConfig": "libs/client/projects/feature/actions/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -610,9 +274,330 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/shared/angular/material/util-material/src/**/*.ts",
-              "libs/shared/angular/material/util-material/src/**/*.html"
+              "libs/client/projects/feature/actions/src/**/*.ts",
+              "libs/client/projects/feature/actions/src/**/*.html"
             ]
+          }
+        }
+      }
+    },
+    "client-projects-feature-detail": {
+      "projectType": "library",
+      "root": "libs/client/projects/feature/detail",
+      "sourceRoot": "libs/client/projects/feature/detail/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/feature/detail"],
+          "options": {
+            "jestConfig": "libs/client/projects/feature/detail/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/feature/detail/src/**/*.ts",
+              "libs/client/projects/feature/detail/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-projects-feature-list": {
+      "projectType": "library",
+      "root": "libs/client/projects/feature/list",
+      "sourceRoot": "libs/client/projects/feature/list/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/feature/list"],
+          "options": {
+            "jestConfig": "libs/client/projects/feature/list/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/feature/list/src/**/*.ts",
+              "libs/client/projects/feature/list/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-projects-ui-list-item": {
+      "projectType": "library",
+      "root": "libs/client/projects/ui/list-item",
+      "sourceRoot": "libs/client/projects/ui/list-item/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/ui/list-item"],
+          "options": {
+            "jestConfig": "libs/client/projects/ui/list-item/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/ui/list-item/src/**/*.ts",
+              "libs/client/projects/ui/list-item/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-projects-ui-list-item-badge": {
+      "projectType": "library",
+      "root": "libs/client/projects/ui/list-item-badge",
+      "sourceRoot": "libs/client/projects/ui/list-item-badge/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/ui/list-item-badge"],
+          "options": {
+            "jestConfig": "libs/client/projects/ui/list-item-badge/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/ui/list-item-badge/src/**/*.ts",
+              "libs/client/projects/ui/list-item-badge/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-projects-ui-search-bar": {
+      "projectType": "library",
+      "root": "libs/client/projects/ui/search-bar",
+      "sourceRoot": "libs/client/projects/ui/search-bar/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/ui/search-bar"],
+          "options": {
+            "jestConfig": "libs/client/projects/ui/search-bar/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/ui/search-bar/src/**/*.ts",
+              "libs/client/projects/ui/search-bar/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-shared-ui-material-modules": {
+      "projectType": "library",
+      "root": "libs/client/shared/ui/material-modules",
+      "sourceRoot": "libs/client/shared/ui/material-modules/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shared/ui/material-modules"],
+          "options": {
+            "jestConfig": "libs/client/shared/ui/material-modules/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shared/ui/material-modules/src/**/*.ts",
+              "libs/client/shared/ui/material-modules/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-shared-ui-progress-bar": {
+      "projectType": "library",
+      "root": "libs/client/shared/ui/progress-bar",
+      "sourceRoot": "libs/client/shared/ui/progress-bar/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shared/ui/progress-bar"],
+          "options": {
+            "jestConfig": "libs/client/shared/ui/progress-bar/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shared/ui/progress-bar/src/**/*.ts",
+              "libs/client/shared/ui/progress-bar/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-shared-util-ipc-events-proxy": {
+      "projectType": "library",
+      "root": "libs/client/shared/util/ipc-events-proxy",
+      "sourceRoot": "libs/client/shared/util/ipc-events-proxy/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shared/util/ipc-events-proxy"],
+          "options": {
+            "jestConfig": "libs/client/shared/util/ipc-events-proxy/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shared/util/ipc-events-proxy/src/**/*.ts",
+              "libs/client/shared/util/ipc-events-proxy/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-shell-feature-shell-layout": {
+      "projectType": "library",
+      "root": "libs/client/shell/feature/shell-layout",
+      "sourceRoot": "libs/client/shell/feature/shell-layout/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shell/feature/shell-layout"],
+          "options": {
+            "jestConfig": "libs/client/shell/feature/shell-layout/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shell/feature/shell-layout/src/**/*.ts",
+              "libs/client/shell/feature/shell-layout/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-shell-ui-chips-bar": {
+      "projectType": "library",
+      "root": "libs/client/shell/ui/chips-bar",
+      "sourceRoot": "libs/client/shell/ui/chips-bar/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shell/ui/chips-bar"],
+          "options": {
+            "jestConfig": "libs/client/shell/ui/chips-bar/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shell/ui/chips-bar/src/**/*.ts",
+              "libs/client/shell/ui/chips-bar/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-shell-ui-projects-layout": {
+      "projectType": "library",
+      "root": "libs/client/shell/ui/projects-layout",
+      "sourceRoot": "libs/client/shell/ui/projects-layout/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shell/ui/projects-layout"],
+          "options": {
+            "jestConfig": "libs/client/shell/ui/projects-layout/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shell/ui/projects-layout/src/**/*.ts",
+              "libs/client/shell/ui/projects-layout/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-shell-ui-top-nav": {
+      "projectType": "library",
+      "root": "libs/client/shell/ui/top-nav",
+      "sourceRoot": "libs/client/shell/ui/top-nav/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shell/ui/top-nav"],
+          "options": {
+            "jestConfig": "libs/client/shell/ui/top-nav/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shell/ui/top-nav/src/**/*.ts",
+              "libs/client/shell/ui/top-nav/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "shared-data-ipc-events": {
+      "root": "libs/shared/data/ipc-events",
+      "sourceRoot": "libs/shared/data/ipc-events/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/data/ipc-events/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/data/ipc-events"],
+          "options": {
+            "jestConfig": "libs/shared/data/ipc-events/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
@@ -637,5 +622,5 @@
       "style": "scss"
     }
   },
-  "defaultProject": "nx-cli-electron-nx-cli"
+  "defaultProject": "app"
 }
