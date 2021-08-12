@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'client-projects-data-access-store',
+  displayName: 'client-projects-data-access-+store',
   preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -9,7 +9,7 @@ module.exports = {
     },
   },
   coverageDirectory:
-    '../../../../../coverage/libs/client/projects/data-access/store',
+    '../../../../../coverage/libs/client/projects/data-access/+store',
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',
   },

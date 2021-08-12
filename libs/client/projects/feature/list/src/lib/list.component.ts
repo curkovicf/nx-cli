@@ -7,10 +7,10 @@ import {
 
 @Component({
   selector: 'dev-workspace-project-list',
-  templateUrl: './project-list.component.html',
-  styleUrls: ['./project-list.component.scss'],
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.scss'],
 })
-export class ProjectListComponent implements OnInit {
+export class ListComponent implements OnInit {
   constructor(public projectsStore: ProjectsStore) {}
 
   ngOnInit(): void {

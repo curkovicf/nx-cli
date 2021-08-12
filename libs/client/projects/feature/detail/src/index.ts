@@ -1,3 +1,3 @@
-export * from './lib/project-detail.module';
+export * from './lib/detail.module';
 
-export * from './lib/project-detail.component';
+export * from './lib/detail.component';

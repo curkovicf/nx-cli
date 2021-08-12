@@ -1,1 +1,1 @@
-export * from './lib/project-list-item.module';
+export * from './lib/list-item.module';

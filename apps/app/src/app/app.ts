@@ -26,7 +26,7 @@ export default class App {
   }
 
   private static onClose() {
-    // Dereference the window object, usually you would store windows
+    // Dereference the window object, usually you would +store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     App.mainWindow = null;
@@ -91,7 +91,7 @@ export default class App {
 
     // Emitted when the window is closed.
     App.mainWindow.on('closed', () => {
-      // Dereference the window object, usually you would store windows
+      // Dereference the window object, usually you would +store windows
       // in an array if your app supports multi windows, this is the time
       // when you should delete the corresponding element.
       App.mainWindow = null;

@@ -1,9 +1,10 @@
-import { IpcEventDtos } from '@dev-workspace/nx-cli/shared/data-events';
-import Package = IpcEventDtos.Package;
-import { defaultDependenciesConfig } from '../config/default-dependencies.config';
-
 // @ts-ignore
 import * as fs from 'fs';
+
+import { defaultDependenciesConfig } from '../config/default-dependencies.config';
+import { IpcEventDtos } from '@nx-cli/shared/data/ipc-events';
+import Package = IpcEventDtos.Package;
+
 
 export function getInstalledPackages(path: string): Package[] {
   const packageJson = JSON.parse(

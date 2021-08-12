@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeLayoutComponent } from '@nx-cli/client/shell/ui/projects-layout';
+import { ProjectsLayoutComponent } from '@nx-cli/client/shell/ui/projects-layout';
 import { ShellLayoutComponent } from './shell-layout.component';
 import { TopNavModule } from '@nx-cli/client/shell/ui/top-nav';
 
@@ -20,7 +20,7 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        component: HomeLayoutComponent,
+        component: ProjectsLayoutComponent,
       },
     ],
   },
