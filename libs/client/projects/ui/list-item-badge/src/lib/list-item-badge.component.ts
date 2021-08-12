@@ -6,7 +6,7 @@ import { NxProjectType } from '@nx-cli/client/projects/data-access/store';
   templateUrl: './list-item-badge.component.html',
   styleUrls: ['./list-item-badge.component.scss'],
 })
-export class ListItemBadgeComponent implements OnInit {
+export class ListItemBadgeComponent {
   @Input()
   set projectType(libraryType: NxProjectType | undefined) {
     this.initAccentColor(libraryType);
@@ -14,12 +14,6 @@ export class ListItemBadgeComponent implements OnInit {
 
   public badgeType: NxProjectType | undefined;
   public accentColor = '';
-
-  ngOnInit(): void {
-    if (!this.badgeType) {
-      this.accentColor = 'red';
-    }
-  }
 
   private initAccentColor(projectType: NxProjectType | undefined): void {
     switch (projectType) {
@@ -36,6 +30,10 @@ export class ListItemBadgeComponent implements OnInit {
         this.accentColor = 'yellow';
         break;
       case NxProjectType.shell:
+        this.accentColor = 'gray';
+        break;
+      case NxProjectType.app:
+        this.accentColor = 'red';
         break;
       default:
         this.accentColor = 'black';

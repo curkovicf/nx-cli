@@ -1,5 +1,5 @@
 <div class="badge" [ngSwitch]="badgeType" [style.backgroundColor]="accentColor">
-  <p *ngIf="!badgeType">app</p>
+  <p *ngSwitchCase="'app'">app</p>
   <p *ngSwitchCase="'data'">data</p>
   <p *ngSwitchCase="'feature'">feature</p>
   <p *ngSwitchCase="'util'">util</p>
