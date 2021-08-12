@@ -2,12 +2,14 @@
   <header>
     <p>installed apps & libs</p>
 
-    <img
-      [ngStyle]="{'visibility': 'visible'}"
-      matRipple
-      src='assets/refresh_icon.svg'
-      alt='Refresh icon'
-      (click)='refresh()'>
+    <div class='refresh-icon-wrapper' matRipple>
+      <img
+        [ngStyle]="{'visibility': 'visible'}"
+        src='assets/refresh_icon.svg'
+        alt='Refresh icon'
+        (click)='refresh()'>
+    </div>
+
   </header>
 
   <div class='search-wrapper'>
@@ -19,6 +21,7 @@
   <dev-workspace-project-list-item
     *ngFor='let project of (projectsStore.projectsLoadedInView$ | async)'
     [project]='project'
+    (click)='onSelectProject(project)'
   >
     <dev-workspace-list-item-badge [projectType]='project.type'></dev-workspace-list-item-badge>
   </dev-workspace-project-list-item>

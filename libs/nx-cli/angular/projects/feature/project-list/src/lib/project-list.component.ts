@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ProjectsStore } from '@dev-workspace/nx-cli/angular/projects/data-access/projects';
+import { NxProject, ProjectsStore } from '@dev-workspace/nx-cli/angular/projects/data-access/projects';
 
 @Component({
   selector: 'dev-workspace-project-list',
@@ -20,5 +20,9 @@ export class ProjectListComponent implements OnInit {
 
   public triggerSearch(keyword: string): void {
     this.projectsStore.filterProjects(keyword);
+  }
+
+  public onSelectProject(project: NxProject): void {
+    this.projectsStore.selectProject(project);
   }
 }

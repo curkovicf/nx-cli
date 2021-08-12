@@ -23,9 +23,15 @@
         margin: 0;
       }
 
-      & > img {
-        @include cursor-pointer;
-        @include box(1rem, 1rem);
+      & > .refresh-icon-wrapper {
+        padding: 0.3rem;
+        border-radius: 1rem;
+        @include center-flex-X;
+
+        & > img {
+          @include cursor-pointer;
+          @include box(1rem, 1rem);
+        }
       }
     }
 

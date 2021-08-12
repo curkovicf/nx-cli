@@ -42,4 +42,8 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
       )
       .subscribe();
   }
+
+  public selectProject(project: NxProject): void {
+    this.patchState({ selected: project });
+  }
 }
