@@ -2,8 +2,10 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import {
+  AngularComponent,
+  AngularModule,
   NxProject,
-  NxProjectType,
+  NxProjectType
 } from '@nx-cli/client/projects/data-access/store';
 
 export class ProjectsEventHandler {
@@ -32,14 +34,11 @@ export class ProjectsEventHandler {
           path: pwd,
           type: this.getProjectType(pwd),
           nameInNxJson: '',
+          angularModules: this.getAngularModules(pwd),
+          tags: []
         });
       }
     });
-  }
-
-  private isApp(pwd: string): boolean {
-    const trimmedPath = pwd.replace(this.nxProjectRootPath, '');
-    return trimmedPath.split('/')[1] === 'apps';
   }
 
   private isProject(file: string, files: string[]): boolean {
@@ -80,22 +79,99 @@ export class ProjectsEventHandler {
 
   public getNameOfAllProjectsWithinNxJsonFile(): void {
     const pathToWorkspaceJson = this.nxProjectRootPath + '/workspace.json';
-    const workspaceJson = JSON.parse(
-      fs.readFileSync(pathToWorkspaceJson, 'utf8')
-    );
+    const workspaceJson = JSON.parse(fs.readFileSync(pathToWorkspaceJson, 'utf8'));
 
     Object.entries(workspaceJson.projects).forEach(([key, value]) => {
       const currentProjectPath = value['root'];
 
       this.projects.forEach((project) => {
-        const trimmedPath = this.trimPathToSourcePath(project.path).substring(
-          1
-        );
+        const trimmedPath = this.trimPathToSourcePath(project.path).substring(1);
 
         if (currentProjectPath === trimmedPath) {
           project.nameInNxJson = key;
         }
       });
     });
+  }
+
+  public getTagsOfAllProjectsWithinNxJsonFile(): void {
+    const pathToNxJson = this.nxProjectRootPath + '/nx.json';
+    const nxJson = JSON.parse(fs.readFileSync(pathToNxJson, 'utf8'));
+
+    Object.entries(nxJson.projects).forEach(([key, value]) => {
+      this.projects.forEach(project => {
+        if (project.nameInNxJson === key) {
+          project.tags.push(...value['tags']);
+        }
+      });
+    });
+  }
+
+  public getAngularModules(projectPath: string): AngularModule[] {
+    const angularModules: AngularModule[] = [];
+    const files = fs.readdirSync(projectPath);  //  Open lib
+
+    //  Recursively look for all angular modules
+    files.forEach(file => {
+      const absolutePath = path.join(projectPath, file);
+      const isFileDirectory = fs.statSync(absolutePath).isDirectory();
+
+      if (isFileDirectory) {
+        angularModules.push(...this.getAngularModules(absolutePath));
+      } else if (file.includes('module')) {
+        //  Angular module is found
+        const angularModuleTxt = fs.readFileSync(absolutePath, 'utf8');
+
+        angularModules.push({
+          name: file,
+          path: absolutePath,
+          components: this.findDeclaredComponents(angularModuleTxt)
+        });
+      }
+    });
+
+    return angularModules;
+  }
+
+  private findDeclaredComponents(angularModuleTxt: string): AngularComponent[] {
+    const angularComponents: AngularComponent[] = [];
+    const angularModuleSplit = angularModuleTxt.split(/\r?\n/); //  This regex supports Windows & Unix systems
+
+    let isDeclarations = false;
+    angularModuleSplit.forEach(line => {
+      if (line.includes('declarations')) {
+        //  Declarations start
+        isDeclarations = true;
+      }
+
+      if (isDeclarations) {
+        //  Grab components in array
+        const trimmed = line
+          .replace('declarations', '')
+          .replace(':', '')
+          .replace('[', '')
+          .replace(']', '')
+          .replace(',', '')
+          .trim();
+
+        //  Handle edge cases like declarations: [Comp,Comp], declarations: [Comp, /nComp] etc.
+        const arrSplit = trimmed.split(/[ ,]+/);
+
+        if (arrSplit.length > 0) {
+          arrSplit.forEach(angularComponentTxt => {
+            if (angularComponentTxt) {
+              angularComponents.push({ className: angularComponentTxt, path: '' });
+            }
+          })
+        }
+      }
+
+      if (line.includes(']') && isDeclarations) {
+        //  Declarations end
+        isDeclarations = false;
+      }
+    });
+
+    return angularComponents;
   }
 }
