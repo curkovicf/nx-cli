@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 })
 export class TopNavComponent {
   nav_links: { link: string; text: string }[] = [
-    { link: '/home', text: 'home' },
-    { link: '/npm', text: 'modules' },
+    { link: '/projects', text: 'projects' },
   ];
 }

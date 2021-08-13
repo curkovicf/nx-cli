@@ -118,12 +118,13 @@ export class ProjectsEventHandler {
 
       if (isFileDirectory) {
         angularModules.push(...this.getAngularModules(absolutePath));
-      } else if (file.includes('module')) {
+      } else if (file.includes('.module.')) {
         //  Angular module is found
         const angularModuleTxt = fs.readFileSync(absolutePath, 'utf8');
 
         angularModules.push({
-          name: file,
+          className: this.getClassName(angularModuleTxt),
+          fileName: file,
           path: absolutePath,
           components: this.findDeclaredComponents(angularModuleTxt)
         });
@@ -160,7 +161,7 @@ export class ProjectsEventHandler {
         if (arrSplit.length > 0) {
           arrSplit.forEach(angularComponentTxt => {
             if (angularComponentTxt) {
-              angularComponents.push({ className: angularComponentTxt, path: '' });
+              angularComponents.push({ className: angularComponentTxt, path: '', fileName: '' });
             }
           })
         }
@@ -173,5 +174,18 @@ export class ProjectsEventHandler {
     });
 
     return angularComponents;
+  }
+
+  private getClassName(txt: string): string {
+    const lines = txt.split(/\r?\n/);
+
+    for (let i = 0; i < lines.length; i++){
+      const line = lines[i];
+
+      if (line.includes('export class')) {
+        const split = line.split(' ');
+        return split[2];
+      }
+    }
   }
 }

@@ -76,9 +76,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/app/shell/feature/event-handlers/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/app/shell/feature/event-handlers/**/*.ts"]
           }
         },
         "test": {
@@ -189,10 +187,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/client/src/**/*.ts",
-              "apps/client/src/**/*.html"
-            ]
+            "lintFilePatterns": ["apps/client/src/**/*.ts", "apps/client/src/**/*.html"]
           }
         },
         "test": {
@@ -401,6 +396,31 @@
             "lintFilePatterns": [
               "libs/client/projects/ui/search-bar/src/**/*.ts",
               "libs/client/projects/ui/search-bar/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-shared-ui-default-button": {
+      "projectType": "library",
+      "root": "libs/client/shared/ui/default-button",
+      "sourceRoot": "libs/client/shared/ui/default-button/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shared/ui/default-button"],
+          "options": {
+            "jestConfig": "libs/client/shared/ui/default-button/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shared/ui/default-button/src/**/*.ts",
+              "libs/client/shared/ui/default-button/src/**/*.html"
             ]
           }
         }

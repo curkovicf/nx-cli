@@ -11,7 +11,7 @@ import { TopNavModule } from '@nx-cli/client/shell/ui/top-nav';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/projects',
     pathMatch: 'full',
   },
   {
@@ -19,7 +19,7 @@ const routes: Routes = [
     component: ShellLayoutComponent,
     children: [
       {
-        path: 'home',
+        path: 'projects',
         component: ProjectsLayoutComponent,
       },
     ],

@@ -67,6 +67,9 @@
     "client-projects-ui-search-bar": {
       "tags": []
     },
+    "client-shared-ui-default-button": {
+      "tags": []
+    },
     "client-shared-ui-material-modules": {
       "tags": ["angular", "angular-material"]
     },

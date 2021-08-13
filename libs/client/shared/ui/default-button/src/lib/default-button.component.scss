@@ -1,0 +1,18 @@
+@import "styles/global.mixins";
+@import "styles/global.variables";
+
+:host {
+  display: inline-block;
+
+  & > button {
+    height: 2.4rem;
+    padding: 0 .5rem;
+    @include cursor-pointer;
+    @include default-btn-layout;
+  }
+
+  & > .primary {}
+  & > .warn {
+    color: red;
+  }
+}

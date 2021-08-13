@@ -18,22 +18,22 @@ export class ListItemBadgeComponent {
   private initAccentColor(projectType: NxProjectType | undefined): void {
     switch (projectType) {
       case NxProjectType.data:
-        this.accentColor = 'skyblue';
+        this.accentColor = '#3498DB';
         break;
       case NxProjectType.util:
-        this.accentColor = 'grey';
+        this.accentColor = '#95A5A6';
         break;
       case NxProjectType.feature:
-        this.accentColor = 'orange';
+        this.accentColor = '#E67E22';
         break;
       case NxProjectType.ui:
-        this.accentColor = 'yellow';
+        this.accentColor = '#F1C40F';
         break;
       case NxProjectType.shell:
-        this.accentColor = 'gray';
+        this.accentColor = '#7F8C8D';
         break;
       case NxProjectType.app:
-        this.accentColor = 'red';
+        this.accentColor = '#D35400';
         break;
       default:
         this.accentColor = 'black';
