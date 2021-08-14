@@ -1,7 +1,8 @@
 import { app, ipcMain } from 'electron';
 
-import { IpcEvents } from '@nx-cli/shared/data/ipc-events';
-import { NxProjectEventHandler, ProjectsEventHandler } from '@nx-cli/app/shell/feature/event-handlers';
+import { IpcEventDtos, IpcEvents } from '@nx-cli/shared/data/ipc-events';
+import { NxProjectEventHandler, ProjectsEventHandler, GenerateComponentHandler } from '@nx-cli/app/shell/feature/event-handlers';
+import { Project } from '@nx-cli/client/projects/data-access/store';
 
 export class Events {
   static init(): void {
@@ -29,6 +30,13 @@ export class Events {
       const nxProjectHandler = new NxProjectEventHandler();
 
       event.returnValue = nxProjectHandler.isNxProject(path);
+    });
+
+    //  Check if passed path is nx project
+    ipcMain.on(IpcEvents.generateComponent.fromAngular, async (event, project: IpcEventDtos.GenerateComponentDto) => {
+      const generateComponentHandler = new GenerateComponentHandler();
+      const isSuccess = await generateComponentHandler.generateComponent(project);
+      event.sender.send(IpcEvents.generateComponent.fromNode, isSuccess);
     });
   }
 }

@@ -16,8 +16,9 @@
   </header>
 
   <div class='action-buttons'>
-    <nx-cli-default-button [buttonText]='"Create Component"' type='primary'></nx-cli-default-button>
+    <nx-cli-default-button [buttonText]='"Create Component"' type='primary' (onbtnclick)='generateComponent(project)'></nx-cli-default-button>
     <nx-cli-default-button [buttonText]='"Create Service"' type='primary'></nx-cli-default-button>
+    <nx-cli-default-button [buttonText]='"Create Module"' type='primary'></nx-cli-default-button>
     <nx-cli-default-button [buttonText]='"Delete this project"' type='warn'></nx-cli-default-button>
   </div>
 

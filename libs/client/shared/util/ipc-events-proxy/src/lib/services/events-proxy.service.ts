@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { Project } from '@nx-cli/client/projects/data-access/store';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class EventsProxyService {
   constructor(private electronService: ElectronService) {
@@ -13,21 +13,16 @@ export class EventsProxyService {
   }
 
   private initChannels(): void {
-    //  Apply operation
-    this.electronService.ipcRenderer.on(
-      IpcEvents.applyOperation.fromNode,
-      (event, operationDto: IpcEventDtos.Operation) => {
-        /* TODO: Get stuff */
-        // const { projectId, projectPath } = operationDto;
-        // this.getInstalledPackagesForProject({projectId, projectPath});
+    //  Generate component result
+    this.electronService.ipcRenderer.on(IpcEvents.generateComponent.fromNode, (event, isSuccess: boolean) => {
+        if (isSuccess) {
+          //  TODO: Update-Refresh store
+          console.log('SUCESS');
+        } else {
+          //  TODO: Err toaster
+          console.log('ERROR');
+        }
       }
-    );
-  }
-
-  applyOperation(operationDto: any): void {
-    this.electronService.ipcRenderer.send(
-      IpcEvents.applyOperation.fromAngular,
-      operationDto
     );
   }
 
@@ -38,5 +33,9 @@ export class EventsProxyService {
         projectPath
       )
     );
+  }
+
+  public generateComponent(generateComponentDto: IpcEventDtos.GenerateComponentDto): void {
+    this.electronService.ipcRenderer.send(IpcEvents.generateComponent.fromAngular, generateComponentDto);
   }
 }

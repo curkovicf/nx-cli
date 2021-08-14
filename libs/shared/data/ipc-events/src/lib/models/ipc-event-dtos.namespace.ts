@@ -1,25 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace IpcEventDtos {
-  export interface Package {
-    name: string;
-    version: string;
-  }
-
-  export interface Operation {
-    projectId: string;
+  export interface GenerateComponentDto {
+    componentName: string;
     projectPath: string;
-    tasks: Task[];
-  }
-
-  export interface Task {
-    packageName: string;
-    taskAction: TaskAction;
-  }
-
-  export enum TaskAction {
-    INSTALL,
-    INSTALL_SAVE_DEV,
-    REMOVE,
+    parentModule?: string;
   }
 
   export type ProjectPath = string;
