@@ -1,0 +1,59 @@
+@import "styles/global.mixins";
+@import "styles/global.variables";
+
+:host {
+  @include center-flex-Y;
+  @include box-max;
+
+  & > .header {
+    padding: 0.5rem 1rem;
+    @include box(100%, 4rem);
+    @include default_border(bottom);
+
+    & > header {
+      padding: 0.4rem;
+      border-radius: 5px;
+      @include box(100%, 3rem);
+      @include center-flex-X;
+      justify-content: flex-start;
+
+      & > p {
+        text-transform: uppercase;
+        color: black;
+        font-weight: 400;
+        margin: 0;
+      }
+    }
+  }
+
+  & > main {
+    position: relative;
+    padding: 1rem 1rem;
+    overflow-y: auto;
+    @include box(100%, calc(100% - 7.5rem));
+
+    & > .tag {
+      margin-bottom: .3rem;
+      color: gray;
+
+      & > p {}
+    }
+  }
+
+  & > footer {
+    position: relative;
+    @include separator_top(100%);
+    @include box(100%, 3.5rem);
+    @include center-flex-Y;
+    justify-content: space-evenly;
+
+    & > nx-cli-default-button {
+      @include box(90%, 2.4rem);
+    }
+
+    & > mat-progress-spinner {
+      transform: translate(-50%, -50%);
+      @include position(absolute, 65%, null, null, 60%);
+    }
+  }
+}

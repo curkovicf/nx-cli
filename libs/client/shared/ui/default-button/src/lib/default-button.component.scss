@@ -2,13 +2,16 @@
 @import "styles/global.variables";
 
 :host {
+  position: relative;
   display: inline-block;
+  height: 2.4rem;
 
   & > button {
     height: 2.4rem;
     padding: 0 .5rem;
     @include cursor-pointer;
     @include default-btn-layout;
+    @include box-max;
   }
 
   & > .primary {}
