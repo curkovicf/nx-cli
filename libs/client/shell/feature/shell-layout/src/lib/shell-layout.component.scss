@@ -10,7 +10,11 @@
     height: $top-nav-height;
   }
 
+  & > dev-workspace-chips-bar {
+    height: $chips-bar-height;
+  }
+
   & > main {
-    @include box(100%, calc(100% - #{$top-nav-height}));
+    @include box(100%, calc(100% - #{$top-nav-height + $chips-bar-height}));
   }
 }

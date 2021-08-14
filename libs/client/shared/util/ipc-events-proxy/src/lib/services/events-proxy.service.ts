@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ElectronService } from 'ngx-electron';
 import { IpcEventDtos, IpcEvents } from '@nx-cli/shared/data/ipc-events';
 import { Observable, of } from 'rxjs';
-import { NxProject } from '@nx-cli/client/projects/data-access/store';
+import { Project } from '@nx-cli/client/projects/data-access/store';
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +31,7 @@ export class EventsProxyService {
     );
   }
 
-  getAllProjects(projectPath: string): Observable<NxProject[]> {
+  getAllProjects(projectPath?: string): Observable<Project[]> {
     return of(
       this.electronService.ipcRenderer.sendSync(
         IpcEvents.projects.fromAngular,

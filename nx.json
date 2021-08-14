@@ -58,6 +58,9 @@
     "client-projects-feature-list": {
       "tags": []
     },
+    "client-projects-ui-add-nx-project-form": {
+      "tags": []
+    },
     "client-projects-ui-list-item": {
       "tags": []
     },
@@ -79,10 +82,16 @@
     "client-shared-util-ipc-events-proxy": {
       "tags": []
     },
+    "client-shared-util-local-storage": {
+      "tags": []
+    },
     "client-shell-feature-shell-layout": {
       "tags": []
     },
     "client-shell-ui-chips-bar": {
+      "tags": []
+    },
+    "client-shell-ui-drawer": {
       "tags": []
     },
     "client-shell-ui-projects-layout": {

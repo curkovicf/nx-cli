@@ -4,7 +4,7 @@
  */
 
 import { ipcMain } from 'electron';
-import { Shell } from '@nx-cli/app/shell/feature/events';
+import { Events } from '@nx-cli/app/shell/feature/events';
 
 export default class ElectronEvents {
   static bootstrapElectronEvents(): Electron.IpcMain {
@@ -12,4 +12,4 @@ export default class ElectronEvents {
   }
 }
 
-Shell.listenEvents();
+Events.init();

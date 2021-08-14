@@ -1,12 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { NxProject } from '@nx-cli/client/projects/data-access/store';
 
 @Component({
   selector: 'dev-workspace-chips-bar',
   templateUrl: './chips-bar.component.html',
   styleUrls: ['./chips-bar.component.scss'],
 })
-export class ChipsBarComponent implements OnInit {
-  constructor() {}
+export class ChipsBarComponent {
+  @Input()
+    // @ts-ignore
+  nxProjects: NxProject[] | null;
 
-  ngOnInit(): void {}
+  @Input()
+  nxSelectedProject: NxProject | null | undefined;
+
+  @Output()
+  onaddproject: EventEmitter<void> = new EventEmitter<void>();
+
+  @Output()
+  onselectproject: EventEmitter<NxProject> = new EventEmitter<NxProject>();
 }

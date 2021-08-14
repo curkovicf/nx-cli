@@ -1,0 +1,86 @@
+@import "styles/global.mixins";
+@import "styles/global.variables";
+
+:host {
+  display: block;
+  height: 100%;
+
+  & > form {
+    @include box(inherit, 100%);
+    @include center-flex-Y;
+
+    & > main {
+      @include box(100%, calc(100% - 6.5rem));
+
+      & > header {
+        padding-left: 1rem;
+        @include center-flex-X;
+        @include separator_bot(null);
+        @include box(100%, 4rem);
+        justify-content: flex-start;
+
+        & > mat-icon {
+          color: #28a745;
+          font-size: 1.5rem;
+          margin-right: 1.5rem;
+        }
+
+        & > h5 {
+          font-size: 1.1rem;
+          font-weight: 500;
+          margin: 0;
+        }
+      }
+
+      & > .input-wrapper {
+        min-height: 5rem;
+        padding: 1rem;
+        @include separator_bot(100%);
+        @include center-flex-X;
+
+        & > input.ng-invalid.ng-touched {
+          @include input_focus(null);
+          border: 1px solid red;
+        }
+
+        & > input {
+          width: 80%;
+          height: 2.5rem;
+          @include input_focus(default);
+        }
+
+        & > mat-progress-spinner {
+          position: absolute;
+          right: 0.5rem;
+        }
+
+        & > mat-icon {
+          position: absolute;
+          right: 0.5rem;
+          color: #28a745;
+          font-size: 1.3rem;
+        }
+      }
+    }
+
+    & > footer {
+      @include separator_top(100%);
+      @include box(100%, 6.5rem);
+      @include center-flex-Y;
+      justify-content: space-evenly;
+
+      & > button {
+        @include cursor-pointer;
+        @include box(90%, 2.4rem);
+        @include default-btn-layout;
+      }
+
+      & > .save {}
+
+      & > .cancel {
+        color: #dc3545;
+        border: 1px solid #dc3545;
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+@import "styles/global.mixins";
+@import "styles/global.variables";
+
+:host {
+  position: relative;
+  display: block;
+  z-index: 10;
+  background-color: white;
+  box-shadow: $shadow--mat-1;
+  @include box(19rem, calc(100% - (#{$chips-bar-height} + #{$top-nav-height})));
+  @include position(absolute, 112px, 0, 0, null);
+
+  & > .drawer-content {}
+}

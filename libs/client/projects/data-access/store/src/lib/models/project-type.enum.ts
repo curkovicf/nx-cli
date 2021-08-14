@@ -1,4 +1,4 @@
-export enum NxProjectType {
+export enum ProjectType {
   app = 'app',
   data = 'data',
   util = 'util',

@@ -326,6 +326,31 @@
         }
       }
     },
+    "client-projects-ui-add-nx-project-form": {
+      "projectType": "library",
+      "root": "libs/client/projects/ui/add-nx-project-form",
+      "sourceRoot": "libs/client/projects/ui/add-nx-project-form/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/ui/add-nx-project-form"],
+          "options": {
+            "jestConfig": "libs/client/projects/ui/add-nx-project-form/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/ui/add-nx-project-form/src/**/*.ts",
+              "libs/client/projects/ui/add-nx-project-form/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "client-projects-ui-list-item": {
       "projectType": "library",
       "root": "libs/client/projects/ui/list-item",
@@ -501,6 +526,31 @@
         }
       }
     },
+    "client-shared-util-local-storage": {
+      "projectType": "library",
+      "root": "libs/client/shared/util/local-storage",
+      "sourceRoot": "libs/client/shared/util/local-storage/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shared/util/local-storage"],
+          "options": {
+            "jestConfig": "libs/client/shared/util/local-storage/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shared/util/local-storage/src/**/*.ts",
+              "libs/client/shared/util/local-storage/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "client-shell-feature-shell-layout": {
       "projectType": "library",
       "root": "libs/client/shell/feature/shell-layout",
@@ -547,6 +597,28 @@
               "libs/client/shell/ui/chips-bar/src/**/*.ts",
               "libs/client/shell/ui/chips-bar/src/**/*.html"
             ]
+          }
+        }
+      }
+    },
+    "client-shell-ui-drawer": {
+      "projectType": "library",
+      "root": "libs/client/shell/ui/drawer",
+      "sourceRoot": "libs/client/shell/ui/drawer/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shell/ui/drawer"],
+          "options": {
+            "jestConfig": "libs/client/shell/ui/drawer/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/client/shell/ui/drawer/src/**/*.ts", "libs/client/shell/ui/drawer/src/**/*.html"]
           }
         }
       }

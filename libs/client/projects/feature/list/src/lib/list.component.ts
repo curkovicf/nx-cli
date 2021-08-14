@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import {
-  NxProject,
+  Project,
   ProjectsStore,
 } from '@nx-cli/client/projects/data-access/store';
 
@@ -13,7 +13,7 @@ import {
 export class ListComponent implements OnInit {
   constructor(public projectsStore: ProjectsStore) {}
 
-  ngOnInit(): void {
+  public ngOnInit() {
     this.projectsStore.getAllProjects();
   }
 
@@ -25,7 +25,7 @@ export class ListComponent implements OnInit {
     this.projectsStore.filterProjects(keyword);
   }
 
-  public onSelectProject(project: NxProject): void {
+  public onSelectProject(project: Project): void {
     this.projectsStore.selectProject(project);
   }
 }

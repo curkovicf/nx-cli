@@ -23,7 +23,7 @@ export class SearchBarComponent implements AfterViewInit {
   onsearch: EventEmitter<any> = new EventEmitter();
 
   ngAfterViewInit(): void {
-    this.input?.nativeElement.focus();
+    // this.input?.nativeElement.focus();
   }
 
   public onBlur(searchInput: HTMLInputElement): void {

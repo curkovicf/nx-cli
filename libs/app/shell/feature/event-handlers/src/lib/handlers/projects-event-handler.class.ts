@@ -4,12 +4,12 @@ import * as path from 'path';
 import {
   AngularComponent,
   AngularModule,
-  NxProject,
-  NxProjectType
+  Project,
+  ProjectType
 } from '@nx-cli/client/projects/data-access/store';
 
 export class ProjectsEventHandler {
-  public projects: NxProject[] = [];
+  public projects: Project[] = [];
 
   constructor(private nxProjectRootPath: string) {}
 
@@ -49,8 +49,8 @@ export class ProjectsEventHandler {
     );
   }
 
-  private getProjectType(pwd: string): NxProjectType | undefined {
-    const libraryTypes = Object.values(NxProjectType);
+  private getProjectType(pwd: string): ProjectType | undefined {
+    const libraryTypes = Object.values(ProjectType);
     const keywords = this.trimPathToSourcePath(pwd)
       .split('/')
       .filter((item) => item !== '' && item !== '/')
@@ -77,9 +77,15 @@ export class ProjectsEventHandler {
     return splitPath[splitPath.length - 1];
   }
 
-  public getNameOfAllProjectsWithinNxJsonFile(): void {
+  public getProjectsFromWorkspaceFile(): void {
     const pathToWorkspaceJson = this.nxProjectRootPath + '/workspace.json';
-    const workspaceJson = JSON.parse(fs.readFileSync(pathToWorkspaceJson, 'utf8'));
+    let workspaceJson;
+
+    try {
+      workspaceJson = JSON.parse(fs.readFileSync(pathToWorkspaceJson, 'utf8'));
+    } catch (err) {
+      return;
+    }
 
     Object.entries(workspaceJson.projects).forEach(([key, value]) => {
       const currentProjectPath = value['root'];
@@ -88,6 +94,27 @@ export class ProjectsEventHandler {
         const trimmedPath = this.trimPathToSourcePath(project.path).substring(1);
 
         if (currentProjectPath === trimmedPath) {
+          project.nameInNxJson = key;
+        }
+      });
+    });
+  }
+
+  public getProjectsFromAngularJsonFile(): void {
+    const pathToAngularJson = this.nxProjectRootPath + '/angular.json';
+    let angularJson;
+
+    try {
+      angularJson = JSON.parse(fs.readFileSync(pathToAngularJson, 'utf8'));
+    } catch (err) {
+      return;
+    }
+
+    Object.entries(angularJson.projects).forEach(([key, value]) => {
+      this.projects.forEach((project) => {
+        const trimmedPath = this.trimPathToSourcePath(project.path).substring(1);
+
+        if (value === trimmedPath) {
           project.nameInNxJson = key;
         }
       });

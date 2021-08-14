@@ -1,1 +1,1 @@
-export * from './lib/shell.class';
+export * from './lib/events.class';
