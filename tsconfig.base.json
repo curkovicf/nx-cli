@@ -27,6 +27,9 @@
       "@nx-cli/client/projects/ui/generate-component-form": [
         "libs/client/projects/ui/generate-component-form/src/index.ts"
       ],
+      "@nx-cli/client/projects/ui/generate-service-form": [
+        "libs/client/projects/ui/generate-service-form/src/index.ts"
+      ],
       "@nx-cli/client/projects/ui/list-item": ["libs/client/projects/ui/list-item/src/index.ts"],
       "@nx-cli/client/projects/ui/list-item-badge": ["libs/client/projects/ui/list-item-badge/src/index.ts"],
       "@nx-cli/client/projects/ui/search-bar": ["libs/client/projects/ui/search-bar/src/index.ts"],

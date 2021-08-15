@@ -13,7 +13,7 @@ import { NgxElectronModule } from 'ngx-electron';
 import { ShellRoutingModule } from '@nx-cli/client/shell/feature/shell-layout';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
-import { UiMaterialModule } from '@nx-cli/client/shared/ui/material-modules';
+import { MaterialModule } from '@nx-cli/client/shared/ui/material-modules';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +22,7 @@ import { UiMaterialModule } from '@nx-cli/client/shared/ui/material-modules';
     NgxElectronModule,
     ShellRoutingModule,
     RouterModule,
-    UiMaterialModule,
+    MaterialModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(
       {},

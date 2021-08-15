@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'nx-cli-generate-component-form',
-  templateUrl: './generate-component-form.component.html',
-  styleUrls: ['./generate-component-form.component.scss']
+  selector: 'nx-cli-generate-service-form',
+  templateUrl: './generate-service-form.component.html',
+  styleUrls: ['./generate-service-form.component.scss']
 })
-export class GenerateComponentFormComponent {
+export class GenerateServiceFormComponent {
   public form: FormGroup;
   public flags: FormGroup;
 
-  constructor(public dialogRef: MatDialogRef<GenerateComponentFormComponent>, private formBuilder: FormBuilder) {
+  constructor(public dialogRef: MatDialogRef<GenerateServiceFormComponent>, private formBuilder: FormBuilder) {
     this.form = new FormGroup({
       name: new FormControl(null, [Validators.required])
     });

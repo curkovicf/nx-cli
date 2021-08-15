@@ -1,16 +1,16 @@
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace IpcEventDtos {
-  export interface GenerateComponentDto {
-    componentName: string;
-    rootPath: string;
-    projectNxName: string;
+  export interface GenerateDto {
+    artifactName: string;
+    nxProjectRootPath: string;
+    parentProjectNameInNxJson: string;
     flags: string[];
     parentModule?: string;
   }
 
   export interface GenerateResultDto {
     isSuccess: boolean;
-    componentName: string;
+    artifactName: string;
     rootPath: string;
   }
 

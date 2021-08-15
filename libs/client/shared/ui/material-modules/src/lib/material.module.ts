@@ -73,4 +73,4 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatProgressSpinnerModule,
   ],
 })
-export class UiMaterialModule {}
+export class MaterialModule {}

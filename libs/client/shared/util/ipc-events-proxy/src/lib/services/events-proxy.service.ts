@@ -22,20 +22,45 @@ export class EventsProxyService {
   private initChannels(): void {
     //  Generate component result
     this.electronService.ipcRenderer.on(IpcEvents.generateComponent.fromNode, (event, resultDto: IpcEventDtos.GenerateResultDto) => {
-      const { componentName, isSuccess, rootPath } = resultDto;
+      const { artifactName, isSuccess, rootPath } = resultDto;
       let snackBarContent: { message: string; config: MatSnackBarConfig };
 
         if (isSuccess) {
           this.getAllProjects(rootPath);
           snackBarContent = {
-            message: `${componentName} has been successfully generated`,
+            message: `${artifactName} has been successfully generated`,
             config: {
               panelClass: 'background-green'
             }
           };
         } else {
           snackBarContent = {
-            message: `${componentName} has not been successfully generated`,
+            message: `${artifactName} has not been successfully generated`,
+            config: {
+              panelClass: 'background-red'
+            }
+          };
+        }
+
+        this.ngZone.run(() => this.snackBar.open(snackBarContent.message, null, snackBarContent.config));
+      }
+    );
+
+    //  Generate component result
+    this.electronService.ipcRenderer.on(IpcEvents.generateService.fromNode, (event, resultDto: IpcEventDtos.GenerateResultDto) => {
+      const { artifactName, isSuccess } = resultDto;
+      let snackBarContent: { message: string; config: MatSnackBarConfig };
+
+        if (isSuccess) {
+          snackBarContent = {
+            message: `${artifactName} has been successfully generated`,
+            config: {
+              panelClass: 'background-green'
+            }
+          };
+        } else {
+          snackBarContent = {
+            message: `${artifactName} has not been successfully generated`,
             config: {
               panelClass: 'background-red'
             }
@@ -63,8 +88,12 @@ export class EventsProxyService {
     });
   }
 
-  public generateComponent(generateComponentDto: IpcEventDtos.GenerateComponentDto): void {
-    this.electronService.ipcRenderer.send(IpcEvents.generateComponent.fromAngular, generateComponentDto);
+  public generateComponent(generateDto: IpcEventDtos.GenerateDto): void {
+    this.electronService.ipcRenderer.send(IpcEvents.generateComponent.fromAngular, generateDto);
+  }
+
+  public generateService(generateDto: IpcEventDtos.GenerateDto): void {
+    this.electronService.ipcRenderer.send(IpcEvents.generateService.fromAngular, generateDto);
   }
 
   public getAllProjects(projectPath: string): void {

@@ -10,6 +10,10 @@ export namespace IpcEvents {
     fromAngular: 'GENERATE_COMPONENT',
     fromNode: 'GENERATE_COMPONENT_RESULT',
   };
+  export const generateService: EventChannel = {
+    fromAngular: 'GENERATE_SERVICE',
+    fromNode: 'GENERATE_SERVICE_RESULT',
+  };
   export const projects: EventChannel = {
     fromAngular: 'GET_PROJECTS',
     fromNode: 'GET_PROJECTS_RESULT',
