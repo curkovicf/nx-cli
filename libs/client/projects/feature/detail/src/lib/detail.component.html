@@ -1,4 +1,4 @@
-<ng-container *ngIf='projectsStore.selected$ | async as project'>
+<ng-container *ngIf='projectsStore.selectedProject$ | async as project'>
   <header>
     <div class='title-wrapper'>
       <h4 class='title'>{{ project.name }}</h4>
@@ -16,10 +16,10 @@
   </header>
 
   <div class='action-buttons'>
-    <nx-cli-default-button [buttonText]='"Create Component"' type='primary' (onbtnclick)='generateComponent(project)'></nx-cli-default-button>
-    <nx-cli-default-button [buttonText]='"Create Service"' type='primary'></nx-cli-default-button>
-    <nx-cli-default-button [buttonText]='"Create Module"' type='primary'></nx-cli-default-button>
-    <nx-cli-default-button [buttonText]='"Delete this project"' type='warn'></nx-cli-default-button>
+    <nx-cli-default-button [buttonText]='"Create Component"' buttonType='primary' (onbtnclick)='generateComponent(project)'></nx-cli-default-button>
+    <nx-cli-default-button [buttonText]='"Create Service"' buttonType='primary'></nx-cli-default-button>
+    <nx-cli-default-button [buttonText]='"Create Module"' buttonType='primary'></nx-cli-default-button>
+    <nx-cli-default-button [buttonText]='"Delete this project"' buttonType='warn'></nx-cli-default-button>
   </div>
 
   <div class='installed-modules-and-components'>
@@ -40,7 +40,7 @@
         <p>{{ angularModule.className }}</p>
       </div>
 
-      <div class='wrapper'>
+      <div class='component-wrapper'>
         <div class='angular-component' *ngFor='let angularComponent of angularModule.components'>
           <img
             class="search-ico"

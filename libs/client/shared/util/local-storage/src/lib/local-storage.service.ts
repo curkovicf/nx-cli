@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NxProject, ProjectsStore } from '@nx-cli/client/projects/data-access/store';
 import { combineLatest } from 'rxjs';
+import { ProjectsIpcEventsProxyService } from '@nx-cli/client/projects/util/projects-ipc-events-proxy';
 
 interface StoredData {
   nxProjects: NxProject[];
@@ -13,7 +14,10 @@ interface StoredData {
 export class LocalStorageService {
   private key = 'storedData';
 
-  constructor(private projectsStore: ProjectsStore) {}
+  constructor(
+    private projectsStore: ProjectsStore,
+    private projectsIpcEventsProxyService: ProjectsIpcEventsProxyService,
+  ) {}
 
   public save(): void {
     combineLatest([
@@ -22,7 +26,6 @@ export class LocalStorageService {
     ])
       .subscribe(([ nxProjects, selectedNxProject ]) => {
         const data: StoredData = { nxProjects, selectedNxProject };
-        console.log(data);
         localStorage.setItem(this.key, JSON.stringify(data));
       });
   }
@@ -35,6 +38,6 @@ export class LocalStorageService {
     const { nxProjects, selectedNxProject }: StoredData = JSON.parse(data);
 
     this.projectsStore.patchState({ nxProjects, selectedNxProject });
-    this.projectsStore.getAllProjects();
+    this.projectsIpcEventsProxyService.getAllProjects();
   }
 }

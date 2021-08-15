@@ -82,11 +82,17 @@
 
       & > .wrapper {
         display: flex;
+        margin-bottom: .4rem;
+      }
+
+      & > .component-wrapper {
+        display: flex;
+        flex-direction: column;
 
         & > .angular-component {
           display: flex;
           color: gray;
-          margin: 0.8rem 0 0.4rem 2rem;
+          margin: 0.4rem 0 0.4rem 2rem;
         }
       }
     }

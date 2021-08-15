@@ -5,6 +5,7 @@
   position: relative;
   display: inline-block;
   height: 2.4rem;
+  padding: .1rem;
 
   & > button {
     height: 2.4rem;
@@ -12,10 +13,15 @@
     @include cursor-pointer;
     @include default-btn-layout;
     @include box-max;
+
+    &:focus {
+      outline: 0;
+    }
   }
 
   & > .primary {}
+
   & > .warn {
-    color: red;
+    color: firebrick;
   }
 }

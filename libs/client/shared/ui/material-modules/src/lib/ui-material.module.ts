@@ -20,6 +20,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatExpansionModule,
     MatTabsModule,
+    MatSnackBarModule,
     MatOptionModule,
     MatCheckboxModule,
     MatSelectModule,
@@ -60,6 +62,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatExpansionModule,
     MatTabsModule,
+    MatSnackBarModule,
     MatOptionModule,
     MatCheckboxModule,
     MatSelectModule,

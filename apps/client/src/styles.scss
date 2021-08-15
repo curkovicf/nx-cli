@@ -11,17 +11,14 @@ html,
 body {
   height: 100%;
   overflow: hidden;
-}
-body {
-  margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
-html,
-body {
-  height: 100%;
+.background-red {
+  background-color: rgb(153, 50, 50) !important;
+  //border: 3px solid rgb(153, 50, 50) !important;
 }
-body {
-  margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
+.background-green {
+  background-color: rgb(29, 102, 29) !important;
+  //border: 3px solid rgb(29, 102, 29) !important;
 }

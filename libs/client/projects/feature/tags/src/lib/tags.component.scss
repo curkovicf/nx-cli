@@ -1,5 +1,5 @@
-@import "styles/global.mixins";
-@import "styles/global.variables";
+@import 'styles/global.mixins';
+@import 'styles/global.variables';
 
 :host {
   @include center-flex-Y;
@@ -33,10 +33,11 @@
     @include box(100%, calc(100% - 7.5rem));
 
     & > .tag {
-      margin-bottom: .3rem;
+      margin-bottom: 0.3rem;
       color: gray;
 
-      & > p {}
+      & > p {
+      }
     }
   }
 

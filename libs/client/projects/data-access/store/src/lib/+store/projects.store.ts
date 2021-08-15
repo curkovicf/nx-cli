@@ -1,7 +1,6 @@
 import { ComponentStore } from '@ngrx/component-store';
 import { Injectable } from '@angular/core';
-import { EventsProxyService } from '@nx-cli/client/shared/util/ipc-events-proxy';
-import { switchMap, take, tap } from 'rxjs/operators';
+import { take, tap } from 'rxjs/operators';
 import { Project } from '../models/project.model';
 import { NxProject } from '../models/nx-project.model';
 import { Observable } from 'rxjs';
@@ -20,27 +19,17 @@ export interface ProjectsState {
 export class ProjectsStore extends ComponentStore<ProjectsState> {
   readonly projects$ = this.select((state) => state.projects);
   readonly projectsLoadedInView$ = this.select((state) => state.projectsLoadedInView);
-  readonly selected$ = this.select((state) => state.selectedProject);
+  readonly selectedProject$ = this.select((state) => state.selectedProject);
   readonly selectedNxProject$ = this.select((state) => state.selectedNxProject);
   readonly nxProjects$ = this.select((state) => state.nxProjects);
 
-  constructor(private eventsProxyService: EventsProxyService) {
+  constructor() {
     super(<ProjectsState>{
       projects: [],
       projectsLoadedInView: [],
       selectedProject: undefined,
       nxProjects: [],
       selectedNxProject: undefined
-    });
-  }
-
-  public getAllProjects(): void {
-    this.selectedNxProject$
-      .pipe(
-        take(1),
-        switchMap(nxSelectProject => this.eventsProxyService.getAllProjects(nxSelectProject?.path))
-      ).subscribe(projects => {
-      this.patchState({ projects, projectsLoadedInView: projects })
     });
   }
 
@@ -59,14 +48,6 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
       .subscribe();
   }
 
-  public selectProject(selectedProject: Project): void {
-    this.patchState({ selectedProject });
-  }
-
-  public selectNxProject(selectedNxProject: NxProject): void {
-    this.patchState({ selectedNxProject });
-  }
-
   public addNxProject(nxProject: NxProject): Observable<NxProject[]> {
     return this.nxProjects$
       .pipe(
@@ -79,5 +60,14 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
           }
         })
       );
+  }
+
+  public selectProject(selectedProject: Project): void {
+    this.patchState({ selectedProject });
+  }
+
+  public selectNxProject(selectedNxProject: NxProject): void {
+    this.patchState({ selectedNxProject });
+    this.patchState({ selectedProject: undefined });
   }
 }

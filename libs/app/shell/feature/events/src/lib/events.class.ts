@@ -2,7 +2,6 @@ import { app, ipcMain } from 'electron';
 
 import { IpcEventDtos, IpcEvents } from '@nx-cli/shared/data/ipc-events';
 import { NxProjectEventHandler, ProjectsEventHandler, GenerateComponentHandler } from '@nx-cli/app/shell/feature/event-handlers';
-import { Project } from '@nx-cli/client/projects/data-access/store';
 
 export class Events {
   static init(): void {
@@ -13,8 +12,6 @@ export class Events {
 
     //  Get all libs & apps
     ipcMain.on(IpcEvents.projects.fromAngular, (event, path) => {
-      if (!path) { return };
-
       const projectsHandler = new ProjectsEventHandler(path);
 
       projectsHandler.findProjects(path);
@@ -22,7 +19,7 @@ export class Events {
       projectsHandler.getProjectsFromAngularJsonFile();
       projectsHandler.getTagsOfAllProjectsWithinNxJsonFile();
 
-      event.returnValue = projectsHandler.projects;
+      event.sender.send(IpcEvents.projects.fromNode, projectsHandler.projects);
     });
 
     //  Check if passed path is nx project
@@ -35,8 +32,14 @@ export class Events {
     //  Check if passed path is nx project
     ipcMain.on(IpcEvents.generateComponent.fromAngular, async (event, project: IpcEventDtos.GenerateComponentDto) => {
       const generateComponentHandler = new GenerateComponentHandler();
-      const isSuccess = await generateComponentHandler.generateComponent(project);
-      event.sender.send(IpcEvents.generateComponent.fromNode, isSuccess);
+
+      const generateResultDto: IpcEventDtos.GenerateResultDto = {
+        isSuccess: await generateComponentHandler.generateComponent(project),
+        componentName: project.componentName,
+        rootPath: project.rootPath
+      };
+
+      event.sender.send(IpcEvents.generateComponent.fromNode, generateResultDto);
     });
   }
 }

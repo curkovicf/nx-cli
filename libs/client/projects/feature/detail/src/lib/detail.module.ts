@@ -8,5 +8,6 @@ import { ListItemBadgeModule } from '@nx-cli/client/projects/ui/list-item-badge'
   imports: [CommonModule, DefaultButtonModule, ListItemBadgeModule],
   declarations: [DetailComponent],
   exports: [DetailComponent],
+  providers: []
 })
 export class DetailModule {}

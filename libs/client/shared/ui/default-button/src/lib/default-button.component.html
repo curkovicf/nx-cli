@@ -1,5 +1,7 @@
 <button
-  [class]="type"
+  matRipple
+  [type]='type'
+  [class]="buttonType"
   [disabled]="isDisabled"
   [style.cursor]="'pointer'"
   (click)="onbtnclick.emit()">

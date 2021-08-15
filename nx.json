@@ -49,16 +49,19 @@
     "client-projects-data-access-store": {
       "tags": []
     },
-    "client-projects-feature-actions": {
-      "tags": []
-    },
     "client-projects-feature-detail": {
       "tags": []
     },
     "client-projects-feature-list": {
       "tags": []
     },
+    "client-projects-feature-tags": {
+      "tags": []
+    },
     "client-projects-ui-add-nx-project-form": {
+      "tags": []
+    },
+    "client-projects-ui-generate-component-form": {
       "tags": []
     },
     "client-projects-ui-list-item": {
@@ -68,6 +71,9 @@
       "tags": []
     },
     "client-projects-ui-search-bar": {
+      "tags": []
+    },
+    "client-projects-util-projects-ipc-events-proxy": {
       "tags": []
     },
     "client-shared-ui-default-button": {

@@ -10,7 +10,10 @@ export class DefaultButtonComponent {
   buttonText: string | undefined;
 
   @Input()
-  type: 'warn' | 'primary' | undefined;
+  buttonType: 'warn' | 'primary' | undefined;
+
+  @Input()
+  type: 'submit' | 'reset'| 'button' | undefined;
 
   @Input()
   isDisabled: boolean = false;

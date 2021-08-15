@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'client-projects-feature-actions',
+  displayName: 'client-projects-ui-generate-component-form',
   preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,8 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory:
-    '../../../../../coverage/libs/client/projects/feature/actions',
+  coverageDirectory: '../../../../../coverage/libs/client/projects/ui/generate-component-form',
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',
   },

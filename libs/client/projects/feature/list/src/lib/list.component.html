@@ -21,7 +21,7 @@
 
 <div class="projects-list">
   <dev-workspace-project-list-item
-    *ngFor="let project of projectsStore.projectsLoadedInView$ | async"
+    *ngFor="let project of projectsStore.projectsLoadedInView$ | async; trackBy: trackBy"
     [project]="project"
     (click)="onSelectProject(project)"
   >
