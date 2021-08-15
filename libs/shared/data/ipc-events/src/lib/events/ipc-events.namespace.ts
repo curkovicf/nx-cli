@@ -14,6 +14,10 @@ export namespace IpcEvents {
     fromAngular: 'MOVE_PROJECT',
     fromNode: 'MOVE_PROJECT_RESULT',
   };
+  export const renameProject: EventChannel = {
+    fromAngular: 'RENAME_PROJECT',
+    fromNode: 'RENAME_PROJECT_RESULT',
+  };
   export const generateService: EventChannel = {
     fromAngular: 'GENERATE_SERVICE',
     fromNode: 'GENERATE_SERVICE_RESULT',

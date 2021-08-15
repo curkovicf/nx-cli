@@ -107,4 +107,35 @@ export class ProjectsIpcEventsProxyService {
         this.eventsProxyService.moveProject(generateDto);
       });
   }
+
+  public renameProject(project: Project): void {
+    const moveDialogData: SingleInputFormComponentData = {
+      submitButtonText: 'Rename',
+      placeholder: 'Eg. new-name',
+      title: 'Enter new name'
+    };
+
+    combineLatest([
+      this.dialog.open(
+        SingleInputFormComponent,
+        {
+          data: moveDialogData
+        }
+      ).afterClosed(),
+      this.projectsStore.selectedNxProject$,
+    ])
+      .pipe(take(1))
+      .subscribe(([data, selectedNxProject]) => {
+        if (!data) { return };
+
+        const generateDto: IpcEventDtos.RenameProjectDto = {
+          nxProjectRootPath: selectedNxProject?.path,
+          libPath: project.relativePath.replace(project.name, '').replace('/libs', '').substring(1),
+          projectNameInNxJson: project.nameInNxJson,
+          newName: data.value.slice(0,-1)
+        };
+
+        this.eventsProxyService.renameProject(generateDto);
+      });
+  }
 }

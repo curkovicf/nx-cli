@@ -25,4 +25,8 @@ export class DetailComponent {
   public moveProject(project: Project): void {
     this.projectsEventsProxyService.moveProject(project);
   }
+
+  public renameProject(project: Project): void {
+    this.projectsEventsProxyService.renameProject(project);
+  }
 }

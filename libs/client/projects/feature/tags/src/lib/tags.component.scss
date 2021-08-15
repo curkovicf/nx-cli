@@ -30,7 +30,7 @@
     position: relative;
     padding: 1rem 1rem;
     overflow-y: auto;
-    @include box(100%, calc(100% - 7.5rem));
+    @include box(100%, calc(100% - 4rem));
 
     & > .tag {
       margin-bottom: 0.3rem;
@@ -38,23 +38,6 @@
 
       & > p {
       }
-    }
-  }
-
-  & > footer {
-    position: relative;
-    @include separator_top(100%);
-    @include box(100%, 3.5rem);
-    @include center-flex-Y;
-    justify-content: space-evenly;
-
-    & > nx-cli-default-button {
-      @include box(90%, 2.4rem);
-    }
-
-    & > mat-progress-spinner {
-      transform: translate(-50%, -50%);
-      @include position(absolute, 65%, null, null, 60%);
     }
   }
 }

@@ -113,6 +113,32 @@ export class EventsProxyService {
         this.ngZone.run(() => this.snackBar.open(snackBarContent.message, null, snackBarContent.config));
       }
     );
+
+    //  Move project result
+    this.electronService.ipcRenderer.on(IpcEvents.renameProject.fromNode, (event, resultDto: IpcEventDtos.GenerateResultDto) => {
+        const { artifactName, isSuccess } = resultDto;
+        let snackBarContent: { message: string; config: MatSnackBarConfig };
+
+        if (isSuccess) {
+          this.getAllProjects(resultDto.rootPath);
+          snackBarContent = {
+            message: `${artifactName} has been successfully moved`,
+            config: {
+              panelClass: 'background-green'
+            }
+          };
+        } else {
+          snackBarContent = {
+            message: `${artifactName} has not been successfully moved`,
+            config: {
+              panelClass: 'background-red'
+            }
+          };
+        }
+
+        this.ngZone.run(() => this.snackBar.open(snackBarContent.message, null, snackBarContent.config));
+      }
+    );
   }
 
   public generateComponent(generateDto: IpcEventDtos.GenerateDto): void {
@@ -129,5 +155,9 @@ export class EventsProxyService {
 
   public moveProject(generateDto: IpcEventDtos.MoveProjectDto): void {
     this.electronService.ipcRenderer.send(IpcEvents.moveProject.fromAngular, generateDto);
+  }
+
+  public renameProject(generateDto: IpcEventDtos.RenameProjectDto): void {
+    this.electronService.ipcRenderer.send(IpcEvents.renameProject.fromAngular, generateDto);
   }
 }

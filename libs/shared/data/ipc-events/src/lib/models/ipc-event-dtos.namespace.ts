@@ -15,6 +15,13 @@ export namespace IpcEventDtos {
     nxProjectRootPath: string;
   }
 
+  export interface RenameProjectDto {
+    newName: string;
+    libPath: string;
+    projectNameInNxJson: string;
+    nxProjectRootPath: string;
+  }
+
   export interface GenerateResultDto {
     isSuccess: boolean;
     artifactName: string;

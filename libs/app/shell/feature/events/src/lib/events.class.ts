@@ -4,6 +4,7 @@ import { IpcEventDtos, IpcEvents } from '@nx-cli/shared/data/ipc-events';
 import { NxProjectEventHandler, ProjectsEventHandler, GenerateComponentHandler } from '@nx-cli/app/shell/feature/event-handlers';
 import { GenerateServiceHandler } from '../../../event-handlers/src/lib/handlers/generate-service-handler.class';
 import { MoveProjectHandlerClass } from '../../../event-handlers/src/lib/handlers/move-project-handler.class';
+import { RenameProjectHandlerClass } from '../../../event-handlers/src/lib/handlers/rename-project-handler.class';
 
 export class Events {
   static init(): void {
@@ -68,6 +69,19 @@ export class Events {
       };
 
       event.sender.send(IpcEvents.moveProject.fromNode, generateResultDto);
+    });
+
+    //  Rename project
+    ipcMain.on(IpcEvents.renameProject.fromAngular, async (event, generateDto: IpcEventDtos.RenameProjectDto) => {
+      const renameProjectHandlerClass = new RenameProjectHandlerClass();
+
+      const generateResultDto: IpcEventDtos.GenerateResultDto = {
+        isSuccess: await renameProjectHandlerClass.renameProject(generateDto),
+        artifactName: generateDto.projectNameInNxJson,
+        rootPath: generateDto.nxProjectRootPath
+      };
+
+      event.sender.send(IpcEvents.renameProject.fromNode, generateResultDto);
     });
   }
 }

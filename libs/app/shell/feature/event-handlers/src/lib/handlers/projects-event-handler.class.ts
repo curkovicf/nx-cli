@@ -34,6 +34,7 @@ export class ProjectsEventHandler {
         this.projects.push({
           name: this.getProjectName(pwd),
           path: pwd,
+          relativePath: this.trimToRelativePath(pwd),
           type: this.getProjectType(pwd),
           nameInNxJson: '',
           angularModules: this.getAngularModules(pwd),
@@ -53,7 +54,7 @@ export class ProjectsEventHandler {
 
   private getProjectType(pwd: string): ProjectType | undefined {
     const libraryTypes = Object.values(ProjectType);
-    const keywords = this.trimPathToSourcePath(pwd)
+    const keywords = this.trimToRelativePath(pwd)
       .split('/')
       .filter((item) => item !== '' && item !== '/')
       .reverse();
@@ -70,7 +71,7 @@ export class ProjectsEventHandler {
     return undefined;
   }
 
-  private trimPathToSourcePath(pwd: string): string {
+  private trimToRelativePath(pwd: string): string {
     return pwd.replace(this.nxProjectRootPath, '');
   }
 
@@ -93,7 +94,7 @@ export class ProjectsEventHandler {
       const currentProjectPath = value['root'];
 
       this.projects.forEach((project) => {
-        const trimmedPath = this.trimPathToSourcePath(project.path).substring(1);
+        const trimmedPath = this.trimToRelativePath(project.path).substring(1);
 
         if (currentProjectPath === trimmedPath) {
           project.nameInNxJson = key;
@@ -117,7 +118,7 @@ export class ProjectsEventHandler {
 
     Object.entries(angularJson.projects).forEach(([key, value]) => {
       this.projects.forEach((project) => {
-        const trimmedPath = this.trimPathToSourcePath(project.path).substring(1);
+        const trimmedPath = this.trimToRelativePath(project.path).substring(1);
 
         if (typeof value === 'string') {
           if (value === trimmedPath) {
