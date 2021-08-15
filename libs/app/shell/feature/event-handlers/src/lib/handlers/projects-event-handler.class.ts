@@ -1,4 +1,6 @@
+// @ts-ignore
 import * as fs from 'fs';
+// @ts-ignore
 import * as path from 'path';
 
 import {
@@ -107,15 +109,24 @@ export class ProjectsEventHandler {
     try {
       angularJson = JSON.parse(fs.readFileSync(pathToAngularJson, 'utf8'));
     } catch (err) {
+      console.warn('ERROR: Couldn\'t open angular.json');
       return;
     }
+
+    // console.log(angularJson);
 
     Object.entries(angularJson.projects).forEach(([key, value]) => {
       this.projects.forEach((project) => {
         const trimmedPath = this.trimPathToSourcePath(project.path).substring(1);
 
-        if (value === trimmedPath) {
-          project.nameInNxJson = key;
+        if (typeof value === 'string') {
+          if (value === trimmedPath) {
+            project.nameInNxJson = key;
+          }
+        } else {
+          if (value['root'] === trimmedPath) {
+            project.nameInNxJson = key;
+          }
         }
       });
     });
@@ -216,3 +227,4 @@ export class ProjectsEventHandler {
     }
   }
 }
+

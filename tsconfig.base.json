@@ -33,6 +33,7 @@
       "@nx-cli/client/projects/ui/list-item": ["libs/client/projects/ui/list-item/src/index.ts"],
       "@nx-cli/client/projects/ui/list-item-badge": ["libs/client/projects/ui/list-item-badge/src/index.ts"],
       "@nx-cli/client/projects/ui/search-bar": ["libs/client/projects/ui/search-bar/src/index.ts"],
+      "@nx-cli/client/projects/ui/single-input-form": ["libs/client/projects/ui/single-input-form/src/index.ts"],
       "@nx-cli/client/projects/util/projects-ipc-events-proxy": [
         "libs/client/projects/util/projects-ipc-events-proxy/src/index.ts"
       ],

@@ -476,6 +476,31 @@
         }
       }
     },
+    "client-projects-ui-single-input-form": {
+      "projectType": "library",
+      "root": "libs/client/projects/ui/single-input-form",
+      "sourceRoot": "libs/client/projects/ui/single-input-form/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/ui/single-input-form"],
+          "options": {
+            "jestConfig": "libs/client/projects/ui/single-input-form/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/ui/single-input-form/src/**/*.ts",
+              "libs/client/projects/ui/single-input-form/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "client-projects-util-projects-ipc-events-proxy": {
       "projectType": "library",
       "root": "libs/client/projects/util/projects-ipc-events-proxy",

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { Project, ProjectsStore } from '@nx-cli/client/projects/data-access/store';
 import { ProjectsIpcEventsProxyService } from '@nx-cli/client/projects/util/projects-ipc-events-proxy';
@@ -9,15 +9,11 @@ import { ProjectsIpcEventsProxyService } from '@nx-cli/client/projects/util/proj
   styleUrls: ['./list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ListComponent implements OnInit {
+export class ListComponent {
   constructor(
     public projectsStore: ProjectsStore,
     private projectsIpcEventsProxyService: ProjectsIpcEventsProxyService,
   ) {}
-
-  public ngOnInit() {
-    this.projectsIpcEventsProxyService.getAllProjects();
-  }
 
   public refresh(): void {
     this.projectsIpcEventsProxyService.getAllProjects();

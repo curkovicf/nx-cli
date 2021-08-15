@@ -7,6 +7,7 @@ import { GenerateComponentFormComponent } from '@nx-cli/client/projects/ui/gener
 import { IpcEventDtos } from '@nx-cli/shared/data/ipc-events';
 import { MatDialog } from '@angular/material/dialog';
 import { GenerateServiceFormComponent } from '@nx-cli/client/projects/ui/generate-service-form';
+import { SingleInputFormComponent, SingleInputFormComponentData } from '@nx-cli/client/projects/ui/single-input-form';
 
 @Injectable({
   providedIn: 'root'
@@ -71,11 +72,39 @@ export class ProjectsIpcEventsProxyService {
           ...data
         };
 
-        console.log(generateDto);
-
-
-
         this.eventsProxyService.generateService(generateDto);
+      });
+  }
+
+  public moveProject(project: Project): void {
+    const moveDialogData: SingleInputFormComponentData = {
+      submitButtonText: 'Move',
+      placeholder: 'Eg. shared/ui',
+      title: 'Enter new location'
+    };
+
+    combineLatest([
+      this.dialog.open(
+        SingleInputFormComponent,
+        {
+          data: moveDialogData
+        }
+      ).afterClosed(),
+      this.projectsStore.selectedNxProject$,
+      this.projectsStore.selectedProject$
+    ])
+      .pipe(take(1))
+      .subscribe(([data, selectedNxProject, selectedProject]) => {
+        if (!data) { return };
+
+        const generateDto: IpcEventDtos.MoveProjectDto = {
+          nxProjectRootPath: selectedNxProject?.path,
+          projectName: selectedProject?.name,
+          projectNameInNxJson: project.nameInNxJson,
+          moveTo: data.value
+        };
+
+        this.eventsProxyService.moveProject(generateDto);
       });
   }
 }

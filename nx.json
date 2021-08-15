@@ -76,6 +76,9 @@
     "client-projects-ui-search-bar": {
       "tags": []
     },
+    "client-projects-ui-single-input-form": {
+      "tags": []
+    },
     "client-projects-util-projects-ipc-events-proxy": {
       "tags": []
     },

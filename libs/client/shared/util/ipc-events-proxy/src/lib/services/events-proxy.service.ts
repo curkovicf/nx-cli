@@ -71,6 +71,7 @@ export class EventsProxyService {
       }
     );
 
+    //  Get all projects result
     this.electronService.ipcRenderer.on(IpcEvents.projects.fromNode, (event, projects: Project[]) => {
       this.ngZone.run(() => {
         this.projectsStore.selectedProject$
@@ -86,6 +87,32 @@ export class EventsProxyService {
           ).subscribe();
       })
     });
+
+    //  Move project result
+    this.electronService.ipcRenderer.on(IpcEvents.moveProject.fromNode, (event, resultDto: IpcEventDtos.GenerateResultDto) => {
+        const { artifactName, isSuccess } = resultDto;
+        let snackBarContent: { message: string; config: MatSnackBarConfig };
+
+        if (isSuccess) {
+          this.getAllProjects(resultDto.rootPath);
+          snackBarContent = {
+            message: `${artifactName} has been successfully moved`,
+            config: {
+              panelClass: 'background-green'
+            }
+          };
+        } else {
+          snackBarContent = {
+            message: `${artifactName} has not been successfully moved`,
+            config: {
+              panelClass: 'background-red'
+            }
+          };
+        }
+
+        this.ngZone.run(() => this.snackBar.open(snackBarContent.message, null, snackBarContent.config));
+      }
+    );
   }
 
   public generateComponent(generateDto: IpcEventDtos.GenerateDto): void {
@@ -98,5 +125,9 @@ export class EventsProxyService {
 
   public getAllProjects(projectPath: string): void {
     this.electronService.ipcRenderer.send(IpcEvents.projects.fromAngular, projectPath);
+  }
+
+  public moveProject(generateDto: IpcEventDtos.MoveProjectDto): void {
+    this.electronService.ipcRenderer.send(IpcEvents.moveProject.fromAngular, generateDto);
   }
 }

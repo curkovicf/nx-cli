@@ -4,8 +4,15 @@ export namespace IpcEventDtos {
     artifactName: string;
     nxProjectRootPath: string;
     parentProjectNameInNxJson: string;
-    flags: string[];
+    flags?: string[];
     parentModule?: string;
+  }
+
+  export interface MoveProjectDto {
+    projectName: string;
+    moveTo: string;
+    projectNameInNxJson: string;
+    nxProjectRootPath: string;
   }
 
   export interface GenerateResultDto {

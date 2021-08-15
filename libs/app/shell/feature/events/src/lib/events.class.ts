@@ -3,6 +3,7 @@ import { app, ipcMain } from 'electron';
 import { IpcEventDtos, IpcEvents } from '@nx-cli/shared/data/ipc-events';
 import { NxProjectEventHandler, ProjectsEventHandler, GenerateComponentHandler } from '@nx-cli/app/shell/feature/event-handlers';
 import { GenerateServiceHandler } from '../../../event-handlers/src/lib/handlers/generate-service-handler.class';
+import { MoveProjectHandlerClass } from '../../../event-handlers/src/lib/handlers/move-project-handler.class';
 
 export class Events {
   static init(): void {
@@ -53,10 +54,20 @@ export class Events {
         rootPath: generateDto.nxProjectRootPath
       };
 
-      console.log(generateDto);
-      console.log(generateResultDto);
-
       event.sender.send(IpcEvents.generateService.fromNode, generateResultDto);
+    });
+
+    //  Move project
+    ipcMain.on(IpcEvents.moveProject.fromAngular, async (event, generateDto: IpcEventDtos.MoveProjectDto) => {
+      const moveProjectHandlerClass = new MoveProjectHandlerClass();
+
+      const generateResultDto: IpcEventDtos.GenerateResultDto = {
+        isSuccess: await moveProjectHandlerClass.moveProject(generateDto),
+        artifactName: generateDto.projectNameInNxJson,
+        rootPath: generateDto.nxProjectRootPath
+      };
+
+      event.sender.send(IpcEvents.moveProject.fromNode, generateResultDto);
     });
   }
 }

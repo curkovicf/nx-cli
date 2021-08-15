@@ -18,8 +18,9 @@
   <div class='action-buttons'>
     <nx-cli-default-button [buttonText]='"Create Component"' buttonType='primary' (onbtnclick)='generateComponent(project)'></nx-cli-default-button>
     <nx-cli-default-button [buttonText]='"Create Service"' buttonType='primary' (onbtnclick)='generateService(project)'></nx-cli-default-button>
-    <nx-cli-default-button [buttonText]='"Create Module"' buttonType='primary'></nx-cli-default-button>
-    <nx-cli-default-button [buttonText]='"Delete this project"' buttonType='warn'></nx-cli-default-button>
+    <nx-cli-default-button [buttonText]='"Move project"' buttonType='warn' (onbtnclick)='moveProject(project)'></nx-cli-default-button>
+    <nx-cli-default-button [buttonText]='"Rename project"' buttonType='warn'></nx-cli-default-button>
+    <nx-cli-default-button [buttonText]='"Delete project"' buttonType='warn'></nx-cli-default-button>
   </div>
 
   <div class='installed-modules-and-components'>

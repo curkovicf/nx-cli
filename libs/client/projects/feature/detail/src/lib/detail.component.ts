@@ -21,4 +21,8 @@ export class DetailComponent {
   public generateService(project: Project): void {
     this.projectsEventsProxyService.generateService(project);
   }
+
+  public moveProject(project: Project): void {
+    this.projectsEventsProxyService.moveProject(project);
+  }
 }
