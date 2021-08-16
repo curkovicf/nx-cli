@@ -2,7 +2,7 @@ import { app, ipcMain } from 'electron';
 
 import { IpcEventDtos, IpcEvents } from '@nx-cli/shared/data/ipc-events';
 import {
-  CreateAppHandler,
+  CreateAppHandler, CreateLibHandler,
   DeleteProjectHandler,
   GenerateComponentHandler,
   GenerateServiceHandler,
@@ -118,6 +118,19 @@ export class Events {
       };
 
       event.sender.send(IpcEvents.createApp.fromNode, generateResultDto);
+    });
+
+    //  Create lib
+    ipcMain.on(IpcEvents.createLib.fromAngular, async (event, createProjectDto: IpcEventDtos.CreateProjectDto) => {
+      const createLibHandler = new CreateLibHandler();
+
+      const generateResultDto: IpcEventDtos.GenerateResultDto = {
+        isSuccess: await createLibHandler.createLib(createProjectDto),
+        artifactName: createProjectDto.path,
+        rootPath: createProjectDto.nxProjectRootPath
+      };
+
+      event.sender.send(IpcEvents.createLib.fromNode, generateResultDto);
     });
   }
 }

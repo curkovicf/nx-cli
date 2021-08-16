@@ -376,6 +376,31 @@
         }
       }
     },
+    "client-projects-ui-generate-library-form": {
+      "projectType": "library",
+      "root": "libs/client/projects/ui/generate-library-form",
+      "sourceRoot": "libs/client/projects/ui/generate-library-form/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/ui/generate-library-form"],
+          "options": {
+            "jestConfig": "libs/client/projects/ui/generate-library-form/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/ui/generate-library-form/src/**/*.ts",
+              "libs/client/projects/ui/generate-library-form/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "client-projects-ui-generate-service-form": {
       "projectType": "library",
       "root": "libs/client/projects/ui/generate-service-form",

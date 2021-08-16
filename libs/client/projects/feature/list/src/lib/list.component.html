@@ -32,6 +32,14 @@
 </section>
 
 <section class='actions'>
-  <nx-cli-default-button [buttonText]='"Create Angular app"' buttonType='primary' (onbtnclick)='createNgApp()'></nx-cli-default-button>
-  <nx-cli-default-button [buttonText]='"Create lib"' buttonType='primary' (onbtnclick)='createLib()'></nx-cli-default-button>
+  <nx-cli-default-button [isDisabled]='(projectsStore.nxProjects$ | async)?.length === 0'
+                         [buttonText]='"Create Angular app"' buttonType='primary'
+                         (onbtnclick)='createNgApp()'>
+  </nx-cli-default-button>
+
+  <nx-cli-default-button [isDisabled]='(projectsStore.nxProjects$ | async)?.length === 0'
+                         [buttonText]='"Create lib"'
+                         buttonType='primary'
+                         (onbtnclick)='createLib()'>
+  </nx-cli-default-button>
 </section>

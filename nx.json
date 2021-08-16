@@ -64,6 +64,9 @@
     "client-projects-ui-generate-component-form": {
       "tags": []
     },
+    "client-projects-ui-generate-library-form": {
+      "tags": []
+    },
     "client-projects-ui-generate-service-form": {
       "tags": []
     },

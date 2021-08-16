@@ -28,6 +28,7 @@ export namespace IpcEventDtos {
     path: string;
     nxProjectRootPath: string;
     tags?: string[];
+    flags?: string[];
   }
 
   export interface DeleteProjectDto {

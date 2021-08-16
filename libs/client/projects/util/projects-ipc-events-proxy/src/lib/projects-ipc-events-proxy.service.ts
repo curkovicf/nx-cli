@@ -9,10 +9,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { GenerateServiceFormComponent } from '@nx-cli/client/projects/ui/generate-service-form';
 import { SingleInputFormComponent, SingleInputFormComponentData } from '@nx-cli/client/projects/ui/single-input-form';
 import { ConfirmDialogComponent } from '@nx-cli/client/shared/ui/confirm-dialog';
-
+import { GenerateLibraryFormComponent } from '@nx-cli/client/projects/ui/generate-library-form';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProjectsIpcEventsProxyService {
   constructor(
@@ -25,14 +25,15 @@ export class ProjectsIpcEventsProxyService {
     this.projectsStore.selectedNxProject$
       .pipe(
         take(1),
-        tap(nxSelectProject => {
+        tap((nxSelectProject) => {
           if (!nxSelectProject) {
             return;
           }
           console.log(nxSelectProject);
           this.eventsProxyService.getAllProjects(nxSelectProject.path);
         })
-      ).subscribe();
+      )
+      .subscribe();
   }
 
   public changeSelectProject(nxProject: NxProject): void {
@@ -43,16 +44,18 @@ export class ProjectsIpcEventsProxyService {
   public generateComponent(project: Project): void {
     combineLatest([
       this.dialog.open(GenerateComponentFormComponent).afterClosed(),
-      this.projectsStore.selectedNxProject$
+      this.projectsStore.selectedNxProject$,
     ])
       .pipe(take(1))
       .subscribe(([data, selectedNxProject]) => {
-        if (!data) { return };
+        if (!data) {
+          return;
+        }
 
         const generateComponentDto: IpcEventDtos.GenerateDto = {
           nxProjectRootPath: selectedNxProject?.path,
           parentProjectNameInNxJson: project.nameInNxJson,
-          ...data
+          ...data,
         };
 
         this.eventsProxyService.generateComponent(generateComponentDto);
@@ -60,18 +63,17 @@ export class ProjectsIpcEventsProxyService {
   }
 
   public generateService(project: Project): void {
-    combineLatest([
-      this.dialog.open(GenerateServiceFormComponent).afterClosed(),
-      this.projectsStore.selectedNxProject$
-    ])
+    combineLatest([this.dialog.open(GenerateServiceFormComponent).afterClosed(), this.projectsStore.selectedNxProject$])
       .pipe(take(1))
       .subscribe(([data, selectedNxProject]) => {
-        if (!data) { return };
+        if (!data) {
+          return;
+        }
 
         const generateDto: IpcEventDtos.GenerateDto = {
           nxProjectRootPath: selectedNxProject?.path,
           parentProjectNameInNxJson: project.nameInNxJson,
-          ...data
+          ...data,
         };
 
         this.eventsProxyService.generateService(generateDto);
@@ -82,28 +84,29 @@ export class ProjectsIpcEventsProxyService {
     const moveDialogData: SingleInputFormComponentData = {
       submitButtonText: 'Move',
       placeholder: 'Eg. shared/ui',
-      title: 'Enter new location'
+      title: 'Enter new location',
     };
 
     combineLatest([
-      this.dialog.open(
-        SingleInputFormComponent,
-        {
-          data: moveDialogData
-        }
-      ).afterClosed(),
+      this.dialog
+        .open(SingleInputFormComponent, {
+          data: moveDialogData,
+        })
+        .afterClosed(),
       this.projectsStore.selectedNxProject$,
-      this.projectsStore.selectedProject$
+      this.projectsStore.selectedProject$,
     ])
       .pipe(take(1))
       .subscribe(([data, selectedNxProject, selectedProject]) => {
-        if (!data) { return };
+        if (!data) {
+          return;
+        }
 
         const generateDto: IpcEventDtos.MoveProjectDto = {
           nxProjectRootPath: selectedNxProject?.path,
           projectName: selectedProject?.name,
           projectNameInNxJson: project.nameInNxJson,
-          moveTo: data.value
+          moveTo: data.value,
         };
 
         this.eventsProxyService.moveProject(generateDto);
@@ -114,21 +117,22 @@ export class ProjectsIpcEventsProxyService {
     const moveDialogData: SingleInputFormComponentData = {
       submitButtonText: 'Rename',
       placeholder: 'Eg. new-name',
-      title: 'Enter new name'
+      title: 'Enter new name',
     };
 
     combineLatest([
-      this.dialog.open(
-        SingleInputFormComponent,
-        {
-          data: moveDialogData
-        }
-      ).afterClosed(),
+      this.dialog
+        .open(SingleInputFormComponent, {
+          data: moveDialogData,
+        })
+        .afterClosed(),
       this.projectsStore.selectedNxProject$,
     ])
       .pipe(take(1))
       .subscribe(([data, selectedNxProject]) => {
-        if (!data) { return };
+        if (!data) {
+          return;
+        }
 
         const generateDto: IpcEventDtos.RenameProjectDto = {
           nxProjectRootPath: selectedNxProject?.path,
@@ -138,20 +142,15 @@ export class ProjectsIpcEventsProxyService {
             .replace('/apps', '')
             .substring(1),
           projectNameInNxJson: project.nameInNxJson,
-          newName: data.value.slice(0,-1)
+          newName: data.value.slice(0, -1),
         };
-
-        console.log('RENAME ', generateDto);
 
         this.eventsProxyService.renameProject(generateDto);
       });
   }
 
   public deleteProject(project: Project): void {
-    combineLatest([
-      this.dialog.open(ConfirmDialogComponent).afterClosed(),
-      this.projectsStore.selectedNxProject$
-    ])
+    combineLatest([this.dialog.open(ConfirmDialogComponent).afterClosed(), this.projectsStore.selectedNxProject$])
       .pipe(take(1))
       .subscribe(([isConfirm, selectedNxProject]) => {
         if (!isConfirm) {
@@ -161,7 +160,7 @@ export class ProjectsIpcEventsProxyService {
         this.eventsProxyService.deleteProject({
           projectNameInNxJson: project.nameInNxJson,
           nxProjectRootPath: selectedNxProject?.path,
-          projectType: project.type
+          projectType: project.type,
         });
       });
   }
@@ -170,25 +169,26 @@ export class ProjectsIpcEventsProxyService {
     const moveDialogData: SingleInputFormComponentData = {
       submitButtonText: 'Create app',
       placeholder: 'Eg. my-awesome-app',
-      title: 'Enter new app name'
+      title: 'Enter new app name',
     };
 
     combineLatest([
-      this.dialog.open(
-        SingleInputFormComponent,
-        {
-          data: moveDialogData
-        }
-      ).afterClosed(),
+      this.dialog
+        .open(SingleInputFormComponent, {
+          data: moveDialogData,
+        })
+        .afterClosed(),
       this.projectsStore.selectedNxProject$,
     ])
       .pipe(take(1))
       .subscribe(([data, selectedNxProject]) => {
-        if (!data) { return };
+        if (!data) {
+          return;
+        }
 
         const createAppDto: IpcEventDtos.CreateProjectDto = {
-          path: data.value.slice(0,-1),
-          nxProjectRootPath: selectedNxProject?.path
+          path: data.value.slice(0, -1),
+          nxProjectRootPath: selectedNxProject?.path,
         };
 
         this.eventsProxyService.createApp(createAppDto);
@@ -196,6 +196,25 @@ export class ProjectsIpcEventsProxyService {
   }
 
   public createLib(): void {
-    console.log('Create lib');
+    combineLatest([
+      this.dialog.open(GenerateLibraryFormComponent).afterClosed(),
+      this.projectsStore.selectedNxProject$,
+    ])
+      .pipe(take(1))
+      .subscribe(([data, selectedNxProject]) => {
+        if (!data) {
+          return;
+        }
+
+        const createLibDto: IpcEventDtos.CreateProjectDto = {
+          path: data.artifactName[data.artifactName.length - 1] === '/' ?
+            data.artifactName.slice(0, -1) :
+            data.artifactName,
+          nxProjectRootPath: selectedNxProject?.path,
+          flags: data.flags
+        };
+
+        this.eventsProxyService.createLib(createLibDto);
+      });
   }
 }

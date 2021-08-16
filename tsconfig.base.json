@@ -27,6 +27,9 @@
       "@nx-cli/client/projects/ui/generate-component-form": [
         "libs/client/projects/ui/generate-component-form/src/index.ts"
       ],
+      "@nx-cli/client/projects/ui/generate-library-form": [
+        "libs/client/projects/ui/generate-library-form/src/index.ts"
+      ],
       "@nx-cli/client/projects/ui/generate-service-form": [
         "libs/client/projects/ui/generate-service-form/src/index.ts"
       ],

@@ -3,12 +3,7 @@ import * as fs from 'fs';
 // @ts-ignore
 import * as path from 'path';
 
-import {
-  AngularComponent,
-  AngularModule,
-  Project,
-  ProjectType
-} from '@nx-cli/client/projects/data-access/store';
+import { AngularComponent, AngularModule, Project, ProjectType } from '@nx-cli/client/projects/data-access/store';
 
 export class ProjectsEventHandler {
   public projects: Project[] = [];
@@ -58,6 +53,10 @@ export class ProjectsEventHandler {
       .split('/')
       .filter((item) => item !== '' && item !== '/')
       .reverse();
+
+    if (keywords[keywords.length - 1] === 'apps') {
+      return ProjectType.app;
+    }
 
     for (let index = 0; index < libraryTypes.length; index++) {
       if (

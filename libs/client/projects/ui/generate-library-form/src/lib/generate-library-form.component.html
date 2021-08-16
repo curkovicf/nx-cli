@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Generate library</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="input-wrapper">
+    <input formControlName="name" name="name" type="text" placeholder="Eg. ui/my-awesome-lib" />
+  </div>
+
+  <div class="flags" [formGroup]="flags">
+    <h2 mat-dialog-title>Additional flags</h2>
+
+    <p><mat-checkbox color='primary' formControlName="buildable">Buildable</mat-checkbox></p>
+    <p><mat-checkbox color='primary' formControlName="publishable">Publishable</mat-checkbox></p>
+  </div>
+
+  <div class="actions">
+    <nx-cli-default-button
+      buttonText="Generate library"
+      buttonType="primary"
+      type="submit"
+    ></nx-cli-default-button>
+    <nx-cli-default-button [buttonText]="'Cancel'" buttonType="warn" (onbtnclick)="onCancel()"></nx-cli-default-button>
+  </div>
+</form>

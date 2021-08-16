@@ -34,4 +34,8 @@ export namespace IpcEvents {
     fromAngular: 'CREATE_APP',
     fromNode: 'CREATE_APP_RESULT',
   };
+  export const createLib: EventChannel = {
+    fromAngular: 'CREATE_LIB',
+    fromNode: 'CREATE_LIB_RESULT',
+  };
 }

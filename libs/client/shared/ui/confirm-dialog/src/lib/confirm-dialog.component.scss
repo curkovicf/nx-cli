@@ -2,9 +2,8 @@
 @import "styles/global.variables";
 
 :host {
-  padding: 1rem;
   @include center-flex-Y;
-  @include box(14rem, 13rem);
+  @include box(11rem, 10rem);
   justify-content: space-between;
 
   & > .title {
