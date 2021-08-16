@@ -43,6 +43,17 @@
 
   & > .projects-list {
     overflow-y: auto;
-    @include box(100%, calc(100% - 8rem));
+    @include box(100%, calc(100% - 14rem));
+  }
+
+  & > .actions {
+    @include center-flex-Y;
+    @include default_border(top);
+    @include box(100%, 6rem);
+    justify-content: space-evenly;
+
+    & > nx-cli-default-button {
+      width: 95%;
+    }
   }
 }

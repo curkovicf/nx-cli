@@ -193,4 +193,8 @@ export class EventsProxyService {
   public deleteProject(deleteProjectDto: IpcEventDtos.DeleteProjectDto): void {
     this.electronService.ipcRenderer.send(IpcEvents.deleteProject.fromAngular, deleteProjectDto);
   }
+
+  public createApp(createAppDto: IpcEventDtos.CreateProjectDto): void {
+    this.electronService.ipcRenderer.send(IpcEvents.createApp.fromAngular, createAppDto);
+  }
 }

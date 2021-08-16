@@ -5,6 +5,7 @@ import { MaterialModule } from '@nx-cli/client/shared/ui/material-modules';
 import { SearchBarModule } from '@nx-cli/client/projects/ui/search-bar';
 import { ListItemModule } from '@nx-cli/client/projects/ui/list-item';
 import { ListItemBadgeModule } from '@nx-cli/client/projects/ui/list-item-badge';
+import { DefaultButtonModule } from '@nx-cli/client/shared/ui/default-button';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { ListItemBadgeModule } from '@nx-cli/client/projects/ui/list-item-badge'
     SearchBarModule,
     ListItemModule,
     ListItemBadgeModule,
+    DefaultButtonModule
   ],
   declarations: [ListComponent],
   exports: [ListComponent],

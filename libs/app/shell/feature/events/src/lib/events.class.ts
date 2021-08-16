@@ -2,6 +2,7 @@ import { app, ipcMain } from 'electron';
 
 import { IpcEventDtos, IpcEvents } from '@nx-cli/shared/data/ipc-events';
 import {
+  CreateAppHandler,
   DeleteProjectHandler,
   GenerateComponentHandler,
   GenerateServiceHandler,
@@ -22,8 +23,6 @@ export class Events {
     //  Get all libs & apps
     ipcMain.on(IpcEvents.projects.fromAngular, (event, path) => {
       const projectsHandler = new ProjectsEventHandler(path);
-
-      console.log('GET PROJECTS -------------------------------------------');
 
       projectsHandler.findProjects(path);
       projectsHandler.getProjectsFromWorkspaceFile();
@@ -106,6 +105,19 @@ export class Events {
       };
 
       event.sender.send(IpcEvents.deleteProject.fromNode, generateResultDto);
+    });
+
+    //  Create app
+    ipcMain.on(IpcEvents.createApp.fromAngular, async (event, createAppDto: IpcEventDtos.CreateProjectDto) => {
+      const createAppHandler = new CreateAppHandler();
+
+      const generateResultDto: IpcEventDtos.GenerateResultDto = {
+        isSuccess: await createAppHandler.createApp(createAppDto),
+        artifactName: createAppDto.path,
+        rootPath: createAppDto.nxProjectRootPath
+      };
+
+      event.sender.send(IpcEvents.createApp.fromNode, generateResultDto);
     });
   }
 }

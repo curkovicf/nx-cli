@@ -30,4 +30,12 @@ export class ListComponent {
   public trackBy(index: any, item: any) {
     return item.name;
   }
+
+  public createNgApp(): void {
+    this.projectsIpcEventsProxyService.createNgApp();
+  }
+
+  public createLib(): void {
+    this.projectsIpcEventsProxyService.createLib();
+  }
 }

@@ -7,3 +7,5 @@ export * from './lib/handlers/generate-service-handler.class';
 export * from './lib/handlers/move-project-handler.class';
 export * from './lib/handlers/rename-project-handler.class';
 export * from './lib/handlers/delete-project-handler.class';
+export * from './lib/handlers/create-app-handler.class';
+export * from './lib/handlers/create-lib-handler.class';

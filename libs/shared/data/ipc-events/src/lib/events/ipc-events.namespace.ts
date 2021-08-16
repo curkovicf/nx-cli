@@ -30,4 +30,8 @@ export namespace IpcEvents {
     fromAngular: 'GET_PROJECTS',
     fromNode: 'GET_PROJECTS_RESULT',
   };
+  export const createApp: EventChannel = {
+    fromAngular: 'CREATE_APP',
+    fromNode: 'CREATE_APP_RESULT',
+  };
 }

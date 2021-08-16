@@ -10,6 +10,7 @@ import { GenerateServiceFormComponent } from '@nx-cli/client/projects/ui/generat
 import { SingleInputFormComponent, SingleInputFormComponentData } from '@nx-cli/client/projects/ui/single-input-form';
 import { ConfirmDialogComponent } from '@nx-cli/client/shared/ui/confirm-dialog';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -131,10 +132,16 @@ export class ProjectsIpcEventsProxyService {
 
         const generateDto: IpcEventDtos.RenameProjectDto = {
           nxProjectRootPath: selectedNxProject?.path,
-          libPath: project.relativePath.replace(project.name, '').replace('/libs', '').substring(1),
+          libPath: project.relativePath
+            .replace(project.name, '')
+            .replace('/libs', '')
+            .replace('/apps', '')
+            .substring(1),
           projectNameInNxJson: project.nameInNxJson,
           newName: data.value.slice(0,-1)
         };
+
+        console.log('RENAME ', generateDto);
 
         this.eventsProxyService.renameProject(generateDto);
       });
@@ -157,5 +164,38 @@ export class ProjectsIpcEventsProxyService {
           projectType: project.type
         });
       });
+  }
+
+  public createNgApp(): void {
+    const moveDialogData: SingleInputFormComponentData = {
+      submitButtonText: 'Create app',
+      placeholder: 'Eg. my-awesome-app',
+      title: 'Enter new app name'
+    };
+
+    combineLatest([
+      this.dialog.open(
+        SingleInputFormComponent,
+        {
+          data: moveDialogData
+        }
+      ).afterClosed(),
+      this.projectsStore.selectedNxProject$,
+    ])
+      .pipe(take(1))
+      .subscribe(([data, selectedNxProject]) => {
+        if (!data) { return };
+
+        const createAppDto: IpcEventDtos.CreateProjectDto = {
+          path: data.value.slice(0,-1),
+          nxProjectRootPath: selectedNxProject?.path
+        };
+
+        this.eventsProxyService.createApp(createAppDto);
+      });
+  }
+
+  public createLib(): void {
+    console.log('Create lib');
   }
 }
