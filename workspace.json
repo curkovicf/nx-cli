@@ -526,6 +526,31 @@
         }
       }
     },
+    "client-shared-ui-confirm-dialog": {
+      "projectType": "library",
+      "root": "libs/client/shared/ui/confirm-dialog",
+      "sourceRoot": "libs/client/shared/ui/confirm-dialog/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shared/ui/confirm-dialog"],
+          "options": {
+            "jestConfig": "libs/client/shared/ui/confirm-dialog/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shared/ui/confirm-dialog/src/**/*.ts",
+              "libs/client/shared/ui/confirm-dialog/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "client-shared-ui-default-button": {
       "projectType": "library",
       "root": "libs/client/shared/ui/default-button",

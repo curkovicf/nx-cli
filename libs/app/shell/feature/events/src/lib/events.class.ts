@@ -1,10 +1,16 @@
 import { app, ipcMain } from 'electron';
 
 import { IpcEventDtos, IpcEvents } from '@nx-cli/shared/data/ipc-events';
-import { NxProjectEventHandler, ProjectsEventHandler, GenerateComponentHandler } from '@nx-cli/app/shell/feature/event-handlers';
-import { GenerateServiceHandler } from '../../../event-handlers/src/lib/handlers/generate-service-handler.class';
-import { MoveProjectHandlerClass } from '../../../event-handlers/src/lib/handlers/move-project-handler.class';
-import { RenameProjectHandlerClass } from '../../../event-handlers/src/lib/handlers/rename-project-handler.class';
+import {
+  DeleteProjectHandler,
+  GenerateComponentHandler,
+  GenerateServiceHandler,
+  MoveProjectHandlerClass,
+  NxProjectEventHandler,
+  ProjectsEventHandler,
+  RenameProjectHandlerClass
+} from '@nx-cli/app/shell/feature/event-handlers';
+import { ProjectType } from '@nx-cli/client/projects/data-access/store';
 
 export class Events {
   static init(): void {
@@ -16,6 +22,8 @@ export class Events {
     //  Get all libs & apps
     ipcMain.on(IpcEvents.projects.fromAngular, (event, path) => {
       const projectsHandler = new ProjectsEventHandler(path);
+
+      console.log('GET PROJECTS -------------------------------------------');
 
       projectsHandler.findProjects(path);
       projectsHandler.getProjectsFromWorkspaceFile();
@@ -82,6 +90,22 @@ export class Events {
       };
 
       event.sender.send(IpcEvents.renameProject.fromNode, generateResultDto);
+    });
+
+    //  Delete project
+    ipcMain.on(IpcEvents.deleteProject.fromAngular, async (event, deleteProjectDto: IpcEventDtos.DeleteProjectDto) => {
+      const deleteProjectHandler = new DeleteProjectHandler();
+      const { projectType } = deleteProjectDto;
+
+      const generateResultDto: IpcEventDtos.GenerateResultDto = {
+        isSuccess: projectType === ProjectType.app ?
+          await deleteProjectHandler.deleteAppSync(deleteProjectDto) :
+          await deleteProjectHandler.deleteLib(deleteProjectDto),
+        artifactName: deleteProjectDto.projectNameInNxJson,
+        rootPath: deleteProjectDto.nxProjectRootPath
+      };
+
+      event.sender.send(IpcEvents.deleteProject.fromNode, generateResultDto);
     });
   }
 }

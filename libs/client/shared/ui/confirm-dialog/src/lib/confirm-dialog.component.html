@@ -1,0 +1,8 @@
+<h1 mat-dialog-title class='title'>Warning</h1>
+
+<div class='prompt-text'>Are you sure ?</div>
+
+<div class='actions'>
+  <nx-cli-default-button [buttonText]='"Yes"' buttonType='primary' (onbtnclick)='dialogRef.close(true)'></nx-cli-default-button>
+  <nx-cli-default-button [buttonText]='"Cancel"' buttonType='warn' (onbtnclick)='dialogRef.close(false)'></nx-cli-default-button>
+</div>

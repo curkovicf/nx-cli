@@ -29,4 +29,8 @@ export class DetailComponent {
   public renameProject(project: Project): void {
     this.projectsEventsProxyService.renameProject(project);
   }
+
+  public deleteLib(project: Project): void {
+    this.projectsEventsProxyService.deleteProject(project);
+  }
 }

@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@nx-cli/client/shared/ui/material-modules';
 
 @NgModule({
-  imports: [CommonModule, DefaultButtonModule, ReactiveFormsModule, MaterialModule],
+  imports: [CommonModule, ReactiveFormsModule, MaterialModule, DefaultButtonModule],
   declarations: [
     GenerateComponentFormComponent
   ],

@@ -78,6 +78,7 @@ export class EventsProxyService {
           .pipe(
             take(1),
             tap(_selectedProject => {
+              console.log('PROJECTS RESULT', projects);
               this.projectsStore.patchState({
                 projects: [...projects],
                 projectsLoadedInView: [...projects],
@@ -139,6 +140,34 @@ export class EventsProxyService {
         this.ngZone.run(() => this.snackBar.open(snackBarContent.message, null, snackBarContent.config));
       }
     );
+
+    //  Delete project result
+    this.electronService.ipcRenderer.on(IpcEvents.deleteProject.fromNode, (event, resultDto: IpcEventDtos.GenerateResultDto) => {
+        const { artifactName, isSuccess, rootPath } = resultDto;
+        let snackBarContent: { message: string; config: MatSnackBarConfig };
+
+        if (isSuccess) {
+          snackBarContent = {
+            message: `${artifactName} has been successfully deleted`,
+            config: {
+              panelClass: 'background-green'
+            }
+          };
+        } else {
+          snackBarContent = {
+            message: `${artifactName} has not been successfully deleted`,
+            config: {
+              panelClass: 'background-red'
+            }
+          };
+        }
+
+        this.ngZone.run(() => {
+          this.snackBar.open(snackBarContent.message, null, snackBarContent.config);
+          this.getAllProjects(rootPath);
+        });
+      }
+    );
   }
 
   public generateComponent(generateDto: IpcEventDtos.GenerateDto): void {
@@ -159,5 +188,9 @@ export class EventsProxyService {
 
   public renameProject(generateDto: IpcEventDtos.RenameProjectDto): void {
     this.electronService.ipcRenderer.send(IpcEvents.renameProject.fromAngular, generateDto);
+  }
+
+  public deleteProject(deleteProjectDto: IpcEventDtos.DeleteProjectDto): void {
+    this.electronService.ipcRenderer.send(IpcEvents.deleteProject.fromAngular, deleteProjectDto);
   }
 }

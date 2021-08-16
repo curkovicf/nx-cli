@@ -18,6 +18,10 @@ export namespace IpcEvents {
     fromAngular: 'RENAME_PROJECT',
     fromNode: 'RENAME_PROJECT_RESULT',
   };
+  export const deleteProject: EventChannel = {
+    fromAngular: 'DELETE_PROJECT',
+    fromNode: 'DELETE_PROJECT_RESULT',
+  };
   export const generateService: EventChannel = {
     fromAngular: 'GENERATE_SERVICE',
     fromNode: 'GENERATE_SERVICE_RESULT',

@@ -20,7 +20,7 @@
     <nx-cli-default-button [buttonText]='"Create Service"' buttonType='primary' (onbtnclick)='generateService(project)'></nx-cli-default-button>
     <nx-cli-default-button [buttonText]='"Move project"' buttonType='warn' (onbtnclick)='moveProject(project)'></nx-cli-default-button>
     <nx-cli-default-button [buttonText]='"Rename project"' buttonType='warn' (onbtnclick)='renameProject(project)'></nx-cli-default-button>
-    <nx-cli-default-button [buttonText]='"Delete project"' buttonType='warn'></nx-cli-default-button>
+    <nx-cli-default-button [buttonText]='"Delete project"' buttonType='warn' (onbtnclick)='deleteLib(project)'></nx-cli-default-button>
   </div>
 
   <div class='installed-modules-and-components'>

@@ -26,11 +26,12 @@ export namespace Processes {
 
       process.stdout.on('close', () => resolve(std_out));
 
+      process.stdout.on('exit', () => resolve(std_out));
+
       process.stderr.on('data', () => resolve(std_out));
 
       process.on('error', (err) => reject(err));
 
-      /* This data can be accesed by await */
       process.on('exit', () => resolve(std_out))
     });
   }

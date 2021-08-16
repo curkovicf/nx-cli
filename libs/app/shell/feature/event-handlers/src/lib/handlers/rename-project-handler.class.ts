@@ -7,9 +7,6 @@ export class RenameProjectHandlerClass {
     const { projectNameInNxJson, nxProjectRootPath, newName, libPath} = renameProjectDto;
     const cmd = `nx g mv --project ${projectNameInNxJson} ${libPath}${newName}`;
 
-
-    console.log(cmd);
-
     let isSuccess: boolean;
 
     try {

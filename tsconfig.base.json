@@ -37,6 +37,7 @@
       "@nx-cli/client/projects/util/projects-ipc-events-proxy": [
         "libs/client/projects/util/projects-ipc-events-proxy/src/index.ts"
       ],
+      "@nx-cli/client/shared/ui/confirm-dialog": ["libs/client/shared/ui/confirm-dialog/src/index.ts"],
       "@nx-cli/client/shared/ui/default-button": ["libs/client/shared/ui/default-button/src/index.ts"],
       "@nx-cli/client/shared/ui/material-modules": ["libs/client/shared/ui/material-modules/src/index.ts"],
       "@nx-cli/client/shared/ui/progress-bar": ["libs/client/shared/ui/progress-bar/src/index.ts"],

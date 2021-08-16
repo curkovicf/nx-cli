@@ -82,6 +82,9 @@
     "client-projects-util-projects-ipc-events-proxy": {
       "tags": []
     },
+    "client-shared-ui-confirm-dialog": {
+      "tags": []
+    },
     "client-shared-ui-default-button": {
       "tags": []
     },

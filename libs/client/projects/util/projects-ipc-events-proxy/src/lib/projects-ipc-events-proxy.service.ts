@@ -8,6 +8,7 @@ import { IpcEventDtos } from '@nx-cli/shared/data/ipc-events';
 import { MatDialog } from '@angular/material/dialog';
 import { GenerateServiceFormComponent } from '@nx-cli/client/projects/ui/generate-service-form';
 import { SingleInputFormComponent, SingleInputFormComponentData } from '@nx-cli/client/projects/ui/single-input-form';
+import { ConfirmDialogComponent } from '@nx-cli/client/shared/ui/confirm-dialog';
 
 @Injectable({
   providedIn: 'root'
@@ -136,6 +137,25 @@ export class ProjectsIpcEventsProxyService {
         };
 
         this.eventsProxyService.renameProject(generateDto);
+      });
+  }
+
+  public deleteProject(project: Project): void {
+    combineLatest([
+      this.dialog.open(ConfirmDialogComponent).afterClosed(),
+      this.projectsStore.selectedNxProject$
+    ])
+      .pipe(take(1))
+      .subscribe(([isConfirm, selectedNxProject]) => {
+        if (!isConfirm) {
+          return;
+        }
+
+        this.eventsProxyService.deleteProject({
+          projectNameInNxJson: project.nameInNxJson,
+          nxProjectRootPath: selectedNxProject?.path,
+          projectType: project.type
+        });
       });
   }
 }

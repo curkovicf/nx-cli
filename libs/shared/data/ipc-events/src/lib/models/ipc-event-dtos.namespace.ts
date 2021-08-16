@@ -1,4 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-namespace
+import { ProjectType } from '@nx-cli/client/projects/data-access/store';
+
 export namespace IpcEventDtos {
   export interface GenerateDto {
     artifactName: string;
@@ -20,6 +22,12 @@ export namespace IpcEventDtos {
     libPath: string;
     projectNameInNxJson: string;
     nxProjectRootPath: string;
+  }
+
+  export interface DeleteProjectDto {
+    projectNameInNxJson: string;
+    nxProjectRootPath: string;
+    projectType: ProjectType;
   }
 
   export interface GenerateResultDto {
