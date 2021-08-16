@@ -168,6 +168,34 @@ export class EventsProxyService {
         });
       }
     );
+
+    //  Create app result
+    this.electronService.ipcRenderer.on(IpcEvents.createApp.fromNode, (event, resultDto: IpcEventDtos.GenerateResultDto) => {
+        const { artifactName, isSuccess, rootPath } = resultDto;
+        let snackBarContent: { message: string; config: MatSnackBarConfig };
+
+        if (isSuccess) {
+          snackBarContent = {
+            message: `${artifactName} has been successfully created`,
+            config: {
+              panelClass: 'background-green'
+            }
+          };
+        } else {
+          snackBarContent = {
+            message: `${artifactName} has not been successfully created`,
+            config: {
+              panelClass: 'background-red'
+            }
+          };
+        }
+
+        this.ngZone.run(() => {
+          this.snackBar.open(snackBarContent.message, null, snackBarContent.config);
+          this.getAllProjects(rootPath);
+        });
+      }
+    );
   }
 
   public generateComponent(generateDto: IpcEventDtos.GenerateDto): void {
