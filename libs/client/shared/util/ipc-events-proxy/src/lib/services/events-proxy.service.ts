@@ -21,7 +21,7 @@ export class EventsProxyService {
 
   private initChannels(): void {
     //  Generate component result
-    this.electronService.ipcRenderer.on(IpcEvents.generateComponent.fromNode, (event, resultDto: IpcEventDtos.GenerateResultDto) => {
+    this.electronService.ipcRenderer.on(IpcEvents.createComponent.fromElectron, (event, resultDto: IpcEventDtos.GenerateResultDto) => {
       const { artifactName, isSuccess, rootPath } = resultDto;
       let snackBarContent: { message: string; config: MatSnackBarConfig };
 
@@ -47,7 +47,7 @@ export class EventsProxyService {
     );
 
     //  Generate component result
-    this.electronService.ipcRenderer.on(IpcEvents.generateService.fromNode, (event, resultDto: IpcEventDtos.GenerateResultDto) => {
+    this.electronService.ipcRenderer.on(IpcEvents.createService.fromElectron, (event, resultDto: IpcEventDtos.GenerateResultDto) => {
       const { artifactName, isSuccess } = resultDto;
       let snackBarContent: { message: string; config: MatSnackBarConfig };
 
@@ -72,7 +72,7 @@ export class EventsProxyService {
     );
 
     //  Get all projects result
-    this.electronService.ipcRenderer.on(IpcEvents.projects.fromNode, (event, projects: Project[]) => {
+    this.electronService.ipcRenderer.on(IpcEvents.projects.fromElectron, (event, projects: Project[]) => {
       this.ngZone.run(() => {
         this.projectsStore.selectedProject$
           .pipe(
@@ -90,7 +90,7 @@ export class EventsProxyService {
     });
 
     //  Move project result
-    this.electronService.ipcRenderer.on(IpcEvents.moveProject.fromNode, (event, resultDto: IpcEventDtos.GenerateResultDto) => {
+    this.electronService.ipcRenderer.on(IpcEvents.moveProject.fromElectron, (event, resultDto: IpcEventDtos.GenerateResultDto) => {
         const { artifactName, isSuccess } = resultDto;
         let snackBarContent: { message: string; config: MatSnackBarConfig };
 
@@ -116,7 +116,7 @@ export class EventsProxyService {
     );
 
     //  Move project result
-    this.electronService.ipcRenderer.on(IpcEvents.renameProject.fromNode, (event, resultDto: IpcEventDtos.GenerateResultDto) => {
+    this.electronService.ipcRenderer.on(IpcEvents.renameProject.fromElectron, (event, resultDto: IpcEventDtos.GenerateResultDto) => {
         const { artifactName, isSuccess } = resultDto;
         let snackBarContent: { message: string; config: MatSnackBarConfig };
 
@@ -142,7 +142,7 @@ export class EventsProxyService {
     );
 
     //  Delete project result
-    this.electronService.ipcRenderer.on(IpcEvents.deleteProject.fromNode, (event, resultDto: IpcEventDtos.GenerateResultDto) => {
+    this.electronService.ipcRenderer.on(IpcEvents.deleteProject.fromElectron, (event, resultDto: IpcEventDtos.GenerateResultDto) => {
         const { artifactName, isSuccess, rootPath } = resultDto;
         let snackBarContent: { message: string; config: MatSnackBarConfig };
 
@@ -170,7 +170,7 @@ export class EventsProxyService {
     );
 
     //  Create app result
-    this.electronService.ipcRenderer.on(IpcEvents.createApp.fromNode, (event, resultDto: IpcEventDtos.GenerateResultDto) => {
+    this.electronService.ipcRenderer.on(IpcEvents.createApp.fromElectron, (event, resultDto: IpcEventDtos.GenerateResultDto) => {
         const { artifactName, isSuccess, rootPath } = resultDto;
         let snackBarContent: { message: string; config: MatSnackBarConfig };
 
@@ -198,7 +198,7 @@ export class EventsProxyService {
     );
 
     //  Create lib result
-    this.electronService.ipcRenderer.on(IpcEvents.createLib.fromNode, (event, resultDto: IpcEventDtos.GenerateResultDto) => {
+    this.electronService.ipcRenderer.on(IpcEvents.createLib.fromElectron, (event, resultDto: IpcEventDtos.GenerateResultDto) => {
         const { artifactName, isSuccess, rootPath } = resultDto;
         let snackBarContent: { message: string; config: MatSnackBarConfig };
 
@@ -227,11 +227,11 @@ export class EventsProxyService {
   }
 
   public generateComponent(generateDto: IpcEventDtos.GenerateDto): void {
-    this.electronService.ipcRenderer.send(IpcEvents.generateComponent.fromAngular, generateDto);
+    this.electronService.ipcRenderer.send(IpcEvents.createComponent.fromAngular, generateDto);
   }
 
   public generateService(generateDto: IpcEventDtos.GenerateDto): void {
-    this.electronService.ipcRenderer.send(IpcEvents.generateService.fromAngular, generateDto);
+    this.electronService.ipcRenderer.send(IpcEvents.createService.fromAngular, generateDto);
   }
 
   public getAllProjects(projectPath: string): void {

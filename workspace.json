@@ -68,44 +68,178 @@
         }
       }
     },
-    "app-shell-feature-event-handlers": {
-      "root": "libs/app/shell/feature/event-handlers",
-      "sourceRoot": "libs/app/shell/feature/event-handlers/src",
+    "app-home-projects-data-access": {
       "projectType": "library",
+      "root": "libs/app/home/projects/data-access",
+      "sourceRoot": "libs/app/home/projects/data-access/src",
+      "prefix": "nx-cli",
       "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/app/home/projects/data-access"],
+          "options": {
+            "jestConfig": "libs/app/home/projects/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/app/shell/feature/event-handlers/**/*.ts"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/app/shell/feature/event-handlers"],
-          "options": {
-            "jestConfig": "libs/app/shell/feature/event-handlers/jest.config.js",
-            "passWithNoTests": true
+            "lintFilePatterns": ["libs/app/home/projects/data-access/src/**/*.ts", "libs/app/home/projects/data-access/src/**/*.html"]
           }
         }
       }
     },
-    "app-shell-feature-events": {
-      "root": "libs/app/shell/feature/events",
-      "sourceRoot": "libs/app/shell/feature/events/src",
+    "app-home-projects-feature": {
       "projectType": "library",
+      "root": "libs/app/home/projects/feature",
+      "sourceRoot": "libs/app/home/projects/feature/src",
+      "prefix": "nx-cli",
       "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/app/home/projects/feature"],
+          "options": {
+            "jestConfig": "libs/app/home/projects/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/app/shell/feature/events/**/*.ts"]
+            "lintFilePatterns": ["libs/app/home/projects/feature/src/**/*.ts", "libs/app/home/projects/feature/src/**/*.html"]
           }
-        },
+        }
+      }
+    },
+    "app-home-projects-util": {
+      "projectType": "library",
+      "root": "libs/app/home/projects/util",
+      "sourceRoot": "libs/app/home/projects/util/src",
+      "prefix": "nx-cli",
+      "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/app/shell/feature/events"],
+          "outputs": ["coverage/libs/app/home/projects/util"],
           "options": {
-            "jestConfig": "libs/app/shell/feature/events/jest.config.js",
+            "jestConfig": "libs/app/home/projects/util/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/app/home/projects/util/src/**/*.ts", "libs/app/home/projects/util/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "app-home-workspaces-data-access": {
+      "projectType": "library",
+      "root": "libs/app/home/workspaces/data-access",
+      "sourceRoot": "libs/app/home/workspaces/data-access/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/app/home/workspaces/data-access"],
+          "options": {
+            "jestConfig": "libs/app/home/workspaces/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/app/home/workspaces/data-access/src/**/*.ts", "libs/app/home/workspaces/data-access/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "app-home-workspaces-feature": {
+      "projectType": "library",
+      "root": "libs/app/home/workspaces/feature",
+      "sourceRoot": "libs/app/home/workspaces/feature/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/app/home/workspaces/feature"],
+          "options": {
+            "jestConfig": "libs/app/home/workspaces/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/app/home/workspaces/feature/src/**/*.ts", "libs/app/home/workspaces/feature/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "app-home-workspaces-util": {
+      "projectType": "library",
+      "root": "libs/app/home/workspaces/util",
+      "sourceRoot": "libs/app/home/workspaces/util/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/app/home/workspaces/util"],
+          "options": {
+            "jestConfig": "libs/app/home/workspaces/util/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/app/home/workspaces/util/src/**/*.ts", "libs/app/home/workspaces/util/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "app-shared-util": {
+      "projectType": "library",
+      "root": "libs/app/shared/util",
+      "sourceRoot": "libs/app/shared/util/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/app/shared/util"],
+          "options": {
+            "jestConfig": "libs/app/shared/util/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/app/shared/util/src/**/*.ts", "libs/app/shared/util/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "app-shell-feature": {
+      "projectType": "library",
+      "root": "libs/app/shell/feature",
+      "sourceRoot": "libs/app/shell/feature/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/app/shell/feature"],
+          "options": {
+            "jestConfig": "libs/app/shell/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/app/shell/feature/src/**/*.ts", "libs/app/shell/feature/src/**/*.html"]
           }
         }
       }
@@ -127,10 +261,7 @@
             "tsConfig": "apps/client/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["apps/client/src/favicon.ico", "apps/client/src/assets"],
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "apps/client/src/styles.scss"
-            ],
+            "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css", "apps/client/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -268,10 +399,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/projects/feature/detail/src/**/*.ts",
-              "libs/client/projects/feature/detail/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/projects/feature/detail/src/**/*.ts", "libs/client/projects/feature/detail/src/**/*.html"]
           }
         }
       }
@@ -293,10 +421,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/projects/feature/list/src/**/*.ts",
-              "libs/client/projects/feature/list/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/projects/feature/list/src/**/*.ts", "libs/client/projects/feature/list/src/**/*.html"]
           }
         }
       }
@@ -318,10 +443,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/projects/feature/tags/src/**/*.ts",
-              "libs/client/projects/feature/tags/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/projects/feature/tags/src/**/*.ts", "libs/client/projects/feature/tags/src/**/*.html"]
           }
         }
       }
@@ -443,10 +565,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/projects/ui/list-item/src/**/*.ts",
-              "libs/client/projects/ui/list-item/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/projects/ui/list-item/src/**/*.ts", "libs/client/projects/ui/list-item/src/**/*.html"]
           }
         }
       }
@@ -493,10 +612,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/projects/ui/search-bar/src/**/*.ts",
-              "libs/client/projects/ui/search-bar/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/projects/ui/search-bar/src/**/*.ts", "libs/client/projects/ui/search-bar/src/**/*.html"]
           }
         }
       }
@@ -568,10 +684,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/shared/ui/confirm-dialog/src/**/*.ts",
-              "libs/client/shared/ui/confirm-dialog/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/shared/ui/confirm-dialog/src/**/*.ts", "libs/client/shared/ui/confirm-dialog/src/**/*.html"]
           }
         }
       }
@@ -593,10 +706,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/shared/ui/default-button/src/**/*.ts",
-              "libs/client/shared/ui/default-button/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/shared/ui/default-button/src/**/*.ts", "libs/client/shared/ui/default-button/src/**/*.html"]
           }
         }
       }
@@ -643,10 +753,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/shared/ui/progress-bar/src/**/*.ts",
-              "libs/client/shared/ui/progress-bar/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/shared/ui/progress-bar/src/**/*.ts", "libs/client/shared/ui/progress-bar/src/**/*.html"]
           }
         }
       }
@@ -693,10 +800,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/shared/util/local-storage/src/**/*.ts",
-              "libs/client/shared/util/local-storage/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/shared/util/local-storage/src/**/*.ts", "libs/client/shared/util/local-storage/src/**/*.html"]
           }
         }
       }
@@ -743,10 +847,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/shell/ui/chips-bar/src/**/*.ts",
-              "libs/client/shell/ui/chips-bar/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/shell/ui/chips-bar/src/**/*.ts", "libs/client/shell/ui/chips-bar/src/**/*.html"]
           }
         }
       }
@@ -790,10 +891,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/shell/ui/projects-layout/src/**/*.ts",
-              "libs/client/shell/ui/projects-layout/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/shell/ui/projects-layout/src/**/*.ts", "libs/client/shell/ui/projects-layout/src/**/*.html"]
           }
         }
       }
@@ -815,10 +913,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/shell/ui/top-nav/src/**/*.ts",
-              "libs/client/shell/ui/top-nav/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/shell/ui/top-nav/src/**/*.ts", "libs/client/shell/ui/top-nav/src/**/*.html"]
           }
         }
       }

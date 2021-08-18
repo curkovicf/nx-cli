@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'client-projects-feature-tags',
+  displayName: 'client-projects-feature_-tags',
   preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,7 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../../../../coverage/libs/client/projects/feature/tags',
+  coverageDirectory: '../../../../../coverage/libs/client/projects/feature_/tags',
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',
   },

@@ -44,7 +44,7 @@ export class AddNxProjectFormComponent {
     return timer(1500)
       .pipe(
         switchMap(() => {
-            return of(this.electronService.ipcRenderer.sendSync(IpcEvents.nxProject.fromAngular, control.value))
+            return of(this.electronService.ipcRenderer.sendSync(IpcEvents.validateWorkspacePath.fromAngular, control.value))
               .pipe(
                 map((nxProject: NxProject): ValidationErrors | null => {
                     if (nxProject) {

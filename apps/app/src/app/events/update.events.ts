@@ -4,7 +4,7 @@ import { updateServerUrl } from '../constants';
 import App from '../app';
 
 export default class UpdateEvents {
-  // initialize auto update service - most be invoked only in production
+  // initialize auto update services - most be invoked only in production
   static initAutoUpdateService() {
     const platform_arch =
       platform() === 'win32' ? platform() : platform() + '_' + arch();
@@ -14,7 +14,7 @@ export default class UpdateEvents {
     };
 
     if (!App.isDevelopmentMode()) {
-      console.log('Initializing auto update service...\n');
+      console.log('Initializing auto update services...\n');
 
       autoUpdater.setFeedURL(feed);
       UpdateEvents.checkForUpdates();

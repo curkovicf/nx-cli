@@ -43,7 +43,7 @@ export default class App {
   private static onReady() {
     // This method will be called when Electron has finished
     // initialization and is ready to create browser windows.
-    // Some APIs can only be used after this event occurs.
+    // Some APIs can only be used after this events occurs.
     App.initMainWindow();
     App.loadMainWindow();
   }
@@ -85,8 +85,8 @@ export default class App {
 
     // handle all external redirects in a new browser window
     // App.mainWindow.webContents.on('will-navigate', App.onRedirect);
-    // App.mainWindow.webContents.on('new-window', (event, url, frameName, disposition, options) => {
-    //     App.onRedirect(event, url);
+    // App.mainWindow.webContents.on('new-window', (events, url, frameName, disposition, options) => {
+    //     App.onRedirect(events, url);
     // });
 
     // Emitted when the window is closed.

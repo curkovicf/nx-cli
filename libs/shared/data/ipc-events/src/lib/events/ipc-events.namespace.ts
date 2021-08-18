@@ -1,41 +1,17 @@
 import { EventChannel } from '../models/event-channel.interface';
 
+
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace IpcEvents {
-  export const nxProject: EventChannel = {
-    fromAngular: 'CHECK_IS_NX_PROJECT',
-    fromNode: 'CHECK_IS_NX_PROJECT_RESULT',
-  };
-  export const generateComponent: EventChannel = {
-    fromAngular: 'GENERATE_COMPONENT',
-    fromNode: 'GENERATE_COMPONENT_RESULT',
-  };
-  export const moveProject: EventChannel = {
-    fromAngular: 'MOVE_PROJECT',
-    fromNode: 'MOVE_PROJECT_RESULT',
-  };
-  export const renameProject: EventChannel = {
-    fromAngular: 'RENAME_PROJECT',
-    fromNode: 'RENAME_PROJECT_RESULT',
-  };
-  export const deleteProject: EventChannel = {
-    fromAngular: 'DELETE_PROJECT',
-    fromNode: 'DELETE_PROJECT_RESULT',
-  };
-  export const generateService: EventChannel = {
-    fromAngular: 'GENERATE_SERVICE',
-    fromNode: 'GENERATE_SERVICE_RESULT',
-  };
-  export const projects: EventChannel = {
-    fromAngular: 'GET_PROJECTS',
-    fromNode: 'GET_PROJECTS_RESULT',
-  };
-  export const createApp: EventChannel = {
-    fromAngular: 'CREATE_APP',
-    fromNode: 'CREATE_APP_RESULT',
-  };
-  export const createLib: EventChannel = {
-    fromAngular: 'CREATE_LIB',
-    fromNode: 'CREATE_LIB_RESULT',
-  };
+  export const validateWorkspacePath: EventChannel = { fromAngular: 'VALIDATE_PATH', fromElectron: 'VALIDATE_PATH_RESULT' };
+  export const getAllProjects: EventChannel = { fromAngular: 'GET_ALL_PROJECTS', fromElectron: 'GET_ALL_PROJECTS_RESULT' };
+  export const getAllWorkspaces: EventChannel = { fromAngular: 'GET_ALL_WORKSPACES', fromElectron: 'GET_ALL_WORKSPACES_RESULT' };
+  export const createComponent: EventChannel = { fromAngular: 'CREATE_COMPONENT', fromElectron: 'CREATE_COMPONENT_RESULT' };
+  export const moveProject: EventChannel = { fromAngular: 'MOVE_PROJECT', fromElectron: 'MOVE_PROJECT_RESULT' };
+  export const renameProject: EventChannel = { fromAngular: 'RENAME_PROJECT', fromElectron: 'RENAME_PROJECT_RESULT' };
+  export const deleteProject: EventChannel = { fromAngular: 'DELETE_PROJECT', fromElectron: 'DELETE_PROJECT_RESULT' };
+  export const createService: EventChannel = { fromAngular: 'CREATE_SERVICE', fromElectron: 'CREATE_SERVICE_RESULT' };
+  export const projects: EventChannel = { fromAngular: 'GET_PROJECTS', fromElectron: 'GET_PROJECTS_RESULT' };
+  export const createApp: EventChannel = { fromAngular: 'CREATE_APP', fromElectron: 'CREATE_APP_RESULT' };
+  export const createLib: EventChannel = { fromAngular: 'CREATE_LIB', fromElectron: 'CREATE_LIB_RESULT' };
 }

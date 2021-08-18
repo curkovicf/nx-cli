@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'client-shell-feature-shell-layout',
+  displayName: 'client-shell-feature_-shell-layout',
   preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -9,7 +9,7 @@ module.exports = {
     },
   },
   coverageDirectory:
-    '../../../../../coverage/libs/client/shell/feature/shell-layout',
+    '../../../../../coverage/libs/client/shell/feature_/shell-layout',
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',
   },

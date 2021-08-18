@@ -4,10 +4,16 @@ import ElectronEvents from './app/events/electron.events';
 import { app, BrowserWindow } from 'electron';
 import App from './app/app';
 
+import { NxCliShell } from '@nx-cli/app/shell/feature';
+
+const nxCliShell = new NxCliShell();
+
 export default class Main {
+
+
   static initialize() {
     if (SquirrelEvents.handleEvents()) {
-      // squirrel event handled (except first run event) and app will exit in 1000ms, so don't do anything else
+      // squirrel events handled (except first run events) and app will exit in 1000ms, so don't do anything else
       app.quit();
     }
   }
@@ -19,7 +25,7 @@ export default class Main {
   static bootstrapAppEvents() {
     ElectronEvents.bootstrapElectronEvents();
 
-    // initialize auto updater service
+    // initialize auto updater services
     if (!App.isDevelopmentMode()) {
       // UpdateEvents.initAutoUpdateService();
     }
@@ -32,3 +38,6 @@ Main.initialize();
 // bootstrap app
 Main.bootstrapApp();
 Main.bootstrapAppEvents();
+
+// bootstrap nx-cli events
+nxCliShell.initialize();

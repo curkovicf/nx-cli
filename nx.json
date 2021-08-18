@@ -33,10 +33,28 @@
     "app": {
       "tags": []
     },
-    "app-shell-feature-event-handlers": {
+    "app-home-projects-data-access": {
       "tags": []
     },
-    "app-shell-feature-events": {
+    "app-home-projects-feature": {
+      "tags": []
+    },
+    "app-home-projects-util": {
+      "tags": []
+    },
+    "app-home-workspaces-data-access": {
+      "tags": []
+    },
+    "app-home-workspaces-feature": {
+      "tags": []
+    },
+    "app-home-workspaces-util": {
+      "tags": []
+    },
+    "app-shared-util": {
+      "tags": []
+    },
+    "app-shell-feature": {
       "tags": []
     },
     "client": {

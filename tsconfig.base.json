@@ -17,29 +17,27 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-cli/app/shell/feature/event-handlers": ["libs/app/shell/feature/event-handlers/src/index.ts"],
-      "@nx-cli/app/shell/feature/events": ["libs/app/shell/feature/events/src/index.ts"],
+      "@nx-cli/app/home/projects/data-access": ["libs/app/home/projects/data-access/src/index.ts"],
+      "@nx-cli/app/home/projects/feature": ["libs/app/home/projects/feature/src/index.ts"],
+      "@nx-cli/app/home/projects/util": ["libs/app/home/projects/util/src/index.ts"],
+      "@nx-cli/app/home/workspaces/data-access": ["libs/app/home/workspaces/data-access/src/index.ts"],
+      "@nx-cli/app/home/workspaces/feature": ["libs/app/home/workspaces/feature/src/index.ts"],
+      "@nx-cli/app/home/workspaces/util": ["libs/app/home/workspaces/util/src/index.ts"],
+      "@nx-cli/app/shared/util": ["libs/app/shared/util/src/index.ts"],
+      "@nx-cli/app/shell/feature": ["libs/app/shell/feature/src/index.ts"],
       "@nx-cli/client/projects/data-access/store": ["libs/client/projects/data-access/store/src/index.ts"],
       "@nx-cli/client/projects/feature/detail": ["libs/client/projects/feature/detail/src/index.ts"],
       "@nx-cli/client/projects/feature/list": ["libs/client/projects/feature/list/src/index.ts"],
       "@nx-cli/client/projects/feature/tags": ["libs/client/projects/feature/tags/src/index.ts"],
       "@nx-cli/client/projects/ui/add-nx-project-form": ["libs/client/projects/ui/add-nx-project-form/src/index.ts"],
-      "@nx-cli/client/projects/ui/generate-component-form": [
-        "libs/client/projects/ui/generate-component-form/src/index.ts"
-      ],
-      "@nx-cli/client/projects/ui/generate-library-form": [
-        "libs/client/projects/ui/generate-library-form/src/index.ts"
-      ],
-      "@nx-cli/client/projects/ui/generate-service-form": [
-        "libs/client/projects/ui/generate-service-form/src/index.ts"
-      ],
+      "@nx-cli/client/projects/ui/generate-component-form": ["libs/client/projects/ui/generate-component-form/src/index.ts"],
+      "@nx-cli/client/projects/ui/generate-library-form": ["libs/client/projects/ui/generate-library-form/src/index.ts"],
+      "@nx-cli/client/projects/ui/generate-service-form": ["libs/client/projects/ui/generate-service-form/src/index.ts"],
       "@nx-cli/client/projects/ui/list-item": ["libs/client/projects/ui/list-item/src/index.ts"],
       "@nx-cli/client/projects/ui/list-item-badge": ["libs/client/projects/ui/list-item-badge/src/index.ts"],
       "@nx-cli/client/projects/ui/search-bar": ["libs/client/projects/ui/search-bar/src/index.ts"],
       "@nx-cli/client/projects/ui/single-input-form": ["libs/client/projects/ui/single-input-form/src/index.ts"],
-      "@nx-cli/client/projects/util/projects-ipc-events-proxy": [
-        "libs/client/projects/util/projects-ipc-events-proxy/src/index.ts"
-      ],
+      "@nx-cli/client/projects/util/projects-ipc-events-proxy": ["libs/client/projects/util/projects-ipc-events-proxy/src/index.ts"],
       "@nx-cli/client/shared/ui/confirm-dialog": ["libs/client/shared/ui/confirm-dialog/src/index.ts"],
       "@nx-cli/client/shared/ui/default-button": ["libs/client/shared/ui/default-button/src/index.ts"],
       "@nx-cli/client/shared/ui/material-modules": ["libs/client/shared/ui/material-modules/src/index.ts"],

@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'client-projects-feature-list',
+  displayName: 'client-projects-feature_-list',
   preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -9,7 +9,7 @@ module.exports = {
     },
   },
   coverageDirectory:
-    '../../../../../coverage/libs/client/projects/feature/list',
+    '../../../../../coverage/libs/client/projects/feature_/list',
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',
   },
