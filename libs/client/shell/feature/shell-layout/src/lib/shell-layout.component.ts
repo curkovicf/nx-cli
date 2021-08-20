@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { NxProject, ProjectsStore } from '@nx-cli/client/projects/data-access/store';
+import { NxProject, ProjectsStore } from '@nx-cli/client/home/projects/data-access';
 import { drawerAnimation } from '@nx-cli/client/shell/ui/drawer';
 import { LocalStorageService } from '@nx-cli/client/shared/util/local-storage';
-import { ProjectsIpcEventsProxyService } from '@nx-cli/client/projects/util/projects-ipc-events-proxy';
+import { ProjectsIpcEventsProxyService } from '@nx-cli/client/home/projects/util';
 
 @Component({
   selector: 'dev-workspace-layout',
   templateUrl: './shell-layout.component.html',
   styleUrls: ['./shell-layout.component.scss'],
-  animations: [drawerAnimation]
+  animations: [drawerAnimation],
 })
 export class ShellLayoutComponent {
   public isDrawerOpen = false;

@@ -1,4 +1,4 @@
-import { ProjectType } from '@nx-cli/client/projects/data-access/store';
+import { ProjectType } from '@nx-cli/client/home/projects/data-access';
 import { trimToRelativePath } from './trim-to-relative-path.function';
 
 export function getProjectType(pwd: string, rootPath: string): ProjectType | undefined {
@@ -13,10 +13,7 @@ export function getProjectType(pwd: string, rootPath: string): ProjectType | und
   }
 
   for (let index = 0; index < libraryTypes.length; index++) {
-    if (
-      keywords[0].includes(libraryTypes[index]) ||
-      keywords[1].includes(libraryTypes[index])
-    ) {
+    if (keywords[0].includes(libraryTypes[index]) || keywords[1].includes(libraryTypes[index])) {
       return libraryTypes[index];
     }
   }

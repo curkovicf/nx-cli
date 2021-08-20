@@ -1,5 +1,5 @@
 import { IpcResponseData } from '@nx-cli/app/shared/util';
-import { NxProject } from '@nx-cli/client/projects/data-access/store';
+import { NxProject } from '@nx-cli/client/home/projects/data-access';
 
 import * as fs from 'fs-extra';
 
@@ -11,17 +11,16 @@ export class WorkspacesService {
   async validateWorkspacePath(workspacePath: string): Promise<IpcResponseData<NxProject>> {
     const isNxProject = await fs.pathExists(`${workspacePath}/nx.json`);
 
-
     if (isNxProject) {
       const packageJson = await fs.readJSON(`${workspacePath}/package.json`);
 
       return {
-        data: { path: workspacePath, name: packageJson.name }
-      }
+        data: { path: workspacePath, name: packageJson.name },
+      };
     }
 
     return {
-      data: undefined
+      data: undefined,
     };
   }
 }

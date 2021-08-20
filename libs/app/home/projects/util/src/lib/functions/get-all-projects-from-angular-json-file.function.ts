@@ -1,17 +1,17 @@
 // @ts-ignore
 import * as fs from 'fs';
 
-import { Project } from '@nx-cli/client/projects/data-access/store';
+import { Project } from '@nx-cli/client/home/projects/data-access';
 import { trimToRelativePath } from './trim-to-relative-path.function';
 
 export function getProjectsFromAngularJsonFile(rootPath: string, projects: Project[]): void {
-  const pathToAngularJson = rootPath+ '/angular.json';
+  const pathToAngularJson = rootPath + '/angular.json';
   let angularJson;
 
   try {
     angularJson = JSON.parse(fs.readFileSync(pathToAngularJson, 'utf8'));
   } catch (err) {
-    console.warn('ERROR: Couldn\'t open angular.json');
+    console.warn("ERROR: Couldn't open angular.json");
     return;
   }
 

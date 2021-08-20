@@ -2,7 +2,7 @@ import { ipcMain } from 'electron';
 
 import { IpcEventDtos, IpcEvents } from '@nx-cli/shared/data/ipc-events';
 import { ProjectsService } from '../services/projects.service';
-import { Project } from '@nx-cli/client/projects/data-access/store';
+import { Project } from '@nx-cli/client/home/projects/data-access';
 import { IController, IpcResponse, IpcResponseData } from '@nx-cli/app/shared/util';
 
 export class ProjectsController implements IController {
@@ -17,7 +17,7 @@ export class ProjectsController implements IController {
     this.initRenameProject();
     this.initMoveProject();
 
-    console.warn('\n********** Init Projects Controller')
+    console.warn('\n********** Init Projects Controller');
   }
 
   private initGetAllProjects(): void {

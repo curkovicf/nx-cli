@@ -1,0 +1,19 @@
+<div class="search-wrapper">
+  <div class="ico-wrapper" (click)="onsearch.emit()">
+    <img class="search-ico" src="assets/icons8-search-50.png" alt="Search Icon" width="18" />
+  </div>
+
+  <input
+    #searchInput
+    (blur)="onBlur(searchInput)"
+    (input)="onInput(searchInput.value)"
+    (keypress)="onKeyPress($event)"
+    class="search"
+    type="text"
+    placeholder="Search..."
+  />
+
+  <div class="ico-wrapper" (click)="onInput(''); searchInput.value = ''">
+    <img class="clean-ico" src="assets/backspace-black-18dp.svg" alt="Clear Text Icon" width="18" />
+  </div>
+</div>

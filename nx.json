@@ -55,43 +55,34 @@
       "tags": [],
       "implicitDependencies": ["client"]
     },
-    "client-projects-data-access-store": {
+    "client-home-projects-data-access": {
       "tags": []
     },
-    "client-projects-feature-detail": {
+    "client-home-projects-feature-detail": {
       "tags": []
     },
-    "client-projects-feature-list": {
+    "client-home-projects-feature-list": {
       "tags": []
     },
-    "client-projects-feature-tags": {
+    "client-home-projects-feature-tags": {
       "tags": []
     },
-    "client-projects-ui-add-nx-project-form": {
+    "client-home-projects-ui-list-item": {
       "tags": []
     },
-    "client-projects-ui-generate-component-form": {
+    "client-home-projects-ui-list-item-badge": {
       "tags": []
     },
-    "client-projects-ui-generate-library-form": {
+    "client-home-projects-ui-new-component-form": {
       "tags": []
     },
-    "client-projects-ui-generate-service-form": {
+    "client-home-projects-ui-new-project-form": {
       "tags": []
     },
-    "client-projects-ui-list-item": {
+    "client-home-projects-ui-new-service-form": {
       "tags": []
     },
-    "client-projects-ui-list-item-badge": {
-      "tags": []
-    },
-    "client-projects-ui-search-bar": {
-      "tags": []
-    },
-    "client-projects-ui-single-input-form": {
-      "tags": []
-    },
-    "client-projects-util-projects-ipc-events-proxy": {
+    "client-home-projects-util": {
       "tags": []
     },
     "client-shared-ui-confirm-dialog": {
@@ -106,6 +97,12 @@
     "client-shared-ui-progress-bar": {
       "tags": []
     },
+    "client-shared-ui-search": {
+      "tags": []
+    },
+    "client-shared-ui-single-input-form-dialog": {
+      "tags": []
+    },
     "client-shared-util-ipc-events-proxy": {
       "tags": []
     },
@@ -115,9 +112,6 @@
     "client-shell-feature-shell-layout": {
       "tags": []
     },
-    "client-shell-ui-chips-bar": {
-      "tags": []
-    },
     "client-shell-ui-drawer": {
       "tags": []
     },
@@ -125,6 +119,15 @@
       "tags": []
     },
     "client-shell-ui-top-nav": {
+      "tags": []
+    },
+    "client-workspaces-data-access": {
+      "tags": []
+    },
+    "client-workspaces-feature": {
+      "tags": []
+    },
+    "client-workspaces-ui-chips-bar": {
       "tags": []
     },
     "shared-data-ipc-events": {

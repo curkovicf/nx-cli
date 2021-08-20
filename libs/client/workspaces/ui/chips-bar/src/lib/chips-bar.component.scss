@@ -1,0 +1,32 @@
+@import 'styles/global.mixins';
+@import 'styles/global.variables';
+
+:host {
+  display: block;
+  position: relative;
+  box-shadow: $shadow--separator-bot;
+  padding: 0 1rem;
+  @include box(100%, #{$chips-bar-height});
+  @include center-flex-X;
+
+  & > .icon {
+    @include cursor-pointer;
+  }
+
+  &::ng-deep > .chip-list {
+    padding: 0 0.5rem;
+    @include center-flex-X;
+    @include box(100%, 100%);
+    justify-content: flex-start;
+
+    &::ng-deep > .chip {
+      @include cursor-pointer;
+    }
+  }
+}
+
+.selected-chip {
+  //background-color: grey;
+  //color: white;
+  border: 1px solid #263238;
+}

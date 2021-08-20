@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { isProject } from './is-project.function';
 import { getProjectName } from './get-project-name.function';
-import { Project } from '@nx-cli/client/projects/data-access/store';
+import { Project } from '@nx-cli/client/home/projects/data-access';
 import { trimToRelativePath } from './trim-to-relative-path.function';
 import { getProjectType } from './get-project-type.function';
 import { getAngularModules } from './get-angular-modules.function';
@@ -32,7 +32,7 @@ export function getAllProjects(pwd: string, rootPath: string): Project[] {
         type: getProjectType(pwd, rootPath),
         nameInNxJson: '',
         angularModules: getAngularModules(pwd),
-        tags: []
+        tags: [],
       });
 
       matchingNameCounter = 0;

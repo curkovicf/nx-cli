@@ -1,0 +1,32 @@
+import { Component } from '@angular/core';
+import { Project, ProjectsStore } from '@nx-cli/client/home/projects/data-access';
+import { ProjectsIpcEventsProxyService } from '@nx-cli/client/home/projects/util';
+
+@Component({
+  selector: 'dev-workspace-project-detail',
+  templateUrl: './detail.component.html',
+  styleUrls: ['./detail.component.scss'],
+})
+export class DetailComponent {
+  constructor(public projectsStore: ProjectsStore, private projectsEventsProxyService: ProjectsIpcEventsProxyService) {}
+
+  public generateComponent(project: Project): void {
+    this.projectsEventsProxyService.generateComponent(project);
+  }
+
+  public generateService(project: Project): void {
+    this.projectsEventsProxyService.generateService(project);
+  }
+
+  public moveProject(project: Project): void {
+    this.projectsEventsProxyService.moveProject(project);
+  }
+
+  public renameProject(project: Project): void {
+    this.projectsEventsProxyService.renameProject(project);
+  }
+
+  public deleteLib(project: Project): void {
+    this.projectsEventsProxyService.deleteProject(project);
+  }
+}

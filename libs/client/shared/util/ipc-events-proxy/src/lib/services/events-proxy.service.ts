@@ -1,14 +1,14 @@
 import { Injectable, NgZone } from '@angular/core';
 import { ElectronService } from 'ngx-electron';
 import { IpcEventDtos, IpcEvents } from '@nx-cli/shared/data/ipc-events';
-import { Project, ProjectsStore } from '@nx-cli/client/projects/data-access/store';
+import { Project, ProjectsStore } from '@nx-cli/client/home/projects/data-access';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSnackBarConfig } from '@angular/material/snack-bar/snack-bar-config';
 import { take, tap } from 'rxjs/operators';
 import { IpcResponse, IpcResponseData } from '@nx-cli/app/shared/util';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EventsProxyService {
   constructor(
@@ -27,30 +27,30 @@ export class EventsProxyService {
         this.projectsStore.selectedProject$
           .pipe(
             take(1),
-            tap(_selectedProject => {
+            tap((_selectedProject) => {
               const { data } = response;
               console.log('PROJECTS RESULT', response);
               this.projectsStore.patchState({
                 projects: [...data],
                 projectsLoadedInView: [...data],
-                selectedProject: data.find(project => project.nameInNxJson === _selectedProject?.nameInNxJson)
+                selectedProject: data.find((project) => project.nameInNxJson === _selectedProject?.nameInNxJson),
               });
             })
-          ).subscribe();
-      })
+          )
+          .subscribe();
+      });
     });
 
     //  Default response from electron
     this.electronService.ipcRenderer.on(IpcEvents.defaultChannel.fromElectron, (event, response: IpcResponse) => {
-        const { workspacePath, error, success } = response;
+      const { workspacePath, error, success } = response;
 
-        if (success) {
-          this.getAllProjects(workspacePath);
-        }
-
-        this.ngZone.run(() => this.snackBar.open(success || error, null));
+      if (success) {
+        this.getAllProjects(workspacePath);
       }
-    );
+
+      this.ngZone.run(() => this.snackBar.open(success || error, null));
+    });
   }
 
   public generateComponent(generateDto: IpcEventDtos.GenerateDto): void {

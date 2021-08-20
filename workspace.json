@@ -291,17 +291,39 @@
         }
       }
     },
-    "client-projects-data-access-store": {
+    "client-home-projects-data-access": {
       "projectType": "library",
-      "root": "libs/client/projects/data-access/store",
-      "sourceRoot": "libs/client/projects/data-access/store/src",
+      "root": "libs/client/home/projects/data-access",
+      "sourceRoot": "libs/client/home/projects/data-access/src",
       "prefix": "dev-workspace",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/data-access/store"],
+          "outputs": ["coverage/libs/client/home/projects/data-access"],
           "options": {
-            "jestConfig": "libs/client/projects/data-access/store/jest.config.js",
+            "jestConfig": "libs/client/home/projects/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/client/home/projects/data-access/src/**/*.ts", "libs/client/home/projects/data-access/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "client-home-projects-feature-detail": {
+      "projectType": "library",
+      "root": "libs/client/home/projects/feature/detail",
+      "sourceRoot": "libs/client/home/projects/feature/detail/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/home/projects/feature/detail"],
+          "options": {
+            "jestConfig": "libs/client/home/projects/feature/detail/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -309,90 +331,124 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/client/projects/data-access/store/src/**/*.ts",
-              "libs/client/projects/data-access/store/src/**/*.html"
+              "libs/client/home/projects/feature/detail/src/**/*.ts",
+              "libs/client/home/projects/feature/detail/src/**/*.html"
             ]
           }
         }
       }
     },
-    "client-projects-feature-detail": {
+    "client-home-projects-feature-list": {
       "projectType": "library",
-      "root": "libs/client/projects/feature/detail",
-      "sourceRoot": "libs/client/projects/feature/detail/src",
+      "root": "libs/client/home/projects/feature/list",
+      "sourceRoot": "libs/client/home/projects/feature/list/src",
       "prefix": "dev-workspace",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/feature/detail"],
+          "outputs": ["coverage/libs/client/home/projects/feature/list"],
           "options": {
-            "jestConfig": "libs/client/projects/feature/detail/jest.config.js",
+            "jestConfig": "libs/client/home/projects/feature/list/jest.config.js",
             "passWithNoTests": true
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/client/projects/feature/detail/src/**/*.ts", "libs/client/projects/feature/detail/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/client/home/projects/feature/list/src/**/*.ts",
+              "libs/client/home/projects/feature/list/src/**/*.html"
+            ]
           }
         }
       }
     },
-    "client-projects-feature-list": {
+    "client-home-projects-feature-tags": {
       "projectType": "library",
-      "root": "libs/client/projects/feature/list",
-      "sourceRoot": "libs/client/projects/feature/list/src",
+      "root": "libs/client/home/projects/feature/tags",
+      "sourceRoot": "libs/client/home/projects/feature/tags/src",
       "prefix": "dev-workspace",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/feature/list"],
+          "outputs": ["coverage/libs/client/home/projects/feature/tags"],
           "options": {
-            "jestConfig": "libs/client/projects/feature/list/jest.config.js",
+            "jestConfig": "libs/client/home/projects/feature/tags/jest.config.js",
             "passWithNoTests": true
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/client/projects/feature/list/src/**/*.ts", "libs/client/projects/feature/list/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/client/home/projects/feature/tags/src/**/*.ts",
+              "libs/client/home/projects/feature/tags/src/**/*.html"
+            ]
           }
         }
       }
     },
-    "client-projects-feature-tags": {
+    "client-home-projects-ui-list-item": {
       "projectType": "library",
-      "root": "libs/client/projects/feature/tags",
-      "sourceRoot": "libs/client/projects/feature/tags/src",
+      "root": "libs/client/home/projects/ui/list-item",
+      "sourceRoot": "libs/client/home/projects/ui/list-item/src",
       "prefix": "dev-workspace",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/feature/tags"],
+          "outputs": ["coverage/libs/client/home/projects/ui/list-item"],
           "options": {
-            "jestConfig": "libs/client/projects/feature/tags/jest.config.js",
+            "jestConfig": "libs/client/home/projects/ui/list-item/jest.config.js",
             "passWithNoTests": true
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/client/projects/feature/tags/src/**/*.ts", "libs/client/projects/feature/tags/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/client/home/projects/ui/list-item/src/**/*.ts",
+              "libs/client/home/projects/ui/list-item/src/**/*.html"
+            ]
           }
         }
       }
     },
-    "client-projects-ui-add-nx-project-form": {
+    "client-home-projects-ui-list-item-badge": {
       "projectType": "library",
-      "root": "libs/client/projects/ui/add-nx-project-form",
-      "sourceRoot": "libs/client/projects/ui/add-nx-project-form/src",
+      "root": "libs/client/home/projects/ui/list-item-badge",
+      "sourceRoot": "libs/client/home/projects/ui/list-item-badge/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/home/projects/ui/list-item-badge"],
+          "options": {
+            "jestConfig": "libs/client/home/projects/ui/list-item-badge/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/home/projects/ui/list-item-badge/src/**/*.ts",
+              "libs/client/home/projects/ui/list-item-badge/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-home-projects-ui-new-component-form": {
+      "projectType": "library",
+      "root": "libs/client/home/projects/ui/new-component-form",
+      "sourceRoot": "libs/client/home/projects/ui/new-component-form/src",
       "prefix": "nx-cli",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/ui/add-nx-project-form"],
+          "outputs": ["coverage/libs/client/home/projects/ui/new-component-form"],
           "options": {
-            "jestConfig": "libs/client/projects/ui/add-nx-project-form/jest.config.js",
+            "jestConfig": "libs/client/home/projects/ui/new-component-form/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -400,24 +456,24 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/client/projects/ui/add-nx-project-form/src/**/*.ts",
-              "libs/client/projects/ui/add-nx-project-form/src/**/*.html"
+              "libs/client/home/projects/ui/new-component-form/src/**/*.ts",
+              "libs/client/home/projects/ui/new-component-form/src/**/*.html"
             ]
           }
         }
       }
     },
-    "client-projects-ui-generate-component-form": {
+    "client-home-projects-ui-new-project-form": {
       "projectType": "library",
-      "root": "libs/client/projects/ui/generate-component-form",
-      "sourceRoot": "libs/client/projects/ui/generate-component-form/src",
+      "root": "libs/client/home/projects/ui/new-project-form",
+      "sourceRoot": "libs/client/home/projects/ui/new-project-form/src",
       "prefix": "nx-cli",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/ui/generate-component-form"],
+          "outputs": ["coverage/libs/client/home/projects/ui/new-project-form"],
           "options": {
-            "jestConfig": "libs/client/projects/ui/generate-component-form/jest.config.js",
+            "jestConfig": "libs/client/home/projects/ui/new-project-form/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -425,24 +481,24 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/client/projects/ui/generate-component-form/src/**/*.ts",
-              "libs/client/projects/ui/generate-component-form/src/**/*.html"
+              "libs/client/home/projects/ui/new-project-form/src/**/*.ts",
+              "libs/client/home/projects/ui/new-project-form/src/**/*.html"
             ]
           }
         }
       }
     },
-    "client-projects-ui-generate-library-form": {
+    "client-home-projects-ui-new-service-form": {
       "projectType": "library",
-      "root": "libs/client/projects/ui/generate-library-form",
-      "sourceRoot": "libs/client/projects/ui/generate-library-form/src",
+      "root": "libs/client/home/projects/ui/new-service-form",
+      "sourceRoot": "libs/client/home/projects/ui/new-service-form/src",
       "prefix": "nx-cli",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/ui/generate-library-form"],
+          "outputs": ["coverage/libs/client/home/projects/ui/new-service-form"],
           "options": {
-            "jestConfig": "libs/client/projects/ui/generate-library-form/jest.config.js",
+            "jestConfig": "libs/client/home/projects/ui/new-service-form/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -450,153 +506,31 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/client/projects/ui/generate-library-form/src/**/*.ts",
-              "libs/client/projects/ui/generate-library-form/src/**/*.html"
+              "libs/client/home/projects/ui/new-service-form/src/**/*.ts",
+              "libs/client/home/projects/ui/new-service-form/src/**/*.html"
             ]
           }
         }
       }
     },
-    "client-projects-ui-generate-service-form": {
+    "client-home-projects-util": {
       "projectType": "library",
-      "root": "libs/client/projects/ui/generate-service-form",
-      "sourceRoot": "libs/client/projects/ui/generate-service-form/src",
+      "root": "libs/client/home/projects/util",
+      "sourceRoot": "libs/client/home/projects/util/src",
       "prefix": "nx-cli",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/ui/generate-service-form"],
+          "outputs": ["coverage/libs/client/home/projects/util"],
           "options": {
-            "jestConfig": "libs/client/projects/ui/generate-service-form/jest.config.js",
+            "jestConfig": "libs/client/home/projects/util/jest.config.js",
             "passWithNoTests": true
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/projects/ui/generate-service-form/src/**/*.ts",
-              "libs/client/projects/ui/generate-service-form/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "client-projects-ui-list-item": {
-      "projectType": "library",
-      "root": "libs/client/projects/ui/list-item",
-      "sourceRoot": "libs/client/projects/ui/list-item/src",
-      "prefix": "dev-workspace",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/ui/list-item"],
-          "options": {
-            "jestConfig": "libs/client/projects/ui/list-item/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/client/projects/ui/list-item/src/**/*.ts", "libs/client/projects/ui/list-item/src/**/*.html"]
-          }
-        }
-      }
-    },
-    "client-projects-ui-list-item-badge": {
-      "projectType": "library",
-      "root": "libs/client/projects/ui/list-item-badge",
-      "sourceRoot": "libs/client/projects/ui/list-item-badge/src",
-      "prefix": "dev-workspace",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/ui/list-item-badge"],
-          "options": {
-            "jestConfig": "libs/client/projects/ui/list-item-badge/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/client/projects/ui/list-item-badge/src/**/*.ts",
-              "libs/client/projects/ui/list-item-badge/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "client-projects-ui-search-bar": {
-      "projectType": "library",
-      "root": "libs/client/projects/ui/search-bar",
-      "sourceRoot": "libs/client/projects/ui/search-bar/src",
-      "prefix": "dev-workspace",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/ui/search-bar"],
-          "options": {
-            "jestConfig": "libs/client/projects/ui/search-bar/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/client/projects/ui/search-bar/src/**/*.ts", "libs/client/projects/ui/search-bar/src/**/*.html"]
-          }
-        }
-      }
-    },
-    "client-projects-ui-single-input-form": {
-      "projectType": "library",
-      "root": "libs/client/projects/ui/single-input-form",
-      "sourceRoot": "libs/client/projects/ui/single-input-form/src",
-      "prefix": "nx-cli",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/ui/single-input-form"],
-          "options": {
-            "jestConfig": "libs/client/projects/ui/single-input-form/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/client/projects/ui/single-input-form/src/**/*.ts",
-              "libs/client/projects/ui/single-input-form/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "client-projects-util-projects-ipc-events-proxy": {
-      "projectType": "library",
-      "root": "libs/client/projects/util/projects-ipc-events-proxy",
-      "sourceRoot": "libs/client/projects/util/projects-ipc-events-proxy/src",
-      "prefix": "nx-cli",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/util/projects-ipc-events-proxy"],
-          "options": {
-            "jestConfig": "libs/client/projects/util/projects-ipc-events-proxy/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/client/projects/util/projects-ipc-events-proxy/src/**/*.ts",
-              "libs/client/projects/util/projects-ipc-events-proxy/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/home/projects/util/src/**/*.ts", "libs/client/home/projects/util/src/**/*.html"]
           }
         }
       }
@@ -692,6 +626,53 @@
         }
       }
     },
+    "client-shared-ui-search": {
+      "projectType": "library",
+      "root": "libs/client/shared/ui/search",
+      "sourceRoot": "libs/client/shared/ui/search/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shared/ui/search"],
+          "options": {
+            "jestConfig": "libs/client/shared/ui/search/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/client/shared/ui/search/src/**/*.ts", "libs/client/shared/ui/search/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "client-shared-ui-single-input-form-dialog": {
+      "projectType": "library",
+      "root": "libs/client/shared/ui/single-input-form-dialog",
+      "sourceRoot": "libs/client/shared/ui/single-input-form-dialog/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shared/ui/single-input-form-dialog"],
+          "options": {
+            "jestConfig": "libs/client/shared/ui/single-input-form-dialog/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shared/ui/single-input-form-dialog/src/**/*.ts",
+              "libs/client/shared/ui/single-input-form-dialog/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "client-shared-util-ipc-events-proxy": {
       "projectType": "library",
       "root": "libs/client/shared/util/ipc-events-proxy",
@@ -764,28 +745,6 @@
         }
       }
     },
-    "client-shell-ui-chips-bar": {
-      "projectType": "library",
-      "root": "libs/client/shell/ui/chips-bar",
-      "sourceRoot": "libs/client/shell/ui/chips-bar/src",
-      "prefix": "dev-workspace",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/shell/ui/chips-bar"],
-          "options": {
-            "jestConfig": "libs/client/shell/ui/chips-bar/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/client/shell/ui/chips-bar/src/**/*.ts", "libs/client/shell/ui/chips-bar/src/**/*.html"]
-          }
-        }
-      }
-    },
     "client-shell-ui-drawer": {
       "projectType": "library",
       "root": "libs/client/shell/ui/drawer",
@@ -848,6 +807,72 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/client/shell/ui/top-nav/src/**/*.ts", "libs/client/shell/ui/top-nav/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "client-workspaces-data-access": {
+      "projectType": "library",
+      "root": "libs/client/workspaces/data-access",
+      "sourceRoot": "libs/client/workspaces/data-access/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/workspaces/data-access"],
+          "options": {
+            "jestConfig": "libs/client/workspaces/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/client/workspaces/data-access/src/**/*.ts", "libs/client/workspaces/data-access/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "client-workspaces-feature": {
+      "projectType": "library",
+      "root": "libs/client/workspaces/feature",
+      "sourceRoot": "libs/client/workspaces/feature/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/workspaces/feature"],
+          "options": {
+            "jestConfig": "libs/client/workspaces/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/client/workspaces/feature/src/**/*.ts", "libs/client/workspaces/feature/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "client-workspaces-ui-chips-bar": {
+      "projectType": "library",
+      "root": "libs/client/workspaces/ui/chips-bar",
+      "sourceRoot": "libs/client/workspaces/ui/chips-bar/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/workspaces/ui/chips-bar"],
+          "options": {
+            "jestConfig": "libs/client/workspaces/ui/chips-bar/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/client/workspaces/ui/chips-bar/src/**/*.ts", "libs/client/workspaces/ui/chips-bar/src/**/*.html"]
           }
         }
       }

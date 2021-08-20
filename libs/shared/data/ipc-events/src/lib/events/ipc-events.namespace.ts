@@ -1,6 +1,5 @@
 import { EventChannel } from '../models/event-channel.interface';
 
-
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace IpcEvents {
   export const validateWorkspacePath: EventChannel = { fromAngular: 'VALIDATE_PATH', fromElectron: 'VALIDATE_PATH_RESULT' };
