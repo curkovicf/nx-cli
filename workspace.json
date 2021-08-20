@@ -68,68 +68,46 @@
         }
       }
     },
-    "app-home-projects-feature": {
+    "app-projects-feature": {
       "projectType": "library",
-      "root": "libs/app/home/projects/feature",
-      "sourceRoot": "libs/app/home/projects/feature/src",
+      "root": "libs/app/projects/feature",
+      "sourceRoot": "libs/app/projects/feature/src",
       "prefix": "nx-cli",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/app/home/projects/feature"],
+          "outputs": ["coverage/libs/app/projects/feature"],
           "options": {
-            "jestConfig": "libs/app/home/projects/feature/jest.config.js",
+            "jestConfig": "libs/app/projects/feature/jest.config.js",
             "passWithNoTests": true
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/app/home/projects/feature/src/**/*.ts", "libs/app/home/projects/feature/src/**/*.html"]
+            "lintFilePatterns": ["libs/app/projects/feature/src/**/*.ts", "libs/app/projects/feature/src/**/*.html"]
           }
         }
       }
     },
-    "app-home-projects-util": {
+    "app-projects-util": {
       "projectType": "library",
-      "root": "libs/app/home/projects/util",
-      "sourceRoot": "libs/app/home/projects/util/src",
+      "root": "libs/app/projects/util",
+      "sourceRoot": "libs/app/projects/util/src",
       "prefix": "nx-cli",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/app/home/projects/util"],
+          "outputs": ["coverage/libs/app/projects/util"],
           "options": {
-            "jestConfig": "libs/app/home/projects/util/jest.config.js",
+            "jestConfig": "libs/app/projects/util/jest.config.js",
             "passWithNoTests": true
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/app/home/projects/util/src/**/*.ts", "libs/app/home/projects/util/src/**/*.html"]
-          }
-        }
-      }
-    },
-    "app-home-workspaces-feature": {
-      "projectType": "library",
-      "root": "libs/app/home/workspaces/feature",
-      "sourceRoot": "libs/app/home/workspaces/feature/src",
-      "prefix": "nx-cli",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/app/home/workspaces/feature"],
-          "options": {
-            "jestConfig": "libs/app/home/workspaces/feature/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/app/home/workspaces/feature/src/**/*.ts", "libs/app/home/workspaces/feature/src/**/*.html"]
+            "lintFilePatterns": ["libs/app/projects/util/src/**/*.ts", "libs/app/projects/util/src/**/*.html"]
           }
         }
       }
@@ -174,6 +152,28 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/app/shell/feature/src/**/*.ts", "libs/app/shell/feature/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "app-workspaces-feature": {
+      "projectType": "library",
+      "root": "libs/app/workspaces/feature",
+      "sourceRoot": "libs/app/workspaces/feature/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/app/workspaces/feature"],
+          "options": {
+            "jestConfig": "libs/app/workspaces/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/app/workspaces/feature/src/**/*.ts", "libs/app/workspaces/feature/src/**/*.html"]
           }
         }
       }
@@ -291,139 +291,127 @@
         }
       }
     },
-    "client-home-projects-data-access": {
+    "client-projects-data-access": {
       "projectType": "library",
-      "root": "libs/client/home/projects/data-access",
-      "sourceRoot": "libs/client/home/projects/data-access/src",
+      "root": "libs/client/projects/data-access",
+      "sourceRoot": "libs/client/projects/data-access/src",
       "prefix": "dev-workspace",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/home/projects/data-access"],
+          "outputs": ["coverage/libs/client/projects/data-access"],
           "options": {
-            "jestConfig": "libs/client/home/projects/data-access/jest.config.js",
+            "jestConfig": "libs/client/projects/data-access/jest.config.js",
             "passWithNoTests": true
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/client/home/projects/data-access/src/**/*.ts", "libs/client/home/projects/data-access/src/**/*.html"]
+            "lintFilePatterns": ["libs/client/projects/data-access/src/**/*.ts", "libs/client/projects/data-access/src/**/*.html"]
           }
         }
       }
     },
-    "client-home-projects-feature-detail": {
+    "client-projects-feature-detail": {
       "projectType": "library",
-      "root": "libs/client/home/projects/feature/detail",
-      "sourceRoot": "libs/client/home/projects/feature/detail/src",
+      "root": "libs/client/projects/feature/detail",
+      "sourceRoot": "libs/client/projects/feature/detail/src",
       "prefix": "dev-workspace",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/home/projects/feature/detail"],
+          "outputs": ["coverage/libs/client/projects/feature/detail"],
           "options": {
-            "jestConfig": "libs/client/home/projects/feature/detail/jest.config.js",
+            "jestConfig": "libs/client/projects/feature/detail/jest.config.js",
             "passWithNoTests": true
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/home/projects/feature/detail/src/**/*.ts",
-              "libs/client/home/projects/feature/detail/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/projects/feature/detail/src/**/*.ts", "libs/client/projects/feature/detail/src/**/*.html"]
           }
         }
       }
     },
-    "client-home-projects-feature-list": {
+    "client-projects-feature-list": {
       "projectType": "library",
-      "root": "libs/client/home/projects/feature/list",
-      "sourceRoot": "libs/client/home/projects/feature/list/src",
+      "root": "libs/client/projects/feature/list",
+      "sourceRoot": "libs/client/projects/feature/list/src",
       "prefix": "dev-workspace",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/home/projects/feature/list"],
+          "outputs": ["coverage/libs/client/projects/feature/list"],
           "options": {
-            "jestConfig": "libs/client/home/projects/feature/list/jest.config.js",
+            "jestConfig": "libs/client/projects/feature/list/jest.config.js",
             "passWithNoTests": true
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/home/projects/feature/list/src/**/*.ts",
-              "libs/client/home/projects/feature/list/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/projects/feature/list/src/**/*.ts", "libs/client/projects/feature/list/src/**/*.html"]
           }
         }
       }
     },
-    "client-home-projects-feature-tags": {
+    "client-projects-feature-tags": {
       "projectType": "library",
-      "root": "libs/client/home/projects/feature/tags",
-      "sourceRoot": "libs/client/home/projects/feature/tags/src",
+      "root": "libs/client/projects/feature/tags",
+      "sourceRoot": "libs/client/projects/feature/tags/src",
       "prefix": "dev-workspace",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/home/projects/feature/tags"],
+          "outputs": ["coverage/libs/client/projects/feature/tags"],
           "options": {
-            "jestConfig": "libs/client/home/projects/feature/tags/jest.config.js",
+            "jestConfig": "libs/client/projects/feature/tags/jest.config.js",
             "passWithNoTests": true
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/home/projects/feature/tags/src/**/*.ts",
-              "libs/client/home/projects/feature/tags/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/projects/feature/tags/src/**/*.ts", "libs/client/projects/feature/tags/src/**/*.html"]
           }
         }
       }
     },
-    "client-home-projects-ui-list-item": {
+    "client-projects-ui-list-item": {
       "projectType": "library",
-      "root": "libs/client/home/projects/ui/list-item",
-      "sourceRoot": "libs/client/home/projects/ui/list-item/src",
+      "root": "libs/client/projects/ui/list-item",
+      "sourceRoot": "libs/client/projects/ui/list-item/src",
       "prefix": "dev-workspace",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/home/projects/ui/list-item"],
+          "outputs": ["coverage/libs/client/projects/ui/list-item"],
           "options": {
-            "jestConfig": "libs/client/home/projects/ui/list-item/jest.config.js",
+            "jestConfig": "libs/client/projects/ui/list-item/jest.config.js",
             "passWithNoTests": true
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/home/projects/ui/list-item/src/**/*.ts",
-              "libs/client/home/projects/ui/list-item/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/projects/ui/list-item/src/**/*.ts", "libs/client/projects/ui/list-item/src/**/*.html"]
           }
         }
       }
     },
-    "client-home-projects-ui-list-item-badge": {
+    "client-projects-ui-list-item-badge": {
       "projectType": "library",
-      "root": "libs/client/home/projects/ui/list-item-badge",
-      "sourceRoot": "libs/client/home/projects/ui/list-item-badge/src",
+      "root": "libs/client/projects/ui/list-item-badge",
+      "sourceRoot": "libs/client/projects/ui/list-item-badge/src",
       "prefix": "dev-workspace",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/home/projects/ui/list-item-badge"],
+          "outputs": ["coverage/libs/client/projects/ui/list-item-badge"],
           "options": {
-            "jestConfig": "libs/client/home/projects/ui/list-item-badge/jest.config.js",
+            "jestConfig": "libs/client/projects/ui/list-item-badge/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -431,24 +419,24 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/client/home/projects/ui/list-item-badge/src/**/*.ts",
-              "libs/client/home/projects/ui/list-item-badge/src/**/*.html"
+              "libs/client/projects/ui/list-item-badge/src/**/*.ts",
+              "libs/client/projects/ui/list-item-badge/src/**/*.html"
             ]
           }
         }
       }
     },
-    "client-home-projects-ui-new-component-form": {
+    "client-projects-ui-new-component-form": {
       "projectType": "library",
-      "root": "libs/client/home/projects/ui/new-component-form",
-      "sourceRoot": "libs/client/home/projects/ui/new-component-form/src",
+      "root": "libs/client/projects/ui/new-component-form",
+      "sourceRoot": "libs/client/projects/ui/new-component-form/src",
       "prefix": "nx-cli",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/home/projects/ui/new-component-form"],
+          "outputs": ["coverage/libs/client/projects/ui/new-component-form"],
           "options": {
-            "jestConfig": "libs/client/home/projects/ui/new-component-form/jest.config.js",
+            "jestConfig": "libs/client/projects/ui/new-component-form/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -456,24 +444,24 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/client/home/projects/ui/new-component-form/src/**/*.ts",
-              "libs/client/home/projects/ui/new-component-form/src/**/*.html"
+              "libs/client/projects/ui/new-component-form/src/**/*.ts",
+              "libs/client/projects/ui/new-component-form/src/**/*.html"
             ]
           }
         }
       }
     },
-    "client-home-projects-ui-new-project-form": {
+    "client-projects-ui-new-project-form": {
       "projectType": "library",
-      "root": "libs/client/home/projects/ui/new-project-form",
-      "sourceRoot": "libs/client/home/projects/ui/new-project-form/src",
+      "root": "libs/client/projects/ui/new-project-form",
+      "sourceRoot": "libs/client/projects/ui/new-project-form/src",
       "prefix": "nx-cli",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/home/projects/ui/new-project-form"],
+          "outputs": ["coverage/libs/client/projects/ui/new-project-form"],
           "options": {
-            "jestConfig": "libs/client/home/projects/ui/new-project-form/jest.config.js",
+            "jestConfig": "libs/client/projects/ui/new-project-form/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -481,24 +469,24 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/client/home/projects/ui/new-project-form/src/**/*.ts",
-              "libs/client/home/projects/ui/new-project-form/src/**/*.html"
+              "libs/client/projects/ui/new-project-form/src/**/*.ts",
+              "libs/client/projects/ui/new-project-form/src/**/*.html"
             ]
           }
         }
       }
     },
-    "client-home-projects-ui-new-service-form": {
+    "client-projects-ui-new-service-form": {
       "projectType": "library",
-      "root": "libs/client/home/projects/ui/new-service-form",
-      "sourceRoot": "libs/client/home/projects/ui/new-service-form/src",
+      "root": "libs/client/projects/ui/new-service-form",
+      "sourceRoot": "libs/client/projects/ui/new-service-form/src",
       "prefix": "nx-cli",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/home/projects/ui/new-service-form"],
+          "outputs": ["coverage/libs/client/projects/ui/new-service-form"],
           "options": {
-            "jestConfig": "libs/client/home/projects/ui/new-service-form/jest.config.js",
+            "jestConfig": "libs/client/projects/ui/new-service-form/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -506,31 +494,31 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/client/home/projects/ui/new-service-form/src/**/*.ts",
-              "libs/client/home/projects/ui/new-service-form/src/**/*.html"
+              "libs/client/projects/ui/new-service-form/src/**/*.ts",
+              "libs/client/projects/ui/new-service-form/src/**/*.html"
             ]
           }
         }
       }
     },
-    "client-home-projects-util": {
+    "client-projects-util": {
       "projectType": "library",
-      "root": "libs/client/home/projects/util",
-      "sourceRoot": "libs/client/home/projects/util/src",
+      "root": "libs/client/projects/util",
+      "sourceRoot": "libs/client/projects/util/src",
       "prefix": "nx-cli",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/home/projects/util"],
+          "outputs": ["coverage/libs/client/projects/util"],
           "options": {
-            "jestConfig": "libs/client/home/projects/util/jest.config.js",
+            "jestConfig": "libs/client/projects/util/jest.config.js",
             "passWithNoTests": true
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/client/home/projects/util/src/**/*.ts", "libs/client/home/projects/util/src/**/*.html"]
+            "lintFilePatterns": ["libs/client/projects/util/src/**/*.ts", "libs/client/projects/util/src/**/*.html"]
           }
         }
       }

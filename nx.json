@@ -33,19 +33,19 @@
     "app": {
       "tags": []
     },
-    "app-home-projects-feature": {
+    "app-projects-feature": {
       "tags": []
     },
-    "app-home-projects-util": {
-      "tags": []
-    },
-    "app-home-workspaces-feature": {
+    "app-projects-util": {
       "tags": []
     },
     "app-shared-util": {
       "tags": []
     },
     "app-shell-feature": {
+      "tags": []
+    },
+    "app-workspaces-feature": {
       "tags": []
     },
     "client": {
@@ -55,34 +55,34 @@
       "tags": [],
       "implicitDependencies": ["client"]
     },
-    "client-home-projects-data-access": {
+    "client-projects-data-access": {
       "tags": []
     },
-    "client-home-projects-feature-detail": {
+    "client-projects-feature-detail": {
       "tags": []
     },
-    "client-home-projects-feature-list": {
+    "client-projects-feature-list": {
       "tags": []
     },
-    "client-home-projects-feature-tags": {
+    "client-projects-feature-tags": {
       "tags": []
     },
-    "client-home-projects-ui-list-item": {
+    "client-projects-ui-list-item": {
       "tags": []
     },
-    "client-home-projects-ui-list-item-badge": {
+    "client-projects-ui-list-item-badge": {
       "tags": []
     },
-    "client-home-projects-ui-new-component-form": {
+    "client-projects-ui-new-component-form": {
       "tags": []
     },
-    "client-home-projects-ui-new-project-form": {
+    "client-projects-ui-new-project-form": {
       "tags": []
     },
-    "client-home-projects-ui-new-service-form": {
+    "client-projects-ui-new-service-form": {
       "tags": []
     },
-    "client-home-projects-util": {
+    "client-projects-util": {
       "tags": []
     },
     "client-shared-ui-confirm-dialog": {

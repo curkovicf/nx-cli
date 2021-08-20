@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { ElectronService } from 'ngx-electron';
 import { IpcEventDtos, IpcEvents } from '@nx-cli/shared/data/ipc-events';
-import { Project, ProjectsStore } from '@nx-cli/client/home/projects/data-access';
+import { Project, ProjectsStore } from '@nx-cli/client/projects/data-access';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSnackBarConfig } from '@angular/material/snack-bar/snack-bar-config';
 import { take, tap } from 'rxjs/operators';

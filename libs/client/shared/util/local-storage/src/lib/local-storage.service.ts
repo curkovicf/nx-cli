@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { NxProject, ProjectsStore } from '@nx-cli/client/home/projects/data-access';
+import { NxProject, ProjectsStore } from '@nx-cli/client/projects/data-access';
 import { combineLatest } from 'rxjs';
-import { ProjectsIpcEventsProxyService } from '@nx-cli/client/home/projects/util';
+import { ProjectsIpcEventsProxyService } from '@nx-cli/client/projects/util';
 
 interface StoredData {
   nxProjects: NxProject[];

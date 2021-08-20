@@ -3,7 +3,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ElectronService } from 'ngx-electron';
 import { Observable, of, timer } from 'rxjs';
-import { NxProject } from '@nx-cli/client/home/projects/data-access';
+import { NxProject } from '@nx-cli/client/projects/data-access';
 import { IpcEvents } from '@nx-cli/shared/data/ipc-events';
 import { IpcResponseData } from '@nx-cli/app/shared/util';
 

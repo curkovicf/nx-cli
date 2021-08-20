@@ -1,5 +1,5 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { NxProject } from '@nx-cli/client/home/projects/data-access';
+import { NxProject } from '@nx-cli/client/projects/data-access';
 
 @Component({
   selector: 'dev-workspace-chips-bar',
