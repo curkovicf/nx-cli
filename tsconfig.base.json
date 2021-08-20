@@ -17,12 +17,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-cli/app/home/projects/data-access": ["libs/app/home/projects/data-access/src/index.ts"],
       "@nx-cli/app/home/projects/feature": ["libs/app/home/projects/feature/src/index.ts"],
       "@nx-cli/app/home/projects/util": ["libs/app/home/projects/util/src/index.ts"],
-      "@nx-cli/app/home/workspaces/data-access": ["libs/app/home/workspaces/data-access/src/index.ts"],
       "@nx-cli/app/home/workspaces/feature": ["libs/app/home/workspaces/feature/src/index.ts"],
-      "@nx-cli/app/home/workspaces/util": ["libs/app/home/workspaces/util/src/index.ts"],
       "@nx-cli/app/shared/util": ["libs/app/shared/util/src/index.ts"],
       "@nx-cli/app/shell/feature": ["libs/app/shell/feature/src/index.ts"],
       "@nx-cli/client/projects/data-access/store": ["libs/client/projects/data-access/store/src/index.ts"],

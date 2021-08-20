@@ -5,6 +5,7 @@ import { ElectronService } from 'ngx-electron';
 import { Observable, of, timer } from 'rxjs';
 import { NxProject } from '@nx-cli/client/projects/data-access/store';
 import { IpcEvents } from '@nx-cli/shared/data/ipc-events';
+import { IpcResponseData } from '@nx-cli/app/shared/util';
 
 
 @Component({
@@ -46,14 +47,14 @@ export class AddNxProjectFormComponent {
         switchMap(() => {
             return of(this.electronService.ipcRenderer.sendSync(IpcEvents.validateWorkspacePath.fromAngular, control.value))
               .pipe(
-                map((nxProject: NxProject): ValidationErrors | null => {
-                    if (nxProject) {
-                      this.nxProject = nxProject;
+                map((response: IpcResponseData<NxProject>): ValidationErrors | null => {
+                    if (response.data) {
+                      this.nxProject = response.data;
 
                       for (let i = 0; i < this.nxProjects.length; i++) {
                         const currProject = this.nxProjects[i];
 
-                        if (currProject.name === nxProject.name && currProject.path === nxProject.path) {
+                        if (currProject.name === this.nxProject.name && currProject.path === this.nxProject.path) {
                           return { isNxProject: { valid: false } };
                         }
                       }

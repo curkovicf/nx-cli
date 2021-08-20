@@ -46,6 +46,7 @@
     "@ngrx/router-store": "~12.2.0",
     "@ngrx/store": "~12.2.0",
     "child_process": "^1.0.2",
+    "fs-extra": "^10.0.0",
     "ngx-childprocess": "0.0.6",
     "ngx-electron": "^2.2.0",
     "npm-run-all": "^4.1.5",

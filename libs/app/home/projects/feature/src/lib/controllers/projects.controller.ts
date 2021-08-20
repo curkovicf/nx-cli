@@ -9,6 +9,7 @@ export class ProjectsController implements IController {
   private projectsService = new ProjectsService();
 
   public initRoutes(): void {
+    this.initGetAllProjects();
     this.initCreateProject();
     this.initDeleteProject();
     this.initGenerateComponent();
@@ -16,7 +17,7 @@ export class ProjectsController implements IController {
     this.initRenameProject();
     this.initMoveProject();
 
-    console.warn('\nInit Projects Controller')
+    console.warn('\n********** Init Projects Controller')
   }
 
   private initGetAllProjects(): void {
@@ -29,42 +30,43 @@ export class ProjectsController implements IController {
   private initCreateProject(): void {
     ipcMain.on(IpcEvents.createApp.fromAngular, async (event, dto: IpcEventDtos.CreateProjectDto) => {
       const response: IpcResponse = await this.projectsService.createProject(dto);
-      event.sender.send(IpcEvents.createApp.fromElectron, response);
+      event.sender.send(IpcEvents.defaultChannel.fromElectron, response);
     });
   }
 
   private initDeleteProject(): void {
     ipcMain.on(IpcEvents.deleteProject.fromAngular, async (event, dto: IpcEventDtos.DeleteProjectDto) => {
       const response: IpcResponse = await this.projectsService.deleteProject(dto);
-      event.sender.send(IpcEvents.deleteProject.fromElectron, response);
+      event.sender.send(IpcEvents.defaultChannel.fromElectron, response);
     });
   }
 
   private initGenerateComponent(): void {
     ipcMain.on(IpcEvents.createComponent.fromAngular, async (event, dto: IpcEventDtos.GenerateDto) => {
       const response: IpcResponse = await this.projectsService.generateComponent(dto);
-      event.sender.send(IpcEvents.createComponent.fromElectron, response);
+      event.sender.send(IpcEvents.defaultChannel.fromElectron, response);
     });
   }
 
   private initGenerateService(): void {
     ipcMain.on(IpcEvents.createService.fromAngular, async (event, dto: IpcEventDtos.GenerateDto) => {
       const response: IpcResponse = await this.projectsService.generateService(dto);
-      event.sender.send(IpcEvents.createService.fromElectron, response);
+      event.sender.send(IpcEvents.defaultChannel.fromElectron, response);
     });
   }
 
   private initRenameProject(): void {
     ipcMain.on(IpcEvents.renameProject.fromAngular, async (event, dto: IpcEventDtos.RenameProjectDto) => {
       const response: IpcResponse = await this.projectsService.renameProject(dto);
-      event.sender.send(IpcEvents.renameProject.fromElectron, response);
+      event.sender.send(IpcEvents.defaultChannel.fromElectron, response);
     });
   }
 
   private initMoveProject(): void {
     ipcMain.on(IpcEvents.moveProject.fromAngular, async (event, dto: IpcEventDtos.MoveProjectDto) => {
       const response: IpcResponse = await this.projectsService.moveProject(dto);
-      event.sender.send(IpcEvents.moveProject.fromElectron, response);
+      console.log(response);
+      event.sender.send(IpcEvents.defaultChannel.fromElectron, response);
     });
   }
 }

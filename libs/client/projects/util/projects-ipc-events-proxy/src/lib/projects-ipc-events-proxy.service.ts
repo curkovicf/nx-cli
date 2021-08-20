@@ -53,7 +53,7 @@ export class ProjectsIpcEventsProxyService {
         }
 
         const generateComponentDto: IpcEventDtos.GenerateDto = {
-          nxProjectRootPath: selectedNxProject?.path,
+          workspacePath: selectedNxProject?.path,
           parentProjectNameInNxJson: project.nameInNxJson,
           ...data,
         };
@@ -71,7 +71,7 @@ export class ProjectsIpcEventsProxyService {
         }
 
         const generateDto: IpcEventDtos.GenerateDto = {
-          nxProjectRootPath: selectedNxProject?.path,
+          workspacePath: selectedNxProject?.path,
           parentProjectNameInNxJson: project.nameInNxJson,
           ...data,
         };
@@ -103,7 +103,7 @@ export class ProjectsIpcEventsProxyService {
         }
 
         const generateDto: IpcEventDtos.MoveProjectDto = {
-          nxProjectRootPath: selectedNxProject?.path,
+          workspacePath: selectedNxProject?.path,
           projectName: selectedProject?.name,
           projectNameInNxJson: project.nameInNxJson,
           moveTo: data.value,
@@ -135,7 +135,7 @@ export class ProjectsIpcEventsProxyService {
         }
 
         const generateDto: IpcEventDtos.RenameProjectDto = {
-          nxProjectRootPath: selectedNxProject?.path,
+          workspacePath: selectedNxProject?.path,
           libPath: project.relativePath
             .replace(project.name, '')
             .replace('/libs', '')
@@ -143,6 +143,7 @@ export class ProjectsIpcEventsProxyService {
             .substring(1),
           projectNameInNxJson: project.nameInNxJson,
           newName: data.value.slice(0, -1),
+          type: project.type
         };
 
         this.eventsProxyService.renameProject(generateDto);
@@ -159,8 +160,8 @@ export class ProjectsIpcEventsProxyService {
 
         this.eventsProxyService.deleteProject({
           projectNameInNxJson: project.nameInNxJson,
-          nxProjectRootPath: selectedNxProject?.path,
-          projectType: project.type,
+          workspacePath: selectedNxProject?.path,
+          type: project.type,
         });
       });
   }
@@ -188,10 +189,11 @@ export class ProjectsIpcEventsProxyService {
 
         const createAppDto: IpcEventDtos.CreateProjectDto = {
           path: data.value.slice(0, -1),
-          nxProjectRootPath: selectedNxProject?.path,
+          workspacePath: selectedNxProject?.path,
+          type: 'app'
         };
 
-        this.eventsProxyService.createApp(createAppDto);
+        this.eventsProxyService.createProject(createAppDto);
       });
   }
 
@@ -210,11 +212,12 @@ export class ProjectsIpcEventsProxyService {
           path: data.artifactName[data.artifactName.length - 1] === '/' ?
             data.artifactName.slice(0, -1) :
             data.artifactName,
-          nxProjectRootPath: selectedNxProject?.path,
-          flags: data.flags
+          workspacePath: selectedNxProject?.path,
+          flags: data.flags,
+          type: 'lib'
         };
 
-        this.eventsProxyService.createLib(createLibDto);
+        this.eventsProxyService.createProject(createLibDto);
       });
   }
 }

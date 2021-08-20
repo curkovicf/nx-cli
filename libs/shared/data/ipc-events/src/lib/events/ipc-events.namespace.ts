@@ -11,7 +11,7 @@ export namespace IpcEvents {
   export const renameProject: EventChannel = { fromAngular: 'RENAME_PROJECT', fromElectron: 'RENAME_PROJECT_RESULT' };
   export const deleteProject: EventChannel = { fromAngular: 'DELETE_PROJECT', fromElectron: 'DELETE_PROJECT_RESULT' };
   export const createService: EventChannel = { fromAngular: 'CREATE_SERVICE', fromElectron: 'CREATE_SERVICE_RESULT' };
-  export const projects: EventChannel = { fromAngular: 'GET_PROJECTS', fromElectron: 'GET_PROJECTS_RESULT' };
   export const createApp: EventChannel = { fromAngular: 'CREATE_APP', fromElectron: 'CREATE_APP_RESULT' };
   export const createLib: EventChannel = { fromAngular: 'CREATE_LIB', fromElectron: 'CREATE_LIB_RESULT' };
+  export const defaultChannel: EventChannel = { fromAngular: 'GENERIC', fromElectron: 'GENERIC_RESULT' };
 }

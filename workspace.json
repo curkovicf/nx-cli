@@ -68,28 +68,6 @@
         }
       }
     },
-    "app-home-projects-data-access": {
-      "projectType": "library",
-      "root": "libs/app/home/projects/data-access",
-      "sourceRoot": "libs/app/home/projects/data-access/src",
-      "prefix": "nx-cli",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/app/home/projects/data-access"],
-          "options": {
-            "jestConfig": "libs/app/home/projects/data-access/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/app/home/projects/data-access/src/**/*.ts", "libs/app/home/projects/data-access/src/**/*.html"]
-          }
-        }
-      }
-    },
     "app-home-projects-feature": {
       "projectType": "library",
       "root": "libs/app/home/projects/feature",
@@ -134,28 +112,6 @@
         }
       }
     },
-    "app-home-workspaces-data-access": {
-      "projectType": "library",
-      "root": "libs/app/home/workspaces/data-access",
-      "sourceRoot": "libs/app/home/workspaces/data-access/src",
-      "prefix": "nx-cli",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/app/home/workspaces/data-access"],
-          "options": {
-            "jestConfig": "libs/app/home/workspaces/data-access/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/app/home/workspaces/data-access/src/**/*.ts", "libs/app/home/workspaces/data-access/src/**/*.html"]
-          }
-        }
-      }
-    },
     "app-home-workspaces-feature": {
       "projectType": "library",
       "root": "libs/app/home/workspaces/feature",
@@ -174,28 +130,6 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/app/home/workspaces/feature/src/**/*.ts", "libs/app/home/workspaces/feature/src/**/*.html"]
-          }
-        }
-      }
-    },
-    "app-home-workspaces-util": {
-      "projectType": "library",
-      "root": "libs/app/home/workspaces/util",
-      "sourceRoot": "libs/app/home/workspaces/util/src",
-      "prefix": "nx-cli",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/app/home/workspaces/util"],
-          "options": {
-            "jestConfig": "libs/app/home/workspaces/util/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/app/home/workspaces/util/src/**/*.ts", "libs/app/home/workspaces/util/src/**/*.html"]
           }
         }
       }

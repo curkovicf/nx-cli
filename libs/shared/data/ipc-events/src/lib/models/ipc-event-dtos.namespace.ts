@@ -1,10 +1,10 @@
-// eslint-disable-next-line @typescript-eslint/no-namespace
 import { ProjectType } from '@nx-cli/client/projects/data-access/store';
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace IpcEventDtos {
   export interface GenerateDto {
     artifactName: string;
-    nxProjectRootPath: string;
+    workspacePath: string;
     parentProjectNameInNxJson: string;
     flags?: string[];
     parentModule?: string;
@@ -14,27 +14,29 @@ export namespace IpcEventDtos {
     projectName: string;
     moveTo: string;
     projectNameInNxJson: string;
-    nxProjectRootPath: string;
+    workspacePath: string;
   }
 
   export interface RenameProjectDto {
     newName: string;
     libPath: string;
     projectNameInNxJson: string;
-    nxProjectRootPath: string;
+    workspacePath: string;
+    type: ProjectType;
   }
 
   export interface CreateProjectDto {
     path: string;
-    nxProjectRootPath: string;
+    workspacePath: string;
     tags?: string[];
     flags?: string[];
+    type: 'app' | 'lib';
   }
 
   export interface DeleteProjectDto {
     projectNameInNxJson: string;
-    nxProjectRootPath: string;
-    projectType: ProjectType;
+    workspacePath: string;
+    type: ProjectType;
   }
 
   export interface GenerateResultDto {
@@ -42,6 +44,4 @@ export namespace IpcEventDtos {
     artifactName: string;
     rootPath: string;
   }
-
-  export type ProjectPath = string;
 }
