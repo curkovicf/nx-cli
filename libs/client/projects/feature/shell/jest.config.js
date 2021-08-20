@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'client-shell-ui-projects-layout',
+  displayName: 'client-projects-feature-shell',
   preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,8 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory:
-    '../../../../../coverage/libs/client/shell/ui/projects-layout',
+  coverageDirectory: '../../../../../coverage/libs/client/projects/feature/shell',
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',
   },

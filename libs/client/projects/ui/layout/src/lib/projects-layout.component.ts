@@ -4,6 +4,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'dev-workspace-home-layout',
   templateUrl: './projects-layout.component.html',
   styleUrls: ['./projects-layout.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectsLayoutComponent {}

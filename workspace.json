@@ -357,6 +357,28 @@
         }
       }
     },
+    "client-projects-feature-shell": {
+      "projectType": "library",
+      "root": "libs/client/projects/feature/shell",
+      "sourceRoot": "libs/client/projects/feature/shell/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/feature/shell"],
+          "options": {
+            "jestConfig": "libs/client/projects/feature/shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/client/projects/feature/shell/src/**/*.ts", "libs/client/projects/feature/shell/src/**/*.html"]
+          }
+        }
+      }
+    },
     "client-projects-feature-tags": {
       "projectType": "library",
       "root": "libs/client/projects/feature/tags",
@@ -375,6 +397,28 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/client/projects/feature/tags/src/**/*.ts", "libs/client/projects/feature/tags/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "client-projects-ui-layout": {
+      "projectType": "library",
+      "root": "libs/client/projects/ui/layout",
+      "sourceRoot": "libs/client/projects/ui/layout/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/ui/layout"],
+          "options": {
+            "jestConfig": "libs/client/projects/ui/layout/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/client/projects/ui/layout/src/**/*.ts", "libs/client/projects/ui/layout/src/**/*.html"]
           }
         }
       }
@@ -683,27 +727,24 @@
         }
       }
     },
-    "client-shell-feature-shell-layout": {
+    "client-shell-feature": {
       "projectType": "library",
-      "root": "libs/client/shell/feature/shell-layout",
-      "sourceRoot": "libs/client/shell/feature/shell-layout/src",
-      "prefix": "dev-workspace",
+      "root": "libs/client/shell/feature",
+      "sourceRoot": "libs/client/shell/feature/src",
+      "prefix": "nx-cli",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/shell/feature/shell-layout"],
+          "outputs": ["coverage/libs/client/shell/feature"],
           "options": {
-            "jestConfig": "libs/client/shell/feature/shell-layout/jest.config.js",
+            "jestConfig": "libs/client/shell/feature/jest.config.js",
             "passWithNoTests": true
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/shell/feature/shell-layout/src/**/*.ts",
-              "libs/client/shell/feature/shell-layout/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/shell/feature/src/**/*.ts", "libs/client/shell/feature/src/**/*.html"]
           }
         }
       }
@@ -730,24 +771,24 @@
         }
       }
     },
-    "client-shell-ui-projects-layout": {
+    "client-shell-ui-layout": {
       "projectType": "library",
-      "root": "libs/client/shell/ui/projects-layout",
-      "sourceRoot": "libs/client/shell/ui/projects-layout/src",
+      "root": "libs/client/shell/ui/layout",
+      "sourceRoot": "libs/client/shell/ui/layout/src",
       "prefix": "dev-workspace",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/shell/ui/projects-layout"],
+          "outputs": ["coverage/libs/client/shell/ui/layout"],
           "options": {
-            "jestConfig": "libs/client/shell/ui/projects-layout/jest.config.js",
+            "jestConfig": "libs/client/shell/ui/layout/jest.config.js",
             "passWithNoTests": true
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/client/shell/ui/projects-layout/src/**/*.ts", "libs/client/shell/ui/projects-layout/src/**/*.html"]
+            "lintFilePatterns": ["libs/client/shell/ui/layout/src/**/*.ts", "libs/client/shell/ui/layout/src/**/*.html"]
           }
         }
       }

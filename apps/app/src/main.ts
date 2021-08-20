@@ -9,8 +9,6 @@ import { NxCliShell } from '@nx-cli/app/shell/feature';
 const nxCliShell = new NxCliShell();
 
 export default class Main {
-
-
   static initialize() {
     if (SquirrelEvents.handleEvents()) {
       // squirrel events handled (except first run events) and app will exit in 1000ms, so don't do anything else

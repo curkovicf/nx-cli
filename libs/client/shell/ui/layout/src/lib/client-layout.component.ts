@@ -6,11 +6,11 @@ import { LocalStorageService } from '@nx-cli/client/shared/util';
 
 @Component({
   selector: 'dev-workspace-layout',
-  templateUrl: './shell-layout.component.html',
-  styleUrls: ['./shell-layout.component.scss'],
+  templateUrl: './client-layout.component.html',
+  styleUrls: ['./client-layout.component.scss'],
   animations: [drawerAnimation],
 })
-export class ShellLayoutComponent {
+export class ClientLayoutComponent {
   public isDrawerOpen = false;
 
   constructor(

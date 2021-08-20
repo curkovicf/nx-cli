@@ -64,7 +64,13 @@
     "client-projects-feature-list": {
       "tags": []
     },
+    "client-projects-feature-shell": {
+      "tags": []
+    },
     "client-projects-feature-tags": {
+      "tags": []
+    },
+    "client-projects-ui-layout": {
       "tags": []
     },
     "client-projects-ui-list-item": {
@@ -106,13 +112,13 @@
     "client-shared-util": {
       "tags": []
     },
-    "client-shell-feature-shell-layout": {
+    "client-shell-feature": {
       "tags": []
     },
     "client-shell-ui-drawer": {
       "tags": []
     },
-    "client-shell-ui-projects-layout": {
+    "client-shell-ui-layout": {
       "tags": []
     },
     "client-shell-ui-top-nav": {

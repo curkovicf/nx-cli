@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShellLayoutComponent } from './shell-layout.component';
+import { ClientLayoutComponent } from './client-layout.component';
 
 describe('LayoutComponent', () => {
-  let component: ShellLayoutComponent;
-  let fixture: ComponentFixture<ShellLayoutComponent>;
+  let component: ClientLayoutComponent;
+  let fixture: ComponentFixture<ClientLayoutComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ShellLayoutComponent],
+      declarations: [ClientLayoutComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ShellLayoutComponent);
+    fixture = TestBed.createComponent(ClientLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
