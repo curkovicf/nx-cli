@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NxProject, ProjectsStore } from '@nx-cli/client/projects/data-access';
 import { drawerAnimation } from '@nx-cli/client/shell/ui/drawer';
-import { LocalStorageService } from '@nx-cli/client/shared/util/local-storage';
 import { ProjectsIpcEventsProxyService } from '@nx-cli/client/projects/util';
+import { LocalStorageService } from '@nx-cli/client/shared/util';
 
 @Component({
   selector: 'dev-workspace-layout',

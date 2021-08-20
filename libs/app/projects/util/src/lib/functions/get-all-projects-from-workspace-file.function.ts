@@ -1,7 +1,7 @@
 // @ts-ignore
 import * as fs from 'fs';
-import { Project } from '@nx-cli/client/projects/data-access/store';
 import { trimToRelativePath } from './trim-to-relative-path.function';
+import { Project } from '@nx-cli/client/projects/data-access';
 
 export function getProjectsFromWorkspaceFile(rootPath: string, projects: Project[]): void {
   const pathToWorkspaceJson = rootPath + '/workspace.json';

@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'client-shared-util-ipc-events-proxy',
-  preset: '../../../../../jest.preset.js',
+  displayName: 'client-shared-util',
+  preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -8,8 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory:
-    '../../../../../coverage/libs/client/shared/util/ipc-events-proxy',
+  coverageDirectory: '../../../../coverage/libs/client/shared/util',
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',
   },

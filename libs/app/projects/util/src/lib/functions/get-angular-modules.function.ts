@@ -4,9 +4,9 @@ import * as fs from 'fs';
 // @ts-ignore
 import * as path from 'path';
 
-import { AngularModule } from '@nx-cli/client/projects/data-access/store';
 import { getClassName } from './get-class-name.function';
 import { findDeclaredComponents } from './get-declared-components.function';
+import { AngularModule } from '@nx-cli/client/projects/data-access';
 
 export function getAngularModules(projectPath: string): AngularModule[] {
   const angularModules: AngularModule[] = [];

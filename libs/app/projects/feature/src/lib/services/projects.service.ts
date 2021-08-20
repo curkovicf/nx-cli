@@ -1,14 +1,16 @@
+import * as fs from 'fs-extra';
+
 import { IpcEventDtos } from '@nx-cli/shared/data/ipc-events';
 import { executeCommand, IpcResponse, IpcResponseData } from '@nx-cli/app/shared/util';
-import { Project, ProjectType } from '@nx-cli/client/projects/data-access/store';
 import {
   getAllProjects,
   getProjectsFromAngularJsonFile,
   getProjectsFromWorkspaceFile,
   getTagsOfAllProjectsWithinNxJsonFile,
 } from '@nx-cli/app/projects/util';
+import { Project, ProjectType } from '@nx-cli/client/projects/data-access';
 
-import * as fs from 'fs-extra';
+
 
 export class ProjectsService {
   /**

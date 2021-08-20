@@ -103,10 +103,7 @@
     "client-shared-ui-single-input-form-dialog": {
       "tags": []
     },
-    "client-shared-util-ipc-events-proxy": {
-      "tags": []
-    },
-    "client-shared-util-local-storage": {
+    "client-shared-util": {
       "tags": []
     },
     "client-shell-feature-shell-layout": {

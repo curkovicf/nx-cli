@@ -3,7 +3,6 @@ import { ElectronService } from 'ngx-electron';
 import { IpcEventDtos, IpcEvents } from '@nx-cli/shared/data/ipc-events';
 import { Project, ProjectsStore } from '@nx-cli/client/projects/data-access';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatSnackBarConfig } from '@angular/material/snack-bar/snack-bar-config';
 import { take, tap } from 'rxjs/operators';
 import { IpcResponse, IpcResponseData } from '@nx-cli/app/shared/util';
 
@@ -29,7 +28,6 @@ export class EventsProxyService {
             take(1),
             tap((_selectedProject) => {
               const { data } = response;
-              console.log('PROJECTS RESULT', response);
               this.projectsStore.patchState({
                 projects: [...data],
                 projectsLoadedInView: [...data],

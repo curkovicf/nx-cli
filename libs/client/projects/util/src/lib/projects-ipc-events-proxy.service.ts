@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EventsProxyService } from '@nx-cli/client/shared/util/ipc-events-proxy';
+import { EventsProxyService } from '@nx-cli/client/shared/util';
 import { NxProject, Project, ProjectsStore } from '@nx-cli/client/projects/data-access';
 import { take, tap } from 'rxjs/operators';
 import { combineLatest } from 'rxjs';

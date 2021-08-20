@@ -1,6 +1,7 @@
 // @ts-ignore
 import * as fs from 'fs';
-import { Project } from '@nx-cli/client/projects/data-access/store';
+
+import { Project } from '@nx-cli/client/projects/data-access';
 
 export function getTagsOfAllProjectsWithinNxJsonFile(rootPath: string, projects: Project[]): void {
   const pathToNxJson = rootPath + '/nx.json';

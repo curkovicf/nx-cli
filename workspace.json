@@ -661,49 +661,24 @@
         }
       }
     },
-    "client-shared-util-ipc-events-proxy": {
+    "client-shared-util": {
       "projectType": "library",
-      "root": "libs/client/shared/util/ipc-events-proxy",
-      "sourceRoot": "libs/client/shared/util/ipc-events-proxy/src",
+      "root": "libs/client/shared/util",
+      "sourceRoot": "libs/client/shared/util/src",
       "prefix": "dev-workspace",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/shared/util/ipc-events-proxy"],
+          "outputs": ["coverage/libs/client/shared/util"],
           "options": {
-            "jestConfig": "libs/client/shared/util/ipc-events-proxy/jest.config.js",
+            "jestConfig": "libs/client/shared/util/jest.config.js",
             "passWithNoTests": true
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/shared/util/ipc-events-proxy/src/**/*.ts",
-              "libs/client/shared/util/ipc-events-proxy/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "client-shared-util-local-storage": {
-      "projectType": "library",
-      "root": "libs/client/shared/util/local-storage",
-      "sourceRoot": "libs/client/shared/util/local-storage/src",
-      "prefix": "nx-cli",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/shared/util/local-storage"],
-          "options": {
-            "jestConfig": "libs/client/shared/util/local-storage/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/client/shared/util/local-storage/src/**/*.ts", "libs/client/shared/util/local-storage/src/**/*.html"]
+            "lintFilePatterns": ["libs/client/shared/util/src/**/*.ts", "libs/client/shared/util/src/**/*.html"]
           }
         }
       }
