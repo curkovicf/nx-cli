@@ -39,7 +39,9 @@
       "@nx-cli/client/shared/ui/material-modules": ["libs/client/shared/ui/material-modules/src/index.ts"],
       "@nx-cli/client/shared/ui/progress-bar": ["libs/client/shared/ui/progress-bar/src/index.ts"],
       "@nx-cli/client/shared/ui/search": ["libs/client/shared/ui/search/src/index.ts"],
-      "@nx-cli/client/shared/ui/single-input-form-dialog": ["libs/client/shared/ui/single-input-form-dialog/src/index.ts"],
+      "@nx-cli/client/shared/ui/single-input-form-dialog": [
+        "libs/client/shared/ui/single-input-form-dialog/src/index.ts"
+      ],
       "@nx-cli/client/shared/util": ["libs/client/shared/util/src/index.ts"],
       "@nx-cli/client/shell/feature": ["libs/client/shell/feature/src/index.ts"],
       "@nx-cli/client/shell/ui/drawer": ["libs/client/shell/ui/drawer/src/index.ts"],
@@ -48,7 +50,8 @@
       "@nx-cli/client/workspaces/data-access": ["libs/client/workspaces/data-access/src/index.ts"],
       "@nx-cli/client/workspaces/feature": ["libs/client/workspaces/feature/src/index.ts"],
       "@nx-cli/client/workspaces/ui/chips-bar": ["libs/client/workspaces/ui/chips-bar/src/index.ts"],
-      "@nx-cli/shared/data/ipc-events": ["libs/shared/data/ipc-events/src/index.ts"]
+      "@nx-cli/shared/data/ipc-events": ["libs/shared/data/ipc-events/src/index.ts"],
+      "@nx-cli/shared/util": ["libs/shared/util/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

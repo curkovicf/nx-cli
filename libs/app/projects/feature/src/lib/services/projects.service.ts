@@ -1,15 +1,19 @@
 import * as fs from 'fs-extra';
 
 import { IpcEventDtos } from '@nx-cli/shared/data/ipc-events';
-import { executeCommand, IpcResponse, IpcResponseData } from '@nx-cli/app/shared/util';
+import {
+  executeCommand,
+  getPlatformPathSeparator,
+  IpcResponse,
+  IpcResponseData,
+  parsePath
+} from '@nx-cli/app/shared/util';
 import {
   getAllProjects,
-  getProjectsFromAngularJsonFile,
-  getProjectsFromWorkspaceFile,
+  getProjectsNames,
   getTagsOfAllProjectsWithinNxJsonFile,
 } from '@nx-cli/app/projects/util';
 import { Project, ProjectType } from '@nx-cli/client/projects/data-access';
-
 
 
 export class ProjectsService {
@@ -20,15 +24,11 @@ export class ProjectsService {
   async getAllProjects(workspacePath: string): Promise<IpcResponseData<Project[]>> {
     const projects = getAllProjects(workspacePath, workspacePath);
 
-    const angularJsonExists = await fs.pathExists(`${workspacePath}/angular.json`).catch(() => false);
+    const angularJsonExists = await fs.pathExists(`${workspacePath}${getPlatformPathSeparator()}angular.json`).catch(() => false);
 
-    if (angularJsonExists) {
-      getProjectsFromAngularJsonFile(workspacePath, projects);
-    } else {
-      getProjectsFromWorkspaceFile(workspacePath, projects);
-    }
+    await getProjectsNames(workspacePath, angularJsonExists ? 'angular.json' : 'workspace.json', projects);
 
-    getTagsOfAllProjectsWithinNxJsonFile(workspacePath, projects);
+    await getTagsOfAllProjectsWithinNxJsonFile(workspacePath, projects);
 
     return {
       data: projects,
@@ -44,8 +44,8 @@ export class ProjectsService {
   async moveProject(dto: IpcEventDtos.MoveProjectDto): Promise<IpcResponse> {
     const { projectNameInNxJson, moveTo, workspacePath, projectName } = dto;
 
-    const cmd = `nx g mv --project ${projectNameInNxJson} ${moveTo}${projectName}`;
-    const cmdTest = `nx g mv --project ${projectNameInNxJson}-e2e ${moveTo}${projectName}-e2e`;
+    const cmd = parsePath(`nx g mv --project ${projectNameInNxJson} ${moveTo}${projectName}`);
+    const cmdTest = parsePath(`nx g mv --project ${projectNameInNxJson}-e2e ${moveTo}${projectName}-e2e`);
 
     await executeCommand(cmdTest, [], workspacePath, 'CREATE');
     const isSuccess = await executeCommand(cmd, [], workspacePath, 'CREATE');
@@ -65,7 +65,7 @@ export class ProjectsService {
   async createProject(dto: IpcEventDtos.CreateProjectDto): Promise<IpcResponse> {
     const { workspacePath, path, type } = dto;
 
-    const cmd = `nx g ${type === 'app' ? 'app' : 'lib'} ${path}`;
+    const cmd = parsePath(`nx g ${type === 'app' ? 'app' : 'lib'} ${path}`);
 
     const isSuccess = await executeCommand(cmd, [], workspacePath, 'CREATE');
 
@@ -84,10 +84,10 @@ export class ProjectsService {
   async deleteProject(dto: IpcEventDtos.DeleteProjectDto): Promise<IpcResponse> {
     const { projectNameInNxJson, workspacePath, type } = dto;
 
-    const cmd = `nx g rm --project ${projectNameInNxJson}`;
+    const cmd = parsePath(`nx g rm --project ${projectNameInNxJson}`);
 
     if (type === ProjectType.app) {
-      const cmdTest = `nx g rm --project ${projectNameInNxJson}-e2e`;
+      const cmdTest = parsePath(`nx g rm --project ${projectNameInNxJson}-e2e`);
       await executeCommand(cmdTest, [], workspacePath, 'DELETE');
     }
 
@@ -108,7 +108,7 @@ export class ProjectsService {
   async generateComponent(dto: IpcEventDtos.GenerateDto): Promise<IpcResponse> {
     const { artifactName, flags, parentProjectNameInNxJson, workspacePath } = dto;
 
-    const cmd = `nx g c ${artifactName} --project ${parentProjectNameInNxJson}`;
+    const cmd = parsePath(`nx g c ${artifactName} --project ${parentProjectNameInNxJson}`);
 
     const isSuccess = await executeCommand(cmd, flags, workspacePath, 'CREATE');
 
@@ -127,7 +127,7 @@ export class ProjectsService {
   async generateService(dto: IpcEventDtos.GenerateDto): Promise<IpcResponse> {
     const { artifactName, flags, parentProjectNameInNxJson, workspacePath } = dto;
 
-    const cmd = `nx g s ${artifactName} --project ${parentProjectNameInNxJson}`;
+    const cmd = parsePath(`nx g s ${artifactName} --project ${parentProjectNameInNxJson}`);
 
     const isSuccess = await executeCommand(cmd, flags, workspacePath, 'CREATE');
 
@@ -146,7 +146,7 @@ export class ProjectsService {
   async renameProject(dto: IpcEventDtos.RenameProjectDto): Promise<IpcResponse> {
     const { projectNameInNxJson, workspacePath, newName, libPath, type } = dto;
 
-    const cmd = `nx g mv --project ${projectNameInNxJson} ${libPath}${newName}`;
+    const cmd = parsePath(`nx g mv --project ${projectNameInNxJson} ${libPath}${newName}`);
 
     if (type === ProjectType.app) {
       const cmdTest = `nx g mv --project ${projectNameInNxJson}-e2e ${libPath}${newName}-e2e`;

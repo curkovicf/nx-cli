@@ -1,6 +1,5 @@
 export * from './lib/functions/get-all-projects.function';
-export * from './lib/functions/get-all-projects-from-angular-json-file.function';
-export * from './lib/functions/get-all-projects-from-workspace-file.function';
+export * from './lib/functions/get-project-names.function';
 export * from './lib/functions/get-angular-modules.function';
 export * from './lib/functions/get-class-name.function';
 export * from './lib/functions/get-declared-components.function';

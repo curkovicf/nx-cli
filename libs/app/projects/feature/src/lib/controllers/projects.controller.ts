@@ -65,7 +65,6 @@ export class ProjectsController implements IController {
   private initMoveProject(): void {
     ipcMain.on(IpcEvents.moveProject.fromAngular, async (event, dto: IpcEventDtos.MoveProjectDto) => {
       const response: IpcResponse = await this.projectsService.moveProject(dto);
-      console.log(response);
       event.sender.send(IpcEvents.defaultChannel.fromElectron, response);
     });
   }

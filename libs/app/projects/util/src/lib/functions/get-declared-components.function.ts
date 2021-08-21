@@ -13,7 +13,13 @@ export function findDeclaredComponents(angularModuleTxt: string): AngularCompone
 
     if (isDeclarations) {
       //  Grab components in array
-      const trimmed = line.replace('declarations', '').replace(':', '').replace('[', '').replace(']', '').replace(',', '').trim();
+      const trimmed = line
+        .replace('declarations', '')
+        .replace(':', '')
+        .replace('[', '')
+        .replace(']', '')
+        .replace(',', '')
+        .trim();
 
       //  Handle edge cases like declarations: [Comp,Comp], declarations: [Comp, /nComp] etc.
       const arrSplit = trimmed.split(/[ ,]+/);

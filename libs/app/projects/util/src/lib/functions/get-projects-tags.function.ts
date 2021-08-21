@@ -1,17 +1,20 @@
-// @ts-ignore
-import * as fs from 'fs';
+import * as fs from 'fs-extra';
 
 import { Project } from '@nx-cli/client/projects/data-access';
+import { getPlatformPathSeparator } from '@nx-cli/app/shared/util';
 
-export function getTagsOfAllProjectsWithinNxJsonFile(rootPath: string, projects: Project[]): void {
-  const pathToNxJson = rootPath + '/nx.json';
-  const nxJson = JSON.parse(fs.readFileSync(pathToNxJson, 'utf8'));
+interface ObjWithTagsField {
+  tags: string[];
+}
+
+export async function getTagsOfAllProjectsWithinNxJsonFile(workspacePath: string, projects: Project[]): Promise<void> {
+  const pathToNxJson = `${workspacePath}${getPlatformPathSeparator()}nx.json`;
+  const nxJson = await fs.readJSON(pathToNxJson);
 
   Object.entries(nxJson.projects).forEach(([key, value]) => {
     projects.forEach((project) => {
       if (project.nameInNxJson === key) {
-        // @ts-ignore
-        project.tags.push(...value['tags']);
+        project.tags.push(...(value as ObjWithTagsField).tags);
       }
     });
   });

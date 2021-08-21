@@ -195,7 +195,10 @@
             "tsConfig": "apps/client/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["apps/client/src/favicon.ico", "apps/client/src/assets"],
-            "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css", "apps/client/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/client/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -308,7 +311,10 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/client/projects/data-access/src/**/*.ts", "libs/client/projects/data-access/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/client/projects/data-access/src/**/*.ts",
+              "libs/client/projects/data-access/src/**/*.html"
+            ]
           }
         }
       }
@@ -330,7 +336,10 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/client/projects/feature/detail/src/**/*.ts", "libs/client/projects/feature/detail/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/client/projects/feature/detail/src/**/*.ts",
+              "libs/client/projects/feature/detail/src/**/*.html"
+            ]
           }
         }
       }
@@ -352,7 +361,10 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/client/projects/feature/list/src/**/*.ts", "libs/client/projects/feature/list/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/client/projects/feature/list/src/**/*.ts",
+              "libs/client/projects/feature/list/src/**/*.html"
+            ]
           }
         }
       }
@@ -374,7 +386,10 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/client/projects/feature/shell/src/**/*.ts", "libs/client/projects/feature/shell/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/client/projects/feature/shell/src/**/*.ts",
+              "libs/client/projects/feature/shell/src/**/*.html"
+            ]
           }
         }
       }
@@ -396,7 +411,10 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/client/projects/feature/tags/src/**/*.ts", "libs/client/projects/feature/tags/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/client/projects/feature/tags/src/**/*.ts",
+              "libs/client/projects/feature/tags/src/**/*.html"
+            ]
           }
         }
       }
@@ -418,7 +436,10 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/client/projects/ui/layout/src/**/*.ts", "libs/client/projects/ui/layout/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/client/projects/ui/layout/src/**/*.ts",
+              "libs/client/projects/ui/layout/src/**/*.html"
+            ]
           }
         }
       }
@@ -440,7 +461,10 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/client/projects/ui/list-item/src/**/*.ts", "libs/client/projects/ui/list-item/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/client/projects/ui/list-item/src/**/*.ts",
+              "libs/client/projects/ui/list-item/src/**/*.html"
+            ]
           }
         }
       }
@@ -584,7 +608,10 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/client/shared/ui/confirm-dialog/src/**/*.ts", "libs/client/shared/ui/confirm-dialog/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/client/shared/ui/confirm-dialog/src/**/*.ts",
+              "libs/client/shared/ui/confirm-dialog/src/**/*.html"
+            ]
           }
         }
       }
@@ -606,7 +633,10 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/client/shared/ui/default-button/src/**/*.ts", "libs/client/shared/ui/default-button/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/client/shared/ui/default-button/src/**/*.ts",
+              "libs/client/shared/ui/default-button/src/**/*.html"
+            ]
           }
         }
       }
@@ -653,7 +683,10 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/client/shared/ui/progress-bar/src/**/*.ts", "libs/client/shared/ui/progress-bar/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/client/shared/ui/progress-bar/src/**/*.ts",
+              "libs/client/shared/ui/progress-bar/src/**/*.html"
+            ]
           }
         }
       }
@@ -675,7 +708,10 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/client/shared/ui/search/src/**/*.ts", "libs/client/shared/ui/search/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/client/shared/ui/search/src/**/*.ts",
+              "libs/client/shared/ui/search/src/**/*.html"
+            ]
           }
         }
       }
@@ -810,7 +846,10 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/client/shell/ui/top-nav/src/**/*.ts", "libs/client/shell/ui/top-nav/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/client/shell/ui/top-nav/src/**/*.ts",
+              "libs/client/shell/ui/top-nav/src/**/*.html"
+            ]
           }
         }
       }
@@ -832,7 +871,10 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/client/workspaces/data-access/src/**/*.ts", "libs/client/workspaces/data-access/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/client/workspaces/data-access/src/**/*.ts",
+              "libs/client/workspaces/data-access/src/**/*.html"
+            ]
           }
         }
       }
@@ -854,7 +896,10 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/client/workspaces/feature/src/**/*.ts", "libs/client/workspaces/feature/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/client/workspaces/feature/src/**/*.ts",
+              "libs/client/workspaces/feature/src/**/*.html"
+            ]
           }
         }
       }
@@ -876,7 +921,10 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/client/workspaces/ui/chips-bar/src/**/*.ts", "libs/client/workspaces/ui/chips-bar/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/client/workspaces/ui/chips-bar/src/**/*.ts",
+              "libs/client/workspaces/ui/chips-bar/src/**/*.html"
+            ]
           }
         }
       }
@@ -898,6 +946,28 @@
           "options": {
             "jestConfig": "libs/shared/data/ipc-events/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-util": {
+      "projectType": "library",
+      "root": "libs/shared/util",
+      "sourceRoot": "libs/shared/util/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/util"],
+          "options": {
+            "jestConfig": "libs/shared/util/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/util/src/**/*.ts", "libs/shared/util/src/**/*.html"]
           }
         }
       }

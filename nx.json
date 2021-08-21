@@ -135,6 +135,9 @@
     },
     "shared-data-ipc-events": {
       "tags": []
+    },
+    "shared-util": {
+      "tags": []
     }
   }
 }
