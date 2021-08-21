@@ -28,6 +28,7 @@ export class EventsProxyService {
             take(1),
             tap((_selectedProject) => {
               const { data } = response;
+              console.log('DATA ', data);
               this.projectsStore.patchState({
                 projects: [...data],
                 projectsLoadedInView: [...data],

@@ -3,7 +3,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ElectronService } from 'ngx-electron';
 import { Observable, of, timer } from 'rxjs';
-import { NxProject } from '@nx-cli/client/projects/data-access';
+import { NxWorkspace } from '@nx-cli/client/projects/data-access';
 import { IpcEvents } from '@nx-cli/shared/data/ipc-events';
 import { IpcResponseData } from '@nx-cli/app/shared/util';
 
@@ -14,16 +14,16 @@ import { IpcResponseData } from '@nx-cli/app/shared/util';
 })
 export class AddNxProjectFormComponent {
   @Input()
-  nxProjects: NxProject[];
+  nxProjects: NxWorkspace[];
 
   @Output()
-  onsubmit: EventEmitter<NxProject> = new EventEmitter<NxProject>();
+  onsubmit: EventEmitter<NxWorkspace> = new EventEmitter<NxWorkspace>();
 
   @Output()
   oncancel: EventEmitter<void> = new EventEmitter<void>();
 
   public form: FormGroup;
-  private nxProject: NxProject = { path: '', name: '' };
+  private nxProject: NxWorkspace = { path: '', name: '' };
 
   constructor(private electronService: ElectronService) {
     this.form = new FormGroup({
@@ -44,7 +44,7 @@ export class AddNxProjectFormComponent {
     return timer(1500).pipe(
       switchMap(() => {
         return of(this.electronService.ipcRenderer.sendSync(IpcEvents.validateWorkspacePath.fromAngular, control.value)).pipe(
-          map((response: IpcResponseData<NxProject>): ValidationErrors | null => {
+          map((response: IpcResponseData<NxWorkspace>): ValidationErrors | null => {
             if (response.data) {
               this.nxProject = response.data;
 

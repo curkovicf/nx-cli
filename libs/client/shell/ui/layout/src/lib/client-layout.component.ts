@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NxProject, ProjectsStore } from '@nx-cli/client/projects/data-access';
+import { NxWorkspace, ProjectsStore } from '@nx-cli/client/projects/data-access';
 import { drawerAnimation } from '@nx-cli/client/shell/ui/drawer';
 import { ProjectsIpcEventsProxyService } from '@nx-cli/client/projects/util';
 import { LocalStorageService } from '@nx-cli/client/shared/util';
@@ -21,7 +21,7 @@ export class ClientLayoutComponent {
     this.localStorageService.initData();
   }
 
-  public onSelectProject(nxProject: NxProject): void {
+  public onSelectProject(nxProject: NxWorkspace): void {
     this.projectsIpcEventsProxyService.changeSelectProject(nxProject);
     this.localStorageService.save();
   }
@@ -34,7 +34,7 @@ export class ClientLayoutComponent {
     this.isDrawerOpen = !this.isDrawerOpen;
   }
 
-  public onSubmitNxProject(nxProject: NxProject): void {
+  public onSubmitNxProject(nxProject: NxWorkspace): void {
     this.projectsStore.addNxProject(nxProject).subscribe(() => {
       this.toggleDrawer();
       this.localStorageService.save();

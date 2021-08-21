@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { NxProject, ProjectsStore } from '@nx-cli/client/projects/data-access';
+import { NxWorkspace, ProjectsStore } from '@nx-cli/client/projects/data-access';
 import { combineLatest } from 'rxjs';
 import { ProjectsIpcEventsProxyService } from '@nx-cli/client/projects/util';
 
 interface StoredData {
-  nxProjects: NxProject[];
-  selectedNxProject: NxProject | undefined;
+  nxProjects: NxWorkspace[];
+  selectedNxProject: NxWorkspace | undefined;
 }
 
 @Injectable({
@@ -32,7 +32,7 @@ export class LocalStorageService {
 
     const { nxProjects, selectedNxProject }: StoredData = JSON.parse(data);
 
-    this.projectsStore.patchState({ nxProjects, selectedNxProject });
+    this.projectsStore.patchState({ workspaces: nxProjects, selectedWorkspace: selectedNxProject });
     this.projectsIpcEventsProxyService.getAllProjects();
   }
 }

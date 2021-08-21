@@ -7,6 +7,11 @@ import { ClientLayoutComponent } from '@nx-cli/client/shell/ui/layout';
 export const clientShellRoutes: Routes = [
   {
     path: '',
+    redirectTo: 'projects',
+    pathMatch: 'full'
+  },
+  {
+    path: '',
     component: ClientLayoutComponent,
     children: [
       {

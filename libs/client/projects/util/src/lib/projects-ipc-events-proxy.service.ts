@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EventsProxyService } from '@nx-cli/client/shared/util';
-import { NxProject, Project, ProjectsStore } from '@nx-cli/client/projects/data-access';
+import { NxWorkspace, Project, ProjectsStore } from '@nx-cli/client/projects/data-access';
 import { take, tap } from 'rxjs/operators';
 import { combineLatest } from 'rxjs';
 import { GenerateComponentFormComponent } from '@nx-cli/client/projects/ui/new-component-form';
@@ -32,7 +32,7 @@ export class ProjectsIpcEventsProxyService {
       .subscribe();
   }
 
-  public changeSelectProject(nxProject: NxProject): void {
+  public changeSelectProject(nxProject: NxWorkspace): void {
     this.projectsStore.selectNxProject(nxProject);
     this.getAllProjects();
   }
