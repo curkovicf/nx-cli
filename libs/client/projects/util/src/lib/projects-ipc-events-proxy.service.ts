@@ -3,10 +3,8 @@ import { EventsProxyService } from '@nx-cli/client/shared/util';
 import { NxWorkspace, Project, ProjectsStore } from '@nx-cli/client/projects/data-access';
 import { take, tap } from 'rxjs/operators';
 import { combineLatest } from 'rxjs';
-import { GenerateComponentFormComponent } from '@nx-cli/client/projects/ui/new-component-form';
 import { IpcEventDtos } from '@nx-cli/shared/data/ipc-events';
 import { MatDialog } from '@angular/material/dialog';
-import { GenerateServiceFormComponent } from '@nx-cli/client/projects/ui/new-service-form';
 import { SingleInputFormComponent, SingleInputFormComponentData } from '@nx-cli/client/shared/ui/single-input-form-dialog';
 import { ConfirmDialogComponent } from '@nx-cli/client/shared/ui/confirm-dialog';
 import { GenerateLibraryFormComponent } from '@nx-cli/client/projects/ui/new-project-form';
@@ -18,7 +16,7 @@ export class ProjectsIpcEventsProxyService {
   constructor(private eventsProxyService: EventsProxyService, private projectsStore: ProjectsStore, private dialog: MatDialog) {}
 
   public getAllProjects(): void {
-    this.projectsStore.selectedNxProject$
+    this.projectsStore.selectedWorkspace$
       .pipe(
         take(1),
         tap((nxSelectProject) => {
@@ -37,40 +35,23 @@ export class ProjectsIpcEventsProxyService {
     this.getAllProjects();
   }
 
-  public generateComponent(project: Project): void {
-    combineLatest([this.dialog.open(GenerateComponentFormComponent).afterClosed(), this.projectsStore.selectedNxProject$])
-      .pipe(take(1))
-      .subscribe(([data, selectedNxProject]) => {
-        if (!data) {
-          return;
-        }
-
-        const generateComponentDto: IpcEventDtos.GenerateDto = {
-          workspacePath: selectedNxProject?.path,
-          parentProjectNameInNxJson: project.nameInNxJson,
-          ...data,
-        };
-
-        this.eventsProxyService.generateComponent(generateComponentDto);
-      });
+  public generateComponent(dto: IpcEventDtos.GenerateDto): void {
+    this.emitData((dto) => this.eventsProxyService.generateComponent(dto), dto);
   }
 
-  public generateService(project: Project): void {
-    combineLatest([this.dialog.open(GenerateServiceFormComponent).afterClosed(), this.projectsStore.selectedNxProject$])
-      .pipe(take(1))
-      .subscribe(([data, selectedNxProject]) => {
-        if (!data) {
-          return;
-        }
+  public generateService(dto: IpcEventDtos.GenerateDto): void {
+    this.emitData((dto) => this.eventsProxyService.generateService(dto), dto);
+  }
 
-        const generateDto: IpcEventDtos.GenerateDto = {
-          workspacePath: selectedNxProject?.path,
-          parentProjectNameInNxJson: project.nameInNxJson,
-          ...data,
-        };
-
-        this.eventsProxyService.generateService(generateDto);
-      });
+  private emitData(emit: (data: any) => void, dto: any): void {
+    this.projectsStore.selectedWorkspace$
+      .pipe(
+        take(1),
+        tap(selectedNxProject => {
+          const copyDto = { ...dto, workspacePath: selectedNxProject?.path };
+          emit(copyDto);
+        })
+      ).subscribe();
   }
 
   public moveProject(project: Project): void {
@@ -86,7 +67,7 @@ export class ProjectsIpcEventsProxyService {
           data: moveDialogData,
         })
         .afterClosed(),
-      this.projectsStore.selectedNxProject$,
+      this.projectsStore.selectedWorkspace$,
       this.projectsStore.selectedProject$,
     ])
       .pipe(take(1))
@@ -119,7 +100,7 @@ export class ProjectsIpcEventsProxyService {
           data: moveDialogData,
         })
         .afterClosed(),
-      this.projectsStore.selectedNxProject$,
+      this.projectsStore.selectedWorkspace$,
     ])
       .pipe(take(1))
       .subscribe(([data, selectedNxProject]) => {
@@ -140,7 +121,7 @@ export class ProjectsIpcEventsProxyService {
   }
 
   public deleteProject(project: Project): void {
-    combineLatest([this.dialog.open(ConfirmDialogComponent).afterClosed(), this.projectsStore.selectedNxProject$])
+    combineLatest([this.dialog.open(ConfirmDialogComponent).afterClosed(), this.projectsStore.selectedWorkspace$])
       .pipe(take(1))
       .subscribe(([isConfirm, selectedNxProject]) => {
         if (!isConfirm) {
@@ -168,7 +149,7 @@ export class ProjectsIpcEventsProxyService {
           data: moveDialogData,
         })
         .afterClosed(),
-      this.projectsStore.selectedNxProject$,
+      this.projectsStore.selectedWorkspace$,
     ])
       .pipe(take(1))
       .subscribe(([data, selectedNxProject]) => {
@@ -187,7 +168,7 @@ export class ProjectsIpcEventsProxyService {
   }
 
   public createLib(): void {
-    combineLatest([this.dialog.open(GenerateLibraryFormComponent).afterClosed(), this.projectsStore.selectedNxProject$])
+    combineLatest([this.dialog.open(GenerateLibraryFormComponent).afterClosed(), this.projectsStore.selectedWorkspace$])
       .pipe(take(1))
       .subscribe(([data, selectedNxProject]) => {
         if (!data) {

@@ -20,8 +20,8 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
   readonly projects$ = this.select((state) => state.projects);
   readonly projectsLoadedInView$ = this.select((state) => state.projectsLoadedInView);
   readonly selectedProject$ = this.select((state) => state.selectedProject);
-  readonly selectedNxProject$ = this.select((state) => state.selectedWorkspace);
-  readonly nxProjects$ = this.select((state) => state.workspaces);
+  readonly selectedWorkspace$ = this.select((state) => state.selectedWorkspace);
+  readonly workspaces$ = this.select((state) => state.workspaces);
 
   constructor() {
     super(<ProjectsState>{
@@ -47,7 +47,7 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
   }
 
   public addNxProject(nxProject: NxWorkspace): Observable<NxWorkspace[]> {
-    return this.nxProjects$.pipe(
+    return this.workspaces$.pipe(
       take(1),
       tap((nxProjects) => {
         this.patchState({ workspaces: [...nxProjects, nxProject] });

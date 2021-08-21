@@ -106,9 +106,9 @@ export class ProjectsService {
    * @param dto
    */
   async generateComponent(dto: IpcEventDtos.GenerateDto): Promise<IpcResponse> {
-    const { artifactName, flags, parentProjectNameInNxJson, workspacePath } = dto;
+    const { artifactName, flags, projectName, workspacePath } = dto;
 
-    const cmd = parsePath(`nx g c ${artifactName} --project ${parentProjectNameInNxJson}`);
+    const cmd = parsePath(`nx g c ${artifactName} --project ${projectName}`);
 
     const isSuccess = await executeCommand(cmd, flags, workspacePath, 'CREATE');
 
@@ -125,9 +125,9 @@ export class ProjectsService {
    * @param dto
    */
   async generateService(dto: IpcEventDtos.GenerateDto): Promise<IpcResponse> {
-    const { artifactName, flags, parentProjectNameInNxJson, workspacePath } = dto;
+    const { artifactName, flags, projectName, workspacePath } = dto;
 
-    const cmd = parsePath(`nx g s ${artifactName} --project ${parentProjectNameInNxJson}`);
+    const cmd = parsePath(`nx g s ${artifactName} --project ${projectName}`);
 
     const isSuccess = await executeCommand(cmd, flags, workspacePath, 'CREATE');
 

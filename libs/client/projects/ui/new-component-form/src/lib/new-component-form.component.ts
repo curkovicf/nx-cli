@@ -1,25 +1,21 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'nx-cli-generate-component-form',
-  templateUrl: './generate-component-form.component.html',
-  styleUrls: ['./generate-component-form.component.scss'],
+  templateUrl: './new-component-form.component.html',
+  styleUrls: ['./new-component-form.component.scss'],
 })
-export class GenerateComponentFormComponent {
+export class NewComponentFormComponent {
   public form: FormGroup;
-  public flags: FormGroup;
 
-  constructor(public dialogRef: MatDialogRef<GenerateComponentFormComponent>, private formBuilder: FormBuilder) {
+  constructor(public dialogRef: MatDialogRef<NewComponentFormComponent>) {
     this.form = new FormGroup({
       name: new FormControl(null, [Validators.required]),
-    });
-
-    this.flags = this.formBuilder.group({
-      flat: false,
-      exportComponent: false,
-      skipTests: false,
+      flat: new FormControl(false),
+      exportComponent: new FormControl(false),
+      skipTests: new FormControl(false)
     });
   }
 
@@ -41,7 +37,7 @@ export class GenerateComponentFormComponent {
 
   private convertFlagsToStrings(): string[] {
     const stringFlags = [];
-    const { flat, skipTests, exportComponent } = this.flags.value;
+    const { flat, skipTests, exportComponent } = this.form.value;
 
     if (flat) {
       stringFlags.push('--flat');

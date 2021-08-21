@@ -17,7 +17,7 @@ export class LocalStorageService {
   constructor(private projectsStore: ProjectsStore, private projectsIpcEventsProxyService: ProjectsIpcEventsProxyService) {}
 
   public save(): void {
-    combineLatest([this.projectsStore.nxProjects$, this.projectsStore.selectedNxProject$]).subscribe(([nxProjects, selectedNxProject]) => {
+    combineLatest([this.projectsStore.workspaces$, this.projectsStore.selectedWorkspace$]).subscribe(([nxProjects, selectedNxProject]) => {
       const data: StoredData = { nxProjects, selectedNxProject };
       localStorage.setItem(this.key, JSON.stringify(data));
     });

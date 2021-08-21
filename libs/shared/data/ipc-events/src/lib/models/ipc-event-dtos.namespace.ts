@@ -5,7 +5,7 @@ export namespace IpcEventDtos {
   export interface GenerateDto {
     artifactName: string;
     workspacePath: string;
-    parentProjectNameInNxJson: string;
+    projectName: string;
     flags?: string[];
     parentModule?: string;
   }
@@ -37,11 +37,5 @@ export namespace IpcEventDtos {
     projectNameInNxJson: string;
     workspacePath: string;
     type: ProjectType;
-  }
-
-  export interface GenerateResultDto {
-    isSuccess: boolean;
-    artifactName: string;
-    rootPath: string;
   }
 }

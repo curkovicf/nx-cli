@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -9,17 +9,13 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class GenerateServiceFormComponent {
   public form: FormGroup;
-  public flags: FormGroup;
 
-  constructor(public dialogRef: MatDialogRef<GenerateServiceFormComponent>, private formBuilder: FormBuilder) {
+  constructor(public dialogRef: MatDialogRef<GenerateServiceFormComponent>) {
     this.form = new FormGroup({
       name: new FormControl(null, [Validators.required]),
-    });
-
-    this.flags = this.formBuilder.group({
-      flat: false,
-      exportComponent: false,
-      skipTests: false,
+      flat: new FormControl(false),
+      exportComponent: new FormControl(false),
+      skipTests: new FormControl(false),
     });
   }
 
@@ -41,7 +37,7 @@ export class GenerateServiceFormComponent {
 
   private convertFlagsToStrings(): string[] {
     const stringFlags = [];
-    const { flat, skipTests, exportComponent } = this.flags.value;
+    const { flat, skipTests, exportComponent } = this.form.value;
 
     if (flat) {
       stringFlags.push('--flat');

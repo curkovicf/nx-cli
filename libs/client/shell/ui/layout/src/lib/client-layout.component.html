@@ -1,8 +1,8 @@
 <dev-workspace-top-nav></dev-workspace-top-nav>
 
 <dev-workspace-chips-bar
-  [nxProjects]="projectsStore.nxProjects$ | async"
-  [nxSelectedProject]="projectsStore.selectedNxProject$ | async"
+  [nxProjects]="projectsStore.workspaces$ | async"
+  [nxSelectedProject]="projectsStore.selectedWorkspace$ | async"
   (onselectproject)="onSelectProject($event)"
   (onaddproject)="onAddProject()"
 ></dev-workspace-chips-bar>
@@ -10,7 +10,7 @@
 <nx-cli-drawer *ngIf="isDrawerOpen" [@slideIn]>
   <nx-cli-add-nx-project-form
     class="drawer-content"
-    [nxProjects]="projectsStore.nxProjects$ | async"
+    [nxProjects]="projectsStore.workspaces$ | async"
     (oncancel)="toggleDrawer()"
     (onsubmit)="onSubmitNxProject($event)"
   >
