@@ -5,7 +5,7 @@
       "root": "apps/app",
       "sourceRoot": "apps/app/src",
       "projectType": "application",
-      "prefix": "nx-cli-electron-nx-cli",
+      "prefix": "app",
       "targets": {
         "build": {
           "executor": "nx-electron:build",
@@ -38,8 +38,8 @@
         "package": {
           "executor": "nx-electron:package",
           "options": {
-            "name": "nx-cli-electron-nx-cli",
-            "frontendProject": "nx-cli",
+            "name": "app",
+            "frontendProject": "client",
             "outputPath": "dist/packages",
             "prepackageOnly": true
           }
@@ -47,8 +47,8 @@
         "make": {
           "executor": "nx-electron:make",
           "options": {
-            "name": "nx-cli-electron-nx-cli",
-            "frontendProject": "nx-cli",
+            "name": "app",
+            "frontendProject": "client",
             "outputPath": "dist/executables"
           }
         },
@@ -182,7 +182,7 @@
       "projectType": "application",
       "root": "apps/client",
       "sourceRoot": "apps/client/src",
-      "prefix": "dev-workspace",
+      "prefix": "client",
       "targets": {
         "build": {
           "executor": "@angular-devkit/build-angular:browser",

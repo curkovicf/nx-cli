@@ -1,5 +1,5 @@
 {
-  "name": "dev-workspace",
+  "name": "nx-cli",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -26,7 +26,11 @@
     "postinstall": "exitzero electron-builder install-app-deps && ngcc --properties es2015 browser module main",
     "start": "run-p ng:start electron:start",
     "ng:start": "nx serve client",
-    "electron:start": "wait-on tcp:4200 && nx run app:serve"
+    "electron:start": "wait-on tcp:4200 && nx run app:serve",
+    "make:exec": "npm run nx-build:prod && npm run nx-package:prod",
+    "nx-build:prod": "nx run-many --target=build --projects=client,app --parallel --prod",
+    "nx-package:prod": "nx run app:package --frontendProject=client",
+    "nx-make": "nx run app:make --frontendProject=client"
   },
   "private": true,
   "dependencies": {
