@@ -1,3 +1,5 @@
+@import "styles/global.mixins";
+
 :host {
   position: relative;
   width: 100%;
@@ -8,31 +10,33 @@
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-}
 
-.search-wrapper {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: inherit;
-  height: 2.1rem;
-  border-radius: 4px;
-  border: 1.5px solid gainsboro;
-  background-color: #cecece;
-
-  & .ico-wrapper {
-    cursor: pointer;
-    user-select: none;
-    width: 1.5rem;
+  & > .search-wrapper {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-  }
+    width: inherit;
+    height: 2.1rem;
+    border-radius: 4px;
+    border: 1.5px solid gainsboro;
+    background-color: #cecece;
 
-  & .search {
-    border: none;
-    outline: none;
-    height: 100%;
-    padding: 0 1rem;
+    & .ico-wrapper {
+      cursor: pointer;
+      user-select: none;
+      width: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    & .search {
+      border: none;
+      outline: none;
+      padding: 0 1rem;
+      @include box(80%, 100%);
+    }
   }
 }
+
+

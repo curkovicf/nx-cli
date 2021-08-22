@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { Project, ProjectsStore } from '@nx-cli/client/projects/data-access';
 import { WorkspacesStore } from '@nx-cli/client/workspaces/data-access';
+import { filter, take } from 'rxjs/operators';
 
 @Component({
   selector: 'dev-workspace-project-list',
@@ -16,7 +17,12 @@ export class ListComponent {
   ) {}
 
   public refresh(): void {
-    // this.projectsStore.getAllProjects();
+    this.workspacesStore.selectedWorkspace$
+      .pipe(
+        take(1),
+        filter(data => data !== undefined)
+      )
+      .subscribe(workspacePath => this.projectsStore.getAllProjects(workspacePath));
   }
 
   public triggerSearch(keyword: string): void {

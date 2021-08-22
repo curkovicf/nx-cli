@@ -19,7 +19,7 @@ export class SearchBarComponent implements AfterViewInit {
   }
 
   public onBlur(searchInput: HTMLInputElement): void {
-    setTimeout(() => searchInput.focus(), 10);
+    // setTimeout(() => searchInput.focus(), 10);
   }
 
   public onInput(value: string): void {

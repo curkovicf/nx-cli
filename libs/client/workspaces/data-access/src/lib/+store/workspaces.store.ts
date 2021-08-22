@@ -23,15 +23,18 @@ export class WorkspacesStore extends ComponentStore<WorkspacesState> {
     });
   }
 
-  public addWorkspace(workspace: Workspace): Observable<Workspace[]> {
+  public addWorkspace(workspace: Workspace): Observable<Workspace> {
     return this.workspaces$.pipe(
       take(1),
-      tap((nxProjects) => {
-        this.patchState({ workspaces: [...nxProjects, workspace] });
+      map((workspaces) => {
+        this.patchState({ workspaces: [...workspaces, workspace] });
 
-        if (nxProjects.length === 0) {
+        if (workspaces.length === 0) {
           this.patchState({ selectedWorkspace: workspace });
+          return workspace;
         }
+
+        return null;
       })
     );
   }

@@ -27,7 +27,7 @@ export class ClientLayoutComponent {
   public onSelectProject(selectedWorkspace: Workspace): void {
     this.workspacesStore.patchState({ selectedWorkspace });
     this.projectsStore.patchState({ selectedProject: undefined })
-
+    this.projectsStore.getAllProjects(selectedWorkspace);
     this.localStorageService.save();
   }
 
@@ -39,9 +39,13 @@ export class ClientLayoutComponent {
     this.isDrawerOpen = !this.isDrawerOpen;
   }
 
-  public onCreateWorkspace(nxProject: Workspace): void {
-    this.workspacesStore.addWorkspace(nxProject)
-      .subscribe(() => {
+  public onCreateWorkspace(workspace: Workspace): void {
+    this.workspacesStore.addWorkspace(workspace)
+      .subscribe(selectedWorkspace => {
+        if (selectedWorkspace) {
+          this.projectsStore.getAllProjects(selectedWorkspace);
+        }
+
         this.toggleDrawer();
         this.localStorageService.save();
       });

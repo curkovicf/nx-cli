@@ -139,10 +139,11 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
 
   private openDialog(component: ComponentType<unknown>): Observable<any> {
     return combineLatest([
-      this.dialog.open(component)
-        .afterClosed()
-        .pipe(filter(data => data !== false || data !== undefined)),
+      this.dialog.open(component).afterClosed(),
       this.workspacesStore.getCurrentWorkspacePath()
-    ]).pipe(take(1));
+    ]).pipe(
+      take(1),
+      filter(([data, workspacePath]) => data !== undefined)
+    );
   }
 }
