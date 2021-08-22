@@ -27,14 +27,15 @@ export class WorkspacesStore extends ComponentStore<WorkspacesState> {
     return this.workspaces$.pipe(
       take(1),
       map((workspaces) => {
-        this.patchState({ workspaces: [...workspaces, workspace] });
-
-        if (workspaces.length === 0) {
-          this.patchState({ selectedWorkspace: workspace });
-          return workspace;
+        if (workspaces) {
+          this.patchState({ workspaces: [...workspaces, workspace] });
+          return null;
         }
 
-        return null;
+        this.patchState({ workspaces: [workspace] });
+        this.patchState({ selectedWorkspace: workspace });
+
+        return workspace;
       })
     );
   }

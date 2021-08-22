@@ -1,4 +1,5 @@
 export * from './lib/functions/get-all-projects.function';
+export * from './lib/functions/clean-empty-dir-win.function';
 export * from './lib/functions/get-project-names.function';
 export * from './lib/functions/get-angular-modules.function';
 export * from './lib/functions/get-class-name.function';

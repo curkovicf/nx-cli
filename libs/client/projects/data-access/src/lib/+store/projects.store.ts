@@ -96,17 +96,20 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
 
   public renameProject(project: Project): void {
     this.openDialog(RenameProjectFormComponent)
-      .subscribe(([data, workspacePath]) => this.projectsIpcApiService.renameProject({
-        workspacePath,
-        projectNameInNxJson: project.nameInNxJson,
-        type: project.type,
-        newPath: project.relativePath
-          .replace('libs', '')
-          .replace('apps', '')
-          .replace(`${project.name}`, `${data.value}`)
-          .substring(2)
-          .slice(0, -1)
-      }));
+      .subscribe(([data, workspacePath]) => {
+        this.projectsIpcApiService.renameProject({
+          workspacePath,
+          projectNameInNxJson: project.nameInNxJson,
+          type: project.type,
+          newPath: project.relativePath
+            .replace('libs', '')
+            .replace('apps', '')
+            .replace(`${project.name}`, `${data.value}`)
+            .substring(2)
+            .slice(0, -1),
+          oldPath: project.path
+        })
+      });
   }
 
   public moveProject(project: Project): void {
@@ -115,7 +118,8 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
         workspacePath,
         projectNameInNxJson: project.nameInNxJson,
         projectName: project.name,
-        moveTo: data.value
+        moveTo: data.value,
+        oldPath: project.path
       }));
   }
 

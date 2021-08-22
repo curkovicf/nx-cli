@@ -1,13 +1,11 @@
-// @ts-ignore
-import os from 'os';
+import { getOs, Platform } from './get-os.function';
 
 export function getPlatformPathSeparator(): string {
-  const platform = os.platform();
-
-  switch (platform) {
-    case 'win32':
+  switch (getOs()) {
+    case Platform.windows:
       return '\\';
-    default:
+    case Platform.other:
+    case Platform.unix:
       return '/';
   }
 }

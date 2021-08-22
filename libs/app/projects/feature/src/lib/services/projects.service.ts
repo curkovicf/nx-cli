@@ -2,15 +2,18 @@ import * as fs from 'fs-extra';
 
 import {
   executeCommand,
+  getOs,
   getPlatformPathSeparator,
   IpcResponse,
   IpcResponseData,
-  parsePath
+  parsePath,
+  Platform
 } from '@nx-cli/app/shared/util';
 import {
+  cleanEmptyDirWinFunction,
   getAllProjects,
   getProjectsNames,
-  getTagsOfAllProjectsWithinNxJsonFile,
+  getTagsOfAllProjectsWithinNxJsonFile
 } from '@nx-cli/app/projects/util';
 import { Project, ProjectType } from '@nx-cli/client/projects/data-access';
 import { IpcEventDtos } from '@nx-cli/shared/data-access/models';
@@ -50,6 +53,11 @@ export class ProjectsService implements IProjectsService {
 
     await executeCommand(cmdTest, [], workspacePath, 'CREATE');
     const isSuccess = await executeCommand(cmd, [], workspacePath, 'CREATE');
+
+    if (getOs() === Platform.windows) {
+      await cleanEmptyDirWinFunction(`${workspacePath}${getPlatformPathSeparator()}libs`);
+      await cleanEmptyDirWinFunction(`${workspacePath}${getPlatformPathSeparator()}apps`);
+    }
 
     return {
       workspacePath,
@@ -150,11 +158,17 @@ export class ProjectsService implements IProjectsService {
     const cmd = parsePath(`nx g mv --project ${projectNameInNxJson} ${newPath}`);
 
     if (type === ProjectType.app) {
-      const cmdTest = `nx g mv --project ${projectNameInNxJson}-e2e ${newPath}-e2e`;
+      const cmdTest = parsePath(`nx g mv --project ${projectNameInNxJson}-e2e ${newPath}-e2e`);
       await executeCommand(cmdTest, [], workspacePath, 'CREATE');
     }
 
     const isSuccess = await executeCommand(cmd, [], workspacePath, 'CREATE');
+
+    //  TODO: Improve performance
+    if (getOs() === Platform.windows) {
+      await cleanEmptyDirWinFunction(`${workspacePath}${getPlatformPathSeparator()}libs`);
+      await cleanEmptyDirWinFunction(`${workspacePath}${getPlatformPathSeparator()}apps`);
+    }
 
     return {
       workspacePath,

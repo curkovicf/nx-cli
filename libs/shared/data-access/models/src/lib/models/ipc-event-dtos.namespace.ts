@@ -12,6 +12,7 @@ export namespace IpcEventDtos {
 
   export interface MoveProjectDto {
     projectName: string;
+    oldPath: string;  //  Needed for Windows
     moveTo: string;
     projectNameInNxJson: string;
     workspacePath: string;
@@ -19,6 +20,7 @@ export namespace IpcEventDtos {
 
   export interface RenameProjectDto {
     newPath: string;
+    oldPath: string;  //  Needed for Windows
     projectNameInNxJson: string;
     workspacePath: string;
     type: ProjectType;

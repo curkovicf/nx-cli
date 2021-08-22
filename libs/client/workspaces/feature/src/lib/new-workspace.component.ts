@@ -22,7 +22,7 @@ export class NewWorkspaceComponent {
   oncancel: EventEmitter<void> = new EventEmitter<void>();
 
   public form: FormGroup;
-  private nxProject: Workspace = { path: '', name: '' };
+  private workspace: Workspace = { path: '', name: '' };
 
   constructor(private workspaceIpcApiService: WorkspaceIpcApiService) {
     this.form = new FormGroup({
@@ -31,7 +31,7 @@ export class NewWorkspaceComponent {
   }
 
   public onSubmit(): void {
-    this.onsubmit.emit(this.nxProject);
+    this.onsubmit.emit(this.workspace);
   }
 
   public onCancel() {
@@ -46,12 +46,16 @@ export class NewWorkspaceComponent {
           .pipe(
             map((response: IpcResponseData<Workspace>): ValidationErrors | null => {
               if (response.data) {
-                this.nxProject = response.data;
+                this.workspace = response.data;
+
+                console.log(response);
+                //  TODO: Remove quickfix
+                if (!this.workspaces) { return null; }
 
                 for (let i = 0; i < this.workspaces.length; i++) {
                   const currProject = this.workspaces[i];
 
-                  if (currProject.name === this.nxProject.name && currProject.path === this.nxProject.path) {
+                  if (currProject.name === this.workspace.name && currProject.path === this.workspace.path) {
                     return { isNxProject: { valid: false } };
                   }
                 }

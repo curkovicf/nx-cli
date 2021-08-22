@@ -33,6 +33,7 @@ export class ListItemBadgeComponent {
         this.accentColor = '#7F8C8D';
         break;
       case ProjectType.app:
+      case ProjectType.e2e:
         this.accentColor = '#D35400';
         break;
       default:

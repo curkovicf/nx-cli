@@ -9,10 +9,6 @@ export function getProjectType(pwd: string, rootPath: string): ProjectType | und
     .filter((item) => item !== '' && item !== '/')
     .reverse();
 
-  if (keywords[keywords.length - 1] === 'apps') {
-    return ProjectType.app;
-  }
-
   for (let index = 0; index < libraryTypes.length; index++) {
     if (keywords[0].includes(libraryTypes[index]) || keywords[1].includes(libraryTypes[index])) {
       return libraryTypes[index];
