@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { Project, ProjectsStore } from '@nx-cli/client/projects/data-access';
-import { ProjectsIpcEventsProxyService } from '@nx-cli/client/projects/util';
 import { MatDialog } from '@angular/material/dialog';
 import { NewComponentFormComponent } from '@nx-cli/client/projects/ui/new-component-form';
 import { tap } from 'rxjs/operators';
-import { GenerateServiceFormComponent } from '@nx-cli/client/projects/ui/new-service-form';
+import { NewServiceFormComponent } from '@nx-cli/client/projects/ui/new-service-form';
 
 @Component({
   selector: 'dev-workspace-project-detail',
@@ -14,7 +13,6 @@ import { GenerateServiceFormComponent } from '@nx-cli/client/projects/ui/new-ser
 export class DetailComponent {
   constructor(
     public projectsStore: ProjectsStore,
-    private projectsEventsProxyService: ProjectsIpcEventsProxyService,
     private dialog: MatDialog,
   ) {}
 
@@ -22,7 +20,7 @@ export class DetailComponent {
     this.dialog.open(NewComponentFormComponent)
       .afterClosed()
       .pipe(
-        tap(data => this.projectsEventsProxyService.generateComponent({
+        tap(data => this.projectsStore.generateComponent({
           ...data,
           projectName: project.nameInNxJson
         }))
@@ -31,10 +29,10 @@ export class DetailComponent {
   }
 
   public generateService(project: Project): void {
-    this.dialog.open(GenerateServiceFormComponent)
+    this.dialog.open(NewServiceFormComponent)
       .afterClosed()
       .pipe(
-        tap(data => this.projectsEventsProxyService.generateService({
+        tap(data => this.projectsStore.generateService({
           ...data,
           projectName: project.nameInNxJson
         }))
@@ -43,14 +41,14 @@ export class DetailComponent {
   }
 
   public moveProject(project: Project): void {
-    this.projectsEventsProxyService.moveProject(project);
+    this.projectsStore.moveProject(project);
   }
 
   public renameProject(project: Project): void {
-    this.projectsEventsProxyService.renameProject(project);
+    this.projectsStore.renameProject(project);
   }
 
   public deleteLib(project: Project): void {
-    this.projectsEventsProxyService.deleteProject(project);
+    this.projectsStore.deleteProject(project);
   }
 }

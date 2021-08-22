@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NxWorkspace, ProjectsStore } from '@nx-cli/client/projects/data-access';
+import { ProjectsStore } from '@nx-cli/client/projects/data-access';
 import { drawerAnimation } from '@nx-cli/client/shell/ui/drawer';
-import { ProjectsIpcEventsProxyService } from '@nx-cli/client/projects/util';
-import { LocalStorageService } from '@nx-cli/client/shared/util';
+import { UtilLocalStorageService } from '@nx-cli/client/shared/util';
+import { IpcEventsListenerService } from '@nx-cli/shared/data-access/ipc-events';
+import { Workspace, WorkspacesStore } from '@nx-cli/client/workspaces/data-access';
 
 @Component({
   selector: 'dev-workspace-layout',
@@ -15,14 +16,18 @@ export class ClientLayoutComponent {
 
   constructor(
     public projectsStore: ProjectsStore,
-    private localStorageService: LocalStorageService,
-    private projectsIpcEventsProxyService: ProjectsIpcEventsProxyService
+    public workspacesStore: WorkspacesStore,
+    private localStorageService: UtilLocalStorageService,
+    private ipcEventsListenerService: IpcEventsListenerService,
   ) {
+    this.ipcEventsListenerService.initChannels();
     this.localStorageService.initData();
   }
 
-  public onSelectProject(nxProject: NxWorkspace): void {
-    this.projectsIpcEventsProxyService.changeSelectProject(nxProject);
+  public onSelectProject(selectedWorkspace: Workspace): void {
+    this.workspacesStore.patchState({ selectedWorkspace });
+    this.projectsStore.patchState({ selectedProject: undefined })
+
     this.localStorageService.save();
   }
 
@@ -34,10 +39,11 @@ export class ClientLayoutComponent {
     this.isDrawerOpen = !this.isDrawerOpen;
   }
 
-  public onSubmitNxProject(nxProject: NxWorkspace): void {
-    this.projectsStore.addNxProject(nxProject).subscribe(() => {
-      this.toggleDrawer();
-      this.localStorageService.save();
-    });
+  public onCreateWorkspace(nxProject: Workspace): void {
+    this.workspacesStore.addWorkspace(nxProject)
+      .subscribe(() => {
+        this.toggleDrawer();
+        this.localStorageService.save();
+      });
   }
 }

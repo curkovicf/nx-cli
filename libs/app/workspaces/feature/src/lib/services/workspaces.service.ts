@@ -1,14 +1,14 @@
 import { IpcResponseData } from '@nx-cli/app/shared/util';
-import { NxWorkspace } from '@nx-cli/client/projects/data-access';
 
 import * as fs from 'fs-extra';
+import { Workspace } from '@nx-cli/client/workspaces/data-access';
 
 export class WorkspacesService {
   /**
    *
    * @param workspacePath
    */
-  async validateWorkspacePath(workspacePath: string): Promise<IpcResponseData<NxWorkspace>> {
+  async validateWorkspacePath(workspacePath: string): Promise<IpcResponseData<Workspace>> {
     const isNxProject = await fs.pathExists(`${workspacePath}/nx.json`);
 
     if (isNxProject) {

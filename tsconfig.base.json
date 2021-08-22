@@ -50,7 +50,9 @@
       "@nx-cli/client/workspaces/data-access": ["libs/client/workspaces/data-access/src/index.ts"],
       "@nx-cli/client/workspaces/feature": ["libs/client/workspaces/feature/src/index.ts"],
       "@nx-cli/client/workspaces/ui/chips-bar": ["libs/client/workspaces/ui/chips-bar/src/index.ts"],
-      "@nx-cli/shared/data/ipc-events": ["libs/shared/data/ipc-events/src/index.ts"],
+      "@nx-cli/shared/data-access/ipc-api": ["libs/shared/data-access/ipc-api/src/index.ts"],
+      "@nx-cli/shared/data-access/ipc-events": ["libs/shared/data-access/ipc-events/src/index.ts"],
+      "@nx-cli/shared/data-access/models": ["libs/shared/data-access/models/src/index.ts"],
       "@nx-cli/shared/util": ["libs/shared/util/src/index.ts"]
     }
   },

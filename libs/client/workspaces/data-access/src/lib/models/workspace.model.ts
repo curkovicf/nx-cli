@@ -1,4 +1,4 @@
-export interface NxWorkspace {
+export interface Workspace {
   name: string;
   path: string;
 }

@@ -2,7 +2,7 @@ import { ipcMain } from 'electron';
 
 import { IController } from '@nx-cli/app/shared/util';
 import { WorkspacesService } from '../services/workspaces.service';
-import { IpcEvents } from '@nx-cli/shared/data/ipc-events';
+import { IpcEvents } from '@nx-cli/shared/data-access/models';
 
 export class WorkspacesController implements IController {
   private workspacesService = new WorkspacesService();

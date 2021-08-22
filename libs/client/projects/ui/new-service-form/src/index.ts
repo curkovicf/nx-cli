@@ -1,3 +1,3 @@
-export * from './lib/generate-service-form.component';
+export * from './lib/new-service-form.component';
 
-export * from './lib/generate-service-form.module';
+export * from './lib/new-service-form.module';

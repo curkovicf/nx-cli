@@ -1,12 +1,12 @@
-<img (click)="onaddproject.emit()" src="assets/add.png" height="25" alt="Add icon" class="icon" />
+<img (click)="onaddworkspace.emit()" src="assets/add.png" height="25" alt="Add icon" class="icon" />
 
 <mat-chip-list class="chip-list">
   <mat-chip
-    *ngFor="let nxProject of nxProjects"
-    (click)="onselectproject.emit(nxProject)"
-    [ngClass]="{ 'selected-chip': this.nxSelectedProject?.name === nxProject.name }"
+    *ngFor="let workspace of workspaces"
+    (click)="onselectworkspace.emit(workspace)"
+    [ngClass]="{ 'selected-chip': this.selectedWorkspace?.name === workspace.name }"
     class="chip"
   >
-    {{ nxProject.name }}
+    {{ workspace.name }}
   </mat-chip>
 </mat-chip-list>

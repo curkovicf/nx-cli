@@ -1,6 +1,6 @@
 import { ipcMain } from 'electron';
 
-import { IpcEventDtos, IpcEvents } from '@nx-cli/shared/data/ipc-events';
+import { IpcEventDtos, IpcEvents } from '@nx-cli/shared/data-access/models';
 import { ProjectsService } from '../services/projects.service';
 import { Project } from '@nx-cli/client/projects/data-access';
 import { IController, IpcResponse, IpcResponseData } from '@nx-cli/app/shared/util';

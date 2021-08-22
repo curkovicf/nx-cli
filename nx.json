@@ -133,7 +133,13 @@
     "client-workspaces-ui-chips-bar": {
       "tags": []
     },
-    "shared-data-ipc-events": {
+    "shared-data-access-ipc-api": {
+      "tags": []
+    },
+    "shared-data-access-ipc-events": {
+      "tags": []
+    },
+    "shared-data-access-models": {
       "tags": []
     },
     "shared-util": {

@@ -1,5 +1,5 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { NxWorkspace } from '@nx-cli/client/projects/data-access';
+import { Workspace } from '@nx-cli/client/workspaces/data-access';
 
 @Component({
   selector: 'dev-workspace-chips-bar',
@@ -9,14 +9,14 @@ import { NxWorkspace } from '@nx-cli/client/projects/data-access';
 export class ChipsBarComponent {
   @Input()
   // @ts-ignore
-  nxProjects: NxWorkspace[] | null;
+  workspaces: Workspace[] | null;
 
   @Input()
-  nxSelectedProject: NxWorkspace | null | undefined;
+  selectedWorkspace: Workspace | null | undefined;
 
   @Output()
-  onaddproject: EventEmitter<void> = new EventEmitter<void>();
+  onaddworkspace: EventEmitter<void> = new EventEmitter<void>();
 
   @Output()
-  onselectproject: EventEmitter<NxWorkspace> = new EventEmitter<NxWorkspace>();
+  onselectworkspace: EventEmitter<Workspace> = new EventEmitter<Workspace>();
 }

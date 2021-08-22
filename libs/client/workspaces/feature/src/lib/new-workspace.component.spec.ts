@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddNxProjectFormComponent } from './add-nx-project-form.component';
+import { NewWorkspaceComponent } from './new-workspace.component';
 
 describe('AddNxProjectFormComponent', () => {
-  let component: AddNxProjectFormComponent;
-  let fixture: ComponentFixture<AddNxProjectFormComponent>;
+  let component: NewWorkspaceComponent;
+  let fixture: ComponentFixture<NewWorkspaceComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AddNxProjectFormComponent],
+      declarations: [NewWorkspaceComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddNxProjectFormComponent);
+    fixture = TestBed.createComponent(NewWorkspaceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

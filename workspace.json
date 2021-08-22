@@ -929,22 +929,72 @@
         }
       }
     },
-    "shared-data-ipc-events": {
-      "root": "libs/shared/data/ipc-events",
-      "sourceRoot": "libs/shared/data/ipc-events/src",
+    "shared-data-access-ipc-api": {
+      "projectType": "library",
+      "root": "libs/shared/data-access/ipc-api",
+      "sourceRoot": "libs/shared/data-access/ipc-api/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/data-access/ipc-api"],
+          "options": {
+            "jestConfig": "libs/shared/data-access/ipc-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/data-access/ipc-api/src/**/*.ts",
+              "libs/shared/data-access/ipc-api/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "shared-data-access-ipc-events": {
+      "projectType": "library",
+      "root": "libs/shared/data-access/ipc-events",
+      "sourceRoot": "libs/shared/data-access/ipc-events/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/data-access/ipc-events"],
+          "options": {
+            "jestConfig": "libs/shared/data-access/ipc-events/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/data-access/ipc-events/src/**/*.ts",
+              "libs/shared/data-access/ipc-events/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "shared-data-access-models": {
+      "root": "libs/shared/data-access/models",
+      "sourceRoot": "libs/shared/data-access/models/src",
       "projectType": "library",
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/shared/data/ipc-events/**/*.ts"]
+            "lintFilePatterns": ["libs/shared/data-access/models/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/data/ipc-events"],
+          "outputs": ["coverage/libs/shared/data-access/models"],
           "options": {
-            "jestConfig": "libs/shared/data/ipc-events/jest.config.js",
+            "jestConfig": "libs/shared/data-access/models/jest.config.js",
             "passWithNoTests": true
           }
         }

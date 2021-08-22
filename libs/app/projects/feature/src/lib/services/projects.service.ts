@@ -1,6 +1,5 @@
 import * as fs from 'fs-extra';
 
-import { IpcEventDtos } from '@nx-cli/shared/data/ipc-events';
 import {
   executeCommand,
   getPlatformPathSeparator,
@@ -14,6 +13,7 @@ import {
   getTagsOfAllProjectsWithinNxJsonFile,
 } from '@nx-cli/app/projects/util';
 import { Project, ProjectType } from '@nx-cli/client/projects/data-access';
+import { IpcEventDtos } from '@nx-cli/shared/data-access/models';
 
 
 export class ProjectsService {

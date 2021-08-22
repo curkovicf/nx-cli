@@ -1,1 +1,1 @@
-export * from './lib/add-nx-project-form.module';
+export * from './lib/new-workspace.module';

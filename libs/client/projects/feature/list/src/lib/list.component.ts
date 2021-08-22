@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { Project, ProjectsStore } from '@nx-cli/client/projects/data-access';
-import { ProjectsIpcEventsProxyService } from '@nx-cli/client/projects/util';
+import { WorkspacesStore } from '@nx-cli/client/workspaces/data-access';
 
 @Component({
   selector: 'dev-workspace-project-list',
@@ -10,10 +10,13 @@ import { ProjectsIpcEventsProxyService } from '@nx-cli/client/projects/util';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListComponent {
-  constructor(public projectsStore: ProjectsStore, private projectsIpcEventsProxyService: ProjectsIpcEventsProxyService) {}
+  constructor(
+    public projectsStore: ProjectsStore,
+    public workspacesStore: WorkspacesStore,
+  ) {}
 
   public refresh(): void {
-    this.projectsIpcEventsProxyService.getAllProjects();
+    // this.projectsStore.getAllProjects();
   }
 
   public triggerSearch(keyword: string): void {
@@ -29,10 +32,10 @@ export class ListComponent {
   }
 
   public createNgApp(): void {
-    this.projectsIpcEventsProxyService.createNgApp();
+    this.projectsStore.createNgApp();
   }
 
   public createLib(): void {
-    this.projectsIpcEventsProxyService.createLib();
+    this.projectsStore.createLib();
   }
 }

@@ -1,1 +1,3 @@
-export * from './lib/client-workspaces-data-access.module';
+export * from './lib/+store/workspaces.store';
+
+export * from './lib/models/workspace.model';
