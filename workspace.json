@@ -494,6 +494,56 @@
         }
       }
     },
+    "client-projects-ui-move-project-form": {
+      "projectType": "library",
+      "root": "libs/client/projects/ui/move-project-form",
+      "sourceRoot": "libs/client/projects/ui/move-project-form/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/ui/move-project-form"],
+          "options": {
+            "jestConfig": "libs/client/projects/ui/move-project-form/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/ui/move-project-form/src/**/*.ts",
+              "libs/client/projects/ui/move-project-form/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-projects-ui-new-app-form": {
+      "projectType": "library",
+      "root": "libs/client/projects/ui/new-app-form",
+      "sourceRoot": "libs/client/projects/ui/new-app-form/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/ui/new-app-form"],
+          "options": {
+            "jestConfig": "libs/client/projects/ui/new-app-form/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/ui/new-app-form/src/**/*.ts",
+              "libs/client/projects/ui/new-app-form/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "client-projects-ui-new-component-form": {
       "projectType": "library",
       "root": "libs/client/projects/ui/new-component-form",
@@ -514,6 +564,31 @@
             "lintFilePatterns": [
               "libs/client/projects/ui/new-component-form/src/**/*.ts",
               "libs/client/projects/ui/new-component-form/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-projects-ui-new-lib-form": {
+      "projectType": "library",
+      "root": "libs/client/projects/ui/new-lib-form",
+      "sourceRoot": "libs/client/projects/ui/new-lib-form/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/ui/new-lib-form"],
+          "options": {
+            "jestConfig": "libs/client/projects/ui/new-lib-form/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/ui/new-lib-form/src/**/*.ts",
+              "libs/client/projects/ui/new-lib-form/src/**/*.html"
             ]
           }
         }
@@ -564,6 +639,31 @@
             "lintFilePatterns": [
               "libs/client/projects/ui/new-service-form/src/**/*.ts",
               "libs/client/projects/ui/new-service-form/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-projects-ui-rename-project-form": {
+      "projectType": "library",
+      "root": "libs/client/projects/ui/rename-project-form",
+      "sourceRoot": "libs/client/projects/ui/rename-project-form/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/ui/rename-project-form"],
+          "options": {
+            "jestConfig": "libs/client/projects/ui/rename-project-form/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/ui/rename-project-form/src/**/*.ts",
+              "libs/client/projects/ui/rename-project-form/src/**/*.html"
             ]
           }
         }

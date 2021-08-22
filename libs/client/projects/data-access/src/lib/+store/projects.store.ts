@@ -1,18 +1,19 @@
 import { ComponentStore } from '@ngrx/component-store';
 import { Injectable } from '@angular/core';
-import { take, tap } from 'rxjs/operators';
+import { filter, take, tap } from 'rxjs/operators';
 import { Project } from '../models/project.model';
 import { Workspace, WorkspacesStore } from '@nx-cli/client/workspaces/data-access';
-import { IpcEventDtos } from '@nx-cli/shared/data-access/models';
-import {
-  SingleInputFormComponent,
-  SingleInputFormComponentData
-} from '@nx-cli/client/shared/ui/single-input-form-dialog';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { ConfirmDialogComponent } from '@nx-cli/client/shared/ui/confirm-dialog';
-import { GenerateLibraryFormComponent } from '@nx-cli/client/projects/ui/new-project-form';
 import { ProjectsIpcApiService } from '@nx-cli/shared/data-access/ipc-api';
 import { MatDialog } from '@angular/material/dialog';
+import { NewComponentComponent } from '@nx-cli/client/projects/ui/new-component-form';
+import { ComponentType } from '@angular/cdk/portal/portal';
+import { NewServiceFormComponent } from '@nx-cli/client/projects/ui/new-service-form';
+import { MoveProjectFormComponent } from '@nx-cli/client/projects/ui/move-project-form';
+import { RenameProjectFormComponent } from '@nx-cli/client/projects/ui/rename-project-form';
+import { NewAppFormComponent } from '@nx-cli/client/projects/ui/new-app-form';
+import { NewLibFormComponent } from '@nx-cli/client/projects/ui/new-lib-form';
 
 export interface ProjectsState {
   projects: Project[];
@@ -49,8 +50,7 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
             projectsLoadedInView: projects.filter((project) => project.name.includes(keyword))
           })
         )
-      )
-      .subscribe();
+      ).subscribe();
   }
 
   public selectProject(selectedProject: Project): void {
@@ -64,97 +64,85 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
   }
 
   public deleteProject(project: Project): void {
-    combineLatest([this.dialog.open(ConfirmDialogComponent).afterClosed(), this.workspacesStore.selectedWorkspace$])
-      .pipe(take(1))
-      .subscribe(([isConfirm, selectedNxProject]) => {
-        if (!isConfirm) {
-          return;
-        }
-
-        this.projectsIpcApiService.deleteProject({
-          projectNameInNxJson: project.nameInNxJson,
-          workspacePath: selectedNxProject?.path,
-          type: project.type
-        });
-      });
+    this.openDialog(ConfirmDialogComponent)
+      .subscribe(([data, workspacePath]) => this.projectsIpcApiService.deleteProject({
+        workspacePath,
+        projectNameInNxJson: project.nameInNxJson,
+        type: project.type
+      }));
   }
 
   public createNgApp(): void {
-    const moveDialogData: SingleInputFormComponentData = {
-      submitButtonText: 'Create app',
-      placeholder: 'Eg. my-awesome-app',
-      title: 'Enter new app name'
-    };
-
-    combineLatest([
-      this.dialog
-        .open(SingleInputFormComponent, {
-          data: moveDialogData
-        })
-        .afterClosed(),
-      this.workspacesStore.getCurrentWorkspacePath()
-    ])
-      .pipe(take(1))
-      .subscribe(([data, workspacePath]) => {
-        if (!data) { return; }
-
-        const createAppDto: IpcEventDtos.CreateProjectDto = {
-          workspacePath,
-          path: data.value.slice(0, -1),
-          type: 'app'
-        };
-
-        this.projectsIpcApiService.createProject(createAppDto);
-      });
+    this.openDialog(NewAppFormComponent)
+      .subscribe(([data, workspacePath]) => this.projectsIpcApiService.createProject({
+        workspacePath,
+        path: data.value.slice(0, -1),
+        type: 'app'
+      }));
   }
 
   public createLib(): void {
-    combineLatest([
-      this.dialog.open(GenerateLibraryFormComponent).afterClosed(),
+    this.openDialog(NewLibFormComponent)
+      .subscribe(([data, workspacePath]) => this.projectsIpcApiService.createProject({
+        workspacePath,
+        path:
+          data.value[data.value.length - 1] === '/'
+            ? data.value.slice(0, -1)
+            : data.value,
+        flags: data.flags,
+        type: 'lib'
+      }));
+  }
+
+  public renameProject(project: Project): void {
+    this.openDialog(RenameProjectFormComponent)
+      .subscribe(([data, workspacePath]) => this.projectsIpcApiService.renameProject({
+        workspacePath,
+        projectNameInNxJson: project.nameInNxJson,
+        type: project.type,
+        newPath: project.relativePath
+          .replace('libs', '')
+          .replace('apps', '')
+          .replace(`${project.name}`, `${data.value}`)
+          .substring(2)
+          .slice(0, -1)
+      }));
+  }
+
+  public moveProject(project: Project): void {
+    this.openDialog(MoveProjectFormComponent)
+      .subscribe(([data, workspacePath]) => this.projectsIpcApiService.moveProject({
+        workspacePath,
+        projectNameInNxJson: project.nameInNxJson,
+        projectName: project.name,
+        moveTo: data.value
+      }));
+  }
+
+  public generateComponent(project: Project): void {
+    this.openDialog(NewComponentComponent)
+      .subscribe(([data, workspacePath]) => this.projectsIpcApiService.generateComponent({
+        ...data,
+        workspacePath,
+        projectName: project.nameInNxJson
+      }));
+  }
+
+  public generateService(project: Project): void {
+    this.openDialog(NewServiceFormComponent)
+      .subscribe(([data, workspacePath]) => this.projectsIpcApiService.generateService({
+        ...data,
+        workspacePath,
+        projectName: project.nameInNxJson
+      }));
+  }
+
+  private openDialog(component: ComponentType<unknown>): Observable<any> {
+    return combineLatest([
+      this.dialog.open(component)
+        .afterClosed()
+        .pipe(filter(data => data !== false || data !== undefined)),
       this.workspacesStore.getCurrentWorkspacePath()
-    ])
-      .pipe(take(1))
-      .subscribe(([data, workspacePath]) => {
-        if (!data) { return; }
-
-        const createLibDto: IpcEventDtos.CreateProjectDto = {
-          workspacePath,
-          path:
-            data.artifactName[data.artifactName.length - 1] === '/'
-              ? data.artifactName.slice(0, -1)
-              : data.artifactName,
-          flags: data.flags,
-          type: 'lib'
-        };
-
-        this.projectsIpcApiService.createProject(createLibDto);
-      });
-  }
-
-  public renameProject(dto: Partial<IpcEventDtos.RenameProjectDto>): void {
-    this.execute((dto) => this.projectsIpcApiService.renameProject(dto), dto);
-  }
-
-  public moveProject(dto: Partial<IpcEventDtos.MoveProjectDto>): void {
-    this.execute((dto) => this.projectsIpcApiService.moveProject(dto), dto);
-  }
-
-  public generateComponent(dto: IpcEventDtos.GenerateDto): void {
-    this.execute((dto) => this.projectsIpcApiService.generateComponent(dto), dto);
-  }
-
-  public generateService(dto: IpcEventDtos.GenerateDto): void {
-    this.execute((dto) => this.projectsIpcApiService.generateService(dto), dto);
-  }
-
-  private execute(generateCallback: (data: any) => void, dto: any): void {
-    this.workspacesStore.getCurrentWorkspacePath()
-      .pipe(
-        take(1),
-        tap(workspacePath => {
-          const copyDto = { ...dto, workspacePath };
-          generateCallback(copyDto);
-        })
-      ).subscribe();
+    ]).pipe(take(1));
   }
 }

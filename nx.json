@@ -79,13 +79,25 @@
     "client-projects-ui-list-item-badge": {
       "tags": []
     },
+    "client-projects-ui-move-project-form": {
+      "tags": []
+    },
+    "client-projects-ui-new-app-form": {
+      "tags": []
+    },
     "client-projects-ui-new-component-form": {
+      "tags": []
+    },
+    "client-projects-ui-new-lib-form": {
       "tags": []
     },
     "client-projects-ui-new-project-form": {
       "tags": []
     },
     "client-projects-ui-new-service-form": {
+      "tags": []
+    },
+    "client-projects-ui-rename-project-form": {
       "tags": []
     },
     "client-projects-util": {
