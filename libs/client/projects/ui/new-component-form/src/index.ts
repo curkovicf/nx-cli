@@ -1,3 +1,3 @@
-export * from './lib/new-component-form.component';
+export * from './lib/new-component.component';
 
-export * from './lib/new-component-form.module';
+export * from './lib/new-component.module';

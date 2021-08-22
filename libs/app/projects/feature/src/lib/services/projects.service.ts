@@ -14,9 +14,10 @@ import {
 } from '@nx-cli/app/projects/util';
 import { Project, ProjectType } from '@nx-cli/client/projects/data-access';
 import { IpcEventDtos } from '@nx-cli/shared/data-access/models';
+import { IProjectsService } from './projects-service.interface';
 
 
-export class ProjectsService {
+export class ProjectsService implements IProjectsService {
   /**
    * Gets all libs and apps for a specific nx workspace
    * @param workspacePath root workspace path
@@ -144,12 +145,12 @@ export class ProjectsService {
    * @param dto
    */
   async renameProject(dto: IpcEventDtos.RenameProjectDto): Promise<IpcResponse> {
-    const { projectNameInNxJson, workspacePath, newName, libPath, type } = dto;
+    const { projectNameInNxJson, workspacePath, newPath, type } = dto;
 
-    const cmd = parsePath(`nx g mv --project ${projectNameInNxJson} ${libPath}${newName}`);
+    const cmd = parsePath(`nx g mv --project ${projectNameInNxJson} ${newPath}`);
 
     if (type === ProjectType.app) {
-      const cmdTest = `nx g mv --project ${projectNameInNxJson}-e2e ${libPath}${newName}-e2e`;
+      const cmdTest = `nx g mv --project ${projectNameInNxJson}-e2e ${newPath}-e2e`;
       await executeCommand(cmdTest, [], workspacePath, 'CREATE');
     }
 

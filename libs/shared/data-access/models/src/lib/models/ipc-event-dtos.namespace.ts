@@ -18,8 +18,7 @@ export namespace IpcEventDtos {
   }
 
   export interface RenameProjectDto {
-    newName: string;
-    libPath: string;
+    newPath: string;
     projectNameInNxJson: string;
     workspacePath: string;
     type: ProjectType;

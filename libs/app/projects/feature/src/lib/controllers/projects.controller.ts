@@ -4,9 +4,10 @@ import { IpcEventDtos, IpcEvents } from '@nx-cli/shared/data-access/models';
 import { ProjectsService } from '../services/projects.service';
 import { Project } from '@nx-cli/client/projects/data-access';
 import { IController, IpcResponse, IpcResponseData } from '@nx-cli/app/shared/util';
+import { IProjectsService } from '../services/projects-service.interface';
 
 export class ProjectsController implements IController {
-  private projectsService = new ProjectsService();
+  private projectsService: IProjectsService = new ProjectsService();
 
   public initRoutes(): void {
     this.initGetAllProjects();

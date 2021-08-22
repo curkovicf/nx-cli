@@ -57,103 +57,10 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
     this.patchState({ selectedProject });
   }
 
-
   public getAllProjects(workspace: Workspace): void {
-    if (!workspace) {
-      return;
-    }
+    if (!workspace) { return; }
 
     this.projectsIpcApiService.getAllProjects(workspace.path);
-  }
-
-  public generateComponent(dto: IpcEventDtos.GenerateDto): void {
-    this.emitData((dto) => this.projectsIpcApiService.generateComponent(dto), dto);
-  }
-
-  public generateService(dto: IpcEventDtos.GenerateDto): void {
-    this.emitData((dto) => this.projectsIpcApiService.generateService(dto), dto);
-  }
-
-  private emitData(emit: (data: any) => void, dto: any): void {
-    this.workspacesStore.selectedWorkspace$
-      .pipe(
-        take(1),
-        tap((selectedNxProject) => {
-          const copyDto = { ...dto, workspacePath: selectedNxProject?.path };
-          emit(copyDto);
-        })
-      )
-      .subscribe();
-  }
-
-  public moveProject(project: Project): void {
-    const moveDialogData: SingleInputFormComponentData = {
-      submitButtonText: 'Move',
-      placeholder: 'Eg. shared/ui',
-      title: 'Enter new location'
-    };
-
-    combineLatest([
-      this.dialog
-        .open(SingleInputFormComponent, {
-          data: moveDialogData
-        })
-        .afterClosed(),
-      this.workspacesStore.selectedWorkspace$,
-      this.selectedProject$
-    ])
-      .pipe(take(1))
-      .subscribe(([data, selectedNxProject, selectedProject]) => {
-        if (!data) {
-          return;
-        }
-
-        const generateDto: IpcEventDtos.MoveProjectDto = {
-          workspacePath: selectedNxProject?.path,
-          projectName: selectedProject?.name,
-          projectNameInNxJson: project.nameInNxJson,
-          moveTo: data.value
-        };
-
-        this.projectsIpcApiService.moveProject(generateDto);
-      });
-  }
-
-  public renameProject(project: Project): void {
-    const moveDialogData: SingleInputFormComponentData = {
-      submitButtonText: 'Rename',
-      placeholder: 'Eg. new-name',
-      title: 'Enter new name'
-    };
-
-    combineLatest([
-      this.dialog
-        .open(SingleInputFormComponent, {
-          data: moveDialogData
-        })
-        .afterClosed(),
-      this.workspacesStore.selectedWorkspace$
-    ])
-      .pipe(take(1))
-      .subscribe(([data, selectedNxProject]) => {
-        if (!data) {
-          return;
-        }
-
-        const generateDto: IpcEventDtos.RenameProjectDto = {
-          workspacePath: selectedNxProject?.path,
-          libPath: project.relativePath
-            .replace(project.name, '')
-            .replace('/libs', '')
-            .replace('/apps', '')
-            .substring(1),
-          projectNameInNxJson: project.nameInNxJson,
-          newName: data.value.slice(0, -1),
-          type: project.type
-        };
-
-        this.projectsIpcApiService.renameProject(generateDto);
-      });
   }
 
   public deleteProject(project: Project): void {
@@ -185,17 +92,15 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
           data: moveDialogData
         })
         .afterClosed(),
-      this.workspacesStore.selectedWorkspace$
+      this.workspacesStore.getCurrentWorkspacePath()
     ])
       .pipe(take(1))
-      .subscribe(([data, selectedNxProject]) => {
-        if (!data) {
-          return;
-        }
+      .subscribe(([data, workspacePath]) => {
+        if (!data) { return; }
 
         const createAppDto: IpcEventDtos.CreateProjectDto = {
+          workspacePath,
           path: data.value.slice(0, -1),
-          workspacePath: selectedNxProject?.path,
           type: 'app'
         };
 
@@ -204,24 +109,52 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
   }
 
   public createLib(): void {
-    combineLatest([this.dialog.open(GenerateLibraryFormComponent).afterClosed(), this.workspacesStore.selectedWorkspace$])
+    combineLatest([
+      this.dialog.open(GenerateLibraryFormComponent).afterClosed(),
+      this.workspacesStore.getCurrentWorkspacePath()
+    ])
       .pipe(take(1))
-      .subscribe(([data, selectedNxProject]) => {
-        if (!data) {
-          return;
-        }
+      .subscribe(([data, workspacePath]) => {
+        if (!data) { return; }
 
         const createLibDto: IpcEventDtos.CreateProjectDto = {
+          workspacePath,
           path:
             data.artifactName[data.artifactName.length - 1] === '/'
               ? data.artifactName.slice(0, -1)
               : data.artifactName,
-          workspacePath: selectedNxProject?.path,
           flags: data.flags,
           type: 'lib'
         };
 
         this.projectsIpcApiService.createProject(createLibDto);
       });
+  }
+
+  public renameProject(dto: Partial<IpcEventDtos.RenameProjectDto>): void {
+    this.execute((dto) => this.projectsIpcApiService.renameProject(dto), dto);
+  }
+
+  public moveProject(dto: Partial<IpcEventDtos.MoveProjectDto>): void {
+    this.execute((dto) => this.projectsIpcApiService.moveProject(dto), dto);
+  }
+
+  public generateComponent(dto: IpcEventDtos.GenerateDto): void {
+    this.execute((dto) => this.projectsIpcApiService.generateComponent(dto), dto);
+  }
+
+  public generateService(dto: IpcEventDtos.GenerateDto): void {
+    this.execute((dto) => this.projectsIpcApiService.generateService(dto), dto);
+  }
+
+  private execute(generateCallback: (data: any) => void, dto: any): void {
+    this.workspacesStore.getCurrentWorkspacePath()
+      .pipe(
+        take(1),
+        tap(workspacePath => {
+          const copyDto = { ...dto, workspacePath };
+          generateCallback(copyDto);
+        })
+      ).subscribe();
   }
 }

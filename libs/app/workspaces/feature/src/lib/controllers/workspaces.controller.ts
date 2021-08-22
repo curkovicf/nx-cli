@@ -3,9 +3,10 @@ import { ipcMain } from 'electron';
 import { IController } from '@nx-cli/app/shared/util';
 import { WorkspacesService } from '../services/workspaces.service';
 import { IpcEvents } from '@nx-cli/shared/data-access/models';
+import { IWorkspaceService } from '../services/workspace-service.interface';
 
 export class WorkspacesController implements IController {
-  private workspacesService = new WorkspacesService();
+  private workspacesService: IWorkspaceService = new WorkspacesService();
 
   initRoutes(): void {
     this.initValidateWorkspacePath();

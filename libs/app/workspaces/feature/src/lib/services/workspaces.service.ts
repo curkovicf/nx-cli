@@ -2,8 +2,9 @@ import { IpcResponseData } from '@nx-cli/app/shared/util';
 
 import * as fs from 'fs-extra';
 import { Workspace } from '@nx-cli/client/workspaces/data-access';
+import { IWorkspaceService } from './workspace-service.interface';
 
-export class WorkspacesService {
+export class WorkspacesService implements IWorkspaceService {
   /**
    *
    * @param workspacePath

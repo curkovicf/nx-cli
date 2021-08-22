@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
 import { Observable } from 'rxjs';
-import { take, tap } from 'rxjs/operators';
+import { map, take, tap } from 'rxjs/operators';
 import { Workspace } from '../models/workspace.model';
 
 export interface WorkspacesState {
@@ -34,5 +34,12 @@ export class WorkspacesStore extends ComponentStore<WorkspacesState> {
         }
       })
     );
+  }
+
+  public getCurrentWorkspacePath(): Observable<string> {
+    return this.selectedWorkspace$
+      .pipe(
+        map(workspace => workspace?.path)
+      );
   }
 }
