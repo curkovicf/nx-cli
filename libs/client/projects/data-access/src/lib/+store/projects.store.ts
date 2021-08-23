@@ -50,8 +50,7 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
             projectsLoadedInView: projects.filter((project) => project.name.includes(keyword)),
           })
         )
-      )
-      .subscribe();
+      ).subscribe();
   }
 
   public selectProject(selectedProject: Project): void {
@@ -88,7 +87,7 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
 
       this.projectsIpcApiService.createProject({
         workspacePath,
-        path: data.value.slice(0, -1),
+        path: data.slice(0, -1),
         type: 'app',
       });
     });
@@ -102,7 +101,7 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
 
       this.projectsIpcApiService.createProject({
         workspacePath,
-        path: data.value[data.value.length - 1] === '/' ? data.value.slice(0, -1) : data.value,
+        path: data[data.length - 1] === '/' ? data.slice(0, -1) : data,
         flags: data.flags,
         type: 'lib',
       });
@@ -115,8 +114,6 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
         return;
       }
 
-      console.log('HERE ', data, workspacePath);
-
       this.projectsIpcApiService.renameProject({
         workspacePath,
         projectNameInNxJson: project.nameInNxJson,
@@ -124,7 +121,7 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
         newPath: project.relativePath
           .replace('libs', '')
           .replace('apps', '')
-          .replace(`${project.name}`, `${data.value}`)
+          .replace(`${project.name}`, `${data}`)
           .substring(2)
           .slice(0, -1),
         oldPath: project.path,
@@ -142,7 +139,7 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
         workspacePath,
         projectNameInNxJson: project.nameInNxJson,
         projectName: project.name,
-        moveTo: data.value,
+        moveTo: data,
         oldPath: project.path,
       });
     });

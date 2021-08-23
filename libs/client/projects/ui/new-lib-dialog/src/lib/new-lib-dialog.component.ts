@@ -27,6 +27,7 @@ export class NewLibDialogComponent {
   }
 
   public onSubmit(input: string): void {
+    console.log('SUBMIT LIB ', input);
     this.dialogRef.close(UtilString.addBackslashAtEndIfNotThere(input));
   }
 }

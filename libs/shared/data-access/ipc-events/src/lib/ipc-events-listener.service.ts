@@ -39,12 +39,13 @@ export class IpcEventsListenerService {
               take(1),
               tap((_selectedProject) => {
                 const { data } = response;
-                console.log('DATA ', data);
+
                 this.projectsStore.patchState({
                   projects: [...data],
                   projectsLoadedInView: [...data],
                   selectedProject: data.find((project) => project.nameInNxJson === _selectedProject?.nameInNxJson),
                 });
+
               })
             )
             .subscribe();
