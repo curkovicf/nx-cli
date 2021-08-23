@@ -494,17 +494,17 @@
         }
       }
     },
-    "client-projects-ui-move-project-form": {
+    "client-projects-ui-move-project-dialog": {
       "projectType": "library",
-      "root": "libs/client/projects/ui/move-project-form",
-      "sourceRoot": "libs/client/projects/ui/move-project-form/src",
+      "root": "libs/client/projects/ui/move-project-dialog",
+      "sourceRoot": "libs/client/projects/ui/move-project-dialog/src",
       "prefix": "nx-cli",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/ui/move-project-form"],
+          "outputs": ["coverage/libs/client/projects/ui/move-project-dialog"],
           "options": {
-            "jestConfig": "libs/client/projects/ui/move-project-form/jest.config.js",
+            "jestConfig": "libs/client/projects/ui/move-project-dialog/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -512,24 +512,24 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/client/projects/ui/move-project-form/src/**/*.ts",
-              "libs/client/projects/ui/move-project-form/src/**/*.html"
+              "libs/client/projects/ui/move-project-dialog/src/**/*.ts",
+              "libs/client/projects/ui/move-project-dialog/src/**/*.html"
             ]
           }
         }
       }
     },
-    "client-projects-ui-new-app-form": {
+    "client-projects-ui-new-app-dialog": {
       "projectType": "library",
-      "root": "libs/client/projects/ui/new-app-form",
-      "sourceRoot": "libs/client/projects/ui/new-app-form/src",
+      "root": "libs/client/projects/ui/new-app-dialog",
+      "sourceRoot": "libs/client/projects/ui/new-app-dialog/src",
       "prefix": "nx-cli",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/ui/new-app-form"],
+          "outputs": ["coverage/libs/client/projects/ui/new-app-dialog"],
           "options": {
-            "jestConfig": "libs/client/projects/ui/new-app-form/jest.config.js",
+            "jestConfig": "libs/client/projects/ui/new-app-dialog/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -537,24 +537,24 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/client/projects/ui/new-app-form/src/**/*.ts",
-              "libs/client/projects/ui/new-app-form/src/**/*.html"
+              "libs/client/projects/ui/new-app-dialog/src/**/*.ts",
+              "libs/client/projects/ui/new-app-dialog/src/**/*.html"
             ]
           }
         }
       }
     },
-    "client-projects-ui-new-component-form": {
+    "client-projects-ui-new-component-dialog": {
       "projectType": "library",
-      "root": "libs/client/projects/ui/new-component-form",
-      "sourceRoot": "libs/client/projects/ui/new-component-form/src",
+      "root": "libs/client/projects/ui/new-component-dialog",
+      "sourceRoot": "libs/client/projects/ui/new-component-dialog/src",
       "prefix": "nx-cli",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/ui/new-component-form"],
+          "outputs": ["coverage/libs/client/projects/ui/new-component-dialog"],
           "options": {
-            "jestConfig": "libs/client/projects/ui/new-component-form/jest.config.js",
+            "jestConfig": "libs/client/projects/ui/new-component-dialog/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -562,24 +562,24 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/client/projects/ui/new-component-form/src/**/*.ts",
-              "libs/client/projects/ui/new-component-form/src/**/*.html"
+              "libs/client/projects/ui/new-component-dialog/src/**/*.ts",
+              "libs/client/projects/ui/new-component-dialog/src/**/*.html"
             ]
           }
         }
       }
     },
-    "client-projects-ui-new-lib-form": {
+    "client-projects-ui-new-lib-dialog": {
       "projectType": "library",
-      "root": "libs/client/projects/ui/new-lib-form",
-      "sourceRoot": "libs/client/projects/ui/new-lib-form/src",
+      "root": "libs/client/projects/ui/new-lib-dialog",
+      "sourceRoot": "libs/client/projects/ui/new-lib-dialog/src",
       "prefix": "nx-cli",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/ui/new-lib-form"],
+          "outputs": ["coverage/libs/client/projects/ui/new-lib-dialog"],
           "options": {
-            "jestConfig": "libs/client/projects/ui/new-lib-form/jest.config.js",
+            "jestConfig": "libs/client/projects/ui/new-lib-dialog/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -587,24 +587,24 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/client/projects/ui/new-lib-form/src/**/*.ts",
-              "libs/client/projects/ui/new-lib-form/src/**/*.html"
+              "libs/client/projects/ui/new-lib-dialog/src/**/*.ts",
+              "libs/client/projects/ui/new-lib-dialog/src/**/*.html"
             ]
           }
         }
       }
     },
-    "client-projects-ui-new-project-form": {
+    "client-projects-ui-new-service-dialog": {
       "projectType": "library",
-      "root": "libs/client/projects/ui/new-project-form",
-      "sourceRoot": "libs/client/projects/ui/new-project-form/src",
+      "root": "libs/client/projects/ui/new-service-dialog",
+      "sourceRoot": "libs/client/projects/ui/new-service-dialog/src",
       "prefix": "nx-cli",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/ui/new-project-form"],
+          "outputs": ["coverage/libs/client/projects/ui/new-service-dialog"],
           "options": {
-            "jestConfig": "libs/client/projects/ui/new-project-form/jest.config.js",
+            "jestConfig": "libs/client/projects/ui/new-service-dialog/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -612,24 +612,24 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/client/projects/ui/new-project-form/src/**/*.ts",
-              "libs/client/projects/ui/new-project-form/src/**/*.html"
+              "libs/client/projects/ui/new-service-dialog/src/**/*.ts",
+              "libs/client/projects/ui/new-service-dialog/src/**/*.html"
             ]
           }
         }
       }
     },
-    "client-projects-ui-new-service-form": {
+    "client-projects-ui-rename-project-dialog": {
       "projectType": "library",
-      "root": "libs/client/projects/ui/new-service-form",
-      "sourceRoot": "libs/client/projects/ui/new-service-form/src",
+      "root": "libs/client/projects/ui/rename-project-dialog",
+      "sourceRoot": "libs/client/projects/ui/rename-project-dialog/src",
       "prefix": "nx-cli",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/ui/new-service-form"],
+          "outputs": ["coverage/libs/client/projects/ui/rename-project-dialog"],
           "options": {
-            "jestConfig": "libs/client/projects/ui/new-service-form/jest.config.js",
+            "jestConfig": "libs/client/projects/ui/rename-project-dialog/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -637,33 +637,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/client/projects/ui/new-service-form/src/**/*.ts",
-              "libs/client/projects/ui/new-service-form/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "client-projects-ui-rename-project-form": {
-      "projectType": "library",
-      "root": "libs/client/projects/ui/rename-project-form",
-      "sourceRoot": "libs/client/projects/ui/rename-project-form/src",
-      "prefix": "nx-cli",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/ui/rename-project-form"],
-          "options": {
-            "jestConfig": "libs/client/projects/ui/rename-project-form/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/client/projects/ui/rename-project-form/src/**/*.ts",
-              "libs/client/projects/ui/rename-project-form/src/**/*.html"
+              "libs/client/projects/ui/rename-project-dialog/src/**/*.ts",
+              "libs/client/projects/ui/rename-project-dialog/src/**/*.html"
             ]
           }
         }

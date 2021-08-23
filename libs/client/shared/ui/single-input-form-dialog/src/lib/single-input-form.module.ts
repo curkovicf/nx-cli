@@ -8,5 +8,8 @@ import { DefaultButtonModule } from '@nx-cli/client/shared/ui/default-button';
 @NgModule({
   imports: [CommonModule, MaterialModule, ReactiveFormsModule, DefaultButtonModule],
   declarations: [SingleInputFormComponent],
+  exports: [
+    SingleInputFormComponent
+  ]
 })
 export class SingleInputFormModule {}

@@ -1,56 +1,68 @@
-import { Component, Inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-export interface SingleInputFormComponentData {
+export interface SingleInputConfig {
   title: string;
-  placeholder: string;
+  placeholderText: string;
   submitButtonText: string;
-}
-
-export interface SingleInputFormComponentDataResult {
-  value: string;
+  inputRequired: boolean;
 }
 
 @Component({
   selector: 'nx-cli-single-input-form',
-  templateUrl: './single-input-form.component.html',
+  template: `
+    <h2 mat-dialog-title>{{ config.title }}</h2>
+
+    <form [formGroup]='form' (ngSubmit)='onSubmit()'>
+      <div class='input-wrapper'>
+        <input formControlName='input'
+               name='input'
+               type='text'
+               [placeholder]='config.placeholderText' />
+      </div>
+
+      <div class='actions'>
+        <nx-cli-default-button [buttonText]='config.submitButtonText'
+                               buttonType='primary'
+                               type='submit'>
+        </nx-cli-default-button>
+
+        <nx-cli-default-button [buttonText]="'Cancel'"
+                               buttonType='warn'
+                               (onbtnclick)='oncancel.emit()'>
+        </nx-cli-default-button>
+      </div>
+    </form>
+  `,
   styleUrls: ['./single-input-form.component.scss'],
 })
-export class SingleInputFormComponent {
-  public form: FormGroup;
+export class SingleInputFormComponent implements OnInit {
 
-  constructor(
-    public dialogRef: MatDialogRef<SingleInputFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: SingleInputFormComponentData
-  ) {
+  @Input()
+  config: SingleInputConfig;
+
+  @Output()
+  oncancel: EventEmitter<void> = new EventEmitter();
+
+  @Output()
+  onsubmit: EventEmitter<string> = new EventEmitter();
+
+  form: FormGroup;
+
+
+  ngOnInit(): void {
     this.form = new FormGroup({
-      input: new FormControl(null, [Validators.required]),
+      input: new FormControl(null, this.config.inputRequired ? [Validators.required] : []),
     });
   }
 
-  public onCancel(): void {
-    this.dialogRef.close();
-  }
 
-  public onSubmit(): void {
+  onSubmit(): void {
     if (!this.form.valid) {
       this.form.markAllAsTouched();
       return;
     }
 
-    const data: SingleInputFormComponentDataResult = {
-      value: this.getProperFormatOfPath(this.form.get('input').value),
-    };
-
-    this.dialogRef.close(data);
-  }
-
-  private getProperFormatOfPath(inputString: string): string {
-    if (inputString.charAt(inputString.length - 1) === '/') {
-      return inputString;
-    }
-
-    return `${inputString}/`;
+    this.onsubmit.emit(this.form.get('input').value);
   }
 }

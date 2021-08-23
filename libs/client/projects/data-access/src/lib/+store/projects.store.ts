@@ -7,13 +7,13 @@ import { combineLatest, Observable } from 'rxjs';
 import { ConfirmDialogComponent } from '@nx-cli/client/shared/ui/confirm-dialog';
 import { ProjectsIpcApiService } from '@nx-cli/shared/data-access/ipc-api';
 import { MatDialog } from '@angular/material/dialog';
-import { NewComponentComponent } from '@nx-cli/client/projects/ui/new-component-form';
+import { NewComponentDialogComponent } from '@nx-cli/client/projects/ui/new-component-dialog';
 import { ComponentType } from '@angular/cdk/portal/portal';
-import { NewServiceFormComponent } from '@nx-cli/client/projects/ui/new-service-form';
-import { MoveProjectFormComponent } from '@nx-cli/client/projects/ui/move-project-form';
-import { RenameProjectFormComponent } from '@nx-cli/client/projects/ui/rename-project-form';
-import { NewAppFormComponent } from '@nx-cli/client/projects/ui/new-app-form';
-import { NewLibFormComponent } from '@nx-cli/client/projects/ui/new-lib-form';
+import { NewServiceFormComponent } from '@nx-cli/client/projects/ui/new-service-dialog';
+import { MoveProjectDialogComponent } from '@nx-cli/client/projects/ui/move-project-dialog';
+import { RenameProjectFormComponent } from '@nx-cli/client/projects/ui/rename-project-dialog';
+import { NewAppDialogComponent } from '@nx-cli/client/projects/ui/new-app-dialog';
+import { NewLibDialogComponent } from '@nx-cli/client/projects/ui/new-lib-dialog';
 
 export interface ProjectsState {
   projects: Project[];
@@ -22,7 +22,7 @@ export interface ProjectsState {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProjectsStore extends ComponentStore<ProjectsState> {
   readonly projects$ = this.select((state) => state.projects);
@@ -37,7 +37,7 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
     super(<ProjectsState>{
       projects: [],
       projectsLoadedInView: [],
-      selectedProject: undefined
+      selectedProject: undefined,
     });
   }
 
@@ -47,10 +47,11 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
         take(1),
         tap((projects) =>
           this.patchState({
-            projectsLoadedInView: projects.filter((project) => project.name.includes(keyword))
+            projectsLoadedInView: projects.filter((project) => project.name.includes(keyword)),
           })
         )
-      ).subscribe();
+      )
+      .subscribe();
   }
 
   public selectProject(selectedProject: Project): void {
@@ -58,119 +59,127 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
   }
 
   public getAllProjects(workspace: Workspace): void {
-    if (!workspace) { return; }
+    if (!workspace) {
+      return;
+    }
 
     this.projectsIpcApiService.getAllProjects(workspace.path);
   }
 
   public deleteProject(project: Project): void {
-    this.openDialog(ConfirmDialogComponent)
-      .subscribe(([data, workspacePath]) => {
-        if (!data) { return; }
+    this.openDialog(ConfirmDialogComponent).subscribe(([data, workspacePath]) => {
+      if (!data) {
+        return;
+      }
 
-        this.projectsIpcApiService.deleteProject({
-          workspacePath,
-          projectNameInNxJson: project.nameInNxJson,
-          type: project.type
-        })
+      this.projectsIpcApiService.deleteProject({
+        workspacePath,
+        projectNameInNxJson: project.nameInNxJson,
+        type: project.type,
       });
+    });
   }
 
   public createNgApp(): void {
-    this.openDialog(NewAppFormComponent)
-      .subscribe(([data, workspacePath]) => {
-        if (!data) { return; }
+    this.openDialog(NewAppDialogComponent).subscribe(([data, workspacePath]) => {
+      if (!data) {
+        return;
+      }
 
-        this.projectsIpcApiService.createProject({
-          workspacePath,
-          path: data.value.slice(0, -1),
-          type: 'app'
-        })
+      this.projectsIpcApiService.createProject({
+        workspacePath,
+        path: data.value.slice(0, -1),
+        type: 'app',
       });
+    });
   }
 
   public createLib(): void {
-    this.openDialog(NewLibFormComponent)
-      .subscribe(([data, workspacePath]) => {
-        if (!data) { return; }
+    this.openDialog(NewLibDialogComponent).subscribe(([data, workspacePath]) => {
+      if (!data) {
+        return;
+      }
 
-        this.projectsIpcApiService.createProject({
-          workspacePath,
-          path:
-            data.value[data.value.length - 1] === '/'
-              ? data.value.slice(0, -1)
-              : data.value,
-          flags: data.flags,
-          type: 'lib'
-        })
+      this.projectsIpcApiService.createProject({
+        workspacePath,
+        path: data.value[data.value.length - 1] === '/' ? data.value.slice(0, -1) : data.value,
+        flags: data.flags,
+        type: 'lib',
       });
+    });
   }
 
   public renameProject(project: Project): void {
-    this.openDialog(RenameProjectFormComponent)
-      .subscribe(([data, workspacePath]) => {
-        if (!data) { return; }
+    this.openDialog(RenameProjectFormComponent).subscribe(([data, workspacePath]) => {
+      if (!data) {
+        return;
+      }
 
-        this.projectsIpcApiService.renameProject({
-          workspacePath,
-          projectNameInNxJson: project.nameInNxJson,
-          type: project.type,
-          newPath: project.relativePath
-            .replace('libs', '')
-            .replace('apps', '')
-            .replace(`${project.name}`, `${data.value}`)
-            .substring(2)
-            .slice(0, -1),
-          oldPath: project.path
-        })
+      console.log('HERE ', data, workspacePath);
+
+      this.projectsIpcApiService.renameProject({
+        workspacePath,
+        projectNameInNxJson: project.nameInNxJson,
+        type: project.type,
+        newPath: project.relativePath
+          .replace('libs', '')
+          .replace('apps', '')
+          .replace(`${project.name}`, `${data.value}`)
+          .substring(2)
+          .slice(0, -1),
+        oldPath: project.path,
       });
+    });
   }
 
   public moveProject(project: Project): void {
-    this.openDialog(MoveProjectFormComponent)
-      .subscribe(([data, workspacePath]) => {
-        if (!data) { return; }
+    this.openDialog(MoveProjectDialogComponent).subscribe(([data, workspacePath]) => {
+      if (!data) {
+        return;
+      }
 
-        this.projectsIpcApiService.moveProject({
-          workspacePath,
-          projectNameInNxJson: project.nameInNxJson,
-          projectName: project.name,
-          moveTo: data.value,
-          oldPath: project.path
-        })
+      this.projectsIpcApiService.moveProject({
+        workspacePath,
+        projectNameInNxJson: project.nameInNxJson,
+        projectName: project.name,
+        moveTo: data.value,
+        oldPath: project.path,
       });
+    });
   }
 
   public generateComponent(project: Project): void {
-    this.openDialog(NewComponentComponent)
-      .subscribe(([data, workspacePath]) => {
-        if (!data) { return; }
+    this.openDialog(NewComponentDialogComponent).subscribe(([data, workspacePath]) => {
+      if (!data) {
+        return;
+      }
 
-        this.projectsIpcApiService.generateComponent({
-          ...data,
-          workspacePath,
-          projectName: project.nameInNxJson
-        })
+      this.projectsIpcApiService.generateComponent({
+        ...data,
+        workspacePath,
+        projectName: project.nameInNxJson,
       });
+    });
   }
 
   public generateService(project: Project): void {
-    this.openDialog(NewServiceFormComponent)
-      .subscribe(([data, workspacePath]) => {
-        if (!data) { return; }
+    this.openDialog(NewServiceFormComponent).subscribe(([data, workspacePath]) => {
+      if (!data) {
+        return;
+      }
 
-        this.projectsIpcApiService.generateService({
-          ...data,
-          workspacePath,
-          projectName: project.nameInNxJson
-        })
+      this.projectsIpcApiService.generateService({
+        ...data,
+        workspacePath,
+        projectName: project.nameInNxJson,
       });
+    });
   }
 
   private openDialog(component: ComponentType<unknown>): Observable<any> {
     return combineLatest([
       this.dialog.open(component).afterClosed(),
-      this.workspacesStore.getCurrentWorkspacePath()
+      this.workspacesStore.getCurrentWorkspacePath(),
     ]).pipe(
       take(1),
       filter(([data, workspacePath]) => data !== undefined) //  Investigate why this doesn't work
