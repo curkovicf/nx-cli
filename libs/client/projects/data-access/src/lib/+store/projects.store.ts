@@ -65,38 +65,52 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
 
   public deleteProject(project: Project): void {
     this.openDialog(ConfirmDialogComponent)
-      .subscribe(([data, workspacePath]) => this.projectsIpcApiService.deleteProject({
-        workspacePath,
-        projectNameInNxJson: project.nameInNxJson,
-        type: project.type
-      }));
+      .subscribe(([data, workspacePath]) => {
+        if (!data) { return; }
+
+        this.projectsIpcApiService.deleteProject({
+          workspacePath,
+          projectNameInNxJson: project.nameInNxJson,
+          type: project.type
+        })
+      });
   }
 
   public createNgApp(): void {
     this.openDialog(NewAppFormComponent)
-      .subscribe(([data, workspacePath]) => this.projectsIpcApiService.createProject({
-        workspacePath,
-        path: data.value.slice(0, -1),
-        type: 'app'
-      }));
+      .subscribe(([data, workspacePath]) => {
+        if (!data) { return; }
+
+        this.projectsIpcApiService.createProject({
+          workspacePath,
+          path: data.value.slice(0, -1),
+          type: 'app'
+        })
+      });
   }
 
   public createLib(): void {
     this.openDialog(NewLibFormComponent)
-      .subscribe(([data, workspacePath]) => this.projectsIpcApiService.createProject({
-        workspacePath,
-        path:
-          data.value[data.value.length - 1] === '/'
-            ? data.value.slice(0, -1)
-            : data.value,
-        flags: data.flags,
-        type: 'lib'
-      }));
+      .subscribe(([data, workspacePath]) => {
+        if (!data) { return; }
+
+        this.projectsIpcApiService.createProject({
+          workspacePath,
+          path:
+            data.value[data.value.length - 1] === '/'
+              ? data.value.slice(0, -1)
+              : data.value,
+          flags: data.flags,
+          type: 'lib'
+        })
+      });
   }
 
   public renameProject(project: Project): void {
     this.openDialog(RenameProjectFormComponent)
       .subscribe(([data, workspacePath]) => {
+        if (!data) { return; }
+
         this.projectsIpcApiService.renameProject({
           workspacePath,
           projectNameInNxJson: project.nameInNxJson,
@@ -114,31 +128,43 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
 
   public moveProject(project: Project): void {
     this.openDialog(MoveProjectFormComponent)
-      .subscribe(([data, workspacePath]) => this.projectsIpcApiService.moveProject({
-        workspacePath,
-        projectNameInNxJson: project.nameInNxJson,
-        projectName: project.name,
-        moveTo: data.value,
-        oldPath: project.path
-      }));
+      .subscribe(([data, workspacePath]) => {
+        if (!data) { return; }
+
+        this.projectsIpcApiService.moveProject({
+          workspacePath,
+          projectNameInNxJson: project.nameInNxJson,
+          projectName: project.name,
+          moveTo: data.value,
+          oldPath: project.path
+        })
+      });
   }
 
   public generateComponent(project: Project): void {
     this.openDialog(NewComponentComponent)
-      .subscribe(([data, workspacePath]) => this.projectsIpcApiService.generateComponent({
-        ...data,
-        workspacePath,
-        projectName: project.nameInNxJson
-      }));
+      .subscribe(([data, workspacePath]) => {
+        if (!data) { return; }
+
+        this.projectsIpcApiService.generateComponent({
+          ...data,
+          workspacePath,
+          projectName: project.nameInNxJson
+        })
+      });
   }
 
   public generateService(project: Project): void {
     this.openDialog(NewServiceFormComponent)
-      .subscribe(([data, workspacePath]) => this.projectsIpcApiService.generateService({
-        ...data,
-        workspacePath,
-        projectName: project.nameInNxJson
-      }));
+      .subscribe(([data, workspacePath]) => {
+        if (!data) { return; }
+
+        this.projectsIpcApiService.generateService({
+          ...data,
+          workspacePath,
+          projectName: project.nameInNxJson
+        })
+      });
   }
 
   private openDialog(component: ComponentType<unknown>): Observable<any> {
@@ -147,7 +173,7 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
       this.workspacesStore.getCurrentWorkspacePath()
     ]).pipe(
       take(1),
-      filter(([data, workspacePath]) => data !== undefined)
+      filter(([data, workspacePath]) => data !== undefined) //  Investigate why this doesn't work
     );
   }
 }
