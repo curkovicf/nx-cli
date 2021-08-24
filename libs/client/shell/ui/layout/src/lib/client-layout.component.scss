@@ -7,7 +7,7 @@
   @include center-flex-Y;
 
   & > dev-workspace-top-nav {
-    height: $top-nav-height;
+    //height: $top-nav-height;
   }
 
   & > dev-workspace-chips-bar {
@@ -15,6 +15,6 @@
   }
 
   & > main {
-    @include box(100%, calc(100% - #{$top-nav-height + $chips-bar-height}));
+    @include box(100%, calc(100% - #{$chips-bar-height}));
   }
 }
