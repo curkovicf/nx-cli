@@ -3,7 +3,7 @@ import { ProjectsStore } from '@nx-cli/client/projects/data-access';
 import { drawerAnimation } from '@nx-cli/client/shell/ui/drawer';
 import { UtilLocalStorageService } from '@nx-cli/client/shared/util';
 import { IpcEventsListenerService } from '@nx-cli/shared/data-access/ipc-events';
-import { Workspace, WorkspacesStore } from '@nx-cli/client/workspaces/data-access';
+import { Workspace, WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 
 @Component({
   selector: 'dev-workspace-layout',
@@ -16,7 +16,7 @@ export class ClientLayoutComponent {
 
   constructor(
     public projectsStore: ProjectsStore,
-    public workspacesStore: WorkspacesStore,
+    public workspacesFacade: WorkspacesFacade,
     private localStorageService: UtilLocalStorageService,
     private ipcEventsListenerService: IpcEventsListenerService,
   ) {
@@ -25,7 +25,7 @@ export class ClientLayoutComponent {
   }
 
   public onSelectProject(selectedWorkspace: Workspace): void {
-    this.workspacesStore.patchState({ selectedWorkspace });
+    this.workspacesFacade.selectWorkspace(selectedWorkspace);
     this.projectsStore.patchState({ selectedProject: undefined })
     this.projectsStore.getAllProjects(selectedWorkspace);
     this.localStorageService.save();
@@ -40,14 +40,14 @@ export class ClientLayoutComponent {
   }
 
   public onCreateWorkspace(workspace: Workspace): void {
-    this.workspacesStore.addWorkspace(workspace)
-      .subscribe(selectedWorkspace => {
-        if (selectedWorkspace) {
-          this.projectsStore.getAllProjects(selectedWorkspace);
-        }
-
-        this.toggleDrawer();
-        this.localStorageService.save();
-      });
+    this.workspacesFacade.addWorkspace(workspace)
+      // .subscribe(selectedWorkspace => {
+      //   if (selectedWorkspace) {
+      //     this.projectsStore.getAllProjects(selectedWorkspace);
+      //   }
+      //
+      //   this.toggleDrawer();
+      //   this.localStorageService.save();
+      // });
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ProjectsStore } from '@nx-cli/client/projects/data-access';
 import { combineLatest } from 'rxjs';
-import { Workspace, WorkspacesStore } from '@nx-cli/client/workspaces/data-access';
+import { Workspace, WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 
 interface StoredData {
   workspaces: Workspace[];
@@ -16,11 +16,14 @@ export class UtilLocalStorageService {
 
   constructor(
     private projectsStore: ProjectsStore,
-    private workspacesStore: WorkspacesStore,
+    private workspacesFacade: WorkspacesFacade,
   ) {}
 
   public save(): void {
-    combineLatest([this.workspacesStore.workspaces$, this.workspacesStore.selectedWorkspace$]).subscribe(([workspaces, selectedWorkspace]) => {
+    combineLatest([
+      this.workspacesFacade.workspaces$, this.workspacesFacade.selectedWorkspace$
+    ])
+      .subscribe(([workspaces, selectedWorkspace]) => {
       const data: StoredData = { workspaces, selectedWorkspace };
       localStorage.setItem(this.key, JSON.stringify(data));
     });
@@ -35,7 +38,7 @@ export class UtilLocalStorageService {
 
     const { workspaces, selectedWorkspace }: StoredData = JSON.parse(data);
 
-    this.workspacesStore.patchState({ workspaces, selectedWorkspace });
+    this.workspacesFacade.setWorkspacesState({  workspaces, selectedWorkspace  })
     this.projectsStore.getAllProjects(selectedWorkspace);
   }
 }

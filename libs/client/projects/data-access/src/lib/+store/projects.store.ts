@@ -1,8 +1,8 @@
 import { ComponentStore } from '@ngrx/component-store';
 import { Injectable } from '@angular/core';
-import { filter, take, tap } from 'rxjs/operators';
+import { filter, map, take, tap } from 'rxjs/operators';
 import { Project } from '../models/project.model';
-import { Workspace, WorkspacesStore } from '@nx-cli/client/workspaces/data-access';
+import { Workspace, WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 import { combineLatest, Observable } from 'rxjs';
 import { ConfirmDialogComponent } from '@nx-cli/client/shared/ui/confirm-dialog';
 import { ProjectsIpcApiService } from '@nx-cli/shared/data-access/ipc-api';
@@ -32,7 +32,7 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
   constructor(
     private projectsIpcApiService: ProjectsIpcApiService,
     private dialog: MatDialog,
-    private workspacesStore: WorkspacesStore
+    private workspacesFacade: WorkspacesFacade,
   ) {
     super(<ProjectsState>{
       projects: [],
@@ -176,7 +176,7 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
   private openDialog(component: ComponentType<unknown>): Observable<any> {
     return combineLatest([
       this.dialog.open(component).afterClosed(),
-      this.workspacesStore.getCurrentWorkspacePath(),
+      this.workspacesFacade.selectedWorkspace$.pipe(map(w => w?.path)),
     ]).pipe(
       take(1),
       filter(([data, workspacePath]) => data !== undefined) //  Investigate why this doesn't work

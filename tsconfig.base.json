@@ -39,6 +39,7 @@
         "libs/client/projects/ui/rename-project-dialog/src/index.ts"
       ],
       "@nx-cli/client/projects/util": ["libs/client/projects/util/src/index.ts"],
+      "@nx-cli/client/shared/data-access": ["libs/client/shared/data-access/src/index.ts"],
       "@nx-cli/client/shared/ui/confirm-dialog": ["libs/client/shared/ui/confirm-dialog/src/index.ts"],
       "@nx-cli/client/shared/ui/default-button": ["libs/client/shared/ui/default-button/src/index.ts"],
       "@nx-cli/client/shared/ui/material-modules": ["libs/client/shared/ui/material-modules/src/index.ts"],

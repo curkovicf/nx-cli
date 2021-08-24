@@ -3,6 +3,7 @@ import { rendererAppName, rendererAppPort } from './constants';
 import { environment } from '../environments/environment';
 import { join } from 'path';
 import { format } from 'url';
+import installExtension, { REDUX_DEVTOOLS } from 'electron-devtools-installer';
 
 export default class App {
   // Keep a global reference of the window object, if you don't, the window will
@@ -128,6 +129,13 @@ export default class App {
     App.application.on('window-all-closed', App.onWindowAllClosed); // Quit when all windows are closed.
     App.application.on('ready', App.onReady); // App is ready to load data
     App.application.on('activate', App.onActivate); // App is activated
+
+    App.application.whenReady().then(() => {
+      installExtension(REDUX_DEVTOOLS)
+        .then((name) => console.log(`Added Extension:  ${name}`))
+        .catch((err) => console.log('An error occurred: ', err));
+    });
+
 
     nativeTheme.themeSource = 'light';
   }

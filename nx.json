@@ -100,6 +100,9 @@
     "client-projects-util": {
       "tags": []
     },
+    "client-shared-data-access": {
+      "tags": []
+    },
     "client-shared-ui-confirm-dialog": {
       "tags": []
     },

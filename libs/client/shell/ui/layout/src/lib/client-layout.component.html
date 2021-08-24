@@ -1,8 +1,8 @@
 <!--<dev-workspace-top-nav></dev-workspace-top-nav>-->
 
 <dev-workspace-chips-bar
-  [workspaces]="workspacesStore.workspaces$ | async"
-  [selectedWorkspace]='workspacesStore.selectedWorkspace$ | async'
+  [workspaces]="workspacesFacade.workspaces$ | async"
+  [selectedWorkspace]='workspacesFacade.selectedWorkspace$ | async'
   (onselectworkspace)='onSelectProject($event)'
   (onaddworkspace)='onAddProject()'
 ></dev-workspace-chips-bar>
@@ -10,7 +10,7 @@
 <nx-cli-drawer *ngIf="isDrawerOpen" [@slideIn]>
   <nx-cli-add-nx-project-form
     class="drawer-content"
-    [workspaces]='workspacesStore.workspaces$ | async'
+    [workspaces]='workspacesFacade.workspaces$ | async'
     (oncancel)="toggleDrawer()"
     (onsubmit)="onCreateWorkspace($event)"
   >
