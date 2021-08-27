@@ -39,4 +39,19 @@ export namespace IpcEventDtos {
     workspacePath: string;
     type: ProjectType;
   }
+
+  export interface GenerateLibrary {
+    name: string;
+    directory: string;
+    importPath: string;
+    parentModule: string;
+    buildable: boolean;
+    enableIvy: boolean;
+    lazy: boolean;
+    prefix: string;
+    publishable: boolean;
+    routing: boolean;
+    simpleModuleName: boolean;
+    libTags: string[];
+  }
 }
