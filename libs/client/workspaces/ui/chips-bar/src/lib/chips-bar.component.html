@@ -8,5 +8,8 @@
     class="chip"
   >
     {{ workspace.name }}
+
+    <img (click)='onDeleteWorkspace($event, workspace)' class='delete-icon' src='assets/icons8-delete.svg' alt='Delete icon'>
+
   </mat-chip>
 </mat-chip-list>

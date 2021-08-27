@@ -3,8 +3,9 @@
 <dev-workspace-chips-bar
   [workspaces]="workspacesFacade.workspaces$ | async"
   [selectedWorkspace]='workspacesFacade.selectedWorkspace$ | async'
-  (onselectworkspace)='onSelectProject($event)'
-  (onaddworkspace)='onAddProject()'
+  (onselectworkspace)='onSelectWorkspace($event)'
+  (onaddworkspace)='onAddWorkspace()'
+  (ondeleteworkspace)='onDeleteWorkspace($event)'
 ></dev-workspace-chips-bar>
 
 <nx-cli-drawer *ngIf="isDrawerOpen" [@slideIn]>

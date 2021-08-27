@@ -17,7 +17,7 @@ import { NewLibDialogComponent } from '@nx-cli/client/projects/ui/new-lib-dialog
 
 export interface ProjectsState {
   projects: Project[];
-  selectedProject: Project | undefined;
+  selectedProject: Project | null;
   projectsLoadedInView: Project[];
 }
 
@@ -55,6 +55,10 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
 
   public selectProject(selectedProject: Project): void {
     this.patchState({ selectedProject });
+  }
+
+  public resetState(): void {
+    this.patchState({ projects: [], projectsLoadedInView: [], selectedProject: null });
   }
 
   public getAllProjects(workspace: Workspace): void {

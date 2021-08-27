@@ -8,15 +8,22 @@ import { Workspace } from '@nx-cli/client/workspaces/data-access';
 })
 export class ChipsBarComponent {
   @Input()
-  // @ts-ignore
-  workspaces: Workspace[] | null;
+  workspaces: Workspace[];
 
   @Input()
   selectedWorkspace: Workspace | null | undefined;
 
   @Output()
-  onaddworkspace: EventEmitter<void> = new EventEmitter<void>();
+  onaddworkspace: EventEmitter<void> = new EventEmitter();
 
   @Output()
-  onselectworkspace: EventEmitter<Workspace> = new EventEmitter<Workspace>();
+  onselectworkspace: EventEmitter<Workspace> = new EventEmitter();
+
+  @Output()
+  ondeleteworkspace: EventEmitter<Workspace> = new EventEmitter();
+
+  public onDeleteWorkspace($event: MouseEvent, workspace: Workspace): void {
+    $event.stopPropagation();
+    this.ondeleteworkspace.emit(workspace);
+  }
 }

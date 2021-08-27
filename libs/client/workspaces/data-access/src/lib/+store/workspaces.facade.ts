@@ -5,6 +5,7 @@ import { Workspace } from '../models/workspace.model';
 
 import * as WorkspacesSelectors from './workspaces.selectors';
 import * as WorkspacesActions from './workspaces.actions';
+import { deleteWorkspace } from './workspaces.actions';
 
 @Injectable()
 export class WorkspacesFacade {
@@ -23,5 +24,9 @@ export class WorkspacesFacade {
 
   public addWorkspace(newWorkspace: Workspace): void {
     this.store.dispatch(WorkspacesActions.addWorkspace({ newWorkspace }));
+  }
+
+  public deleteWorkspace(workspace: Workspace): void {
+    this.store.dispatch(WorkspacesActions.deleteWorkspace({ workspace }));
   }
 }

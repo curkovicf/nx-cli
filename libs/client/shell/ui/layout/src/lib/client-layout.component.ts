@@ -9,7 +9,7 @@ import { Workspace, WorkspacesFacade } from '@nx-cli/client/workspaces/data-acce
   selector: 'dev-workspace-layout',
   templateUrl: './client-layout.component.html',
   styleUrls: ['./client-layout.component.scss'],
-  animations: [drawerAnimation],
+  animations: [drawerAnimation]
 })
 export class ClientLayoutComponent {
   public isDrawerOpen = false;
@@ -18,20 +18,20 @@ export class ClientLayoutComponent {
     public projectsStore: ProjectsStore,
     public workspacesFacade: WorkspacesFacade,
     private localStorageService: UtilLocalStorageService,
-    private ipcEventsListenerService: IpcEventsListenerService,
+    private ipcEventsListenerService: IpcEventsListenerService
   ) {
     this.ipcEventsListenerService.initChannels();
     this.localStorageService.initData();
   }
 
-  public onSelectProject(selectedWorkspace: Workspace): void {
+  public onSelectWorkspace(selectedWorkspace: Workspace): void {
     this.workspacesFacade.selectWorkspace(selectedWorkspace);
-    this.projectsStore.patchState({ selectedProject: undefined })
+    this.projectsStore.patchState({ selectedProject: undefined });
     this.projectsStore.getAllProjects(selectedWorkspace);
     this.localStorageService.save();
   }
 
-  public onAddProject(): void {
+  public onAddWorkspace(): void {
     this.toggleDrawer();
   }
 
@@ -40,14 +40,13 @@ export class ClientLayoutComponent {
   }
 
   public onCreateWorkspace(workspace: Workspace): void {
-    this.workspacesFacade.addWorkspace(workspace)
-      // .subscribe(selectedWorkspace => {
-      //   if (selectedWorkspace) {
-      //     this.projectsStore.getAllProjects(selectedWorkspace);
-      //   }
-      //
-      //   this.toggleDrawer();
-      //   this.localStorageService.save();
-      // });
+    this.workspacesFacade.addWorkspace(workspace);
+    this.localStorageService.save();
+    this.toggleDrawer();
+  }
+
+  public onDeleteWorkspace(workspace: Workspace): void {
+    this.workspacesFacade.deleteWorkspace(workspace);
+    this.projectsStore.resetState();
   }
 }

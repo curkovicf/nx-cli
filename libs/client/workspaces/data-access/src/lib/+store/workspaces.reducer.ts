@@ -21,5 +21,9 @@ export const workspacesReducer = createReducer(
   on(WorkspacesActions.addWorkspace, (state, { newWorkspace }) => ({
     ...state,
     workspaces: [...state.workspaces, newWorkspace]
+  })),
+  on(WorkspacesActions.deleteWorkspace, (state, { workspace }) => ({
+    workspaces: state.workspaces.filter(w => w.name !== workspace.name),
+    selectedWorkspace: null
   }))
 );
