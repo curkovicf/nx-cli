@@ -86,7 +86,7 @@ While working at my current job with Nx monorepos I have noticed that I spend a 
 | :white_check_mark: | 15.9.2021 | Polish and bugfix |
 | :white_check_mark: | 1.10.2021 | User can remove workspace from app |
 | :x: | 1.11.2021 | Add additional flags for lib & app generation |
-| :x: | User can see outputs of commands | Add console to the app so user can see and interact with the console logs |
+| :x: | 1.12.2021 | Add console to the app so user can see and interact with the console logs |
 
 
 <br>
