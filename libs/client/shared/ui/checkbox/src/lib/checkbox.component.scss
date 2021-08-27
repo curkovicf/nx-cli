@@ -1,0 +1,24 @@
+:host {
+  display: block;
+  width: 20rem;
+  height: 1rem;
+
+  & > .title {
+    font-size: 1rem;
+    margin: .7rem 0;
+  }
+
+  & > .wrapper {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+    & > input {
+      margin-right: 1rem;
+      transform: scale(1.5);
+    }
+
+    & > label {
+    }
+  }
+}

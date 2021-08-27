@@ -45,10 +45,10 @@ export namespace IpcEventDtos {
     directory: string;
     importPath: string;
     parentModule: string;
+    prefix: string;
+    lazy: boolean;
     buildable: boolean;
     enableIvy: boolean;
-    lazy: boolean;
-    prefix: string;
     publishable: boolean;
     routing: boolean;
     simpleModuleName: boolean;

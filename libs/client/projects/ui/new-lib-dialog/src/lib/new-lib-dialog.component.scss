@@ -1,0 +1,24 @@
+@import "styles/global.mixins";
+@import "styles/global.variables";
+
+:host {
+
+  & > form {
+    & > .input-wrapper {
+      min-height: 5rem;
+      padding: 1rem 0;
+      @include center-flex-X;
+
+      & > input.ng-invalid.ng-touched {
+        @include input_focus(null);
+        border: 1px solid red;
+      }
+
+      & > input {
+        width: 100%;
+        height: 2.5rem;
+        @include input_focus(default);
+      }
+    }
+  }
+}

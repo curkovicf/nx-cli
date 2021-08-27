@@ -15,18 +15,23 @@ export class NewLibDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      name: new FormControl(null, [Validators.required]),
-      directory: new FormControl(null, [Validators.required]),
-      buildable: new FormControl(null, [Validators.required]),
-      enableIvy: new FormControl(null, [Validators.required]),
-      prefix: new FormControl(null, [Validators.required]),
-      publishable: new FormControl(null, [Validators.required]),
-      simpleModuleName: new FormControl(null, [Validators.required])
+      input: new FormControl(null, [Validators.required]),
+      // directory: new FormControl(null, [Validators.required]),
+      // buildable: new FormControl(null, [Validators.required]),
+      // enableIvy: new FormControl(null, [Validators.required]),
+      // prefix: new FormControl(null, [Validators.required]),
+      // publishable: new FormControl(null, [Validators.required]),
+      // simpleModuleName: new FormControl(null, [Validators.required])
     });
   }
 
-  public onSubmit(input: string): void {
-    console.log('SUBMIT LIB ', input);
-    this.dialogRef.close(UtilString.addBackslashAtEndIfNotThere(input));
+  public onSubmit(): void {
+    console.log(this.form);
+    // console.log('SUBMIT LIB ', input);
+    // this.dialogRef.close(UtilString.addBackslashAtEndIfNotThere(input));
+  }
+
+  public onCheckBoxChange($event: boolean): void {
+    console.log($event);
   }
 }

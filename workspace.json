@@ -691,6 +691,31 @@
         }
       }
     },
+    "client-shared-ui-checkbox": {
+      "projectType": "library",
+      "root": "libs/client/shared/ui/checkbox",
+      "sourceRoot": "libs/client/shared/ui/checkbox/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shared/ui/checkbox"],
+          "options": {
+            "jestConfig": "libs/client/shared/ui/checkbox/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shared/ui/checkbox/src/**/*.ts",
+              "libs/client/shared/ui/checkbox/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "client-shared-ui-confirm-dialog": {
       "projectType": "library",
       "root": "libs/client/shared/ui/confirm-dialog",
@@ -737,6 +762,53 @@
               "libs/client/shared/ui/default-button/src/**/*.ts",
               "libs/client/shared/ui/default-button/src/**/*.html"
             ]
+          }
+        }
+      }
+    },
+    "client-shared-ui-dropdown": {
+      "projectType": "library",
+      "root": "libs/client/shared/ui/dropdown",
+      "sourceRoot": "libs/client/shared/ui/dropdown/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shared/ui/dropdown"],
+          "options": {
+            "jestConfig": "libs/client/shared/ui/dropdown/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shared/ui/dropdown/src/**/*.ts",
+              "libs/client/shared/ui/dropdown/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-shared-ui-input": {
+      "projectType": "library",
+      "root": "libs/client/shared/ui/input",
+      "sourceRoot": "libs/client/shared/ui/input/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shared/ui/input"],
+          "options": {
+            "jestConfig": "libs/client/shared/ui/input/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/client/shared/ui/input/src/**/*.ts", "libs/client/shared/ui/input/src/**/*.html"]
           }
         }
       }
