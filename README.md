@@ -65,7 +65,7 @@ While working at my current job with Nx monorepos I have noticed that I spend a 
 | :white_check_mark: | User can see all tags of selectd libs & apps  | Once the user selects app or lib, he will be able to see all the tags from nx.json |
 | :white_check_mark: | User can create new lib | If workspace is added, user will be able to create new lib |
 | :white_check_mark: | User can create new app | If workspace is added, user will be able to create new app |
-| :x: | User can remove workspace from app | Workspaces can only be added ATM |
+| :white_check_mark: | User can remove workspace from app | Workspaces can only be added ATM |
 | :x: | Add additional flags for lib generation | ATM it is not possible to add flags for a lib generation (Only via single input) |
 | :x: | Add additional flags for app generation | ATM it is not possible to add flags for a app generation (Only via single input) |
 | :x: | User can see outputs of commands | Add console to the app so user can see and interact with the console logs |
@@ -83,10 +83,10 @@ While working at my current job with Nx monorepos I have noticed that I spend a 
 
 | Status | Deadline | Topic |
 | ----------- | ----------- | ----------- |
-| :x: | 15.9.2021 | Polish and bugfix |
-| :x: | 1.10.2021 | User can remove workspace from app |
+| :white_check_mark: | 15.9.2021 | Polish and bugfix |
+| :white_check_mark: | 1.10.2021 | User can remove workspace from app |
 | :x: | 1.11.2021 | Add additional flags for lib & app generation |
-| :x: | 1.12.2021 | User can add/delete tags |
+| :x: | User can see outputs of commands | Add console to the app so user can see and interact with the console logs |
 
 
 <br>
