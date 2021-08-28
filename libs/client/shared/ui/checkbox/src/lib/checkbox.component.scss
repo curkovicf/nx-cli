@@ -1,0 +1,27 @@
+@import "styles/global.variables";
+@import "styles/global.mixins";
+
+:host {
+  min-height: 5rem;
+  @include center-flex-Y;
+  align-items: flex-start;
+  justify-content: space-evenly;
+
+  & > .title {
+    font-size: 1rem;
+  }
+
+  & > .wrapper {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+    & > input {
+      margin-right: 1rem;
+      margin-left: .2rem;
+      transform: scale(1.5);
+    }
+
+    & > label {}
+  }
+}

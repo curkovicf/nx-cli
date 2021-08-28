@@ -14,6 +14,7 @@ import { MoveProjectDialogComponent } from '@nx-cli/client/projects/ui/move-proj
 import { RenameProjectFormComponent } from '@nx-cli/client/projects/ui/rename-project-dialog';
 import { NewAppDialogComponent } from '@nx-cli/client/projects/ui/new-app-dialog';
 import { NewLibDialogComponent } from '@nx-cli/client/projects/ui/new-lib-dialog';
+import { MatDialogConfig } from '@angular/material/dialog/dialog-config';
 
 export interface ProjectsState {
   projects: Project[];
@@ -98,18 +99,12 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
   }
 
   public createLib(): void {
-    this.openDialog(NewLibDialogComponent).subscribe(([data, workspacePath]) => {
-      if (!data) {
-        return;
-      }
+    this.openDialog(NewLibDialogComponent, { maxHeight: '90vh' })
+      .subscribe(([data, workspacePath]) => {
+        if (!data) { return; }
 
-      this.projectsIpcApiService.createProject({
-        workspacePath,
-        path: data[data.length - 1] === '/' ? data.slice(0, -1) : data,
-        flags: data.flags,
-        type: 'lib',
+        this.projectsIpcApiService.generateLibrary({ ...data, workspacePath });
       });
-    });
   }
 
   public renameProject(project: Project): void {
@@ -177,9 +172,9 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
     });
   }
 
-  private openDialog(component: ComponentType<unknown>): Observable<any> {
+  private openDialog(component: ComponentType<unknown>, config?: MatDialogConfig): Observable<any> {
     return combineLatest([
-      this.dialog.open(component).afterClosed(),
+      this.dialog.open(component, config).afterClosed(),
       this.workspacesFacade.selectedWorkspace$.pipe(map(w => w?.path)),
     ]).pipe(
       take(1),

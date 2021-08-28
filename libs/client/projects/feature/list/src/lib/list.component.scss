@@ -52,7 +52,7 @@
     @include box(100%, 6rem);
     justify-content: space-evenly;
 
-    & > nx-cli-default-button {
+    & > nx-cli-button {
       width: 95%;
     }
   }

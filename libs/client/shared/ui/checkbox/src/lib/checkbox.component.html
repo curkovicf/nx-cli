@@ -1,0 +1,13 @@
+<h5 class='title'>{{ title }}</h5>
+
+<div class='wrapper'>
+  <input
+    [id]='title + "___"'
+    type='checkbox'
+    [value]="isChecked"
+    [disabled]="disabled"
+    (input)="onInputChange($event)"
+    (blur)="onTouched()">
+
+  <label [for]='title + "___"'>{{ description }}</label>
+</div>

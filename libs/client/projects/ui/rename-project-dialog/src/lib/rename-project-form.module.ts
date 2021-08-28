@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RenameProjectFormComponent } from './rename-project-form.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DefaultButtonModule } from '@nx-cli/client/shared/ui/default-button';
+import { ButtonModule } from '@nx-cli/client/shared/ui/button';
 import { SingleInputFormModule } from '@nx-cli/client/shared/ui/single-input-form-dialog';
 
 @NgModule({
-  imports: [CommonModule, MatDialogModule, ReactiveFormsModule, DefaultButtonModule, SingleInputFormModule],
+  imports: [CommonModule, MatDialogModule, ReactiveFormsModule, ButtonModule, SingleInputFormModule],
   declarations: [RenameProjectFormComponent],
 })
 export class RenameProjectFormModule {}

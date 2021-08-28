@@ -17,6 +17,7 @@ export class ProjectsController implements IController {
     this.initGenerateService();
     this.initRenameProject();
     this.initMoveProject();
+    this.initGenerateLibrary();
 
     console.warn('\n********** Init Projects Controller');
   }
@@ -66,6 +67,13 @@ export class ProjectsController implements IController {
   private initMoveProject(): void {
     ipcMain.on(IpcEvents.moveProject.fromAngular, async (event, dto: IpcEventDtos.MoveProjectDto) => {
       const response: IpcResponse = await this.projectsService.moveProject(dto);
+      event.sender.send(IpcEvents.defaultChannel.fromElectron, response);
+    });
+  }
+
+  private initGenerateLibrary(): void {
+    ipcMain.on(IpcEvents.generateLibrary.fromAngular, async (event, dto: IpcEventDtos.GenerateLibrary) => {
+      const response: IpcResponse = await this.projectsService.generateLibrary(dto);
       event.sender.send(IpcEvents.defaultChannel.fromElectron, response);
     });
   }

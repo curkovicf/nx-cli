@@ -44,7 +44,7 @@
     @include default_border(bottom);
     justify-content: flex-end;
 
-    & > nx-cli-default-button {
+    & > nx-cli-button {
       margin: 0.3rem;
     }
   }

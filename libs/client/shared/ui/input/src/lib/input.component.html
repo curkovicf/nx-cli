@@ -1,0 +1,11 @@
+<h5 class='title'>{{ title }}</h5>
+
+<label>{{ description }}</label>
+
+<input
+  type='text'
+  [value]='value'
+  [disabled]='disabled'
+  (input)='onInputChange($event)'
+  (blur)='onTouched()'>
+

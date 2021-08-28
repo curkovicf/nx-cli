@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'client-shared-ui-default-button',
+  displayName: 'client-shared-ui-dropdown',
   preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,7 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../../../../coverage/libs/client/shared/ui/default-button',
+  coverageDirectory: '../../../../../coverage/libs/client/shared/ui/dropdown',
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',
   },

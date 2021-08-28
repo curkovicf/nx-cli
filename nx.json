@@ -103,10 +103,19 @@
     "client-shared-data-access": {
       "tags": []
     },
+    "client-shared-ui-button": {
+      "tags": []
+    },
+    "client-shared-ui-checkbox": {
+      "tags": []
+    },
     "client-shared-ui-confirm-dialog": {
       "tags": []
     },
-    "client-shared-ui-default-button": {
+    "client-shared-ui-dropdown": {
+      "tags": []
+    },
+    "client-shared-ui-input": {
       "tags": []
     },
     "client-shared-ui-material-modules": {

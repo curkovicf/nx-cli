@@ -5,10 +5,10 @@ import { MaterialModule } from '@nx-cli/client/shared/ui/material-modules';
 import { SearchBarModule } from '@nx-cli/client/shared/ui/search';
 import { ListItemModule } from '@nx-cli/client/projects/ui/list-item';
 import { ListItemBadgeModule } from '@nx-cli/client/projects/ui/list-item-badge';
-import { DefaultButtonModule } from '@nx-cli/client/shared/ui/default-button';
+import { ButtonModule } from '@nx-cli/client/shared/ui/button';
 
 @NgModule({
-  imports: [CommonModule, MaterialModule, SearchBarModule, ListItemModule, ListItemBadgeModule, DefaultButtonModule],
+  imports: [CommonModule, MaterialModule, SearchBarModule, ListItemModule, ListItemBadgeModule, ButtonModule],
   declarations: [ListComponent],
   exports: [ListComponent],
 })

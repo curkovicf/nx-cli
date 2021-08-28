@@ -23,19 +23,19 @@
 </section>
 
 <section class="actions">
-  <nx-cli-default-button
+  <nx-cli-button
     [isDisabled]="(workspacesFacade.workspaces$ | async)?.length === 0"
     [buttonText]="'Create Angular app'"
     buttonType="primary"
     (onbtnclick)="createNgApp()"
   >
-  </nx-cli-default-button>
+  </nx-cli-button>
 
-  <nx-cli-default-button
+  <nx-cli-button
     [isDisabled]="(workspacesFacade.workspaces$ | async)?.length === 0"
     [buttonText]="'Create lib'"
     buttonType="primary"
     (onbtnclick)="createLib()"
   >
-  </nx-cli-default-button>
+  </nx-cli-button>
 </section>

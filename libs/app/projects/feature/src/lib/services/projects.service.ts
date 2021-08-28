@@ -7,7 +7,7 @@ import {
   IpcResponse,
   IpcResponseData,
   parsePath,
-  Platform
+  Platform, spawnPromise
 } from '@nx-cli/app/shared/util';
 import {
   cleanEmptyDirWinFunction,
@@ -18,6 +18,9 @@ import {
 import { Project, ProjectType } from '@nx-cli/client/projects/data-access';
 import { IpcEventDtos } from '@nx-cli/shared/data-access/models';
 import { IProjectsService } from './projects-service.interface';
+import { removeSpecialCharacters } from '../../../../../shared/util/src/lib/functions/remove-special-characters.function';
+import { removeSpecialCharFrontBack } from '../../../../../shared/util/src/lib/functions/remove-special-char-front-back.function';
+import { removeConsecutiveCommas } from '../../../../util/src/lib/functions/parse-tags.function';
 
 
 export class ProjectsService implements IProjectsService {
@@ -175,6 +178,31 @@ export class ProjectsService implements IProjectsService {
       targetName: projectNameInNxJson,
       success: isSuccess ? `${projectNameInNxJson} successfully renamed.` : '',
       error: !isSuccess ? `${projectNameInNxJson} has not been successfully renamed.` : '',
+    };
+  }
+
+  async generateLibrary(dto: IpcEventDtos.GenerateLibrary): Promise<IpcResponse> {
+    const { workspacePath, directory, name } = dto;
+    const dir = removeSpecialCharFrontBack(parsePath(directory));
+    const cmd = parsePath(`nx g lib ${dir ? dir + '/' : ''}${removeSpecialCharacters(name)}`);
+    const args = [
+      `--simpleModuleName ${dto.simpleModuleName}`,
+      `--publishable ${dto.publishable}`,
+      `--buildable ${dto.buildable}`,
+      `--addModuleSpecFile ${dto.addModuleSpecFile}`,
+      `--enableIvy ${dto.enableIvy}`,
+      dto.tags ? `--tags ${removeConsecutiveCommas(dto.tags)}` : '',
+      dto.prefix ? `--prefix ${dto.prefix}` : '',
+      dto.importPath ? `--importPath ${dto.importPath}` : ''
+    ]
+
+    const isSuccess = await executeCommand(cmd, args, workspacePath, 'CREATE');
+
+    return {
+      workspacePath,
+      targetName: name,
+      success: isSuccess ? `${name} library successfully created.` : '',
+      error: !isSuccess ? `${name} library has not been successfully created.` : '',
     };
   }
 }
