@@ -2,12 +2,12 @@
 
 <div class='wrapper'>
   <input
-    id='checkbox'
+    [id]='title + "___"'
     type='checkbox'
     [value]="isChecked"
     [disabled]="disabled"
     (input)="onInputChange($event)"
     (blur)="onTouched()">
 
-  <label for='checkbox'>{{ description }}</label>
+  <label [for]='title + "___"'>{{ description }}</label>
 </div>

@@ -2,22 +2,21 @@
 @import "styles/global.variables";
 
 :host {
-
   & > form {
-    & > .input-wrapper {
-      min-height: 5rem;
-      padding: 1rem 0;
-      @include center-flex-X;
-
-      & > input.ng-invalid.ng-touched {
+    & > nx-cli-input.ng-invalid.ng-touched  {
+      &::ng-deep > input {
         @include input_focus(null);
         border: 1px solid red;
       }
+    }
 
-      & > input {
-        width: 100%;
-        height: 2.5rem;
-        @include input_focus(default);
+    & > .actions {
+      margin: 1rem 0;
+      @include center-flex-X;
+      justify-content: space-evenly;
+
+      & > nx-cli-button {
+        width: 10rem;
       }
     }
   }
