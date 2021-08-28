@@ -41,17 +41,16 @@ export namespace IpcEventDtos {
   }
 
   export interface GenerateLibrary {
+    workspacePath: string;
     name: string;
     directory: string;
     importPath: string;
-    parentModule: string;
     prefix: string;
-    lazy: boolean;
     buildable: boolean;
     enableIvy: boolean;
+    addModuleSpecFile: boolean;
     publishable: boolean;
-    routing: boolean;
     simpleModuleName: boolean;
-    libTags: string[];
+    tags: string;
   }
 }

@@ -10,7 +10,8 @@
   @include center-flex-X;
 
   & > .icon {
-    //@include cursor-pointer;
+    display: block;
+    @include cursor-pointer;
   }
 
   &::ng-deep > .chip-list {

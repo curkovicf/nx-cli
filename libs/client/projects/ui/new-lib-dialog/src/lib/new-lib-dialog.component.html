@@ -5,6 +5,7 @@
   <nx-cli-input formControlName='directory' title='directory' description='A directory where the library is placed'></nx-cli-input>
   <nx-cli-input formControlName='prefix' title='prefix' description='Prefix to apply to generated selectors'></nx-cli-input>
   <nx-cli-input formControlName='tags' title='tags' description='Add tags to the library'></nx-cli-input>
+  <nx-cli-input formControlName='importPath' title='importPath' description='The library name used to import it, like `@myorg/my-awesome-lib`. Must be a valid npm name.'></nx-cli-input>
   <nx-cli-checkbox formControlName='buildable' title='buildable' description='Generate a buildable library'></nx-cli-checkbox>
   <nx-cli-checkbox formControlName='publishable' title='publishable' description='Generate a publishable library'></nx-cli-checkbox>
   <nx-cli-checkbox formControlName='enableIvy' title='enableIvy' description='Enable Ivy for lib in tsconfig.lib.prod.json'></nx-cli-checkbox>
@@ -13,6 +14,6 @@
 
   <div class='actions'>
     <nx-cli-button type='submit' buttonText='Submit' buttonType='primary'></nx-cli-button>
-    <nx-cli-button type='button' buttonText='Cancel' buttonType='warn'></nx-cli-button>
+    <nx-cli-button type='button' buttonText='Cancel' buttonType='warn' (onbtnclick)='onCancel()'></nx-cli-button>
   </div>
 </form>

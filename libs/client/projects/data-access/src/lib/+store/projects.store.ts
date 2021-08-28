@@ -99,18 +99,12 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
   }
 
   public createLib(): void {
-    this.openDialog(NewLibDialogComponent, { maxHeight: '90vh' }).subscribe(([data, workspacePath]) => {
-      if (!data) {
-        return;
-      }
+    this.openDialog(NewLibDialogComponent, { maxHeight: '90vh' })
+      .subscribe(([data, workspacePath]) => {
+        if (!data) { return; }
 
-      this.projectsIpcApiService.createProject({
-        workspacePath,
-        path: data[data.length - 1] === '/' ? data.slice(0, -1) : data,
-        flags: data.flags,
-        type: 'lib',
+        this.projectsIpcApiService.generateLibrary({ ...data, workspacePath });
       });
-    });
   }
 
   public renameProject(project: Project): void {

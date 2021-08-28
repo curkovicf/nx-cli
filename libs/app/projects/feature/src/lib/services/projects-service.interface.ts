@@ -10,4 +10,5 @@ export interface IProjectsService {
   generateComponent(dto: IpcEventDtos.GenerateDto): Promise<IpcResponse>;
   generateService(dto: IpcEventDtos.GenerateDto): Promise<IpcResponse>;
   renameProject(dto: IpcEventDtos.RenameProjectDto): Promise<IpcResponse>;
+  generateLibrary(dto: IpcEventDtos.GenerateLibrary): Promise<IpcResponse>;
 }

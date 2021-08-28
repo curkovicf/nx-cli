@@ -86,7 +86,6 @@ export class CheckboxComponent implements ControlValueAccessor {
   public onTouched() {}
 
   onInputChange($event: Event) {
-    console.log($event);
     // @ts-ignore
     this.onChange($event.target.checked);
   }
