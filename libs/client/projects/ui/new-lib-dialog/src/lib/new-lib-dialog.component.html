@@ -1,4 +1,13 @@
 <form [formGroup]='form' (ngSubmit)='onSubmit()'>
-  <nx-cli-checkbox formControlName='input' (onchange)='onCheckBoxChange($event)'></nx-cli-checkbox>
-  <button type='submit'>submit</button>
+  <nx-cli-input formControlName='name' title='name' description='The name of the library'></nx-cli-input>
+  <nx-cli-checkbox formControlName='input'
+                   title='buildable'
+                   description='Generate a buildable library'
+  ></nx-cli-checkbox>
+  <nx-cli-dropdown formControlName='ngModules'
+                   title='Angular modules'
+                   description='Select angular module to setup routing'
+                   [options]='options'
+  ></nx-cli-dropdown>
+  <nx-cli-button type='submit' buttonText='Submit' buttonType='primary'></nx-cli-button>
 </form>

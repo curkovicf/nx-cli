@@ -1,11 +1,14 @@
+@import "styles/global.variables";
+@import "styles/global.mixins";
+
 :host {
-  display: block;
-  width: 20rem;
-  height: 1rem;
+  min-height: 5rem;
+  @include center-flex-Y;
+  align-items: flex-start;
+  justify-content: space-evenly;
 
   & > .title {
     font-size: 1rem;
-    margin: .7rem 0;
   }
 
   & > .wrapper {
@@ -15,10 +18,10 @@
 
     & > input {
       margin-right: 1rem;
+      margin-left: .2rem;
       transform: scale(1.5);
     }
 
-    & > label {
-    }
+    & > label {}
   }
 }

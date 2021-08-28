@@ -10,14 +10,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class NewLibDialogComponent implements OnInit {
   form: FormGroup;
+  options = ['app.module.ts', 'projects.module.ts'];
 
   constructor(public dialogRef: MatDialogRef<NewLibDialogComponent>) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      input: new FormControl(null, [Validators.required]),
-      // directory: new FormControl(null, [Validators.required]),
-      // buildable: new FormControl(null, [Validators.required]),
+      name: new FormControl('', [Validators.required]),
+      input: new FormControl(false, [Validators.required]),
+      ngModules: new FormControl(null, [Validators.required]),
       // enableIvy: new FormControl(null, [Validators.required]),
       // prefix: new FormControl(null, [Validators.required]),
       // publishable: new FormControl(null, [Validators.required]),

@@ -1,1 +1,12 @@
-<p>input works!</p>
+<h5 class='title'>{{ title }}</h5>
+
+<label for='checkbox'>{{ description }}</label>
+
+<input
+  id='checkbox'
+  type='text'
+  [value]='value'
+  [disabled]='disabled'
+  (input)='onInputChange($event)'
+  (blur)='onTouched()'>
+

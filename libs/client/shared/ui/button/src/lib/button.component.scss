@@ -1,15 +1,15 @@
-@import "styles/global.mixins";
-@import "styles/global.variables";
+@import 'styles/global.mixins';
+@import 'styles/global.variables';
 
 :host {
   position: relative;
   display: inline-block;
   height: 2.4rem;
-  padding: .1rem;
+  padding: 0.1rem;
 
   & > button {
     height: 2.4rem;
-    padding: 0 .5rem;
+    padding: 0 0.5rem;
     @include cursor-pointer;
     @include default-btn-layout;
     @include box-max;
@@ -19,7 +19,8 @@
     }
   }
 
-  & > .primary {}
+  & > .primary {
+  }
 
   & > .warn {
     color: firebrick;

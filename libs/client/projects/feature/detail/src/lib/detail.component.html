@@ -16,19 +16,19 @@
   </header>
 
   <div class="action-buttons">
-    <nx-cli-default-button
+    <nx-cli-button
       [buttonText]="'Create Component'"
       buttonType="primary"
       (onbtnclick)="projectsStore.generateComponent(project)"
-    ></nx-cli-default-button>
-    <nx-cli-default-button
+    ></nx-cli-button>
+    <nx-cli-button
       [buttonText]="'Create Service'"
       buttonType="primary"
       (onbtnclick)="projectsStore.generateService(project)"
-    ></nx-cli-default-button>
-    <nx-cli-default-button [buttonText]="'Move project'" buttonType="warn" (onbtnclick)="projectsStore.moveProject(project)"></nx-cli-default-button>
-    <nx-cli-default-button [buttonText]="'Rename project'" buttonType="warn" (onbtnclick)="projectsStore.renameProject(project)"></nx-cli-default-button>
-    <nx-cli-default-button [buttonText]="'Delete project'" buttonType="warn" (onbtnclick)="projectsStore.deleteProject(project)"></nx-cli-default-button>
+    ></nx-cli-button>
+    <nx-cli-button [buttonText]="'Move project'" buttonType="warn" (onbtnclick)="projectsStore.moveProject(project)"></nx-cli-button>
+    <nx-cli-button [buttonText]="'Rename project'" buttonType="warn" (onbtnclick)="projectsStore.renameProject(project)"></nx-cli-button>
+    <nx-cli-button [buttonText]="'Delete project'" buttonType="warn" (onbtnclick)="projectsStore.deleteProject(project)"></nx-cli-button>
   </div>
 
   <div class="installed-modules-and-components">

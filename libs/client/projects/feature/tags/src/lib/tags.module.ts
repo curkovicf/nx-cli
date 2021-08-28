@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TagsComponent } from './tags.component';
-import { DefaultButtonModule } from '@nx-cli/client/shared/ui/default-button';
+import { ButtonModule } from '@nx-cli/client/shared/ui/button';
 
 @NgModule({
-  imports: [CommonModule, DefaultButtonModule],
+  imports: [CommonModule, ButtonModule],
   declarations: [TagsComponent],
   exports: [TagsComponent],
 })

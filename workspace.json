@@ -691,6 +691,31 @@
         }
       }
     },
+    "client-shared-ui-button": {
+      "projectType": "library",
+      "root": "libs/client/shared/ui/button",
+      "sourceRoot": "libs/client/shared/ui/button/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shared/ui/button"],
+          "options": {
+            "jestConfig": "libs/client/shared/ui/button/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shared/ui/button/src/**/*.ts",
+              "libs/client/shared/ui/button/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "client-shared-ui-checkbox": {
       "projectType": "library",
       "root": "libs/client/shared/ui/checkbox",
@@ -736,31 +761,6 @@
             "lintFilePatterns": [
               "libs/client/shared/ui/confirm-dialog/src/**/*.ts",
               "libs/client/shared/ui/confirm-dialog/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "client-shared-ui-default-button": {
-      "projectType": "library",
-      "root": "libs/client/shared/ui/default-button",
-      "sourceRoot": "libs/client/shared/ui/default-button/src",
-      "prefix": "nx-cli",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/shared/ui/default-button"],
-          "options": {
-            "jestConfig": "libs/client/shared/ui/default-button/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/client/shared/ui/default-button/src/**/*.ts",
-              "libs/client/shared/ui/default-button/src/**/*.html"
             ]
           }
         }

@@ -22,15 +22,15 @@ export interface SingleInputConfig {
       </div>
 
       <div class='actions'>
-        <nx-cli-default-button [buttonText]='config.submitButtonText'
-                               buttonType='primary'
-                               type='submit'>
-        </nx-cli-default-button>
+        <nx-cli-button [buttonText]='config.submitButtonText'
+                       buttonType='primary'
+                       type='submit'>
+        </nx-cli-button>
 
-        <nx-cli-default-button [buttonText]="'Cancel'"
-                               buttonType='warn'
-                               (onbtnclick)='oncancel.emit()'>
-        </nx-cli-default-button>
+        <nx-cli-button [buttonText]="'Cancel'"
+                       buttonType='warn'
+                       (onbtnclick)='oncancel.emit()'>
+        </nx-cli-button>
       </div>
     </form>
   `,

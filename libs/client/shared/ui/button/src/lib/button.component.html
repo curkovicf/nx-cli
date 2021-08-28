@@ -1,9 +1,10 @@
 <button
   matRipple
-  [type]='type'
+  [type]="type"
   [class]="buttonType"
   [disabled]="isDisabled"
   [style.cursor]="'pointer'"
-  (click)="onbtnclick.emit()">
+  (click)="onbtnclick.emit()"
+>
   {{ buttonText }}
 </button>

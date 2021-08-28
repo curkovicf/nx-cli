@@ -7,5 +7,8 @@ import { DropdownComponent } from './dropdown.component';
   declarations: [
     DropdownComponent
   ],
+  exports: [
+    DropdownComponent
+  ]
 })
 export class DropdownModule {}

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DetailComponent } from './detail.component';
-import { DefaultButtonModule } from '@nx-cli/client/shared/ui/default-button';
+import { ButtonModule } from '@nx-cli/client/shared/ui/button';
 import { ListItemBadgeModule } from '@nx-cli/client/projects/ui/list-item-badge';
 
 @NgModule({
-  imports: [CommonModule, DefaultButtonModule, ListItemBadgeModule],
+  imports: [CommonModule, ButtonModule, ListItemBadgeModule],
   declarations: [DetailComponent],
   exports: [DetailComponent],
   providers: [],

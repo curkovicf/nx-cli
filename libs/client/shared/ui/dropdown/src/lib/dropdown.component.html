@@ -1,1 +1,8 @@
-<p>dropdown works!</p>
+<h5 class='title'>{{ title }}</h5>
+
+<label for='dropdown'>{{ description }}</label>
+
+<select id='dropdown' (change)='onInputChange($event)'>
+  <option *ngFor='let option of options' [value]='option'>{{ option }}</option>
+</select>
+

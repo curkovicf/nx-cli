@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'nx-cli-default-button',
-  templateUrl: './default-button.component.html',
-  styleUrls: ['./default-button.component.scss']
+  selector: 'nx-cli-button',
+  templateUrl: './button.component.html',
+  styleUrls: ['./button.component.scss'],
 })
-export class DefaultButtonComponent {
+export class ButtonComponent {
   @Input()
   buttonText: string | undefined;
 
@@ -13,7 +13,7 @@ export class DefaultButtonComponent {
   buttonType: 'warn' | 'primary' | undefined;
 
   @Input()
-  type: 'submit' | 'reset'| 'button' | undefined;
+  type: 'submit' | 'reset' | 'button' | undefined;
 
   @Input()
   isDisabled: boolean = false;
