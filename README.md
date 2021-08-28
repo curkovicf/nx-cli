@@ -69,6 +69,7 @@ While working at my current job with Nx monorepos I have noticed that I spend a 
 | :white_check_mark: | Add additional flags for lib generation | ATM it is not possible to add flags for a lib generation (Only via single input) |
 | :x: | Add additional flags for app generation | ATM it is not possible to add flags for a app generation (Only via single input) |
 | :x: | User can see outputs of commands | Add console to the app so user can see and interact with the console logs |
+| :x: | User can see if Nx is not installed on his machine | Add notification if user doesn't have Nx installed on his machine |
 | :x: | User can open components & modules in new window | User can select and open files in new window (Custom text editor) |
 | :x: | User can see lib or app tree | Once app or lib is selected, use can see folder tree in the detail view |
 | :x: | User can add/delete tags | Ability to add tags for a selected app or lib |
