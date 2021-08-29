@@ -1,24 +1,15 @@
-<h2 mat-dialog-title>Enter component name</h2>
+<h4 mat-dialog-title>@nrwl/angular:component</h4>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="input-wrapper">
-    <input formControlName="name" name="name" type="text" placeholder="Path" />
-  </div>
+<form [formGroup]='form' (ngSubmit)='onSubmit()' mat-dialog-content>
+  <nx-cli-input formControlName='name' title='name' description='The name of the component.'></nx-cli-input>
+  <nx-cli-input formControlName='directory' title='directory' description='A directory where the component is placed.'></nx-cli-input>
+  <nx-cli-checkbox formControlName='export' title='export' description='When true, the component is exported from the project index.ts (if it exists).'></nx-cli-checkbox>
+  <nx-cli-checkbox formControlName='flat' title='flat' description='Create component at the source root rather than its own directory.'></nx-cli-checkbox>
+  <nx-cli-checkbox formControlName='skipTests' title='skipTests' description='When true, does not create "spec.ts" test files for the new component.'></nx-cli-checkbox>
 
-  <div class="flags">
-    <h2 mat-dialog-title>Additional flags</h2>
-
-    <p><mat-checkbox color="primary" formControlName="flat">Flat</mat-checkbox></p>
-    <p><mat-checkbox color="primary" formControlName="exportComponent">Export</mat-checkbox></p>
-    <p><mat-checkbox color="primary" formControlName="skipTests">Skip Test</mat-checkbox></p>
-  </div>
-
-  <div class="actions">
-    <nx-cli-button
-      [buttonText]="'Generate Component'"
-      buttonType="primary"
-      type="submit"
-    ></nx-cli-button>
-    <nx-cli-button [buttonText]="'Cancel'" buttonType="warn" (onbtnclick)="onCancel()"></nx-cli-button>
+  <div class='actions'>
+    <nx-cli-button type='submit' buttonText='Submit' buttonType='primary'></nx-cli-button>
+    <nx-cli-button type='button' buttonText='Cancel' buttonType='warn' (onbtnclick)='onCancel()'></nx-cli-button>
   </div>
 </form>
+

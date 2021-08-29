@@ -37,7 +37,7 @@ export class NewAppDialogComponent extends NxCliDialogFormClass<NewAppDialogComp
     this.dialogRef.close(this.generateDto());
   }
 
-  private generateDto(): Partial<IpcEventDtos.GenerateApplication> {
+  private generateDto(): Partial<IpcEventDtos.GenerateAngularApplication> {
     return {
       name: this.form.get('name').value,
       directory: this.form.get('directory').value,

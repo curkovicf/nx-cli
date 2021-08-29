@@ -39,7 +39,7 @@ export class NewLibDialogComponent extends NxCliDialogFormClass<NewLibDialogComp
     this.dialogRef.close(this.generateDto());
   }
 
-  private generateDto(): Partial<IpcEventDtos.GenerateLibrary> {
+  private generateDto(): Partial<IpcEventDtos.GenerateAngularLibrary> {
     return {
       directory: this.form.get('directory').value,
       buildable: this.form.get('buildable').value,

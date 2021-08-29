@@ -7,9 +7,9 @@ export interface IProjectsService {
   moveProject(dto: IpcEventDtos.MoveProjectDto): Promise<IpcResponse>;
   createProject(dto: IpcEventDtos.CreateProjectDto): Promise<IpcResponse>;
   deleteProject(dto: IpcEventDtos.DeleteProjectDto): Promise<IpcResponse>;
-  generateComponent(dto: IpcEventDtos.GenerateDto): Promise<IpcResponse>;
+  generateComponent(dto: IpcEventDtos.GenerateAngularComponent): Promise<IpcResponse>;
   generateService(dto: IpcEventDtos.GenerateDto): Promise<IpcResponse>;
   renameProject(dto: IpcEventDtos.RenameProjectDto): Promise<IpcResponse>;
-  generateLibrary(dto: IpcEventDtos.GenerateLibrary): Promise<IpcResponse>;
-  generateApplication(dto: IpcEventDtos.GenerateApplication): Promise<IpcResponse>;
+  generateLibrary(dto: IpcEventDtos.GenerateAngularLibrary): Promise<IpcResponse>;
+  generateApplication(dto: IpcEventDtos.GenerateAngularApplication): Promise<IpcResponse>;
 }

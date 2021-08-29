@@ -45,7 +45,7 @@ export class ProjectsController implements IController {
   }
 
   private initGenerateComponent(): void {
-    ipcMain.on(IpcEvents.createComponent.fromAngular, async (event, dto: IpcEventDtos.GenerateDto) => {
+    ipcMain.on(IpcEvents.createComponent.fromAngular, async (event, dto: IpcEventDtos.GenerateAngularComponent) => {
       const response: IpcResponse = await this.projectsService.generateComponent(dto);
       event.sender.send(IpcEvents.defaultChannel.fromElectron, response);
     });
@@ -73,14 +73,14 @@ export class ProjectsController implements IController {
   }
 
   private initGenerateLibrary(): void {
-    ipcMain.on(IpcEvents.generateLibrary.fromAngular, async (event, dto: IpcEventDtos.GenerateLibrary) => {
+    ipcMain.on(IpcEvents.generateLibrary.fromAngular, async (event, dto: IpcEventDtos.GenerateAngularLibrary) => {
       const response: IpcResponse = await this.projectsService.generateLibrary(dto);
       event.sender.send(IpcEvents.defaultChannel.fromElectron, response);
     });
   }
 
   private initGenerateApplication(): void {
-    ipcMain.on(IpcEvents.generateApplication.fromAngular, async (event, dto: IpcEventDtos.GenerateApplication) => {
+    ipcMain.on(IpcEvents.generateApplication.fromAngular, async (event, dto: IpcEventDtos.GenerateAngularApplication) => {
       const response: IpcResponse = await this.projectsService.generateApplication(dto);
       event.sender.send(IpcEvents.defaultChannel.fromElectron, response);
     });
