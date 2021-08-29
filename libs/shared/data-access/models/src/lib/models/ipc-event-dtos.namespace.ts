@@ -75,4 +75,13 @@ export namespace IpcEventDtos {
     flat: boolean;
     skipTests: boolean;
   }
+
+  export interface GenerateAngularService {
+    workspacePath: string;
+    name: string;
+    directory: string;
+    project: string;
+    flat: boolean;
+    skipTests: boolean;
+  }
 }

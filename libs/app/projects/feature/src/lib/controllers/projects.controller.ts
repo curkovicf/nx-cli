@@ -52,7 +52,7 @@ export class ProjectsController implements IController {
   }
 
   private initGenerateService(): void {
-    ipcMain.on(IpcEvents.createService.fromAngular, async (event, dto: IpcEventDtos.GenerateDto) => {
+    ipcMain.on(IpcEvents.createService.fromAngular, async (event, dto: IpcEventDtos.GenerateAngularService) => {
       const response: IpcResponse = await this.projectsService.generateService(dto);
       event.sender.send(IpcEvents.defaultChannel.fromElectron, response);
     });
