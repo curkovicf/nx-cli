@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NewComponentDialogComponent } from '@nx-cli/client/projects/ui/new-component-dialog';
 import { ComponentType } from '@angular/cdk/portal/portal';
 import { NewServiceFormComponent } from '@nx-cli/client/projects/ui/new-service-dialog';
-import { MoveProjectDialogComponent } from '@nx-cli/client/projects/ui/move-project-dialog';
+import { EditProjectDialogComponent } from '@nx-cli/client/projects/ui/edit-project-dialog';
 import { RenameProjectFormComponent } from '@nx-cli/client/projects/ui/rename-project-dialog';
 import { NewAppDialogComponent } from '@nx-cli/client/projects/ui/new-app-dialog';
 import { NewLibDialogComponent } from '@nx-cli/client/projects/ui/new-lib-dialog';
@@ -33,7 +33,7 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
   constructor(
     private projectsIpcApiService: ProjectsIpcApiService,
     private dialog: MatDialog,
-    private workspacesFacade: WorkspacesFacade,
+    private workspacesFacade: WorkspacesFacade
   ) {
     super(<ProjectsState>{
       projects: [],
@@ -51,7 +51,8 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
             projectsLoadedInView: projects.filter((project) => project.name.includes(keyword)),
           })
         )
-      ).subscribe();
+      )
+      .subscribe();
   }
 
   public selectProject(selectedProject: Project): void {
@@ -86,19 +87,22 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
 
   public createApplication(): void {
     this.openDialog(NewAppDialogComponent).subscribe(([data, workspacePath]) => {
-      if (!data) { return; }
+      if (!data) {
+        return;
+      }
 
       this.projectsIpcApiService.generateApplication({ ...data, workspacePath });
     });
   }
 
   public createLibrary(): void {
-    this.openDialog(NewLibDialogComponent, { maxHeight: '90vh' })
-      .subscribe(([data, workspacePath]) => {
-        if (!data) { return; }
+    this.openDialog(NewLibDialogComponent, { maxHeight: '90vh' }).subscribe(([data, workspacePath]) => {
+      if (!data) {
+        return;
+      }
 
-        this.projectsIpcApiService.generateLibrary({ ...data, workspacePath });
-      });
+      this.projectsIpcApiService.generateLibrary({ ...data, workspacePath });
+    });
   }
 
   public renameProject(project: Project): void {
@@ -123,7 +127,7 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
   }
 
   public moveProject(project: Project): void {
-    this.openDialog(MoveProjectDialogComponent).subscribe(([data, workspacePath]) => {
+    this.openDialog(EditProjectDialogComponent).subscribe(([data, workspacePath]) => {
       if (!data) {
         return;
       }
@@ -140,7 +144,9 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
 
   public generateComponent(project: Project): void {
     this.openDialog(NewComponentDialogComponent).subscribe(([data, workspacePath]) => {
-      if (!data) { return; }
+      if (!data) {
+        return;
+      }
 
       this.projectsIpcApiService.generateComponent({
         ...data,
@@ -152,7 +158,9 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
 
   public generateService(project: Project): void {
     this.openDialog(NewServiceFormComponent).subscribe(([data, workspacePath]) => {
-      if (!data) { return; }
+      if (!data) {
+        return;
+      }
 
       this.projectsIpcApiService.generateService({
         ...data,
@@ -165,10 +173,14 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
   private openDialog(component: ComponentType<unknown>, config?: MatDialogConfig): Observable<any> {
     return combineLatest([
       this.dialog.open(component, config).afterClosed(),
-      this.workspacesFacade.selectedWorkspace$.pipe(map(w => w?.path)),
+      this.workspacesFacade.selectedWorkspace$.pipe(map((w) => w?.path)),
     ]).pipe(
       take(1),
       filter(([data, workspacePath]) => data !== undefined) //  Investigate why this doesn't work
     );
+  }
+
+  public editProject(project: Project): void {
+    this.openDialog(EditProjectDialogComponent, { data: { currName: 'idk', currDirectory: 'dir' } }).subscribe();
   }
 }

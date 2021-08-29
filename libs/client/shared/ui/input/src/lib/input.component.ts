@@ -1,4 +1,14 @@
-import { Component, EventEmitter, Input, Optional, Output, Self } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Optional,
+  Output,
+  Self,
+  ViewChild
+} from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 
 @Component({
@@ -6,7 +16,10 @@ import { ControlValueAccessor, NgControl } from '@angular/forms';
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss']
 })
-export class InputComponent implements ControlValueAccessor {
+export class InputComponent implements ControlValueAccessor, AfterViewInit {
+  @ViewChild('inputElement')
+  inputElement: ElementRef;
+
   @Input()
   initialValue: string;
 
@@ -40,6 +53,12 @@ export class InputComponent implements ControlValueAccessor {
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
+  }
+
+  ngAfterViewInit(): void {
+    if (!this.initialValue) { return; }
+
+    this.inputElement.nativeElement.value = this.initialValue;
   }
 
 

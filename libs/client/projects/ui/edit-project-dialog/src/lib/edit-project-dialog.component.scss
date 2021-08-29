@@ -1,0 +1,36 @@
+@import "styles/global.mixins";
+@import "styles/global.variables";
+
+:host {
+  & > form {
+    width: 40rem;
+    @include center-flex-Y;
+
+    nx-cli-input.ng-invalid.ng-touched  {
+      &::ng-deep > input {
+        @include input_focus(null);
+        border: 1px solid red;
+      }
+    }
+
+    & > .row {
+      width: 100%;
+      @include center-flex-X;
+      justify-content: space-evenly;
+
+      & > nx-cli-input {
+        width: 16rem;
+      }
+    }
+
+    & > .actions {
+      margin: 1rem 0;
+      @include center-flex-X;
+      justify-content: space-evenly;
+
+      & > nx-cli-button {
+        width: 10rem;
+      }
+    }
+  }
+}
