@@ -67,7 +67,7 @@ While working at my current job with Nx monorepos I have noticed that I spend a 
 | :white_check_mark: | User can create new app | If workspace is added, user will be able to create new app |
 | :white_check_mark: | User can remove workspace from app | Workspaces can only be added ATM |
 | :white_check_mark: | Add additional flags for lib generation | ATM it is not possible to add flags for a lib generation (Only via single input) |
-| :x: | Add additional flags for app generation | ATM it is not possible to add flags for a app generation (Only via single input) |
+| :white_check_mark: | Add additional flags for app generation | ATM it is not possible to add flags for a app generation (Only via single input) |
 | :x: | User can see outputs of commands | Add console to the app so user can see and interact with the console logs |
 | :x: | User can see if Nx is not installed on his machine | Add notification if user doesn't have Nx installed on his machine |
 | :x: | User can open components & modules in new window | User can select and open files in new window (Custom text editor) |
@@ -87,7 +87,7 @@ While working at my current job with Nx monorepos I have noticed that I spend a 
 | :white_check_mark: | 1.9.2021 | Polish and bugfix |
 | :white_check_mark: | 5.9.2021 | User can remove workspace from app |
 | :white_check_mark: | 10.9.2021 | Add additional flags for lib generation |
-| :x: | 15.9.2021 | Add additional flags for app generation |
+| :white_check_mark: | 15.9.2021 | Add additional flags for app generation |
 | :x: | 1.10.2021 | Add console to the app so user can see and interact with the console logs |
 
 
