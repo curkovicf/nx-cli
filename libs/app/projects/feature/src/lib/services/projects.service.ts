@@ -9,7 +9,7 @@ import {
   parsePath,
   Platform,
   removeSpecialCharFrontBack,
-  removeSpecialCharacters
+  removeSpecialCharacters, spawnPromise
 } from '@nx-cli/app/shared/util';
 import {
   cleanEmptyDirWinFunction,
@@ -142,18 +142,22 @@ export class ProjectsService implements IProjectsService {
    *
    * @param dto
    */
-  async generateService(dto: IpcEventDtos.GenerateDto): Promise<IpcResponse> {
-    const { artifactName, flags, projectName, workspacePath } = dto;
+  async generateService(dto: IpcEventDtos.GenerateAngularService): Promise<IpcResponse> {
+    const { name, project, directory, workspacePath } = dto;
+    const dir = removeSpecialCharFrontBack(parsePath(directory));
+    const cmd = parsePath(`nx g s ${dir ? dir + '/' : ''}${name} --project ${removeSpecialCharacters(project)}`);
+    const args: string[] = [
+      `--flat ${dto.flat}`,
+      `--skipTests ${dto.skipTests}`,
+    ];
 
-    const cmd = parsePath(`nx g s ${artifactName} --project ${projectName}`);
-
-    const isSuccess = await executeCommand(cmd, flags, workspacePath, 'CREATE');
+    const isSuccess = await executeCommand(cmd, args, workspacePath, 'CREATE');
 
     return {
       workspacePath,
-      targetName: artifactName,
-      success: isSuccess ? `${artifactName} service successfully generated.` : '',
-      error: !isSuccess ? `${artifactName} service has not been successfully generated.` : '',
+      targetName: name,
+      success: isSuccess ? `${name} service successfully generated.` : '',
+      error: !isSuccess ? `${name} service has not been successfully generated.` : '',
     };
   }
 

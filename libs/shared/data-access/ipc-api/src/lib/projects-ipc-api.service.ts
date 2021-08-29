@@ -12,7 +12,7 @@ export class ProjectsIpcApiService {
     this.electronService.ipcRenderer.send(IpcEvents.createComponent.fromAngular, generateDto);
   }
 
-  public generateService(generateDto: IpcEventDtos.GenerateDto): void {
+  public generateService(generateDto: IpcEventDtos.GenerateAngularService): void {
     this.electronService.ipcRenderer.send(IpcEvents.createService.fromAngular, generateDto);
   }
 
