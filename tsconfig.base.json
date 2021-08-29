@@ -35,9 +35,6 @@
       "@nx-cli/client/projects/ui/new-component-dialog": ["libs/client/projects/ui/new-component-dialog/src/index.ts"],
       "@nx-cli/client/projects/ui/new-lib-dialog": ["libs/client/projects/ui/new-lib-dialog/src/index.ts"],
       "@nx-cli/client/projects/ui/new-service-dialog": ["libs/client/projects/ui/new-service-dialog/src/index.ts"],
-      "@nx-cli/client/projects/ui/rename-project-dialog": [
-        "libs/client/projects/ui/rename-project-dialog/src/index.ts"
-      ],
       "@nx-cli/client/projects/util": ["libs/client/projects/util/src/index.ts"],
       "@nx-cli/client/shared/data-access": ["libs/client/shared/data-access/src/index.ts"],
       "@nx-cli/client/shared/ui/button": ["libs/client/shared/ui/button/src/index.ts"],

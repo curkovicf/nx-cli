@@ -24,6 +24,7 @@
     }
 
     & > .actions {
+      width: 90%;
       margin: 1rem 0;
       @include center-flex-X;
       justify-content: space-evenly;

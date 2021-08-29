@@ -27,17 +27,17 @@ export class EditProjectDialogComponent extends NxCliDialogFormClass<EditProject
   }
 
   public onSubmit(): void {
-    if (!this.isFormValid()) {
-      return;
-    }
+    if (!this.isFormValid()) { return; }
 
     this.dialogRef.close(this.generateDto());
   }
 
-  private generateDto(): any {
+  private generateDto(): Partial<IpcEventDtos.EditProject> {
     return {
       newName: this.form.get('newName').value,
       newDirectory: this.form.get('newDirectory').value,
+      oldName: this.data.currName,
+      oldDirectory: this.data.currDirectory
     };
   }
 }

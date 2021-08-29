@@ -619,31 +619,6 @@
         }
       }
     },
-    "client-projects-ui-rename-project-dialog": {
-      "projectType": "library",
-      "root": "libs/client/projects/ui/rename-project-dialog",
-      "sourceRoot": "libs/client/projects/ui/rename-project-dialog/src",
-      "prefix": "nx-cli",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/ui/rename-project-dialog"],
-          "options": {
-            "jestConfig": "libs/client/projects/ui/rename-project-dialog/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/client/projects/ui/rename-project-dialog/src/**/*.ts",
-              "libs/client/projects/ui/rename-project-dialog/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
     "client-projects-util": {
       "projectType": "library",
       "root": "libs/client/projects/util",

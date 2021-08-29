@@ -18,14 +18,6 @@ export namespace IpcEventDtos {
     workspacePath: string;
   }
 
-  export interface RenameProjectDto {
-    newPath: string;
-    oldPath: string;  //  Needed for Windows
-    projectNameInNxJson: string;
-    workspacePath: string;
-    type: ProjectType;
-  }
-
   export interface CreateProjectDto {
     path: string;
     workspacePath: string;
@@ -83,5 +75,14 @@ export namespace IpcEventDtos {
     project: string;
     flat: boolean;
     skipTests: boolean;
+  }
+
+  export interface EditProject {
+    workspacePath: string;
+    project: string;
+    newName: string;
+    oldName: string;
+    newDirectory: string;
+    oldDirectory: string;
   }
 }
