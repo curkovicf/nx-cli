@@ -102,7 +102,7 @@ While working at my current job with Nx monorepos I have noticed that I spend a 
 
 > Adding new features and maintaining old ones will be a bit slower due to the time constraints I have because of the uni (last semester :relieved:) and work
 
-If you wish to contact me, you can find info on [website](https://www.fcurkovic.eu/).
+If you wish to contact me, you can find info on [website](https://www.fcurkovicdev.eu/).
 
 <br>
 
