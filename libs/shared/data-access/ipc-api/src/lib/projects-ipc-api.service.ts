@@ -20,12 +20,8 @@ export class ProjectsIpcApiService {
     this.electronService.ipcRenderer.send(IpcEvents.getAllProjects.fromAngular, projectPath);
   }
 
-  public moveProject(generateDto: IpcEventDtos.MoveProjectDto): void {
-    this.electronService.ipcRenderer.send(IpcEvents.moveProject.fromAngular, generateDto);
-  }
-
-  public renameProject(generateDto: IpcEventDtos.RenameProjectDto): void {
-    this.electronService.ipcRenderer.send(IpcEvents.renameProject.fromAngular, generateDto);
+  public editProject(generateDto: IpcEventDtos.EditProject): void {
+    this.electronService.ipcRenderer.send(IpcEvents.editProject.fromAngular, generateDto);
   }
 
   public deleteProject(deleteProjectDto: IpcEventDtos.DeleteProjectDto): void {

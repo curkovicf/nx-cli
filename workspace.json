@@ -419,6 +419,31 @@
         }
       }
     },
+    "client-projects-ui-edit-project-dialog": {
+      "projectType": "library",
+      "root": "libs/client/projects/ui/edit-project-dialog",
+      "sourceRoot": "libs/client/projects/ui/edit-project-dialog/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/ui/edit-project-dialog"],
+          "options": {
+            "jestConfig": "libs/client/projects/ui/edit-project-dialog/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/ui/edit-project-dialog/src/**/*.ts",
+              "libs/client/projects/ui/edit-project-dialog/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "client-projects-ui-layout": {
       "projectType": "library",
       "root": "libs/client/projects/ui/layout",
@@ -489,31 +514,6 @@
             "lintFilePatterns": [
               "libs/client/projects/ui/list-item-badge/src/**/*.ts",
               "libs/client/projects/ui/list-item-badge/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "client-projects-ui-move-project-dialog": {
-      "projectType": "library",
-      "root": "libs/client/projects/ui/move-project-dialog",
-      "sourceRoot": "libs/client/projects/ui/move-project-dialog/src",
-      "prefix": "nx-cli",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/ui/move-project-dialog"],
-          "options": {
-            "jestConfig": "libs/client/projects/ui/move-project-dialog/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/client/projects/ui/move-project-dialog/src/**/*.ts",
-              "libs/client/projects/ui/move-project-dialog/src/**/*.html"
             ]
           }
         }
@@ -614,31 +614,6 @@
             "lintFilePatterns": [
               "libs/client/projects/ui/new-service-dialog/src/**/*.ts",
               "libs/client/projects/ui/new-service-dialog/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "client-projects-ui-rename-project-dialog": {
-      "projectType": "library",
-      "root": "libs/client/projects/ui/rename-project-dialog",
-      "sourceRoot": "libs/client/projects/ui/rename-project-dialog/src",
-      "prefix": "nx-cli",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/ui/rename-project-dialog"],
-          "options": {
-            "jestConfig": "libs/client/projects/ui/rename-project-dialog/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/client/projects/ui/rename-project-dialog/src/**/*.ts",
-              "libs/client/projects/ui/rename-project-dialog/src/**/*.html"
             ]
           }
         }

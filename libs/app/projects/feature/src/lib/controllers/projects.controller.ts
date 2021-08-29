@@ -15,8 +15,7 @@ export class ProjectsController implements IController {
     this.initDeleteProject();
     this.initGenerateComponent();
     this.initGenerateService();
-    this.initRenameProject();
-    this.initMoveProject();
+    this.initEditProject();
     this.initGenerateLibrary();
     this.initGenerateApplication();
 
@@ -58,16 +57,9 @@ export class ProjectsController implements IController {
     });
   }
 
-  private initRenameProject(): void {
-    ipcMain.on(IpcEvents.renameProject.fromAngular, async (event, dto: IpcEventDtos.RenameProjectDto) => {
-      const response: IpcResponse = await this.projectsService.renameProject(dto);
-      event.sender.send(IpcEvents.defaultChannel.fromElectron, response);
-    });
-  }
-
-  private initMoveProject(): void {
-    ipcMain.on(IpcEvents.moveProject.fromAngular, async (event, dto: IpcEventDtos.MoveProjectDto) => {
-      const response: IpcResponse = await this.projectsService.moveProject(dto);
+  private initEditProject(): void {
+    ipcMain.on(IpcEvents.editProject.fromAngular, async (event, dto: IpcEventDtos.EditProject) => {
+      const response: IpcResponse = await this.projectsService.editProject(dto);
       event.sender.send(IpcEvents.defaultChannel.fromElectron, response);
     });
   }

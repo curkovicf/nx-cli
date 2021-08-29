@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'client-projects-ui-move-project-dialog',
+  displayName: 'client-projects-ui-edit-project-dialog',
   preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,7 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../../../../coverage/libs/client/projects/ui/move-project-dialog',
+  coverageDirectory: '../../../../../coverage/libs/client/projects/ui/edit-project-dialog',
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',
   },

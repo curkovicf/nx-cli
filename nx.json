@@ -70,6 +70,9 @@
     "client-projects-feature-tags": {
       "tags": []
     },
+    "client-projects-ui-edit-project-dialog": {
+      "tags": []
+    },
     "client-projects-ui-layout": {
       "tags": []
     },
@@ -77,9 +80,6 @@
       "tags": []
     },
     "client-projects-ui-list-item-badge": {
-      "tags": []
-    },
-    "client-projects-ui-move-project-dialog": {
       "tags": []
     },
     "client-projects-ui-new-app-dialog": {
@@ -92,9 +92,6 @@
       "tags": []
     },
     "client-projects-ui-new-service-dialog": {
-      "tags": []
-    },
-    "client-projects-ui-rename-project-dialog": {
       "tags": []
     },
     "client-projects-util": {

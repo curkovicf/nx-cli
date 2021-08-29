@@ -49,11 +49,19 @@ export class ProjectsService implements IProjectsService {
    *
    * @param dto
    */
-  async moveProject(dto: IpcEventDtos.MoveProjectDto): Promise<IpcResponse> {
-    const { projectNameInNxJson, moveTo, workspacePath, projectName } = dto;
+  async editProject(dto: IpcEventDtos.EditProject): Promise<IpcResponse> {
+    const { oldName, newName, newDirectory, oldDirectory, workspacePath, project } = dto;
+    const dir = removeSpecialCharFrontBack(parsePath(
+      newDirectory
+        .replace('/libs/', '')
+        .replace('\\libs\\', '')
+        .replace('/apps/', '')
+        .replace('\\apps\\', '')
+    ));
+    const cmd = parsePath(`nx g mv --project ${project} ${dir ? dir + '/' : ''}${removeSpecialCharacters(newName)}`);
+    const cmdTest = parsePath(`nx g mv --project ${project}-e2e ${dir}${newName}-e2e`);
 
-    const cmd = parsePath(`nx g mv --project ${projectNameInNxJson} ${moveTo}${projectName}`);
-    const cmdTest = parsePath(`nx g mv --project ${projectNameInNxJson}-e2e ${moveTo}${projectName}-e2e`);
+    console.log(cmd);
 
     await executeCommand(cmdTest, [], workspacePath, 'CREATE');
     const isSuccess = await executeCommand(cmd, [], workspacePath, 'CREATE');
@@ -65,9 +73,9 @@ export class ProjectsService implements IProjectsService {
 
     return {
       workspacePath,
-      targetName: projectNameInNxJson,
-      success: isSuccess ? `${projectName} successfully moved.` : '',
-      error: !isSuccess ? `${projectName} has not been successfully moved.` : '',
+      targetName: newName,
+      success: isSuccess ? `${oldDirectory}/${oldName} successfully moved to ${newDirectory}/${newName}.` : '',
+      error: !isSuccess ? `${oldName} has not been successfully moved/renamed.` : '',
     };
   }
 
@@ -158,36 +166,6 @@ export class ProjectsService implements IProjectsService {
       targetName: name,
       success: isSuccess ? `${name} service successfully generated.` : '',
       error: !isSuccess ? `${name} service has not been successfully generated.` : '',
-    };
-  }
-
-  /**
-   *
-   * @param dto
-   */
-  async renameProject(dto: IpcEventDtos.RenameProjectDto): Promise<IpcResponse> {
-    const { projectNameInNxJson, workspacePath, newPath, type } = dto;
-
-    const cmd = parsePath(`nx g mv --project ${projectNameInNxJson} ${newPath}`);
-
-    if (type === ProjectType.app) {
-      const cmdTest = parsePath(`nx g mv --project ${projectNameInNxJson}-e2e ${newPath}-e2e`);
-      await executeCommand(cmdTest, [], workspacePath, 'CREATE');
-    }
-
-    const isSuccess = await executeCommand(cmd, [], workspacePath, 'CREATE');
-
-    //  TODO: Improve performance
-    if (getOs() === Platform.windows) {
-      await cleanEmptyDirWinFunction(`${workspacePath}${getPlatformPathSeparator()}libs`);
-      await cleanEmptyDirWinFunction(`${workspacePath}${getPlatformPathSeparator()}apps`);
-    }
-
-    return {
-      workspacePath,
-      targetName: projectNameInNxJson,
-      success: isSuccess ? `${projectNameInNxJson} successfully renamed.` : '',
-      error: !isSuccess ? `${projectNameInNxJson} has not been successfully renamed.` : '',
     };
   }
 

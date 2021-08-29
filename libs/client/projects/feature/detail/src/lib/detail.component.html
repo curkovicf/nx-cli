@@ -26,8 +26,7 @@
       buttonType="primary"
       (onbtnclick)="projectsStore.generateService(project)"
     ></nx-cli-button>
-    <nx-cli-button [buttonText]="'Move project'" buttonType="warn" (onbtnclick)="projectsStore.moveProject(project)"></nx-cli-button>
-    <nx-cli-button [buttonText]="'Rename project'" buttonType="warn" (onbtnclick)="projectsStore.renameProject(project)"></nx-cli-button>
+    <nx-cli-button [buttonText]="'Edit project'" buttonType="warn" (onbtnclick)="projectsStore.editProject(project)"></nx-cli-button>
     <nx-cli-button [buttonText]="'Delete project'" buttonType="warn" (onbtnclick)="projectsStore.deleteProject(project)"></nx-cli-button>
   </div>
 
