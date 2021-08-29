@@ -118,18 +118,23 @@ export class ProjectsService implements IProjectsService {
    *
    * @param dto
    */
-  async generateComponent(dto: IpcEventDtos.GenerateDto): Promise<IpcResponse> {
-    const { artifactName, flags, projectName, workspacePath } = dto;
+  async generateComponent(dto: IpcEventDtos.GenerateAngularComponent): Promise<IpcResponse> {
+    const { name, project, directory, workspacePath } = dto;
+    const dir = removeSpecialCharFrontBack(parsePath(directory));
+    const cmd = parsePath(`nx g c ${dir ? dir + '/' : ''}${name} --project ${removeSpecialCharacters(project)}`);
+    const args: string[] = [
+      `--flat ${dto.flat}`,
+      `--skipTests ${dto.skipTests}`,
+      `--export ${dto.export}`,
+    ];
 
-    const cmd = parsePath(`nx g c ${artifactName} --project ${projectName}`);
-
-    const isSuccess = await executeCommand(cmd, flags, workspacePath, 'CREATE');
+    const isSuccess = await executeCommand(cmd, args, workspacePath, 'CREATE');
 
     return {
       workspacePath,
-      targetName: artifactName,
-      success: isSuccess ? `${artifactName} component successfully generated.` : '',
-      error: !isSuccess ? `${artifactName} component has not been successfully generated.` : '',
+      targetName: name,
+      success: isSuccess ? `${name} component successfully generated.` : '',
+      error: !isSuccess ? `${name} component has not been successfully generated.` : '',
     };
   }
 
@@ -182,7 +187,7 @@ export class ProjectsService implements IProjectsService {
     };
   }
 
-  async generateLibrary(dto: IpcEventDtos.GenerateLibrary): Promise<IpcResponse> {
+  async generateLibrary(dto: IpcEventDtos.GenerateAngularLibrary): Promise<IpcResponse> {
     const { workspacePath, directory, name } = dto;
     const dir = removeSpecialCharFrontBack(parsePath(directory));
     const cmd = parsePath(`nx g lib ${dir ? dir + '/' : ''}${removeSpecialCharacters(name)}`);
@@ -211,7 +216,7 @@ export class ProjectsService implements IProjectsService {
    *
    * @param dto
    */
-  async generateApplication(dto: IpcEventDtos.GenerateApplication): Promise<IpcResponse> {
+  async generateApplication(dto: IpcEventDtos.GenerateAngularApplication): Promise<IpcResponse> {
     const { workspacePath, directory, name } = dto;
     const dir = removeSpecialCharFrontBack(parsePath(directory));
     const cmd = parsePath(`nx g app ${dir ? dir + '/' : ''}${removeSpecialCharacters(name)}`);

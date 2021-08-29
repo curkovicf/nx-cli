@@ -8,7 +8,7 @@ import { IpcEventDtos, IpcEvents } from '@nx-cli/shared/data-access/models';
 export class ProjectsIpcApiService {
   constructor(private electronService: ElectronService) {}
 
-  public generateComponent(generateDto: IpcEventDtos.GenerateDto): void {
+  public generateComponent(generateDto: IpcEventDtos.GenerateAngularComponent): void {
     this.electronService.ipcRenderer.send(IpcEvents.createComponent.fromAngular, generateDto);
   }
 
@@ -37,11 +37,11 @@ export class ProjectsIpcApiService {
     this.electronService.ipcRenderer.send(IpcEvents.createApp.fromAngular, createAppDto);
   }
 
-  public generateLibrary(generateLibraryDto: IpcEventDtos.GenerateLibrary): void {
+  public generateLibrary(generateLibraryDto: IpcEventDtos.GenerateAngularLibrary): void {
     this.electronService.ipcRenderer.send(IpcEvents.generateLibrary.fromAngular, generateLibraryDto);
   }
 
-  public generateApplication(generateApplicationDto: IpcEventDtos.GenerateApplication): void {
+  public generateApplication(generateApplicationDto: IpcEventDtos.GenerateAngularApplication): void {
     this.electronService.ipcRenderer.send(IpcEvents.generateApplication.fromAngular, generateApplicationDto);
   }
 }

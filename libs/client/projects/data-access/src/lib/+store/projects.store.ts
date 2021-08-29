@@ -140,14 +140,12 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
 
   public generateComponent(project: Project): void {
     this.openDialog(NewComponentDialogComponent).subscribe(([data, workspacePath]) => {
-      if (!data) {
-        return;
-      }
+      if (!data) { return; }
 
       this.projectsIpcApiService.generateComponent({
         ...data,
         workspacePath,
-        projectName: project.nameInNxJson,
+        project: project.nameInNxJson,
       });
     });
   }
