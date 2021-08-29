@@ -38,10 +38,10 @@ export class ListComponent {
   }
 
   public createNgApp(): void {
-    this.projectsStore.createNgApp();
+    this.projectsStore.createApplication();
   }
 
   public createLib(): void {
-    this.projectsStore.createLib();
+    this.projectsStore.createLibrary();
   }
 }

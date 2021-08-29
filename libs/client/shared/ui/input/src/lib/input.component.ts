@@ -19,6 +19,9 @@ export class InputComponent implements ControlValueAccessor {
   @Input()
   description: string;
 
+  @Input()
+  inputType: 'text' | 'number' = 'text';
+
   @Output()
   onchange: EventEmitter<boolean> = new EventEmitter();
 

@@ -3,7 +3,7 @@
 <label>{{ description }}</label>
 
 <input
-  type='text'
+  [type]='inputType'
   [value]='value'
   [disabled]='disabled'
   (input)='onInputChange($event)'

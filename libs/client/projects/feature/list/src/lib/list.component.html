@@ -25,7 +25,7 @@
 <section class="actions">
   <nx-cli-button
     [isDisabled]="(workspacesFacade.workspaces$ | async)?.length === 0"
-    [buttonText]="'Create Angular app'"
+    [buttonText]="'Create Angular application'"
     buttonType="primary"
     (onbtnclick)="createNgApp()"
   >
@@ -33,7 +33,7 @@
 
   <nx-cli-button
     [isDisabled]="(workspacesFacade.workspaces$ | async)?.length === 0"
-    [buttonText]="'Create lib'"
+    [buttonText]="'Create Angular library'"
     buttonType="primary"
     (onbtnclick)="createLib()"
   >

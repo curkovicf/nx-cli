@@ -40,4 +40,8 @@ export class ProjectsIpcApiService {
   public generateLibrary(generateLibraryDto: IpcEventDtos.GenerateLibrary): void {
     this.electronService.ipcRenderer.send(IpcEvents.generateLibrary.fromAngular, generateLibraryDto);
   }
+
+  public generateApplication(generateApplicationDto: IpcEventDtos.GenerateApplication): void {
+    this.electronService.ipcRenderer.send(IpcEvents.generateApplication.fromAngular, generateApplicationDto);
+  }
 }

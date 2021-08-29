@@ -1,0 +1,17 @@
+<h4 mat-dialog-title>@nrwl/angular:application</h4>
+
+<form [formGroup]='form' (ngSubmit)='onSubmit()' mat-dialog-content>
+  <nx-cli-input formControlName='name' title='name' description='The name of the application'></nx-cli-input>
+  <nx-cli-input formControlName='directory' title='directory' description='A directory where the application is placed'></nx-cli-input>
+  <nx-cli-input formControlName='prefix' title='prefix' description='Prefix to apply to generated selectors'></nx-cli-input>
+  <nx-cli-input formControlName='tags' title='tags' description='Add tags to the application'></nx-cli-input>
+  <nx-cli-input formControlName='backendProject' title='backendProject' description='Backend project that provides data to this application. This sets up proxy.config.json.'></nx-cli-input>
+  <nx-cli-input formControlName='host' title='host' description='The name of the host application that the remote application will be consumed by.'></nx-cli-input>
+  <nx-cli-input formControlName='port' title='port' inputType='number' description='The port at which the remote application should be served.'></nx-cli-input>
+  <nx-cli-checkbox formControlName='routing' title='routing' description='Generate a routing module.'></nx-cli-checkbox>
+
+  <div class='actions'>
+    <nx-cli-button type='submit' buttonText='Submit' buttonType='primary'></nx-cli-button>
+    <nx-cli-button type='button' buttonText='Cancel' buttonType='warn' (onbtnclick)='onCancel()'></nx-cli-button>
+  </div>
+</form>

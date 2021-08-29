@@ -7,20 +7,21 @@ import {
   IpcResponse,
   IpcResponseData,
   parsePath,
-  Platform, spawnPromise
+  Platform,
+  removeSpecialCharFrontBack,
+  removeSpecialCharacters
 } from '@nx-cli/app/shared/util';
 import {
   cleanEmptyDirWinFunction,
   getAllProjects,
   getProjectsNames,
-  getTagsOfAllProjectsWithinNxJsonFile
+  getTagsOfAllProjectsWithinNxJsonFile,
+  removeConsecutiveCommas
 } from '@nx-cli/app/projects/util';
+
 import { Project, ProjectType } from '@nx-cli/client/projects/data-access';
 import { IpcEventDtos } from '@nx-cli/shared/data-access/models';
 import { IProjectsService } from './projects-service.interface';
-import { removeSpecialCharacters } from '../../../../../shared/util/src/lib/functions/remove-special-characters.function';
-import { removeSpecialCharFrontBack } from '../../../../../shared/util/src/lib/functions/remove-special-char-front-back.function';
-import { removeConsecutiveCommas } from '../../../../util/src/lib/functions/parse-tags.function';
 
 
 export class ProjectsService implements IProjectsService {
@@ -194,7 +195,7 @@ export class ProjectsService implements IProjectsService {
       dto.tags ? `--tags ${removeConsecutiveCommas(dto.tags)}` : '',
       dto.prefix ? `--prefix ${dto.prefix}` : '',
       dto.importPath ? `--importPath ${dto.importPath}` : ''
-    ]
+    ];
 
     const isSuccess = await executeCommand(cmd, args, workspacePath, 'CREATE');
 
@@ -203,6 +204,33 @@ export class ProjectsService implements IProjectsService {
       targetName: name,
       success: isSuccess ? `${name} library successfully created.` : '',
       error: !isSuccess ? `${name} library has not been successfully created.` : '',
+    };
+  }
+
+  /**
+   *
+   * @param dto
+   */
+  async generateApplication(dto: IpcEventDtos.GenerateApplication): Promise<IpcResponse> {
+    const { workspacePath, directory, name } = dto;
+    const dir = removeSpecialCharFrontBack(parsePath(directory));
+    const cmd = parsePath(`nx g app ${dir ? dir + '/' : ''}${removeSpecialCharacters(name)}`);
+    const args = [
+      `--routing ${dto.routing}`,
+      dto.backendProject ? `--backendProject ${parsePath(dto.backendProject)}` : '',
+      dto.prefix ? `--prefix ${dto.prefix}` : '',
+      dto.host ? `--host ${dto.host}` : '',
+      dto.port ? `--port ${dto.port}` : '',
+      dto.tags ? `--tags ${removeConsecutiveCommas(dto.tags)}` : ''
+    ];
+
+    const isSuccess = await executeCommand(cmd, args, workspacePath, 'CREATE');
+
+    return {
+      workspacePath,
+      targetName: name,
+      success: isSuccess ? `${name} application successfully created.` : '',
+      error: !isSuccess ? `${name} application has not been successfully created.` : '',
     };
   }
 }

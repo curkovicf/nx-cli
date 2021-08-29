@@ -9,3 +9,4 @@ export * from './lib/functions/get-project-type.function';
 export * from './lib/functions/get-projects-tags.function';
 export * from './lib/functions/is-project.function';
 export * from './lib/functions/trim-to-relative-path.function';
+export * from './lib/functions/remove-consecutive-commas.function';

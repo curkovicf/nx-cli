@@ -1,4 +1,5 @@
 import { ProjectType } from '@nx-cli/client/projects/data-access';
+import { FormControl, Validators } from '@angular/forms';
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace IpcEventDtos {
@@ -52,5 +53,17 @@ export namespace IpcEventDtos {
     publishable: boolean;
     simpleModuleName: boolean;
     tags: string;
+  }
+
+  export interface GenerateApplication {
+    workspacePath: string;
+    name: string;
+    directory: string;
+    backendProject: string;
+    prefix: string;
+    tags: string;
+    host: string;
+    routing: boolean;
+    port: number;
   }
 }

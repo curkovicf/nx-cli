@@ -11,7 +11,6 @@ import { IpcEventDtos } from '@nx-cli/shared/data-access/models';
 })
 export class NewLibDialogComponent extends NxCliDialogFormClass<NewLibDialogComponent> implements OnInit {
   form: FormGroup;
-  options = ['app.module.ts', 'projects.module.ts'];
 
   constructor(public dialogRef: MatDialogRef<NewLibDialogComponent>) {
     super(dialogRef);
