@@ -1,7 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import * as WorkspacesActions from './workspaces.actions';
 import { Workspace } from '../models/workspace.model';
-import { clearLog } from './workspaces.actions';
 
 export const WORKSPACES_FEATURE_KEY = 'workspaces';
 
