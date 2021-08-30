@@ -53,6 +53,7 @@
       "@nx-cli/client/shell/feature": ["libs/client/shell/feature/src/index.ts"],
       "@nx-cli/client/shell/ui/drawer": ["libs/client/shell/ui/drawer/src/index.ts"],
       "@nx-cli/client/shell/ui/layout": ["libs/client/shell/ui/layout/src/index.ts"],
+      "@nx-cli/client/shell/ui/side-nav": ["libs/client/shell/ui/side-nav/src/index.ts"],
       "@nx-cli/client/shell/ui/top-nav": ["libs/client/shell/ui/top-nav/src/index.ts"],
       "@nx-cli/client/workspaces/data-access": ["libs/client/workspaces/data-access/src/index.ts"],
       "@nx-cli/client/workspaces/feature": ["libs/client/workspaces/feature/src/index.ts"],

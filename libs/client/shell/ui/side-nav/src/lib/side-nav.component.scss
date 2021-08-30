@@ -1,0 +1,22 @@
+@import "styles/global.mixins";
+@import "styles/global.variables";
+
+:host {
+  display: block;
+  background-color: darkslategray;
+  z-index: 11;
+  padding: 1rem 0;
+  @include box(3.5rem, 70%);
+  @include center-flex-Y;
+  justify-content: space-between;
+
+  & > div {
+    @include box(60%, 3rem);
+    @include center-flex-X;
+
+    & > .settings-icon {
+      color: white;
+      @include cursor-pointer;
+    }
+  }
+}

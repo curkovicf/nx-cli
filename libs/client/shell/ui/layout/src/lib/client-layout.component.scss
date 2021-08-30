@@ -4,17 +4,27 @@
 :host {
   display: block;
   @include box-max;
-  @include center-flex-Y;
+  @include center-flex-X;
 
-  & > dev-workspace-top-nav {
-    //height: $top-nav-height;
+  & > nx-cli-side-nav {
+    box-shadow: $shadow--mat-4;
+    @include box(3.5rem, 100%);
   }
 
-  & > dev-workspace-chips-bar {
-    height: $chips-bar-height;
-  }
+  & > .content {
+    flex: 1;
+    height: 100%;
 
-  & > main {
-    @include box(100%, calc(100% - #{$chips-bar-height}));
+    & > dev-workspace-top-nav {
+      //height: $top-nav-height;
+    }
+
+    & > dev-workspace-chips-bar {
+      height: $chips-bar-height;
+    }
+
+    & > main {
+      @include box(100%, calc(100% - #{$chips-bar-height}));
+    }
   }
 }

@@ -1,23 +1,26 @@
-<!--<dev-workspace-top-nav></dev-workspace-top-nav>-->
+<nx-cli-side-nav></nx-cli-side-nav>
 
-<dev-workspace-chips-bar
-  [workspaces]="workspacesFacade.workspaces$ | async"
-  [selectedWorkspace]='workspacesFacade.selectedWorkspace$ | async'
-  (onselectworkspace)='onSelectWorkspace($event)'
-  (onaddworkspace)='onAddWorkspace()'
-  (ondeleteworkspace)='onDeleteWorkspace($event)'
-></dev-workspace-chips-bar>
+<div class='content'>
+  <dev-workspace-chips-bar
+    [workspaces]="workspacesFacade.workspaces$ | async"
+    [selectedWorkspace]='workspacesFacade.selectedWorkspace$ | async'
+    (onselectworkspace)='onSelectWorkspace($event)'
+    (onaddworkspace)='onAddWorkspace()'
+    (ondeleteworkspace)='onDeleteWorkspace($event)'
+  ></dev-workspace-chips-bar>
 
-<nx-cli-drawer *ngIf="isDrawerOpen" [@slideIn]>
-  <nx-cli-add-nx-project-form
-    class="drawer-content"
-    [workspaces]='workspacesFacade.workspaces$ | async'
-    (oncancel)="toggleDrawer()"
-    (onsubmit)="onCreateWorkspace($event)"
-  >
-  </nx-cli-add-nx-project-form>
-</nx-cli-drawer>
+  <nx-cli-drawer *ngIf="isDrawerOpen" [@slideIn]>
+    <nx-cli-add-nx-project-form
+      class="drawer-content"
+      [workspaces]='workspacesFacade.workspaces$ | async'
+      (oncancel)="toggleDrawer()"
+      (onsubmit)="onCreateWorkspace($event)"
+    >
+    </nx-cli-add-nx-project-form>
+  </nx-cli-drawer>
 
-<main>
-  <router-outlet></router-outlet>
-</main>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>
+

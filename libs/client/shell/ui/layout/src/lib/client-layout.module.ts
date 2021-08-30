@@ -7,10 +7,11 @@ import { CommonModule } from '@angular/common';
 import { DrawerModule } from '@nx-cli/client/shell/ui/drawer';
 import { NewWorkspaceModule } from '@nx-cli/client/workspaces/feature';
 import { RouterModule } from '@angular/router';
+import { SideNavModule } from '@nx-cli/client/shell/ui/side-nav';
 
 
 @NgModule({
-  imports: [TopNavModule, ChipsBarModule, CommonModule, DrawerModule, NewWorkspaceModule, RouterModule],
+  imports: [TopNavModule, ChipsBarModule, CommonModule, DrawerModule, NewWorkspaceModule, RouterModule, SideNavModule],
   declarations: [ClientLayoutComponent],
   exports: [ClientLayoutComponent]
 })
