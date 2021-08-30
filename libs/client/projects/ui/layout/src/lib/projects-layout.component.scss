@@ -13,7 +13,7 @@
     background-color: #fafbfc;
     border-bottom-left-radius: 8px;
     border-top-left-radius: 8px;
-    @include box(28rem, 100%);
+    @include box(25rem, 100%);
     @include default_border(all);
     @include center-flex-Y;
     justify-content: space-between;
@@ -21,19 +21,20 @@
   }
 
   & > .middle-section {
-    flex: 1;
     height: 100%;
     background-color: #fafbfc;
+    @include box(25rem, 100%);
+    min-width: 20rem;
     @include default_border(top);
     @include default_border(bottom);
   }
 
   & > .right-section {
+    flex: 1;
     border-bottom-right-radius: 8px;
     border-top-right-radius: 8px;
     background-color: #fafbfc;
+    height: 100%;
     @include default_border(all);
-    @include box(20rem, 100%);
-    min-width: 20rem;
   }
 }

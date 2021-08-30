@@ -58,6 +58,9 @@
     "client-projects-data-access": {
       "tags": []
     },
+    "client-projects-feature-console": {
+      "tags": []
+    },
     "client-projects-feature-detail": {
       "tags": []
     },

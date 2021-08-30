@@ -23,6 +23,7 @@
       "@nx-cli/app/shell/feature": ["libs/app/shell/feature/src/index.ts"],
       "@nx-cli/app/workspaces/feature": ["libs/app/workspaces/feature/src/index.ts"],
       "@nx-cli/client/projects/data-access": ["libs/client/projects/data-access/src/index.ts"],
+      "@nx-cli/client/projects/feature/console": ["libs/client/projects/feature/console/src/index.ts"],
       "@nx-cli/client/projects/feature/detail": ["libs/client/projects/feature/detail/src/index.ts"],
       "@nx-cli/client/projects/feature/list": ["libs/client/projects/feature/list/src/index.ts"],
       "@nx-cli/client/projects/feature/shell": ["libs/client/projects/feature/shell/src/index.ts"],

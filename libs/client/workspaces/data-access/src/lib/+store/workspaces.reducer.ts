@@ -25,5 +25,13 @@ export const workspacesReducer = createReducer(
   on(WorkspacesActions.deleteWorkspace, (state, { workspace }) => ({
     workspaces: state.workspaces.filter(w => w.name !== workspace.name),
     selectedWorkspace: null
+  })),
+  on(WorkspacesActions.addLog, (state, { workspaceName ,log }) => ({
+    selectedWorkspace: state.selectedWorkspace.name === workspaceName ?
+      { ...state.selectedWorkspace, consoleLogs: [...state.selectedWorkspace.consoleLogs, log] } :
+      state.selectedWorkspace,
+    workspaces: [
+      ...state.workspaces.map(w => w.name === workspaceName ? { ...w, consoleLogs: [...w.consoleLogs, log] } : w)
+    ]
   }))
 );

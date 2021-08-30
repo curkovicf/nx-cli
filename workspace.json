@@ -319,6 +319,31 @@
         }
       }
     },
+    "client-projects-feature-console": {
+      "projectType": "library",
+      "root": "libs/client/projects/feature/console",
+      "sourceRoot": "libs/client/projects/feature/console/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/feature/console"],
+          "options": {
+            "jestConfig": "libs/client/projects/feature/console/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/feature/console/src/**/*.ts",
+              "libs/client/projects/feature/console/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "client-projects-feature-detail": {
       "projectType": "library",
       "root": "libs/client/projects/feature/detail",

@@ -1,0 +1,21 @@
+<section class="header">
+  <header>
+    <p>Console Logs</p>
+
+    <nx-cli-button
+      [buttonText]="'Clear console'"
+      buttonType="warn"
+      (onbtnclick)="clearConsole()"
+    ></nx-cli-button>
+  </header>
+</section>
+
+<main>
+  <div class='console'>
+    <pre>
+      <p *ngFor='let log of (workspacesFacade?.selectedWorkspace$ | async).consoleLogs'>
+        {{ log }}
+      </p>
+    </pre>
+  </div>
+</main>
