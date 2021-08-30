@@ -12,3 +12,14 @@ export interface IpcResponseData<T> {
   targetName?: string;
   workspacePath?: string;
 }
+
+export interface LogResponse {
+  logs: string[];
+  workspacePath: string;
+}
+
+export interface IpcResponseWithLogs {
+  result: IpcResponse;
+  logResponse: LogResponse;
+}
+

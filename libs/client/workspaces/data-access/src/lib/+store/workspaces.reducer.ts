@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import * as WorkspacesActions from './workspaces.actions';
 import { Workspace } from '../models/workspace.model';
+import { clearLog } from './workspaces.actions';
 
 export const WORKSPACES_FEATURE_KEY = 'workspaces';
 
@@ -26,12 +27,20 @@ export const workspacesReducer = createReducer(
     workspaces: state.workspaces.filter(w => w.name !== workspace.name),
     selectedWorkspace: null
   })),
-  on(WorkspacesActions.addLog, (state, { workspaceName ,log }) => ({
-    selectedWorkspace: state.selectedWorkspace.name === workspaceName ?
-      { ...state.selectedWorkspace, consoleLogs: [...state.selectedWorkspace.consoleLogs, log] } :
+  on(WorkspacesActions.addLogs, (state, { workspacePath , logs }) => ({
+    selectedWorkspace: state.selectedWorkspace && state.selectedWorkspace.path === workspacePath ?
+      { ...state.selectedWorkspace, consoleLogs: [...state.selectedWorkspace.consoleLogs, ...logs] } :
       state.selectedWorkspace,
     workspaces: [
-      ...state.workspaces.map(w => w.name === workspaceName ? { ...w, consoleLogs: [...w.consoleLogs, log] } : w)
+      ...state.workspaces.map(w => w.path === workspacePath ? { ...w, consoleLogs: [...w.consoleLogs, ...logs] } : w)
+    ]
+  })),
+  on(WorkspacesActions.clearLog, (state, { workspacePath }) => ({
+    selectedWorkspace: state.selectedWorkspace.path === workspacePath ?
+      { ...state.selectedWorkspace, consoleLogs: [] } :
+      state.selectedWorkspace,
+    workspaces: [
+      ...state.workspaces.map(w => w.path === workspacePath ? { ...w, consoleLogs: [] } : w)
     ]
   }))
 );

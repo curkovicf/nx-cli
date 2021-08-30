@@ -11,4 +11,6 @@ export const addWorkspace = createAction('[Workspaces] Add workspace', props<{ n
 
 export const deleteWorkspace = createAction('[Workspaces] Delete workspace', props<{ workspace: Workspace }>());
 
-export const addLog = createAction('[Workspaces] Add log to workspace', props<{ workspaceName: string, log: string }>());
+export const addLogs = createAction('[Workspaces] Add log to workspace', props<{ workspacePath: string, logs: string[] }>());
+
+export const clearLog = createAction('[Workspaces] Clear log from workspace', props<{ workspacePath: string }>());

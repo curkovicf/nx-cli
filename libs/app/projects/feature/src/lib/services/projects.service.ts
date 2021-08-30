@@ -4,12 +4,11 @@ import {
   executeCommand,
   getOs,
   getPlatformPathSeparator,
-  IpcResponse,
   IpcResponseData,
   parsePath,
   Platform,
   removeSpecialCharFrontBack,
-  removeSpecialCharacters, spawnPromise
+  removeSpecialCharacters, IpcResponseWithLogs
 } from '@nx-cli/app/shared/util';
 import {
   cleanEmptyDirWinFunction,
@@ -49,7 +48,7 @@ export class ProjectsService implements IProjectsService {
    *
    * @param dto
    */
-  async editProject(dto: IpcEventDtos.EditProject): Promise<IpcResponse> {
+  async editProject(dto: IpcEventDtos.EditProject): Promise<IpcResponseWithLogs> {
     const { oldName, newName, newDirectory, oldDirectory, workspacePath, project } = dto;
     const dir = removeSpecialCharFrontBack(parsePath(
       newDirectory
@@ -60,11 +59,13 @@ export class ProjectsService implements IProjectsService {
     ));
     const cmd = parsePath(`nx g mv --project ${project} ${dir ? dir + '/' : ''}${removeSpecialCharacters(newName)}`);
     const cmdTest = parsePath(`nx g mv --project ${project}-e2e ${dir}${newName}-e2e`);
+    const logs: string[] = [];
 
-    console.log(cmd);
+    const e2eResult = await executeCommand(cmdTest, [], workspacePath, 'CREATE');
+    const result = await executeCommand(cmd, [], workspacePath, 'CREATE');
 
-    await executeCommand(cmdTest, [], workspacePath, 'CREATE');
-    const isSuccess = await executeCommand(cmd, [], workspacePath, 'CREATE');
+    logs.push(e2eResult?.log ?? '');
+    logs.push(result?.log ?? '');
 
     if (getOs() === Platform.windows) {
       await cleanEmptyDirWinFunction(`${workspacePath}${getPlatformPathSeparator()}libs`);
@@ -72,10 +73,16 @@ export class ProjectsService implements IProjectsService {
     }
 
     return {
-      workspacePath,
-      targetName: newName,
-      success: isSuccess ? `${oldDirectory}/${oldName} successfully moved to ${newDirectory}/${newName}.` : '',
-      error: !isSuccess ? `${oldName} has not been successfully moved/renamed.` : '',
+      result: {
+        workspacePath,
+        targetName: newName,
+        success: result?.isSuccess ? `${oldDirectory}/${oldName} successfully moved to ${newDirectory}/${newName}.` : '',
+        error: !result?.isSuccess ? `${oldName} has not been successfully moved/renamed.` : ''
+      },
+      logResponse: {
+        workspacePath,
+        logs
+      }
     };
   }
 
@@ -83,42 +90,60 @@ export class ProjectsService implements IProjectsService {
    *
    * @param dto
    */
-  async createProject(dto: IpcEventDtos.CreateProjectDto): Promise<IpcResponse> {
+  async createProject(dto: IpcEventDtos.CreateProjectDto): Promise<IpcResponseWithLogs> {
     const { workspacePath, path, type } = dto;
-
+    const logs: string[] = [];
     const cmd = parsePath(`nx g ${type === 'app' ? 'app' : 'lib'} ${path}`);
 
-    const isSuccess = await executeCommand(cmd, [], workspacePath, 'CREATE');
+    const result = await executeCommand(cmd, [], workspacePath, 'CREATE');
+
+    logs.push(result?.log ?? '');
 
     return {
-      workspacePath,
-      targetName: path,
-      success: isSuccess ? `${path} successfully created.` : '',
-      error: !isSuccess ? `${path} has not been successfully created.` : '',
-    };
+      result: {
+        workspacePath,
+        targetName: path,
+        success: result?.isSuccess ? `${path} successfully created.` : '',
+        error: !result?.isSuccess ? `${path} has not been successfully created.` : '',
+      },
+      logResponse: {
+        workspacePath,
+        logs
+      }
+    }
   }
 
   /**
    *
    * @param dto
    */
-  async deleteProject(dto: IpcEventDtos.DeleteProjectDto): Promise<IpcResponse> {
+  async deleteProject(dto: IpcEventDtos.DeleteProjectDto): Promise<IpcResponseWithLogs> {
     const { projectNameInNxJson, workspacePath, type } = dto;
-
+    const logs: string[] = [];
     const cmd = parsePath(`nx g rm --project ${projectNameInNxJson}`);
 
     if (type === ProjectType.app) {
       const cmdTest = parsePath(`nx g rm --project ${projectNameInNxJson}-e2e`);
-      await executeCommand(cmdTest, [], workspacePath, 'DELETE');
+      const e2eResult = await executeCommand(cmdTest, [], workspacePath, 'DELETE');
+
+      logs.push(e2eResult?.log ?? '');
     }
 
-    const isSuccess = await executeCommand(cmd, [], workspacePath, 'DELETE');
+    const result = await executeCommand(cmd, [], workspacePath, 'DELETE');
+
+    logs.push(result?.log ?? '');
 
     return {
-      workspacePath,
-      targetName: projectNameInNxJson,
-      success: isSuccess ? `${projectNameInNxJson} successfully deleted.` : '',
-      error: !isSuccess ? `${projectNameInNxJson} has not been successfully deleted.` : '',
+      result: {
+        workspacePath,
+        targetName: projectNameInNxJson,
+        success: result?.isSuccess ? `${projectNameInNxJson} successfully deleted.` : '',
+        error: !result?.isSuccess ? `${projectNameInNxJson} has not been successfully deleted.` : '',
+      },
+      logResponse: {
+        workspacePath,
+        logs
+      }
     };
   }
 
@@ -126,8 +151,9 @@ export class ProjectsService implements IProjectsService {
    *
    * @param dto
    */
-  async generateComponent(dto: IpcEventDtos.GenerateAngularComponent): Promise<IpcResponse> {
+  async generateComponent(dto: IpcEventDtos.GenerateAngularComponent): Promise<IpcResponseWithLogs> {
     const { name, project, directory, workspacePath } = dto;
+    const logs: string[] = [];
     const dir = removeSpecialCharFrontBack(parsePath(directory));
     const cmd = parsePath(`nx g c ${dir ? dir + '/' : ''}${name} --project ${removeSpecialCharacters(project)}`);
     const args: string[] = [
@@ -136,13 +162,21 @@ export class ProjectsService implements IProjectsService {
       `--export ${dto.export}`,
     ];
 
-    const isSuccess = await executeCommand(cmd, args, workspacePath, 'CREATE');
+    const result = await executeCommand(cmd, args, workspacePath, 'CREATE');
+
+    logs.push(result?.log ?? '');
 
     return {
-      workspacePath,
-      targetName: name,
-      success: isSuccess ? `${name} component successfully generated.` : '',
-      error: !isSuccess ? `${name} component has not been successfully generated.` : '',
+      result: {
+        workspacePath,
+        targetName: name,
+        success: result?.isSuccess ? `${name} component successfully generated.` : '',
+        error: !result?.isSuccess ? `${name} component has not been successfully generated.` : '',
+      },
+      logResponse: {
+        workspacePath,
+        logs
+      }
     };
   }
 
@@ -150,8 +184,9 @@ export class ProjectsService implements IProjectsService {
    *
    * @param dto
    */
-  async generateService(dto: IpcEventDtos.GenerateAngularService): Promise<IpcResponse> {
+  async generateService(dto: IpcEventDtos.GenerateAngularService): Promise<IpcResponseWithLogs> {
     const { name, project, directory, workspacePath } = dto;
+    const logs: string[] = [];
     const dir = removeSpecialCharFrontBack(parsePath(directory));
     const cmd = parsePath(`nx g s ${dir ? dir + '/' : ''}${name} --project ${removeSpecialCharacters(project)}`);
     const args: string[] = [
@@ -159,18 +194,27 @@ export class ProjectsService implements IProjectsService {
       `--skipTests ${dto.skipTests}`,
     ];
 
-    const isSuccess = await executeCommand(cmd, args, workspacePath, 'CREATE');
+    const result = await executeCommand(cmd, args, workspacePath, 'CREATE');
+
+    logs.push(result?.log ?? '');
 
     return {
-      workspacePath,
-      targetName: name,
-      success: isSuccess ? `${name} service successfully generated.` : '',
-      error: !isSuccess ? `${name} service has not been successfully generated.` : '',
+      result: {
+        workspacePath,
+        targetName: name,
+        success: result ? `${name} service successfully generated.` : '',
+        error: !result ? `${name} service has not been successfully generated.` : '',
+      },
+      logResponse: {
+        workspacePath,
+        logs
+      }
     };
   }
 
-  async generateLibrary(dto: IpcEventDtos.GenerateAngularLibrary): Promise<IpcResponse> {
+  async generateLibrary(dto: IpcEventDtos.GenerateAngularLibrary): Promise<IpcResponseWithLogs> {
     const { workspacePath, directory, name } = dto;
+    const logs: string[] = [];
     const dir = removeSpecialCharFrontBack(parsePath(directory));
     const cmd = parsePath(`nx g lib ${dir ? dir + '/' : ''}${removeSpecialCharacters(name)}`);
     const args = [
@@ -184,13 +228,21 @@ export class ProjectsService implements IProjectsService {
       dto.importPath ? `--importPath ${dto.importPath}` : ''
     ];
 
-    const isSuccess = await executeCommand(cmd, args, workspacePath, 'CREATE');
+    const result = await executeCommand(cmd, args, workspacePath, 'CREATE');
+
+    logs.push(result?.log ?? '');
 
     return {
-      workspacePath,
-      targetName: name,
-      success: isSuccess ? `${name} library successfully created.` : '',
-      error: !isSuccess ? `${name} library has not been successfully created.` : '',
+      result: {
+        workspacePath,
+        targetName: name,
+        success: result?.isSuccess ? `${name} library successfully created.` : '',
+        error: !result?.isSuccess ? `${name} library has not been successfully created.` : '',
+      },
+      logResponse: {
+        workspacePath,
+        logs
+      }
     };
   }
 
@@ -198,8 +250,9 @@ export class ProjectsService implements IProjectsService {
    *
    * @param dto
    */
-  async generateApplication(dto: IpcEventDtos.GenerateAngularApplication): Promise<IpcResponse> {
+  async generateApplication(dto: IpcEventDtos.GenerateAngularApplication): Promise<IpcResponseWithLogs> {
     const { workspacePath, directory, name } = dto;
+    const logs: string[] = [];
     const dir = removeSpecialCharFrontBack(parsePath(directory));
     const cmd = parsePath(`nx g app ${dir ? dir + '/' : ''}${removeSpecialCharacters(name)}`);
     const args = [
@@ -211,13 +264,21 @@ export class ProjectsService implements IProjectsService {
       dto.tags ? `--tags ${removeConsecutiveCommas(dto.tags)}` : ''
     ];
 
-    const isSuccess = await executeCommand(cmd, args, workspacePath, 'CREATE');
+    const result = await executeCommand(cmd, args, workspacePath, 'CREATE');
+
+    logs.push(result?.log ?? '');
 
     return {
-      workspacePath,
-      targetName: name,
-      success: isSuccess ? `${name} application successfully created.` : '',
-      error: !isSuccess ? `${name} application has not been successfully created.` : '',
+      result: {
+        workspacePath,
+        targetName: name,
+        success: result ? `${name} application successfully created.` : '',
+        error: !result ? `${name} application has not been successfully created.` : '',
+      },
+      logResponse: {
+        workspacePath,
+        logs
+      }
     };
   }
 }

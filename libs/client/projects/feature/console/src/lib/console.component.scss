@@ -41,7 +41,9 @@
         @include box-max;
         color: whitesmoke;
         font-size: .8rem;
-        padding: 1rem 0;
+        padding: 1rem;
+        white-space: pre-line;
+        overflow: auto;
       }
     }
   }

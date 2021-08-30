@@ -28,4 +28,5 @@ export namespace IpcEvents {
     fromElectron: 'GENERATE_APPLICATION_RESULT'
   };
   export const defaultChannel: EventChannel = { fromAngular: 'GENERIC', fromElectron: 'GENERIC_RESULT' };
+  export const loggingChannel: EventChannel = { fromAngular: 'LOGGING', fromElectron: 'LOGGING_RESULT' };
 }

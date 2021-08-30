@@ -1,14 +1,23 @@
 import { spawnPromise } from './spawn-promise.function';
 
+export interface ExecuteCommandResponse {
+  isSuccess: boolean;
+  log: string;
+}
+
 export async function executeCommand(
   cmd: string,
   args: string[],
   pwd: string,
   successKeyword: string
-): Promise<boolean> {
+): Promise<ExecuteCommandResponse | null> {
   try {
-    return (await spawnPromise(cmd, args, pwd)).includes(successKeyword);
+    const result = await spawnPromise(cmd, args, pwd);
+    return {
+      isSuccess: result.includes(successKeyword),
+      log: result.trim()
+    };
   } catch (err) {
-    return false;
+    return null;
   }
 }

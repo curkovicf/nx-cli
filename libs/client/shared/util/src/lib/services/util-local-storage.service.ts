@@ -21,7 +21,8 @@ export class UtilLocalStorageService {
 
   public save(): void {
     combineLatest([
-      this.workspacesFacade.workspaces$, this.workspacesFacade.selectedWorkspace$
+      this.workspacesFacade.workspaces$,
+      this.workspacesFacade.selectedWorkspace$
     ])
       .subscribe(([workspaces, selectedWorkspace]) => {
       const data: StoredData = { workspaces, selectedWorkspace };
@@ -32,9 +33,7 @@ export class UtilLocalStorageService {
   public initData(): void {
     const data = localStorage.getItem(this.key);
 
-    if (!data) {
-      return;
-    }
+    if (!data) { return; }
 
     const { workspaces, selectedWorkspace }: StoredData = JSON.parse(data);
 

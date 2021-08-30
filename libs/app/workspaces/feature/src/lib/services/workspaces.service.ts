@@ -16,7 +16,7 @@ export class WorkspacesService implements IWorkspaceService {
       const packageJson = await fs.readJSON(`${workspacePath}/package.json`);
 
       return {
-        data: { path: workspacePath, name: packageJson.name },
+        data: { path: workspacePath, name: packageJson.name, consoleLogs: [] },
       };
     }
 

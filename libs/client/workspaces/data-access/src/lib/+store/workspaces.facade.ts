@@ -29,7 +29,11 @@ export class WorkspacesFacade {
     this.store.dispatch(WorkspacesActions.deleteWorkspace({ workspace }));
   }
 
-  public addLog(workspaceName: string, log: string): void {
-    this.store.dispatch(WorkspacesActions.addLog({ workspaceName, log }));
+  public addLog(workspacePath: string, logs: string[]): void {
+    this.store.dispatch(WorkspacesActions.addLogs({ workspacePath, logs }));
+  }
+
+  public clearConsole(workspacePath: string): void {
+    this.store.dispatch(WorkspacesActions.clearLog({ workspacePath }));
   }
 }
