@@ -1,4 +1,4 @@
-<ng-container *ngIf="projectsStore.selectedProject$ | async as project">
+<ng-container *ngIf="projectsStore.selectedProject$ | async as project else message">
   <header>
     <div class="title-wrapper">
       <h4 class="title">{{ project.name }}</h4>
@@ -53,3 +53,8 @@
     </div>
   </main>
 </ng-container>
+
+<ng-template #message>
+  <h4>Wow, such emptiness 😭. If you don't have any Nx Workspace added yet you can do so via top left add icon. 🚀🚀🚀</h4>
+<!--  <h4>🚀 Click on the top left plus icon to add Nx workspace and get started. 🚀</h4>-->
+</ng-template>

@@ -13,7 +13,7 @@
 <main>
   <div class='console'>
     <pre>
-      <p *ngFor='let log of (workspacesFacade?.selectedWorkspace$ | async).consoleLogs'>
+      <p *ngFor='let log of (workspacesFacade?.selectedWorkspace$ | async)?.consoleLogs'>
         {{ log }}
       </p>
     </pre>

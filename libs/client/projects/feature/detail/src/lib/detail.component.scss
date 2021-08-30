@@ -2,6 +2,9 @@
 @import 'styles/global.variables';
 
 :host {
+  @include center-flex-Y;
+  height: 100%;
+
   & > header {
     position: relative;
     padding: 1.2rem 2rem;
@@ -100,5 +103,16 @@
     img {
       margin-right: 0.5rem;
     }
+  }
+
+  & > h4 {
+    width: 25rem;
+    margin: 2rem 1rem;
+    color: gray;
+    font-weight: lighter;
+    font-size: 1.1rem;
+    text-align: center;
+    letter-spacing: 1px;
+    line-height: 2rem;
   }
 }
