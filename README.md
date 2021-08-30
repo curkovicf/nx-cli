@@ -70,10 +70,10 @@ While working at my current job with Nx monorepos I have noticed that I spend a 
 | :white_check_mark: | Add additional flags for app generation | ATM it is not possible to add flags for a app generation (Only via single input) |
 | :white_check_mark: | User can see outputs of commands | Add console to the app so user can see and interact with the console logs |
 | :x: | User can see if Nx is not installed on his machine | Add notification if user doesn't have Nx installed on his machine |
+| :x: | User can see lib or app tree | Once app or lib is selected, user can see folder tree in the detail view |
 | :x: | User can open components & modules in new window | User can select and open files in new window (Custom text editor) |
 | :x: | User can add/delete tags | Ability to add tags for a selected app or lib |
 | :x: | User can start dep graph | User can run nx dep graph from the app |
-| :x: | User can see lib or app tree | Once app or lib is selected, user can see folder tree in the detail view |
 | :x: | User can create dependencies between tags | Ability to add tags dependencies between tags |
 
 
@@ -88,12 +88,12 @@ While working at my current job with Nx monorepos I have noticed that I spend a 
 | :white_check_mark: | 10.9.2021 | Add additional flags for lib generation |
 | :white_check_mark: | 15.9.2021 | Add additional flags for app generation |
 | :white_check_mark: | 1.11.2021 | Add console to the app so user can see and interact with the console logs |
-| :x: | 1.1.2022 | Add notification if user doesn't have Nx installed on his machine |
-| :x: | 15.1.2022 | User can select and open files in new window (Custom text editor) |
-| :x: | 1.2.2022 | Ability to add tags for a selected app or lib |
-| :x: | 12.2.2022 | User can run nx dep graph from the app |
-| :x: | 1.3.2022 | Once app or lib is selected, user can see folder tree in the detail view |
-| :x: | 15.3.2022 | Ability to add tags dependencies between tags |
+| :x: | 15.9.2022 | Add notification if user doesn't have Nx installed on his machine |
+| :x: | 1.10.2022 | Once app or lib is selected, user can see folder tree in the detail view |
+| :x: | 15.10.2022 | User can select and open files in new window (Custom text editor) |
+| :x: | 1.11.2022 | Ability to add tags for a selected app or lib |
+| :x: | 15.11.2022 | User can run nx dep graph from the app |
+| :x: | 1.12.2022 | Ability to add tags dependencies between tags |
 
 <br>
 
