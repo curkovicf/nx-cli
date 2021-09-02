@@ -8,7 +8,7 @@ export interface AppGlobalsState {
 }
 
 const initialState: AppGlobalsState = {
-  isNxInstalledOnUserMachine: false
+  isNxInstalledOnUserMachine: true
 }
 
 export const appGlobalsReducer = createReducer(

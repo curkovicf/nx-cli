@@ -10,4 +10,8 @@ export class AppGlobalsFacade {
   public isNxInstalledOnUserMachine$ = this.store.select(AppGlobalsSelectors.getIsNxInstalledState);
 
   constructor(private store: Store<AppGlobalsState>) {}
+
+  public setIsNxInstalled(isNxInstalledOnUserMachine: boolean): void {
+    this.store.dispatch(AppGlobalsActions.setIsNxInstalled({ isNxInstalledOnUserMachine }));
+  }
 }

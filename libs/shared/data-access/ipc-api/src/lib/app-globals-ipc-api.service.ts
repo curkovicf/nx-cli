@@ -12,4 +12,8 @@ export class AppGlobalsIpcApiService {
   public installNxOnUserMachine(): void {
     this.electronService.ipcRenderer.send(IpcEvents.installNxOnUserMachineChannel.fromAngular);
   }
+
+  public checkIsNxInstalledOnUserMachine(): void {
+    this.electronService.ipcRenderer.send(IpcEvents.checkIsNxInstalledOnUserMachineChannel.fromAngular);
+  }
 }

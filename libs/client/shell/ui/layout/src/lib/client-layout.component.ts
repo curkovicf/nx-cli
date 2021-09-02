@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { ProjectsStore } from '@nx-cli/client/projects/data-access';
 import { drawerAnimation } from '@nx-cli/client/shell/ui/drawer';
 import { UtilLocalStorageService } from '@nx-cli/client/shared/util';
-import { IpcEventsListenerService } from '@nx-cli/shared/data-access/ipc-events';
+import { AppGlobalsIpcEventsListenerService, IpcEventsListenerService } from '@nx-cli/shared/data-access/ipc-events';
 import { Workspace, WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 import { AppGlobalsFacade } from '@nx-cli/client/shell/data-access';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogContent } from '@nx-cli/client/shared/ui/confirm-dialog';
 import { filter } from 'rxjs/operators';
-import { AppGlobalsIpcApiService } from '../../../../../../shared/data-access/ipc-api/src/lib/app-globals-ipc-api.service';
+import { AppGlobalsIpcApiService } from '@nx-cli/shared/data-access/ipc-api';
 
 @Component({
   selector: 'dev-workspace-layout',
@@ -25,11 +25,15 @@ export class ClientLayoutComponent {
     public appGlobalsFacade: AppGlobalsFacade,
     private localStorageService: UtilLocalStorageService,
     private ipcEventsListenerService: IpcEventsListenerService,
+    private appGlobalsIpcEventsListenerService: AppGlobalsIpcEventsListenerService,
     private appGlobalsIpcApiService: AppGlobalsIpcApiService,
     private dialog: MatDialog,
   ) {
     this.ipcEventsListenerService.initChannels();
+    this.appGlobalsIpcEventsListenerService.initChannels();
     this.localStorageService.initData();
+
+    this.appGlobalsIpcApiService.checkIsNxInstalledOnUserMachine();
   }
 
   public onSelectWorkspace(selectedWorkspace: Workspace): void {

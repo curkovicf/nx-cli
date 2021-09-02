@@ -33,4 +33,8 @@ export namespace IpcEvents {
     fromAngular: 'INSTALL_NX_ON_USER_MACHINE',
     fromElectron: 'INSTALL_NX_ON_USER_MACHINE_RESULT'
   };
+  export const checkIsNxInstalledOnUserMachineChannel: EventChannel = {
+    fromAngular: 'CHECK_IS_INSTALL_NX_ON_USER_MACHINE',
+    fromElectron: 'CHECK_IS_INSTALL_NX_ON_USER_MACHINE_RESULT'
+  };
 }

@@ -25,7 +25,6 @@ export class ProjectsIpcApiService {
   }
 
   public deleteProject(deleteProjectDto: IpcEventDtos.DeleteProjectDto): void {
-    console.log(deleteProjectDto);
     this.electronService.ipcRenderer.send(IpcEvents.deleteProject.fromAngular, deleteProjectDto);
   }
 
