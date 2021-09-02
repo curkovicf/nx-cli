@@ -4,7 +4,7 @@ import { filter, map, take, tap } from 'rxjs/operators';
 import { Project } from '../models/project.model';
 import { Workspace, WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 import { combineLatest, Observable } from 'rxjs';
-import { ConfirmDialogComponent } from '@nx-cli/client/shared/ui/confirm-dialog';
+import { ConfirmDialogComponent, ConfirmDialogContent } from '@nx-cli/client/shared/ui/confirm-dialog';
 import { ProjectsIpcApiService } from '@nx-cli/shared/data-access/ipc-api';
 import { MatDialog } from '@angular/material/dialog';
 import { NewComponentDialogComponent } from '@nx-cli/client/projects/ui/new-component-dialog';
@@ -71,7 +71,12 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
   }
 
   public deleteProject(project: Project): void {
-    this.openDialog(ConfirmDialogComponent).subscribe(([data, workspacePath]) => {
+    const data: ConfirmDialogContent = {
+      title: 'WARNING: Are you sure you want to delete project ?',
+      bodyText: 'This action is irreversible.'
+    };
+
+    this.openDialog(ConfirmDialogComponent, { data }).subscribe(([data, workspacePath]) => {
       if (!data) {
         return;
       }

@@ -3,7 +3,7 @@
 
 :host {
   @include center-flex-Y;
-  @include box(18rem, 12rem);
+  //@include box(18rem, 12rem);
   justify-content: space-between;
 
   & > .title {

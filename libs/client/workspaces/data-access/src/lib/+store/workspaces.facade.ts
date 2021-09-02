@@ -18,7 +18,7 @@ export class WorkspacesFacade {
   }
 
   public selectWorkspace(selectedWorkspace: Workspace): void {
-    this.store.dispatch(WorkspacesActions.selectWorkspace({ selectedWorkspace }));
+    this.store.dispatch(WorkspacesActions.setActiveWorkspace({ selectedWorkspace }));
   }
 
   public addWorkspace(newWorkspace: Workspace): void {

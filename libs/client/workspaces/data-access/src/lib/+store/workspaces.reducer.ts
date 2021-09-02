@@ -17,7 +17,7 @@ export const initialState: WorkspacesState = {
 export const workspacesReducer = createReducer(
   initialState,
   on(WorkspacesActions.setWorkspacesState, (state, { workspacesState }) => ({ ...workspacesState })),
-  on(WorkspacesActions.selectWorkspace, (state, { selectedWorkspace }) => ({ ...state, selectedWorkspace })),
+  on(WorkspacesActions.setActiveWorkspace, (state, { selectedWorkspace }) => ({ ...state, selectedWorkspace })),
   on(WorkspacesActions.addWorkspace, (state, { newWorkspace }) => ({
     ...state,
     workspaces: [...state.workspaces, newWorkspace]

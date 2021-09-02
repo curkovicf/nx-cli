@@ -6,16 +6,15 @@
 </div>
 
 <div
+  *ngIf='!isNxInstalledOnUserMachine'
   class='settings-icon-wrapper'
-  matBadge='1'
-  matBadgePosition='above'
-  matBadgeColor='warn'
   matTooltip="WARNING: Nx is not installed properly"
   matTooltipPosition="after"
   matTooltipHideDelay="100000">
   <img
+    (click)='oninstallnx.emit()'
     class='settings-icon'
-    src='assets/settings-outline.svg'
+    src='assets/warning_black_24dp.svg'
     height='40'
     alt='Add icon'>
 </div>

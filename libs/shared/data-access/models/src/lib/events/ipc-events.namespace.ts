@@ -29,4 +29,8 @@ export namespace IpcEvents {
   };
   export const defaultChannel: EventChannel = { fromAngular: 'GENERIC', fromElectron: 'GENERIC_RESULT' };
   export const loggingChannel: EventChannel = { fromAngular: 'LOGGING', fromElectron: 'LOGGING_RESULT' };
+  export const installNxOnUserMachineChannel: EventChannel = {
+    fromAngular: 'INSTALL_NX_ON_USER_MACHINE',
+    fromElectron: 'INSTALL_NX_ON_USER_MACHINE_RESULT'
+  };
 }

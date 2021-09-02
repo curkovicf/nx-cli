@@ -1,4 +1,7 @@
-<nx-cli-side-nav></nx-cli-side-nav>
+<nx-cli-side-nav
+  [isNxInstalledOnUserMachine]='appGlobalsFacade.isNxInstalledOnUserMachine$ | async'
+  (oninstallnx)='onInstallNx()'
+></nx-cli-side-nav>
 
 <div class='content'>
   <dev-workspace-chips-bar

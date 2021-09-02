@@ -1,8 +1,8 @@
-<h1 mat-dialog-title class='title'>Warning: Are you sure ?</h1>
+<h1 mat-dialog-title class='title'>{{ data.title }}</h1>
 
-<div class='prompt-text'>This action is not revertible.</div>
+<div mat-dialog-content class='prompt-text'>{{ data.bodyText }}</div>
 
-<div class='actions'>
+<div mat-dialog-actions class='actions'>
   <nx-cli-button [buttonText]='"Yes"' buttonType='primary' (onbtnclick)='dialogRef.close(true)'></nx-cli-button>
   <nx-cli-button [buttonText]='"Cancel"' buttonType='warn' (onbtnclick)='dialogRef.close(false)'></nx-cli-button>
 </div>

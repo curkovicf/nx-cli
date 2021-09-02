@@ -17,6 +17,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@nx-cli/app/app-globals/feature": ["libs/app/app-globals/feature/src/index.ts"],
       "@nx-cli/app/projects/feature": ["libs/app/projects/feature/src/index.ts"],
       "@nx-cli/app/projects/util": ["libs/app/projects/util/src/index.ts"],
       "@nx-cli/app/shared/util": ["libs/app/shared/util/src/index.ts"],
@@ -50,6 +51,7 @@
         "libs/client/shared/ui/single-input-form-dialog/src/index.ts"
       ],
       "@nx-cli/client/shared/util": ["libs/client/shared/util/src/index.ts"],
+      "@nx-cli/client/shell/data-access": ["libs/client/shell/data-access/src/index.ts"],
       "@nx-cli/client/shell/feature": ["libs/client/shell/feature/src/index.ts"],
       "@nx-cli/client/shell/ui/drawer": ["libs/client/shell/ui/drawer/src/index.ts"],
       "@nx-cli/client/shell/ui/layout": ["libs/client/shell/ui/layout/src/index.ts"],
