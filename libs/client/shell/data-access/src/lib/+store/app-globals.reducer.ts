@@ -4,14 +4,14 @@ import * as AppGlobalsActions from './app-globals.actions';
 export const APP_GLOBALS_STATE = 'APP_GLOBALS_STATE';
 
 export interface AppGlobalsState {
-  isNxInstalledOnUserMachine: boolean;
+  hasIssues: boolean;
 }
 
 const initialState: AppGlobalsState = {
-  isNxInstalledOnUserMachine: true
+  hasIssues: false
 }
 
 export const appGlobalsReducer = createReducer(
   initialState,
-  on(AppGlobalsActions.setIsNxInstalled, (state, { isNxInstalledOnUserMachine }) => ({ isNxInstalledOnUserMachine })),
+  on(AppGlobalsActions.setHasIssues, (state, { hasIssues }) => ({ hasIssues })),
 );

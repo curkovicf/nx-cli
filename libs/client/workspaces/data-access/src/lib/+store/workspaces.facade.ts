@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { WorkspacesState } from './workspaces.store';
 import { Workspace } from '../models/workspace.model';
 
@@ -8,8 +8,8 @@ import * as WorkspacesActions from './workspaces.actions';
 
 @Injectable()
 export class WorkspacesFacade {
-  public workspaces$ = this.store.select(WorkspacesSelectors.getWorkspaces);
-  public selectedWorkspace$ = this.store.select(WorkspacesSelectors.getSelectedWorkspace);
+  public workspaces$ = this.store.pipe(select(WorkspacesSelectors.getWorkspaces));
+  public selectedWorkspace$ = this.store.pipe(select(WorkspacesSelectors.getSelectedWorkspace));
 
   constructor(private store: Store<WorkspacesState>) {}
 

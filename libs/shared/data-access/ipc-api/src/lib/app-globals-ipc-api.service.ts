@@ -9,11 +9,11 @@ import { IpcEvents } from '@nx-cli/shared/data-access/models';
 export class AppGlobalsIpcApiService {
   constructor(private electronService: ElectronService) {}
 
-  public installNxOnUserMachine(): void {
-    this.electronService.ipcRenderer.send(IpcEvents.installNxOnUserMachineChannel.fromAngular);
+  public attemptToFixIssues(workspacePath: string): void {
+    this.electronService.ipcRenderer.send(IpcEvents.fixIssues.fromAngular, workspacePath);
   }
 
-  public checkIsNxInstalledOnUserMachine(): void {
-    this.electronService.ipcRenderer.send(IpcEvents.checkIsNxInstalledOnUserMachineChannel.fromAngular);
+  public checkIfThereAreIssues(workspacePath: string): void {
+    this.electronService.ipcRenderer.send(IpcEvents.checkIfIssues.fromAngular, workspacePath);
   }
 }

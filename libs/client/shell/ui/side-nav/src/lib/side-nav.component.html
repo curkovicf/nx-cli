@@ -6,13 +6,13 @@
 </div>
 
 <div
-  *ngIf='!isNxInstalledOnUserMachine'
+  *ngIf='appHasIssues'
   class='settings-icon-wrapper'
-  matTooltip="WARNING: Nx is not installed properly"
+  matTooltip="WARNING: app will not work properly."
   matTooltipPosition="after"
   matTooltipHideDelay="100000">
   <img
-    (click)='oninstallnx.emit()'
+    (click)='onshowerror.emit()'
     class='settings-icon'
     src='assets/warning_black_24dp.svg'
     height='40'

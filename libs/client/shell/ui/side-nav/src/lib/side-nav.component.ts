@@ -7,8 +7,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class SideNavComponent {
   @Input()
-  isNxInstalledOnUserMachine: boolean;
+  appHasIssues: boolean;
 
   @Output()
-  oninstallnx: EventEmitter<void> = new EventEmitter();
+  onshowerror: EventEmitter<void> = new EventEmitter();
 }

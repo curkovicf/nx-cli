@@ -9,24 +9,24 @@ export class AppGlobalsController implements IController {
   private appGlobalsService: IAppGlobalsService = new AppGlobalsService();
 
   public initRoutes(): void {
-    this.initInstallNxOnUserMachine();
-    this.initCheckIsNxInstalledOnUserMachine();
+    this.initAttemptToFixIssues();
+    this.initHasIssues();
 
     console.warn('\n********** Init App Globals Controller');
   }
 
-  private initInstallNxOnUserMachine(): void {
-    ipcMain.on(IpcEvents.installNxOnUserMachineChannel.fromAngular, async (event) => {
-      const response: IpcResponseWithLogs = await this.appGlobalsService.installNxOnUserMachine();
-      event.sender.send(IpcEvents.defaultChannel.fromElectron, response.result);
+  private initAttemptToFixIssues(): void {
+    ipcMain.on(IpcEvents.fixIssues.fromAngular, async (event, workspacePath: string) => {
+      const response: IpcResponseWithLogs = await this.appGlobalsService.attemptToFixIssues(workspacePath);
+      event.sender.send(IpcEvents.fixIssues.fromElectron, response.result);
       event.sender.send(IpcEvents.loggingChannel.fromElectron, response.logResponse);
     });
   }
 
-  private initCheckIsNxInstalledOnUserMachine(): void {
-    ipcMain.on(IpcEvents.checkIsNxInstalledOnUserMachineChannel.fromAngular, async (event) => {
-      const response: IpcResponse = await this.appGlobalsService.checkIsNxInstalledOnUserMachine();
-      event.sender.send(IpcEvents.checkIsNxInstalledOnUserMachineChannel.fromElectron, response);
+  private initHasIssues(): void {
+    ipcMain.on(IpcEvents.checkIfIssues.fromAngular, async (event, workspacePath: string) => {
+      const response: IpcResponse = await this.appGlobalsService.checkIfThereAreIssues(workspacePath);
+      event.sender.send(IpcEvents.checkIfIssues.fromElectron, response);
     });
   }
 }

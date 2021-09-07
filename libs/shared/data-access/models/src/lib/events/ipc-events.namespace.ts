@@ -29,12 +29,12 @@ export namespace IpcEvents {
   };
   export const defaultChannel: EventChannel = { fromAngular: 'GENERIC', fromElectron: 'GENERIC_RESULT' };
   export const loggingChannel: EventChannel = { fromAngular: 'LOGGING', fromElectron: 'LOGGING_RESULT' };
-  export const installNxOnUserMachineChannel: EventChannel = {
-    fromAngular: 'INSTALL_NX_ON_USER_MACHINE',
-    fromElectron: 'INSTALL_NX_ON_USER_MACHINE_RESULT'
+  export const fixIssues: EventChannel = {
+    fromAngular: 'FIX_ISSUES',
+    fromElectron: 'FIX_ISSUES_RESULT'
   };
-  export const checkIsNxInstalledOnUserMachineChannel: EventChannel = {
-    fromAngular: 'CHECK_IS_INSTALL_NX_ON_USER_MACHINE',
-    fromElectron: 'CHECK_IS_INSTALL_NX_ON_USER_MACHINE_RESULT'
+  export const checkIfIssues: EventChannel = {
+    fromAngular: 'CHECK_IF_ISSUES',
+    fromElectron: 'CHECK_IF_ISSUES_RESULT'
   };
 }

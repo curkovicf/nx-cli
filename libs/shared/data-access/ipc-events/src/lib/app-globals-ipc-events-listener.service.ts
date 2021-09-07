@@ -17,15 +17,27 @@ export class AppGlobalsIpcEventsListenerService {
   ) {}
 
   public initChannels(): void {
-    this.initCheckIsNxInstalledChannel();
+    this.initHasIssues();
+    this.initAttemptFixChannel();
   }
 
-  private initCheckIsNxInstalledChannel() {
-    this.electronService.ipcRenderer.on(IpcEvents.checkIsNxInstalledOnUserMachineChannel.fromElectron, (event, response: IpcResponse) => {
+  private initHasIssues(): void {
+    this.electronService.ipcRenderer.on(IpcEvents.checkIfIssues.fromElectron, (event, response: IpcResponse) => {
       const { error, success } = response;
 
       this.ngZone.run(() => {
-        this.appGlobalsFacade.setIsNxInstalled(!!success);
+        this.appGlobalsFacade.setHasIssues(!!error);
+        this.snackBar.open(success || error, null);
+      });
+    });
+  }
+
+  private initAttemptFixChannel(): void {
+    this.electronService.ipcRenderer.on(IpcEvents.fixIssues.fromElectron, (event, response: IpcResponse) => {
+      const { error, success } = response;
+
+      this.ngZone.run(() => {
+        this.appGlobalsFacade.setHasIssues(!!error);
         this.snackBar.open(success || error, null);
       });
     });

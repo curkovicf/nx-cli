@@ -7,11 +7,11 @@ import * as AppGlobalsActions from './app-globals.actions'
 
 @Injectable()
 export class AppGlobalsFacade {
-  public isNxInstalledOnUserMachine$ = this.store.select(AppGlobalsSelectors.getIsNxInstalledState);
+  public hasIssues = this.store.select(AppGlobalsSelectors.getHasIssuesState);
 
   constructor(private store: Store<AppGlobalsState>) {}
 
-  public setIsNxInstalled(isNxInstalledOnUserMachine: boolean): void {
-    this.store.dispatch(AppGlobalsActions.setIsNxInstalled({ isNxInstalledOnUserMachine }));
+  public setHasIssues(hasIssues: boolean): void {
+    this.store.dispatch(AppGlobalsActions.setHasIssues({ hasIssues }));
   }
 }

@@ -1,6 +1,6 @@
 <nx-cli-side-nav
-  [isNxInstalledOnUserMachine]='appGlobalsFacade.isNxInstalledOnUserMachine$ | async'
-  (oninstallnx)='onInstallNx()'
+  [appHasIssues]='appGlobalsFacade.hasIssues | async'
+  (onshowerror)='onShowError()'
 ></nx-cli-side-nav>
 
 <div class='content'>

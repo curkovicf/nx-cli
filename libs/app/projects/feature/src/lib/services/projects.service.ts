@@ -8,7 +8,8 @@ import {
   parsePath,
   Platform,
   removeSpecialCharFrontBack,
-  removeSpecialCharacters, IpcResponseWithLogs
+  removeSpecialCharacters,
+  IpcResponseWithLogs
 } from '@nx-cli/app/shared/util';
 import {
   cleanEmptyDirWinFunction,
@@ -163,6 +164,8 @@ export class ProjectsService implements IProjectsService {
     ];
 
     const result = await executeCommand(cmd, args, workspacePath, 'CREATE');
+
+    console.log("RESUlT ", result);
 
     logs.push(result?.log ?? '');
 
