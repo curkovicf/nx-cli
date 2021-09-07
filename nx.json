@@ -33,9 +33,6 @@
     "app": {
       "tags": []
     },
-    "app-app-globals-feature": {
-      "tags": []
-    },
     "app-projects-feature": {
       "tags": []
     },
@@ -134,9 +131,6 @@
       "tags": []
     },
     "client-shared-util": {
-      "tags": []
-    },
-    "client-shell-data-access": {
       "tags": []
     },
     "client-shell-feature": {

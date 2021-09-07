@@ -17,7 +17,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-cli/app/app-globals/feature": ["libs/app/app-globals/feature/src/index.ts"],
       "@nx-cli/app/projects/feature": ["libs/app/projects/feature/src/index.ts"],
       "@nx-cli/app/projects/util": ["libs/app/projects/util/src/index.ts"],
       "@nx-cli/app/shared/util": ["libs/app/shared/util/src/index.ts"],
@@ -43,6 +42,7 @@
       "@nx-cli/client/shared/ui/checkbox": ["libs/client/shared/ui/checkbox/src/index.ts"],
       "@nx-cli/client/shared/ui/confirm-dialog": ["libs/client/shared/ui/confirm-dialog/src/index.ts"],
       "@nx-cli/client/shared/ui/dropdown": ["libs/client/shared/ui/dropdown/src/index.ts"],
+      "@nx-cli/client/shared/ui/info-dialog": ["libs/client/shared/ui/info-dialog/src/index.ts"],
       "@nx-cli/client/shared/ui/input": ["libs/client/shared/ui/input/src/index.ts"],
       "@nx-cli/client/shared/ui/material-modules": ["libs/client/shared/ui/material-modules/src/index.ts"],
       "@nx-cli/client/shared/ui/progress-bar": ["libs/client/shared/ui/progress-bar/src/index.ts"],

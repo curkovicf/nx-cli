@@ -68,31 +68,6 @@
         }
       }
     },
-    "app-app-globals-feature": {
-      "projectType": "library",
-      "root": "libs/app/app-globals/feature",
-      "sourceRoot": "libs/app/app-globals/feature/src",
-      "prefix": "nx-cli",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/app/app-globals/feature"],
-          "options": {
-            "jestConfig": "libs/app/app-globals/feature/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/app/app-globals/feature/src/**/*.ts",
-              "libs/app/app-globals/feature/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
     "app-projects-feature": {
       "projectType": "library",
       "root": "libs/app/projects/feature",
@@ -956,31 +931,6 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/client/shared/util/src/**/*.ts", "libs/client/shared/util/src/**/*.html"]
-          }
-        }
-      }
-    },
-    "client-shell-data-access": {
-      "projectType": "library",
-      "root": "libs/client/shell/data-access",
-      "sourceRoot": "libs/client/shell/data-access/src",
-      "prefix": "nx-cli",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/shell/data-access"],
-          "options": {
-            "jestConfig": "libs/client/shell/data-access/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/client/shell/data-access/src/**/*.ts",
-              "libs/client/shell/data-access/src/**/*.html"
-            ]
           }
         }
       }

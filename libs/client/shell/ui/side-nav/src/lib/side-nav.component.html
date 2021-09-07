@@ -6,15 +6,14 @@
 </div>
 
 <div
-  *ngIf='appHasIssues'
   class='settings-icon-wrapper'
-  matTooltip="WARNING: app will not work properly."
+  matTooltip="IMPORTANT: check for all deps."
   matTooltipPosition="after"
   matTooltipHideDelay="100000">
   <img
     (click)='onshowerror.emit()'
     class='settings-icon'
-    src='assets/warning_black_24dp.svg'
+    src='assets/warning_24dp.svg'
     height='40'
     alt='Add icon'>
 </div>

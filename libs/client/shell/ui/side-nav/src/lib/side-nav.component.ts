@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'nx-cli-side-nav',
@@ -6,9 +6,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./side-nav.component.scss']
 })
 export class SideNavComponent {
-  @Input()
-  appHasIssues: boolean;
-
   @Output()
   onshowerror: EventEmitter<void> = new EventEmitter();
 }

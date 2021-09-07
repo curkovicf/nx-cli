@@ -2,13 +2,10 @@ import { Component } from '@angular/core';
 import { ProjectsStore } from '@nx-cli/client/projects/data-access';
 import { drawerAnimation } from '@nx-cli/client/shell/ui/drawer';
 import { UtilLocalStorageService } from '@nx-cli/client/shared/util';
-import { AppGlobalsIpcEventsListenerService, IpcEventsListenerService } from '@nx-cli/shared/data-access/ipc-events';
+import { IpcEventsListenerService } from '@nx-cli/shared/data-access/ipc-events';
 import { Workspace, WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
-import { AppGlobalsFacade } from '@nx-cli/client/shell/data-access';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogContent } from '@nx-cli/client/shared/ui/confirm-dialog';
-import { filter, first, map, mergeMap, pluck, tap } from 'rxjs/operators';
-import { AppGlobalsIpcApiService } from '@nx-cli/shared/data-access/ipc-api';
 
 @Component({
   selector: 'dev-workspace-layout',
@@ -22,23 +19,12 @@ export class ClientLayoutComponent {
   constructor(
     public projectsStore: ProjectsStore,
     public workspacesFacade: WorkspacesFacade,
-    public appGlobalsFacade: AppGlobalsFacade,
     private localStorageService: UtilLocalStorageService,
     private ipcEventsListenerService: IpcEventsListenerService,
-    private appGlobalsIpcEventsListenerService: AppGlobalsIpcEventsListenerService,
-    private appGlobalsIpcApiService: AppGlobalsIpcApiService,
     private dialog: MatDialog,
   ) {
     this.ipcEventsListenerService.initChannels();
-    this.appGlobalsIpcEventsListenerService.initChannels();
     this.localStorageService.initData();
-
-    this.workspacesFacade.selectedWorkspace$
-      .pipe(
-        first(),
-        pluck('path'),
-        tap(path => this.appGlobalsIpcApiService.checkIfThereAreIssues(path)),
-      ).subscribe();
   }
 
   public onSelectWorkspace(selectedWorkspace: Workspace): void {
@@ -69,21 +55,12 @@ export class ClientLayoutComponent {
 
   public onShowError(): void {
     const data: ConfirmDialogContent = {
-      title: 'Nx is not installed on your machine or project does not have node_modules. Attempt to fix ?',
-      bodyText: 'You can also do it manually by running: npm install -g @nrwl/cli, and (if) project does not have node_modules run: npm i in the project dir.'
+      title: '🚨 IMPORTANT 🚨',
+      bodyText: `Machine has to have installed nx globally, and every project should have proper node_modules. Install Nx Workspaces: npm install -g nx, and (if) project does not have node_modules run: npm i in the project dir.`
     };
 
-    this.dialog.open(ConfirmDialogComponent, { data })
+    this.dialog.open(ConfirmDialogComponent, { data, width: '55rem' })
       .afterClosed()
-      .pipe(
-        filter(isConfirm => isConfirm),
-        mergeMap(() => this.workspacesFacade.selectedWorkspace$
-          .pipe(
-            first(),
-            map(selectedWorkspace => ({ workspacePath: selectedWorkspace?.path }))
-          )
-        )
-      )
-      .subscribe(({ workspacePath }) => this.appGlobalsIpcApiService.attemptToFixIssues(workspacePath));
+      .subscribe();
   }
 }

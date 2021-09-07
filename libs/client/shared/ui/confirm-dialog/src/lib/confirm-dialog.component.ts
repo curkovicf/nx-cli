@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export interface ConfirmDialogContent {
   title: string;
   bodyText: string;
+  isConfirmDialog?: boolean;
 }
 
 @Component({
