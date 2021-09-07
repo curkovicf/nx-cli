@@ -30,31 +30,22 @@
     <nx-cli-button [buttonText]="'Delete project'" buttonType="warn" (onbtnclick)="projectsStore.deleteProject(project)"></nx-cli-button>
   </div>
 
-  <div class="installed-modules-and-components">
-    <div class="title-wrapper">
-      <p class="title">Ng modules & components</p>
-    </div>
+  <div class="tabs">
+    <nx-cli-tab-item
+      *ngFor='let tab of projectsStore.tabs$ | async'
+      [title]='tab'
+      [class.selected-tab]='tab === (projectsStore.activeTab$ | async)'
+      (click)='projectsStore.switchTab(tab)'
+    ></nx-cli-tab-item>
   </div>
 
   <main>
-    <div class="angular-module" *ngFor="let angularModule of project.angularModules">
-      <div class="wrapper">
-        <img class="search-ico" src="assets/icons8-typescript.svg" alt="Search Icon" width="18" />
-        <p>{{ angularModule.className }}</p>
-      </div>
-
-      <div class="component-wrapper">
-        <div class="angular-component" *ngFor="let angularComponent of angularModule.components">
-          <img class="search-ico" src="assets/icons8-typescript.svg" alt="Search Icon" width="18" />
-
-          <p>{{ angularComponent.className }}</p>
-        </div>
-      </div>
-    </div>
+    <ng-container [ngSwitch]='projectsStore.activeTab$ | async'>
+      <nx-cli-tags *ngSwitchCase="'Nx tags'" [tags]='project.tags'></nx-cli-tags>
+    </ng-container>
   </main>
 </ng-container>
 
 <ng-template #message>
   <h4>Wow, such emptiness 😭. If you don't have any Nx Workspace added yet you can do so via top left add icon. 🚀🚀🚀</h4>
-<!--  <h4>🚀 Click on the top left plus icon to add Nx workspace and get started. 🚀</h4>-->
 </ng-template>

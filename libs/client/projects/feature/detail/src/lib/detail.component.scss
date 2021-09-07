@@ -52,25 +52,15 @@
     }
   }
 
-  & > .installed-modules-and-components {
+  & > .tabs {
     @include box(100%, 6%);
     @include center-flex-X;
     @include default_border(bottom);
     justify-content: flex-start;
 
-    & > .title-wrapper {
-      font-weight: 400;
-      font-size: 1rem;
-      background-color: darkgray;
+    & > .selected-tab {
+      background-color: #2d3436;
       color: whitesmoke;
-      height: 100%;
-      @include center-flex-X;
-      @include cursor-pointer;
-
-      & > p {
-        display: inline-block;
-        margin: 0 1rem;
-      }
     }
   }
 

@@ -19,6 +19,8 @@ export interface ProjectsState {
   projects: Project[];
   selectedProject: Project | null;
   projectsLoadedInView: Project[];
+  tabs: string[];
+  activeTab: string;
 }
 
 @Injectable({
@@ -28,6 +30,8 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
   readonly projects$ = this.select((state) => state.projects);
   readonly projectsLoadedInView$ = this.select((state) => state.projectsLoadedInView);
   readonly selectedProject$ = this.select((state) => state.selectedProject);
+  readonly tabs$ = this.select((state) => state.tabs);
+  readonly activeTab$ = this.select((state) => state.activeTab);
 
   constructor(
     private projectsIpcApiService: ProjectsIpcApiService,
@@ -38,6 +42,8 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
       projects: [],
       projectsLoadedInView: [],
       selectedProject: undefined,
+      tabs: ['Nx tags', 'Folder Tree'],
+      activeTab: 'Nx tags'
     });
   }
 
@@ -60,6 +66,10 @@ export class ProjectsStore extends ComponentStore<ProjectsState> {
 
   public resetState(): void {
     this.patchState({ projects: [], projectsLoadedInView: [], selectedProject: null });
+  }
+
+  public switchTab(activeTab: string): void {
+    this.patchState({ activeTab });
   }
 
   public getAllProjects(workspace: Workspace): void {

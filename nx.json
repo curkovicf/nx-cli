@@ -70,9 +70,6 @@
     "client-projects-feature-shell": {
       "tags": []
     },
-    "client-projects-feature-tags": {
-      "tags": []
-    },
     "client-projects-ui-edit-project-dialog": {
       "tags": []
     },
@@ -95,6 +92,12 @@
       "tags": []
     },
     "client-projects-ui-new-service-dialog": {
+      "tags": []
+    },
+    "client-projects-ui-tab-item": {
+      "tags": []
+    },
+    "client-projects-ui-tags": {
       "tags": []
     },
     "client-projects-util": {

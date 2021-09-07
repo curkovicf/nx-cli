@@ -1,0 +1,17 @@
+@import 'styles/global.mixins';
+@import 'styles/global.variables';
+
+:host {
+  font-weight: 400;
+  font-size: 1rem;
+  background-color: darkgray;
+  color: whitesmoke;
+  height: 100%;
+  @include center-flex-X;
+  @include cursor-pointer;
+
+  & > p {
+    display: inline-block;
+    margin: 0 1rem;
+  }
+}

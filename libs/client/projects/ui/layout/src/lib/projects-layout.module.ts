@@ -4,7 +4,7 @@ import { ProjectsLayoutComponent } from './projects-layout.component';
 
 import { ListModule } from '@nx-cli/client/projects/feature/list';
 import { DetailModule } from '@nx-cli/client/projects/feature/detail';
-import { TagsModule } from '@nx-cli/client/projects/feature/tags';
+import { TagsModule } from '@nx-cli/client/projects/ui/tags';
 import { ConsoleModule } from '@nx-cli/client/projects/feature/console';
 
 @NgModule({

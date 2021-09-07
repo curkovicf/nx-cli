@@ -1,0 +1,13 @@
+@import 'styles/global.mixins';
+@import 'styles/global.variables';
+
+:host {
+  position: relative;
+
+  & > .tag {
+    margin-bottom: 0.3rem;
+    color: gray;
+
+    & > p {}
+  }
+}

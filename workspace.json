@@ -419,31 +419,6 @@
         }
       }
     },
-    "client-projects-feature-tags": {
-      "projectType": "library",
-      "root": "libs/client/projects/feature/tags",
-      "sourceRoot": "libs/client/projects/feature/tags/src",
-      "prefix": "dev-workspace",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/feature/tags"],
-          "options": {
-            "jestConfig": "libs/client/projects/feature/tags/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/client/projects/feature/tags/src/**/*.ts",
-              "libs/client/projects/feature/tags/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
     "client-projects-ui-edit-project-dialog": {
       "projectType": "library",
       "root": "libs/client/projects/ui/edit-project-dialog",
@@ -639,6 +614,56 @@
             "lintFilePatterns": [
               "libs/client/projects/ui/new-service-dialog/src/**/*.ts",
               "libs/client/projects/ui/new-service-dialog/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-projects-ui-tab-item": {
+      "projectType": "library",
+      "root": "libs/client/projects/ui/tab-item",
+      "sourceRoot": "libs/client/projects/ui/tab-item/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/ui/tab-item"],
+          "options": {
+            "jestConfig": "libs/client/projects/ui/tab-item/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/ui/tab-item/src/**/*.ts",
+              "libs/client/projects/ui/tab-item/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-projects-ui-tags": {
+      "projectType": "library",
+      "root": "libs/client/projects/ui/tags",
+      "sourceRoot": "libs/client/projects/ui/tags/src",
+      "prefix": "dev-workspace",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/ui/tags"],
+          "options": {
+            "jestConfig": "libs/client/projects/ui/tags/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/ui/tags/src/**/*.ts",
+              "libs/client/projects/ui/tags/src/**/*.html"
             ]
           }
         }
