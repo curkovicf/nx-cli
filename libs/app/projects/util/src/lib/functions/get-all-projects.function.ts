@@ -8,6 +8,7 @@ import { Project } from '@nx-cli/client/projects/data-access';
 import { trimToRelativePath } from './trim-to-relative-path.function';
 import { getProjectType } from './get-project-type.function';
 import { getAngularModules } from './get-angular-modules.function';
+import { getProjectFolderTree } from './get-project-folder-tree.function';
 
 export function getAllProjects(pwd: string, rootPath: string): Project[] {
   let projects: Project[] = [];
@@ -32,6 +33,7 @@ export function getAllProjects(pwd: string, rootPath: string): Project[] {
         type: getProjectType(pwd, rootPath),
         nameInNxJson: '',
         angularModules: getAngularModules(pwd),
+        folderTree: getProjectFolderTree(pwd),
         tags: [],
       });
 
