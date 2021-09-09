@@ -1,16 +1,21 @@
 export enum FileType {
-  typescript = 'typescript',
-  styles = 'styles',
-  template = 'template',
-  component = 'component',
-  service = 'service',
-  module = 'module',
-  guard = 'guard',
+  tsModel = 'model.ts',
+  tsFunction = 'function.ts',
+  tsClass = 'class.ts',
+  ngComponent = 'component.ts',
+  htmlComponent = 'component.html',
+  cssComponent = 'component.css',
+  scssComponent = 'component.scss',
+  testComponent = 'component.spec.ts',
+  ngService = 'service.ts',
+  ngModule = 'module.ts',
+  ngGuard = 'guard.ts',
   tsconfig = 'tsconfig',
   eslint = 'eslint',
-  readme = 'readme',
+  readme = '.md',
   unknown = 'unknown',
-  interceptor = 'interceptor'
+  ngInterceptor = 'interceptor.ts',
+  tsFile = '.ts'
 }
 
 export interface ProjectFile {
@@ -19,24 +24,24 @@ export interface ProjectFile {
 }
 
 export enum FolderType {
-  controller = 'controller',
-  service = 'service',
-  guard = 'guard',
+  controller = 'controllers',
+  service = 'services',
+  guard = 'guards',
   interceptors = 'interceptors',
-  ui = 'ui',
-  view = 'view',
+  ui = 'uis',
+  view = 'views',
   data = 'data',
   core = 'core',
-  domain = 'domain',
-  test = 'test',
-  style = 'style',
-  util = 'util',
-  feature = 'feature',
-  model = 'model',
+  domain = 'domains',
+  test = 'tests',
+  style = 'styles',
+  util = 'utils',
+  feature = 'features',
+  model = 'models',
   unknown = 'unknown',
-  api = 'api',
+  api = 'apis',
   src = 'src',
-  lib = 'lib',
+  lib = 'libs',
 }
 
 export interface ProjectFolder {
