@@ -1,0 +1,8 @@
+<p>- {{ folderTree?.name }}</p>
+
+<div class='nested'>
+  <ng-container *ngFor='let item of folderTree.folderContent'>
+    <nx-cli-folder-tree [folderTree]='item'></nx-cli-folder-tree>
+  </ng-container>
+</div>
+

@@ -18,11 +18,6 @@ export enum FileType {
   tsFile = '.ts'
 }
 
-export interface ProjectFile {
-  name: string;
-  type: FileType;
-}
-
 export enum FolderType {
   controller = 'controllers',
   service = 'services',
@@ -46,8 +41,10 @@ export enum FolderType {
 
 export interface ProjectFolder {
   name: string;
-  type: FolderType;
-  folderContent: (ProjectFolder | ProjectFile)[];
+  isDir: boolean;
+  folderContent?: ProjectFolder[];
+  dirType?: FolderType;
+  fileType?: FileType;
 }
 
 

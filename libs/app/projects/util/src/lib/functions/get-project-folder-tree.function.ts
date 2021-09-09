@@ -1,4 +1,4 @@
-import { FileType, fileTypes, FolderType, folderTypes, ProjectFile, ProjectFolder } from '@nx-cli/app/projects/feature';
+import { FileType, fileTypes, FolderType, folderTypes, ProjectFolder } from '@nx-cli/app/projects/feature';
 import { getPlatformPathSeparator } from '@nx-cli/app/shared/util';
 
 // @ts-ignore
@@ -19,7 +19,8 @@ export function getProjectFolderTree(pwd: string): ProjectFolder {
   const projectTree: ProjectFolder = {
     name,
     folderContent: [],
-    type: folderType ?? FolderType.unknown
+    isDir: true,
+    dirType: folderType ?? FolderType.unknown
   };
 
   const files = fs.readdirSync(pwd);
@@ -44,8 +45,9 @@ export function getProjectFolderTree(pwd: string): ProjectFolder {
       //  If its file push to content
       projectTree.folderContent.push({
         name: file,
-        type: fileType ?? FileType.unknown
-      } as ProjectFile);
+        isDir: false,
+        fileType: fileType ?? FileType.unknown
+      });
     }
   });
 

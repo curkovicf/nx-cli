@@ -42,6 +42,7 @@
   <main>
     <ng-container [ngSwitch]='projectsStore.activeTab$ | async'>
       <nx-cli-tags *ngSwitchCase="'Nx tags'" [tags]='project.tags'></nx-cli-tags>
+      <nx-cli-folder-tree *ngSwitchCase="'Folder Tree'" [folderTree]='project.folderTree'></nx-cli-folder-tree>
     </ng-container>
   </main>
 </ng-container>
