@@ -11,5 +11,7 @@ export class DetailComponent {
   constructor(
     public projectsStore: ProjectsStore,
     public workspacesFacade: WorkspacesFacade,
-  ) {}
+  ) {
+    this.projectsStore.projects$.subscribe(project => console.log(project));
+  }
 }

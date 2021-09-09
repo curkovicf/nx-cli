@@ -1,24 +1,52 @@
-import { ProjectFolder } from '@nx-cli/app/projects/feature';
+import { FileType, fileTypes, FolderType, folderTypes, ProjectFile, ProjectFolder } from '@nx-cli/app/projects/feature';
+import { getPlatformPathSeparator } from '@nx-cli/app/shared/util';
+
 // @ts-ignore
-import fs from 'fs';
+import * as fs from 'fs';
+import * as path from 'path';
 
 export function getProjectFolderTree(pwd: string): ProjectFolder {
-  const files = fs.readdirSync(pwd);
+  const name = pwd.split(getPlatformPathSeparator()).pop();
+  let folderType;
+
+  for (const type of folderTypes) {
+    if (type.includes(name)) {
+      folderType = type;
+      break;
+    }
+  }
+
   const projectTree: ProjectFolder = {
-    name: '',
+    name,
     folderContent: [],
-    type: 'unknown'
+    type: folderType ?? FolderType.unknown
   };
 
+  const files = fs.readdirSync(pwd);
+
   files.forEach((file: string) => {
-    //  Set folder name
-    projectTree.name = file;
-
-    //  Set folder type
-
     //  Check if its folder, and if it is call recursively
+    const absolutePath = path.join(pwd, file);
+    const isDir = fs.statSync(absolutePath).isDirectory();
 
-    //  If its file push to content
+    if (isDir) {
+      projectTree.folderContent.push(getProjectFolderTree(absolutePath));
+    } else {
+      let fileType;
+
+      for (const type of fileTypes) {
+        if (file.includes(type)) {
+          fileType = type;
+          break;
+        }
+      }
+
+      //  If its file push to content
+      projectTree.folderContent.push({
+        name: file,
+        type: fileType ?? FileType.unknown
+      } as ProjectFile);
+    }
   });
 
   return projectTree;
