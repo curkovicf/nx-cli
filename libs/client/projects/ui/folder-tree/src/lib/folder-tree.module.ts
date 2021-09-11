@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FolderTreeComponent } from './folder-tree.component';
-import { FileItemModule } from '@nx-cli/client/projects/ui/file-item';
 
 @NgModule({
-  imports: [CommonModule, FileItemModule],
+  imports: [CommonModule],
   declarations: [
     FolderTreeComponent
   ],

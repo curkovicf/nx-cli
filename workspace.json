@@ -444,31 +444,6 @@
         }
       }
     },
-    "client-projects-ui-file-item": {
-      "projectType": "library",
-      "root": "libs/client/projects/ui/file-item",
-      "sourceRoot": "libs/client/projects/ui/file-item/src",
-      "prefix": "nx-cli",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/ui/file-item"],
-          "options": {
-            "jestConfig": "libs/client/projects/ui/file-item/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/client/projects/ui/file-item/src/**/*.ts",
-              "libs/client/projects/ui/file-item/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
     "client-projects-ui-folder-tree": {
       "projectType": "library",
       "root": "libs/client/projects/ui/folder-tree",

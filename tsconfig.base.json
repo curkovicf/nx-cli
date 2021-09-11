@@ -28,7 +28,6 @@
       "@nx-cli/client/projects/feature/list": ["libs/client/projects/feature/list/src/index.ts"],
       "@nx-cli/client/projects/feature/shell": ["libs/client/projects/feature/shell/src/index.ts"],
       "@nx-cli/client/projects/ui/edit-project-dialog": ["libs/client/projects/ui/edit-project-dialog/src/index.ts"],
-      "@nx-cli/client/projects/ui/file-item": ["libs/client/projects/ui/file-item/src/index.ts"],
       "@nx-cli/client/projects/ui/folder-tree": ["libs/client/projects/ui/folder-tree/src/index.ts"],
       "@nx-cli/client/projects/ui/layout": ["libs/client/projects/ui/layout/src/index.ts"],
       "@nx-cli/client/projects/ui/list-item": ["libs/client/projects/ui/list-item/src/index.ts"],
