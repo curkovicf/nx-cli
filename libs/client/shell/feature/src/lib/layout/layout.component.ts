@@ -8,12 +8,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogContent } from '@nx-cli/client/shared/ui/confirm-dialog';
 
 @Component({
-  selector: 'dev-workspace-layout',
-  templateUrl: './client-layout.component.html',
-  styleUrls: ['./client-layout.component.scss'],
+  selector: 'nx-cli-layout',
+  templateUrl: './layout.component.html',
+  styleUrls: ['./layout.component.scss'],
   animations: [drawerAnimation]
 })
-export class ClientLayoutComponent {
+export class LayoutComponent {
   public isDrawerOpen = false;
 
   constructor(

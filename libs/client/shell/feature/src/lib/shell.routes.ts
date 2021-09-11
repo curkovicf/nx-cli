@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { ClientLayoutComponent } from '@nx-cli/client/shell/ui/layout';
+import { LayoutComponent } from './layout/layout.component';
 
 /*  How to redirect to the child route  */
 // https://stackoverflow.com/questions/42874859/angular-2-routing-redirect-to-with-child-routes
 
-export const clientShellRoutes: Routes = [
+export const shellRoutes: Routes = [
   {
     path: '',
     redirectTo: 'projects',
@@ -12,7 +12,7 @@ export const clientShellRoutes: Routes = [
   },
   {
     path: '',
-    component: ClientLayoutComponent,
+    component: LayoutComponent,
     children: [
       {
         path: 'projects',

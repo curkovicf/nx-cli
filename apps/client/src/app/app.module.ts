@@ -13,7 +13,7 @@ import { NgxElectronModule } from 'ngx-electron';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { MaterialModule } from '@nx-cli/client/shared/ui/material-modules';
-import { ClientShellModule } from '@nx-cli/client/shell/feature';
+import { ShellModule } from '@nx-cli/client/shell/feature';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,7 +36,7 @@ import { ClientShellModule } from '@nx-cli/client/shell/feature';
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule.forRoot(),
-    ClientShellModule,
+    ShellModule,
   ],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },

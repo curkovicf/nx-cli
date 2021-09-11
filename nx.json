@@ -76,9 +76,6 @@
     "client-projects-ui-folder-tree": {
       "tags": []
     },
-    "client-projects-ui-layout": {
-      "tags": []
-    },
     "client-projects-ui-list-item": {
       "tags": []
     },
@@ -143,9 +140,6 @@
       "tags": []
     },
     "client-shell-ui-drawer": {
-      "tags": []
-    },
-    "client-shell-ui-layout": {
       "tags": []
     },
     "client-shell-ui-side-nav": {

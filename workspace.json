@@ -469,31 +469,6 @@
         }
       }
     },
-    "client-projects-ui-layout": {
-      "projectType": "library",
-      "root": "libs/client/projects/ui/layout",
-      "sourceRoot": "libs/client/projects/ui/layout/src",
-      "prefix": "dev-workspace",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/ui/layout"],
-          "options": {
-            "jestConfig": "libs/client/projects/ui/layout/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/client/projects/ui/layout/src/**/*.ts",
-              "libs/client/projects/ui/layout/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
     "client-projects-ui-list-item": {
       "projectType": "library",
       "root": "libs/client/projects/ui/list-item",
@@ -1025,28 +1000,6 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/client/shell/ui/drawer/src/**/*.ts", "libs/client/shell/ui/drawer/src/**/*.html"]
-          }
-        }
-      }
-    },
-    "client-shell-ui-layout": {
-      "projectType": "library",
-      "root": "libs/client/shell/ui/layout",
-      "sourceRoot": "libs/client/shell/ui/layout/src",
-      "prefix": "dev-workspace",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/shell/ui/layout"],
-          "options": {
-            "jestConfig": "libs/client/shell/ui/layout/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/client/shell/ui/layout/src/**/*.ts", "libs/client/shell/ui/layout/src/**/*.html"]
           }
         }
       }

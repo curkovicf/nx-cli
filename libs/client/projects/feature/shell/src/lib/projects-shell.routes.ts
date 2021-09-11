@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { ProjectsLayoutComponent } from '@nx-cli/client/projects/ui/layout';
+import { ProjectsLayoutComponent } from './layout/projects-layout.component';
 
 export const projectsRoutes: Routes = [
   {

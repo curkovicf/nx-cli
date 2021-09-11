@@ -1,1 +1,1 @@
-export * from './lib/client-shell.module';
+export * from './lib/shell.module';
