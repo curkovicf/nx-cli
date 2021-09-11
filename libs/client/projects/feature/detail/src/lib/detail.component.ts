@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ProjectsStore } from '@nx-cli/client/projects/data-access';
+import { projectsStore } from '@nx-cli/client/projects/data-access';
 import { WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 
 @Component({
@@ -9,7 +9,7 @@ import { WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 })
 export class DetailComponent {
   constructor(
-    public projectsStore: ProjectsStore,
+    public projectsStore: projectsStore,
     public workspacesFacade: WorkspacesFacade,
   ) {}
 }

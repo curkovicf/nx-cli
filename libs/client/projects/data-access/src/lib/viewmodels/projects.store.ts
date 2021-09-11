@@ -26,7 +26,7 @@ export interface ProjectsState {
 @Injectable({
   providedIn: 'root',
 })
-export class ProjectsStore extends ComponentStore<ProjectsState> {
+export class projectsStore extends ComponentStore<ProjectsState> {
   readonly projects$ = this.select((state) => state.projects);
   readonly projectsLoadedInView$ = this.select((state) => state.projectsLoadedInView);
   readonly selectedProject$ = this.select((state) => state.selectedProject);

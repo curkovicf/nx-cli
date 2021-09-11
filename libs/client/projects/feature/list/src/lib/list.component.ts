@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { Project, ProjectsStore } from '@nx-cli/client/projects/data-access';
+import { Project, projectsStore } from '@nx-cli/client/projects/data-access';
 import { WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 import { filter, take } from 'rxjs/operators';
 
@@ -12,7 +12,7 @@ import { filter, take } from 'rxjs/operators';
 })
 export class ListComponent {
   constructor(
-    public projectsStore: ProjectsStore,
+    public projectsStore: projectsStore,
     public workspacesFacade: WorkspacesFacade,
   ) {}
 

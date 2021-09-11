@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ProjectsStore } from '@nx-cli/client/projects/data-access';
+import { projectsStore } from '@nx-cli/client/projects/data-access';
 import { drawerAnimation } from '@nx-cli/client/shell/ui/drawer';
 import { UtilLocalStorageService } from '@nx-cli/client/shared/util';
 import { Workspace, WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
@@ -17,7 +17,7 @@ export class LayoutComponent {
   public isDrawerOpen = false;
 
   constructor(
-    public projectsStore: ProjectsStore,
+    public projectsStore: projectsStore,
     public workspacesFacade: WorkspacesFacade,
     private localStorageService: UtilLocalStorageService,
     private ipcEventsListenerService: IpcEventsListenerService,
@@ -29,7 +29,7 @@ export class LayoutComponent {
 
   public onSelectWorkspace(selectedWorkspace: Workspace): void {
     this.workspacesFacade.selectWorkspace(selectedWorkspace);
-    this.projectsStore.patchState({ selectedProject: undefined });
+    // this.projectsStore.patchState({ selectedProject: undefined });
     this.projectsStore.getAllProjects(selectedWorkspace);
     this.localStorageService.save();
   }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ProjectsStore } from '@nx-cli/client/projects/data-access';
+import { projectsStore } from '@nx-cli/client/projects/data-access';
 import { WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 import { take, tap } from 'rxjs/operators';
 import { UtilLocalStorageService } from '@nx-cli/client/shared/util';
@@ -11,7 +11,7 @@ import { UtilLocalStorageService } from '@nx-cli/client/shared/util';
 })
 export class ConsoleComponent {
   constructor(
-    public projectsStore: ProjectsStore,
+    public projectsStore: projectsStore,
     private localStorageService: UtilLocalStorageService,
     public workspacesFacade: WorkspacesFacade,
   ) {}

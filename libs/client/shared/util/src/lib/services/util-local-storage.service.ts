@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ProjectsStore } from '@nx-cli/client/projects/data-access';
+import { projectsStore } from '@nx-cli/client/projects/data-access';
 import { combineLatest } from 'rxjs';
 import { Workspace, WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 import { first } from 'rxjs/operators';
@@ -16,7 +16,7 @@ export class UtilLocalStorageService {
   private key = 'storedData';
 
   constructor(
-    private projectsStore: ProjectsStore,
+    private projectsStore: projectsStore,
     private workspacesFacade: WorkspacesFacade,
   ) {}
 
