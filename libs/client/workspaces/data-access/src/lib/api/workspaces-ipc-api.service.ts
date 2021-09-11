@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { ElectronService } from 'ngx-electron';
-import { IpcEvents } from '@nx-cli/shared/data-access/models';
-import { Observable, of } from 'rxjs';
 import { IpcResponseData } from '@nx-cli/app/shared/util';
-import { Workspace } from '@nx-cli/client/workspaces/data-access';
+import { Observable, of } from 'rxjs';
+import { IpcEvents } from '@nx-cli/shared/data-access/models';
+import { ElectronService } from 'ngx-electron';
+import { Workspace } from '../models/workspace.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class WorkspaceIpcApiService {
+export class WorkspacesIpcApiService {
   constructor(private electronService: ElectronService) {}
 
   public validatePath(workspacePath: string): Observable<IpcResponseData<Workspace>> {

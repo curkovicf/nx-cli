@@ -2,16 +2,16 @@ import { Component } from '@angular/core';
 import { ProjectsStore } from '@nx-cli/client/projects/data-access';
 import { drawerAnimation } from '@nx-cli/client/shell/ui/drawer';
 import { UtilLocalStorageService } from '@nx-cli/client/shared/util';
-import { IpcEventsListenerService } from '@nx-cli/shared/data-access/ipc-events';
 import { Workspace, WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogContent } from '@nx-cli/client/shared/ui/confirm-dialog';
+import { IpcEventsListenerService } from '@nx-cli/client/shared/data-access';
 
 @Component({
   selector: 'nx-cli-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
-  animations: [drawerAnimation]
+  animations: [drawerAnimation],
 })
 export class LayoutComponent {
   public isDrawerOpen = false;
@@ -21,7 +21,7 @@ export class LayoutComponent {
     public workspacesFacade: WorkspacesFacade,
     private localStorageService: UtilLocalStorageService,
     private ipcEventsListenerService: IpcEventsListenerService,
-    private dialog: MatDialog,
+    private dialog: MatDialog
   ) {
     this.ipcEventsListenerService.initChannels();
     this.localStorageService.initData();
@@ -56,11 +56,9 @@ export class LayoutComponent {
   public onShowError(): void {
     const data: ConfirmDialogContent = {
       title: '🚨 IMPORTANT 🚨',
-      bodyText: `Machine has to have installed nx globally, and every project should have proper node_modules. Install Nx Workspaces: npm install -g nx, and (if) project does not have node_modules run: npm i in the project dir.`
+      bodyText: `Machine has to have installed nx globally, and every project should have proper node_modules. Install Nx Workspaces: npm install -g nx, and (if) project does not have node_modules run: npm i in the project dir.`,
     };
 
-    this.dialog.open(ConfirmDialogComponent, { data, width: '55rem' })
-      .afterClosed()
-      .subscribe();
+    this.dialog.open(ConfirmDialogComponent, { data, width: '55rem' }).afterClosed().subscribe();
   }
 }

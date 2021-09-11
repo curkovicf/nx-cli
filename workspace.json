@@ -1129,52 +1129,24 @@
         }
       }
     },
-    "shared-data-access-ipc-api": {
+    "client-workspaces-util": {
       "projectType": "library",
-      "root": "libs/shared/data-access/ipc-api",
-      "sourceRoot": "libs/shared/data-access/ipc-api/src",
+      "root": "libs/client/workspaces/util",
+      "sourceRoot": "libs/client/workspaces/util/src",
       "prefix": "nx-cli",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/data-access/ipc-api"],
+          "outputs": ["coverage/libs/client/workspaces/util"],
           "options": {
-            "jestConfig": "libs/shared/data-access/ipc-api/jest.config.js",
+            "jestConfig": "libs/client/workspaces/util/jest.config.js",
             "passWithNoTests": true
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/shared/data-access/ipc-api/src/**/*.ts",
-              "libs/shared/data-access/ipc-api/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "shared-data-access-ipc-events": {
-      "projectType": "library",
-      "root": "libs/shared/data-access/ipc-events",
-      "sourceRoot": "libs/shared/data-access/ipc-events/src",
-      "prefix": "nx-cli",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/data-access/ipc-events"],
-          "options": {
-            "jestConfig": "libs/shared/data-access/ipc-events/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/shared/data-access/ipc-events/src/**/*.ts",
-              "libs/shared/data-access/ipc-events/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/workspaces/util/src/**/*.ts", "libs/client/workspaces/util/src/**/*.html"]
           }
         }
       }

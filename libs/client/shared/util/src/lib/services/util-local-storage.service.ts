@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ProjectsStore } from '@nx-cli/client/projects/data-access';
 import { combineLatest } from 'rxjs';
 import { Workspace, WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
+import { first } from 'rxjs/operators';
 
 interface StoredData {
   workspaces: Workspace[];
@@ -23,8 +24,7 @@ export class UtilLocalStorageService {
     combineLatest([
       this.workspacesFacade.workspaces$,
       this.workspacesFacade.selectedWorkspace$
-    ])
-      .subscribe(([workspaces, selectedWorkspace]) => {
+    ]).pipe(first()).subscribe(([workspaces, selectedWorkspace]) => {
       const data: StoredData = { workspaces, selectedWorkspace };
       localStorage.setItem(this.key, JSON.stringify(data));
     });

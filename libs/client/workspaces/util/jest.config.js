@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'shared-data-access-ipc-events',
+  displayName: 'client-workspaces-util',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,7 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../../../coverage/libs/shared/data-access/ipc-events',
+  coverageDirectory: '../../../../coverage/libs/client/workspaces/util',
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',
   },

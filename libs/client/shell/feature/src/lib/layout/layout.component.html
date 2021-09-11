@@ -12,13 +12,13 @@
   ></dev-workspace-chips-bar>
 
   <nx-cli-drawer *ngIf="isDrawerOpen" [@slideIn]>
-    <nx-cli-add-nx-project-form
+    <nx-cli-new-workspace
       class="drawer-content"
       [workspaces]='workspacesFacade.workspaces$ | async'
       (oncancel)="toggleDrawer()"
       (onsubmit)="onCreateWorkspace($event)"
     >
-    </nx-cli-add-nx-project-form>
+    </nx-cli-new-workspace>
   </nx-cli-drawer>
 
   <main>

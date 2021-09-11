@@ -3,11 +3,10 @@ import { map, switchMap } from 'rxjs/operators';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Observable, timer } from 'rxjs';
 import { IpcResponseData } from '@nx-cli/app/shared/util';
-import { WorkspaceIpcApiService } from '@nx-cli/shared/data-access/ipc-api';
-import { Workspace } from '@nx-cli/client/workspaces/data-access';
+import { Workspace, WorkspacesIpcApiService } from '@nx-cli/client/workspaces/data-access';
 
 @Component({
-  selector: 'nx-cli-add-nx-project-form',
+  selector: 'nx-cli-new-workspace',
   templateUrl: './new-workspace.component.html',
   styleUrls: ['./new-workspace.component.scss'],
 })
@@ -24,7 +23,7 @@ export class NewWorkspaceComponent {
   public form: FormGroup;
   private workspace: Workspace = { path: '', name: '', consoleLogs: [] };
 
-  constructor(private workspaceIpcApiService: WorkspaceIpcApiService) {
+  constructor(private workspacesIpcApiService: WorkspacesIpcApiService) {
     this.form = new FormGroup({
       path: new FormControl(null, [Validators.required], this.validatePath.bind(this)),
     });
@@ -42,13 +41,12 @@ export class NewWorkspaceComponent {
   validatePath(control: AbstractControl): Observable<ValidationErrors | null> {
     return timer(1500).pipe(
       switchMap(() => {
-        return this.workspaceIpcApiService.validatePath(control.value)
+        return this.workspacesIpcApiService.validatePath(control.value)
           .pipe(
             map((response: IpcResponseData<Workspace>): ValidationErrors | null => {
               if (response.data) {
                 this.workspace = response.data;
 
-                console.log(response);
                 //  TODO: Remove quickfix
                 if (!this.workspaces) { return null; }
 

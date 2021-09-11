@@ -5,7 +5,7 @@ import { Project } from '../models/project.model';
 import { Workspace, WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 import { combineLatest, Observable } from 'rxjs';
 import { ConfirmDialogComponent, ConfirmDialogContent } from '@nx-cli/client/shared/ui/confirm-dialog';
-import { ProjectsIpcApiService } from '@nx-cli/shared/data-access/ipc-api';
+import { ProjectsIpcApiService } from '../api/projects-ipc-api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { NewComponentDialogComponent } from '@nx-cli/client/projects/ui/new-component-dialog';
 import { ComponentType } from '@angular/cdk/portal/portal';

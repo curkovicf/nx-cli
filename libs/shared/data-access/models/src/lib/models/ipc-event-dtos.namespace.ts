@@ -1,4 +1,4 @@
-import { Project, ProjectType } from '@nx-cli/client/projects/data-access';
+import { ProjectType } from '@nx-cli/client/projects/data-access';
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace IpcEventDtos {
