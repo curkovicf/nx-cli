@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ProjectsIpcEventsService } from '@nx-cli/client/projects/data-access';
 
 @Component({
   selector: 'nx-cli-projects-layout',
@@ -7,5 +8,5 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectsLayoutComponent {
-
+  constructor(private projectsIpcEventsService: ProjectsIpcEventsService) {}
 }

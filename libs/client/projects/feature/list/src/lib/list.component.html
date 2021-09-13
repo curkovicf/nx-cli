@@ -3,20 +3,20 @@
     <p>installed apps & libs</p>
 
     <div class="refresh-icon-wrapper" matRipple>
-      <img [ngStyle]="{ visibility: 'visible' }" src="assets/refresh_icon.svg" alt="Refresh icon" (click)="refresh()" />
+      <img [ngStyle]="{ visibility: 'visible' }" src="assets/refresh_icon.svg" alt="Refresh icon" (click)="listVmStore.fetchProjects()" />
     </div>
   </header>
 
   <div class="search-wrapper">
-    <dev-workspace-search-bar (oninput)="triggerSearch($event)"></dev-workspace-search-bar>
+    <dev-workspace-search-bar (oninput)="listVmStore.filterProjects($event)"></dev-workspace-search-bar>
   </div>
 </section>
 
 <section class="projects-list">
   <dev-workspace-project-list-item
-    *ngFor="let project of projectsStore.projectsLoadedInView$ | async; trackBy: trackBy"
+    *ngFor="let project of (listVmStore.vm$ | async).projectsInView"
     [project]="project"
-    (click)="onSelectProject(project)"
+    (click)="listVmStore.selectProject(project)"
   >
     <dev-workspace-list-item-badge [projectType]="project.type"></dev-workspace-list-item-badge>
   </dev-workspace-project-list-item>
@@ -27,7 +27,7 @@
     [isDisabled]="(workspacesFacade.workspaces$ | async)?.length === 0"
     [buttonText]="'Create Angular application'"
     buttonType="primary"
-    (onbtnclick)="createNgApp()"
+    (onbtnclick)="listVmStore.createApplication()"
   >
   </nx-cli-button>
 
@@ -35,7 +35,7 @@
     [isDisabled]="(workspacesFacade.workspaces$ | async)?.length === 0"
     [buttonText]="'Create Angular library'"
     buttonType="primary"
-    (onbtnclick)="createLib()"
+    (onbtnclick)="listVmStore.createLibrary()"
   >
   </nx-cli-button>
 </section>

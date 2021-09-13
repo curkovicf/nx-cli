@@ -90,28 +90,6 @@
         }
       }
     },
-    "app-projects-util": {
-      "projectType": "library",
-      "root": "libs/app/projects/util",
-      "sourceRoot": "libs/app/projects/util/src",
-      "prefix": "nx-cli",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/app/projects/util"],
-          "options": {
-            "jestConfig": "libs/app/projects/util/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/app/projects/util/src/**/*.ts", "libs/app/projects/util/src/**/*.html"]
-          }
-        }
-      }
-    },
     "app-shared-util": {
       "projectType": "library",
       "root": "libs/app/shared/util",
@@ -691,31 +669,6 @@
         }
       }
     },
-    "client-shared-data-access": {
-      "projectType": "library",
-      "root": "libs/client/shared/data-access",
-      "sourceRoot": "libs/client/shared/data-access/src",
-      "prefix": "nx-cli",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/shared/data-access"],
-          "options": {
-            "jestConfig": "libs/client/shared/data-access/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/client/shared/data-access/src/**/*.ts",
-              "libs/client/shared/data-access/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
     "client-shared-ui-button": {
       "projectType": "library",
       "root": "libs/client/shared/ui/button",
@@ -1125,28 +1078,6 @@
               "libs/client/workspaces/ui/chips-bar/src/**/*.ts",
               "libs/client/workspaces/ui/chips-bar/src/**/*.html"
             ]
-          }
-        }
-      }
-    },
-    "client-workspaces-util": {
-      "projectType": "library",
-      "root": "libs/client/workspaces/util",
-      "sourceRoot": "libs/client/workspaces/util/src",
-      "prefix": "nx-cli",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/workspaces/util"],
-          "options": {
-            "jestConfig": "libs/client/workspaces/util/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/client/workspaces/util/src/**/*.ts", "libs/client/workspaces/util/src/**/*.html"]
           }
         }
       }

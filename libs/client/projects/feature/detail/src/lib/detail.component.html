@@ -1,4 +1,4 @@
-<ng-container *ngIf="projectsStore.selectedProject$ | async as project else message">
+<ng-container *ngIf="(detailVmStore.vm$ | async).selectedProject as project else message">
   <header>
     <div class="title-wrapper">
       <h4 class="title">{{ project.name }}</h4>
@@ -19,28 +19,28 @@
     <nx-cli-button
       [buttonText]="'Create Component'"
       buttonType="primary"
-      (onbtnclick)="projectsStore.generateComponent(project)"
+      (onbtnclick)="detailVmStore.generateComponent(project)"
     ></nx-cli-button>
     <nx-cli-button
       [buttonText]="'Create Service'"
       buttonType="primary"
-      (onbtnclick)="projectsStore.generateService(project)"
+      (onbtnclick)="detailVmStore.generateService(project)"
     ></nx-cli-button>
-    <nx-cli-button [buttonText]="'Edit project'" buttonType="warn" (onbtnclick)="projectsStore.editProject(project)"></nx-cli-button>
-    <nx-cli-button [buttonText]="'Delete project'" buttonType="warn" (onbtnclick)="projectsStore.deleteProject(project)"></nx-cli-button>
+    <nx-cli-button [buttonText]="'Edit project'" buttonType="warn" (onbtnclick)="detailVmStore.editProject(project)"></nx-cli-button>
+    <nx-cli-button [buttonText]="'Delete project'" buttonType="warn" (onbtnclick)="detailVmStore.deleteProject(project)"></nx-cli-button>
   </div>
 
   <div class="tabs">
     <nx-cli-tab-item
-      *ngFor='let tab of projectsStore.tabs$ | async'
+      *ngFor='let tab of (detailVmStore.vm$ | async).tabs'
       [title]='tab'
-      [class.selected-tab]='tab === (projectsStore.activeTab$ | async)'
-      (click)='projectsStore.switchTab(tab)'
+      [class.selected-tab]='tab === (detailVmStore.vm$  | async).activeTab'
+      (click)='detailVmStore.switchTab(tab)'
     ></nx-cli-tab-item>
   </div>
 
   <main>
-    <ng-container [ngSwitch]='projectsStore.activeTab$ | async'>
+    <ng-container [ngSwitch]='(detailVmStore.vm$ | async).activeTab'>
       <nx-cli-tags *ngSwitchCase="'Nx tags'" [tags]='project.tags'></nx-cli-tags>
       <nx-cli-folder-tree *ngSwitchCase="'Folder Tree'" [folderTree]='project.folderTree'></nx-cli-folder-tree>
     </ng-container>

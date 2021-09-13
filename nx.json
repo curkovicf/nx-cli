@@ -36,9 +36,6 @@
     "app-projects-feature": {
       "tags": []
     },
-    "app-projects-util": {
-      "tags": []
-    },
     "app-shared-util": {
       "tags": []
     },
@@ -103,9 +100,6 @@
     "client-projects-util": {
       "tags": []
     },
-    "client-shared-data-access": {
-      "tags": []
-    },
     "client-shared-ui-button": {
       "tags": []
     },
@@ -155,9 +149,6 @@
       "tags": []
     },
     "client-workspaces-ui-chips-bar": {
-      "tags": []
-    },
-    "client-workspaces-util": {
       "tags": []
     },
     "shared-data-access-models": {

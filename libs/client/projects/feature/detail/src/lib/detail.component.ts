@@ -1,15 +1,12 @@
 import { Component } from '@angular/core';
-import { projectsStore } from '@nx-cli/client/projects/data-access';
-import { WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
+import { DetailStore } from '../../../../data-access/src/lib/viewmodels/detail.store';
 
 @Component({
   selector: 'dev-workspace-project-detail',
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss'],
+  providers: [DetailStore]
 })
 export class DetailComponent {
-  constructor(
-    public projectsStore: projectsStore,
-    public workspacesFacade: WorkspacesFacade,
-  ) {}
+  constructor(public detailVmStore: DetailStore) {}
 }

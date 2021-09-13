@@ -18,7 +18,6 @@
     "baseUrl": ".",
     "paths": {
       "@nx-cli/app/projects/feature": ["libs/app/projects/feature/src/index.ts"],
-      "@nx-cli/app/projects/util": ["libs/app/projects/util/src/index.ts"],
       "@nx-cli/app/shared/util": ["libs/app/shared/util/src/index.ts"],
       "@nx-cli/app/shell/feature": ["libs/app/shell/feature/src/index.ts"],
       "@nx-cli/app/workspaces/feature": ["libs/app/workspaces/feature/src/index.ts"],
@@ -38,7 +37,6 @@
       "@nx-cli/client/projects/ui/tab-item": ["libs/client/projects/ui/tab-item/src/index.ts"],
       "@nx-cli/client/projects/ui/tags": ["libs/client/projects/ui/tags/src/index.ts"],
       "@nx-cli/client/projects/util": ["libs/client/projects/util/src/index.ts"],
-      "@nx-cli/client/shared/data-access": ["libs/client/shared/data-access/src/index.ts"],
       "@nx-cli/client/shared/ui/button": ["libs/client/shared/ui/button/src/index.ts"],
       "@nx-cli/client/shared/ui/checkbox": ["libs/client/shared/ui/checkbox/src/index.ts"],
       "@nx-cli/client/shared/ui/confirm-dialog": ["libs/client/shared/ui/confirm-dialog/src/index.ts"],
@@ -60,7 +58,6 @@
       "@nx-cli/client/workspaces/data-access": ["libs/client/workspaces/data-access/src/index.ts"],
       "@nx-cli/client/workspaces/feature": ["libs/client/workspaces/feature/src/index.ts"],
       "@nx-cli/client/workspaces/ui/chips-bar": ["libs/client/workspaces/ui/chips-bar/src/index.ts"],
-      "@nx-cli/client/workspaces/util": ["libs/client/workspaces/util/src/index.ts"],
       "@nx-cli/shared/data-access/models": ["libs/shared/data-access/models/src/index.ts"],
       "@nx-cli/shared/util": ["libs/shared/util/src/index.ts"]
     }

@@ -1,47 +1,20 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { Project, projectsStore } from '@nx-cli/client/projects/data-access';
+import { listStore } from '@nx-cli/client/projects/data-access';
 import { WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
-import { filter, take } from 'rxjs/operators';
 
 @Component({
-  selector: 'dev-workspace-project-list',
+  selector: 'nx-cli-project-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [listStore]
 })
 export class ListComponent {
   constructor(
-    public projectsStore: projectsStore,
+    public listVmStore: listStore,
     public workspacesFacade: WorkspacesFacade,
-  ) {}
-
-  public refresh(): void {
-    this.workspacesFacade.selectedWorkspace$
-      .pipe(
-        take(1),
-        filter(data => data !== undefined)
-      )
-      .subscribe(workspacePath => this.projectsStore.getAllProjects(workspacePath));
-  }
-
-  public triggerSearch(keyword: string): void {
-    this.projectsStore.filterProjects(keyword);
-  }
-
-  public onSelectProject(project: Project): void {
-    this.projectsStore.selectProject(project);
-  }
-
-  public trackBy(index: any, item: any) {
-    return item.name;
-  }
-
-  public createNgApp(): void {
-    this.projectsStore.createApplication();
-  }
-
-  public createLib(): void {
-    this.projectsStore.createLibrary();
+  ) {
+    this.listVmStore.fetchProjects();
   }
 }

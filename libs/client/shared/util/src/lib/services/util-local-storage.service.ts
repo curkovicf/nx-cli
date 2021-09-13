@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { projectsStore } from '@nx-cli/client/projects/data-access';
 import { combineLatest } from 'rxjs';
 import { Workspace, WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 import { first } from 'rxjs/operators';
+import { ProjectsFacade } from '../../../../../projects/data-access/src/lib/+store/projects.facade';
 
 interface StoredData {
   workspaces: Workspace[];
@@ -16,7 +16,7 @@ export class UtilLocalStorageService {
   private key = 'storedData';
 
   constructor(
-    private projectsStore: projectsStore,
+    private projectsFacade: ProjectsFacade,
     private workspacesFacade: WorkspacesFacade,
   ) {}
 
@@ -38,6 +38,7 @@ export class UtilLocalStorageService {
     const { workspaces, selectedWorkspace }: StoredData = JSON.parse(data);
 
     this.workspacesFacade.setWorkspacesState({  workspaces, selectedWorkspace  })
-    this.projectsStore.getAllProjects(selectedWorkspace);
+    //  FIXME: Get all projects on init data
+    // this.projectsFacade.getAllProjects(selectedWorkspace);
   }
 }
