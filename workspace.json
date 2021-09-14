@@ -669,6 +669,31 @@
         }
       }
     },
+    "client-shared-data-access": {
+      "projectType": "library",
+      "root": "libs/client/shared/data-access",
+      "sourceRoot": "libs/client/shared/data-access/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shared/data-access"],
+          "options": {
+            "jestConfig": "libs/client/shared/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shared/data-access/src/**/*.ts",
+              "libs/client/shared/data-access/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "client-shared-ui-button": {
       "projectType": "library",
       "root": "libs/client/shared/ui/button",

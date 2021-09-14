@@ -37,6 +37,7 @@
       "@nx-cli/client/projects/ui/tab-item": ["libs/client/projects/ui/tab-item/src/index.ts"],
       "@nx-cli/client/projects/ui/tags": ["libs/client/projects/ui/tags/src/index.ts"],
       "@nx-cli/client/projects/util": ["libs/client/projects/util/src/index.ts"],
+      "@nx-cli/client/shared/data-access": ["libs/client/shared/data-access/src/index.ts"],
       "@nx-cli/client/shared/ui/button": ["libs/client/shared/ui/button/src/index.ts"],
       "@nx-cli/client/shared/ui/checkbox": ["libs/client/shared/ui/checkbox/src/index.ts"],
       "@nx-cli/client/shared/ui/confirm-dialog": ["libs/client/shared/ui/confirm-dialog/src/index.ts"],

@@ -4,6 +4,7 @@ import { UtilLocalStorageService } from '@nx-cli/client/shared/util';
 import { Workspace, WorkspacesFacade, WorkspacesIpcEventsService } from '@nx-cli/client/workspaces/data-access';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogContent } from '@nx-cli/client/shared/ui/confirm-dialog';
+import { ProgressBarFacade } from '@nx-cli/client/shared/data-access';
 
 @Component({
   selector: 'nx-cli-layout',
@@ -16,6 +17,7 @@ export class LayoutComponent {
 
   constructor(
     public workspacesFacade: WorkspacesFacade,
+    public progressBarFacade: ProgressBarFacade,
     private localStorageService: UtilLocalStorageService,
     private workspacesIpcEventsService: WorkspacesIpcEventsService,
     private dialog: MatDialog

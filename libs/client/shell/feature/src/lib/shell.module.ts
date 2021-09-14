@@ -9,12 +9,28 @@ import { DrawerModule } from '@nx-cli/client/shell/ui/drawer';
 import { NewWorkspaceModule } from '@nx-cli/client/workspaces/feature';
 import { SideNavModule } from '@nx-cli/client/shell/ui/side-nav';
 import { LayoutComponent } from './layout/layout.component';
+import { MaterialProgressBarModule } from '@nx-cli/client/shared/ui/progress-bar';
+import { ProgressBarModule } from '@nx-cli/client/shared/data-access';
 
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forRoot(shellRoutes), WorkspacesModule, TopNavModule, ChipsBarModule, CommonModule, DrawerModule, NewWorkspaceModule, RouterModule, SideNavModule],
+  imports: [
+    CommonModule,
+    RouterModule.forRoot(shellRoutes),
+    WorkspacesModule,
+    TopNavModule,
+    ChipsBarModule,
+    CommonModule,
+    DrawerModule,
+    NewWorkspaceModule,
+    RouterModule,
+    SideNavModule,
+    MaterialProgressBarModule,
+    ProgressBarModule
+  ],
   declarations: [
     LayoutComponent
   ]
 })
-export class ShellModule {}
+export class ShellModule {
+}
