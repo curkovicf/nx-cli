@@ -8,6 +8,7 @@ import { ProjectsIpcApiService } from './projects-ipc-api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 import { ProjectsFacade } from '../+store/projects.facade';
+import { ProgressBarFacade } from '@nx-cli/client/shared/data-access';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ export class ProjectsIpcEventsService {
     private projectsIpcApiService: ProjectsIpcApiService,
     private ngZone: NgZone,
     private snackBar: MatSnackBar,
+    private progressBarFacade: ProgressBarFacade,
   ) {
     this.initGenericResponseChannel();
     this.initGetAllProjectsChannel();
@@ -36,6 +38,8 @@ export class ProjectsIpcEventsService {
       (event, response: IpcResponseData<Project[]>) => {
         //  FIXME: Fix stuff
         this.ngZone.run(() => {
+          this.progressBarFacade.removeActiveAction();
+
           this.projectsFacade.selectedProject$
             .pipe(
               first(),
@@ -60,6 +64,8 @@ export class ProjectsIpcEventsService {
   private initGenericResponseChannel(): void {
     this.electronService.ipcRenderer.on(IpcEvents.defaultChannel.fromElectron, (event, response: IpcResponse) => {
       const { workspacePath, error, success } = response;
+
+      this.progressBarFacade.removeActiveAction();
 
       if (success) { this.projectsIpcApiService.getAllProjects(workspacePath); }
 

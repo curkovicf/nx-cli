@@ -3,8 +3,7 @@
 ></nx-cli-side-nav>
 
 <div class='content'>
-<!--  <div class='top-line'></div>-->
-  <nx-cli-material-progress-bar *ngIf='progressBarFacade.isProgressServiceActive$ | async'></nx-cli-material-progress-bar>
+  <nx-cli-material-progress-bar [style.visibility]="(progressBarFacade.isProgressServiceActive$ | async) ? 'visible' : 'hidden'"></nx-cli-material-progress-bar>
 
   <dev-workspace-chips-bar
     [workspaces]="workspacesFacade.workspaces$ | async"
