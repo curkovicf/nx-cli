@@ -1,4 +1,11 @@
-<img matRipple (click)="onaddworkspace.emit()" src="assets/add.png" height="25" alt="Add icon" class="icon" />
+<img
+  matRipple
+  (click)="onaddworkspace.emit()"
+  src="assets/add.png"
+  height="25"
+  alt="Add icon"
+  class="icon"
+/>
 
 <mat-chip-list class="chip-list">
   <mat-chip
@@ -8,8 +15,11 @@
     class="chip"
   >
     {{ workspace.name }}
-
-    <img (click)='onDeleteWorkspace($event, workspace)' class='delete-icon' src='assets/icons8-delete.svg' alt='Delete icon'>
-
+    <img
+      (click)='onDeleteWorkspace($event, workspace)'
+      class='delete-icon'
+      src='assets/icons8-delete.svg'
+      alt='Delete icon'
+    />
   </mat-chip>
 </mat-chip-list>

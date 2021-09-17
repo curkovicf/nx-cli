@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { IpcResponseData } from '@nx-cli/app/shared/util';
 import { Observable, of } from 'rxjs';
-import { IpcEvents } from '@nx-cli/shared/data-access/models';
 import { ElectronService } from 'ngx-electron';
 import { Workspace } from '../models/workspace.model';
 import { tap } from 'rxjs/operators';
 import { ProgressBarFacade } from '@nx-cli/client/shared/data-access';
+import { WorkspacesIpcEvents } from '../ipc/workspaces-ipc-events.namespace';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,8 @@ export class WorkspacesIpcApiService {
   ) {}
 
   public validatePath(workspacePath: string): Observable<IpcResponseData<Workspace>> {
-    this.progressBarFacade.addNewActiveAction();
-    return of(this.electronService.ipcRenderer.sendSync(IpcEvents.validateWorkspacePath.fromAngular, workspacePath))
-      .pipe(tap(() => this.progressBarFacade.removeActiveAction()));
+    this.progressBarFacade.markOperationAsActive();
+    return of(this.electronService.ipcRenderer.sendSync(WorkspacesIpcEvents.validateWorkspacePath.fromAngular, workspacePath))
+      .pipe(tap(() => this.progressBarFacade.markOperationAsComplete()));
   }
 }

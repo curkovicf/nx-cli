@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NxCliDialogFormClass } from '@nx-cli/client/projects/util';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IpcEventDtos } from '@nx-cli/shared/data-access/models';
+import { ProjectsIpcDtos } from '@nx-cli/client/projects/data-access';
 
 @Component({
   selector: 'nx-cli-move-project-form',
@@ -32,7 +32,7 @@ export class EditProjectDialogComponent extends NxCliDialogFormClass<EditProject
     this.dialogRef.close(this.generateDto());
   }
 
-  private generateDto(): Partial<IpcEventDtos.EditProject> {
+  private generateDto(): Partial<ProjectsIpcDtos.EditProject> {
     return {
       newName: this.form.get('newName').value,
       newDirectory: this.form.get('newDirectory').value,

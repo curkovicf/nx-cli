@@ -50,12 +50,8 @@ export class NewWorkspaceComponent {
                 //  TODO: Remove quickfix
                 if (!this.workspaces) { return null; }
 
-                for (let i = 0; i < this.workspaces.length; i++) {
-                  const currProject = this.workspaces[i];
-
-                  if (currProject.name === this.workspace.name && currProject.path === this.workspace.path) {
-                    return { isNxProject: { valid: false } };
-                  }
+                if (this.isWorkspaceDuplicate()) {
+                  return { isNxProject: { valid: false } };
                 }
 
                 return null;
@@ -66,5 +62,17 @@ export class NewWorkspaceComponent {
           );
       }) //  End switchMap
     );
+  }
+
+  private isWorkspaceDuplicate(): boolean {
+    for (let i = 0; i < this.workspaces.length; i++) {
+      const currWorkspace = this.workspaces[i];
+
+      if (currWorkspace.name === this.workspace.name && currWorkspace.path === this.workspace.path) {
+        return true;
+      }
+    }
+
+    return false;
   }
 }

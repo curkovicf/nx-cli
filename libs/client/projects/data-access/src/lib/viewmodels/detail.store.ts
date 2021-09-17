@@ -35,8 +35,8 @@ export class DetailStore extends ComponentStore<DetailState> {
     private projectsIpcApiService: ProjectsIpcApiService,
   ) {
     super({
-      tabs: ['Nx tags', 'Folder Tree'],
-      activeTab: 'Nx tags',
+      tabs: ['Folder Tree', 'Nx tags'],
+      activeTab: 'Folder Tree',
       selectedProject: null
     });
   }
@@ -48,7 +48,8 @@ export class DetailStore extends ComponentStore<DetailState> {
   public deleteProject(project: Project): void {
     const data: ConfirmDialogContent = {
       title: 'WARNING: Are you sure you want to delete project ?',
-      bodyText: 'This action is irreversible.'
+      bodyText: 'This action is irreversible.',
+      isConfirmDialog: true
     };
 
     this.openDialog(ConfirmDialogComponent, { data }).subscribe(([data, workspacePath]) =>

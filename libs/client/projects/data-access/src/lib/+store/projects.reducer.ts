@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Project } from '@nx-cli/client/projects/data-access';
+import { Project } from '../models/project.model';
 
 import * as ProjectsActions from './projects.actions';
 

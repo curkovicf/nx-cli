@@ -1,8 +1,7 @@
 import * as fs from 'fs-extra';
 
 import { IpcResponseData, IpcResponseWithLogs, OsUtils, StringUtils, NodeUtils } from '@nx-cli/app/shared/util';
-import { Project, ProjectType } from '@nx-cli/client/projects/data-access';
-import { IpcEventDtos } from '@nx-cli/shared/data-access/models';
+import { Project, ProjectsIpcDtos, ProjectType } from '@nx-cli/client/projects/data-access';
 import { IProjectsService } from './projects-service.interface';
 import { ProjectsRepository } from '../repositories/projects.repository';
 
@@ -34,7 +33,7 @@ export class ProjectsService implements IProjectsService {
    *
    * @param dto
    */
-  async editProject(dto: IpcEventDtos.EditProject): Promise<IpcResponseWithLogs> {
+  async editProject(dto: ProjectsIpcDtos.EditProject): Promise<IpcResponseWithLogs> {
     const { oldName, newName, newDirectory, oldDirectory, workspacePath, project } = dto;
     const dir = StringUtils.removeSpecialCharFrontBack(OsUtils.parsePath(
       newDirectory
@@ -76,7 +75,7 @@ export class ProjectsService implements IProjectsService {
    *
    * @param dto
    */
-  async createProject(dto: IpcEventDtos.CreateProjectDto): Promise<IpcResponseWithLogs> {
+  async createProject(dto: ProjectsIpcDtos.CreateProjectDto): Promise<IpcResponseWithLogs> {
     const { workspacePath, path, type } = dto;
     const logs: string[] = [];
     const cmd = OsUtils.parsePath(`nx g ${type === 'app' ? 'app' : 'lib'} ${path}`);
@@ -103,7 +102,7 @@ export class ProjectsService implements IProjectsService {
    *
    * @param dto
    */
-  async deleteProject(dto: IpcEventDtos.DeleteProjectDto): Promise<IpcResponseWithLogs> {
+  async deleteProject(dto: ProjectsIpcDtos.DeleteProjectDto): Promise<IpcResponseWithLogs> {
     const { projectNameInNxJson, workspacePath, type } = dto;
     const logs: string[] = [];
     const cmd = OsUtils.parsePath(`nx g rm --project ${projectNameInNxJson}`);
@@ -137,7 +136,7 @@ export class ProjectsService implements IProjectsService {
    *
    * @param dto
    */
-  async generateComponent(dto: IpcEventDtos.GenerateAngularComponent): Promise<IpcResponseWithLogs> {
+  async generateComponent(dto: ProjectsIpcDtos.GenerateAngularComponent): Promise<IpcResponseWithLogs> {
     const { name, project, directory, workspacePath } = dto;
     const logs: string[] = [];
     const dir = StringUtils.removeSpecialCharFrontBack(OsUtils.parsePath(directory));
@@ -172,7 +171,7 @@ export class ProjectsService implements IProjectsService {
    *
    * @param dto
    */
-  async generateService(dto: IpcEventDtos.GenerateAngularService): Promise<IpcResponseWithLogs> {
+  async generateService(dto: ProjectsIpcDtos.GenerateAngularService): Promise<IpcResponseWithLogs> {
     const { name, project, directory, workspacePath } = dto;
     const logs: string[] = [];
     const dir = StringUtils.removeSpecialCharFrontBack(OsUtils.parsePath(directory));
@@ -200,7 +199,7 @@ export class ProjectsService implements IProjectsService {
     };
   }
 
-  async generateLibrary(dto: IpcEventDtos.GenerateAngularLibrary): Promise<IpcResponseWithLogs> {
+  async generateLibrary(dto: ProjectsIpcDtos.GenerateAngularLibrary): Promise<IpcResponseWithLogs> {
     const { workspacePath, directory, name } = dto;
     const logs: string[] = [];
     const dir = StringUtils.removeSpecialCharFrontBack(OsUtils.parsePath(directory));
@@ -238,7 +237,7 @@ export class ProjectsService implements IProjectsService {
    *
    * @param dto
    */
-  async generateApplication(dto: IpcEventDtos.GenerateAngularApplication): Promise<IpcResponseWithLogs> {
+  async generateApplication(dto: ProjectsIpcDtos.GenerateAngularApplication): Promise<IpcResponseWithLogs> {
     const { workspacePath, directory, name } = dto;
     const logs: string[] = [];
     const dir = StringUtils.removeSpecialCharFrontBack(OsUtils.parsePath(directory));

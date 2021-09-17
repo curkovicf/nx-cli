@@ -1,23 +1,7 @@
-import { ProjectType } from '@nx-cli/client/projects/data-access';
+import { ProjectType } from '../models/project-type.enum';
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
-export namespace IpcEventDtos {
-  export interface GenerateDto {
-    artifactName: string;
-    workspacePath: string;
-    projectName: string;
-    flags?: string[];
-    parentModule?: string;
-  }
-
-  export interface MoveProjectDto {
-    projectName: string;
-    oldPath: string;  //  Needed for Windows
-    moveTo: string;
-    projectNameInNxJson: string;
-    workspacePath: string;
-  }
-
+export namespace ProjectsIpcDtos {
   export interface CreateProjectDto {
     path: string;
     workspacePath: string;

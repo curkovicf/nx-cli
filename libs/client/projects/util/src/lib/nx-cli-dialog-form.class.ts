@@ -9,7 +9,7 @@ export abstract class NxCliDialogFormClass<T> {
   ) {}
 
   public onCancel(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   public isFormValid(): boolean {

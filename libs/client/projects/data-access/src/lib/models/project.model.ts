@@ -1,4 +1,4 @@
-import { ProjectType } from '@nx-cli/client/projects/data-access';
+import { ProjectType } from './project-type.enum';
 import { AngularModule } from './angular-module.model';
 import { ProjectFolder } from '@nx-cli/app/projects/feature';
 

@@ -1,4 +1,4 @@
-import { AngularComponent } from '@nx-cli/client/projects/data-access';
+import { AngularComponent } from './angular-component.model';
 
 export interface AngularModule {
   className: string;

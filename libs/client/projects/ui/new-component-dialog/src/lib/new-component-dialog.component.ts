@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NxCliDialogFormClass } from '@nx-cli/client/projects/util';
-import { IpcEventDtos } from '@nx-cli/shared/data-access/models';
+import { ProjectsIpcDtos } from '@nx-cli/client/projects/data-access';
 
 @Component({
   selector: 'nx-cli-generate-component-form',
@@ -34,7 +34,7 @@ export class NewComponentDialogComponent extends NxCliDialogFormClass<NewCompone
     this.dialogRef.close(this.generateDto());
   }
 
-  private generateDto(): Partial<IpcEventDtos.GenerateAngularComponent> {
+  private generateDto(): Partial<ProjectsIpcDtos.GenerateAngularComponent> {
     return {
       name: this.form.get('name').value,
       directory: this.form.get('directory').value,

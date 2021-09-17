@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { combineLatest } from 'rxjs';
-import { Workspace, WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 import { first } from 'rxjs/operators';
-import { ProjectsFacade } from '../../../../../projects/data-access/src/lib/+store/projects.facade';
+import { Workspace, WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
+import { ProjectsFacade } from '@nx-cli/client/projects/data-access';
 
 interface StoredData {
   workspaces: Workspace[];
@@ -24,10 +24,9 @@ export class UtilLocalStorageService {
     combineLatest([
       this.workspacesFacade.workspaces$,
       this.workspacesFacade.selectedWorkspace$
-    ]).pipe(first()).subscribe(([workspaces, selectedWorkspace]) => {
-      const data: StoredData = { workspaces, selectedWorkspace };
-      localStorage.setItem(this.key, JSON.stringify(data));
-    });
+    ])
+      .pipe(first())
+      .subscribe(([workspaces, selectedWorkspace]) => localStorage.setItem(this.key, JSON.stringify({ workspaces, selectedWorkspace })));
   }
 
   public initData(): void {
@@ -38,7 +37,5 @@ export class UtilLocalStorageService {
     const { workspaces, selectedWorkspace }: StoredData = JSON.parse(data);
 
     this.workspacesFacade.setWorkspacesState({  workspaces, selectedWorkspace  })
-    //  FIXME: Get all projects on init data
-    // this.projectsFacade.getAllProjects(selectedWorkspace);
   }
 }

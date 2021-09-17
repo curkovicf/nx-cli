@@ -58,7 +58,11 @@ export class listStore extends ComponentStore<ProjectsState> {
 
   public createLibrary(): void {
     this.openDialog(NewLibDialogComponent, { maxHeight: '90vh' })
-      .subscribe(([data, workspacePath]) => this.projectsIpcApiService.generateLibrary({ ...data, workspacePath }));
+      .subscribe(([data, workspacePath]) => {
+        console.log(data);
+        console.log(workspacePath);
+        this.projectsIpcApiService.generateLibrary({ ...data, workspacePath })
+      });
   }
 
   private openDialog(component: ComponentType<unknown>, config?: MatDialogConfig): Observable<any> {
@@ -67,7 +71,7 @@ export class listStore extends ComponentStore<ProjectsState> {
       this.workspacesFacade.selectedWorkspace$.pipe(first(), map((w) => w?.path)),
     ]).pipe(
       first(),
-      filter(([data, workspacePath]) => !!data || !!workspacePath)
+      filter(([data, workspacePath]) => !!data)
     );
   }
 }

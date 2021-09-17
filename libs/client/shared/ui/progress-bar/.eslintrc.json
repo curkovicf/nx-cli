@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "dev-workspace",
+            "prefix": "nx-cli",
             "style": "kebab-case"
           }
         ]

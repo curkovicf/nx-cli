@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'dev-workspace-root',
+  selector: 'nx-cli-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'dev-workspace-top-nav',
+  selector: 'nx-cli-top-nav',
   templateUrl: './top-nav.component.html',
   styleUrls: ['./top-nav.component.scss'],
 })

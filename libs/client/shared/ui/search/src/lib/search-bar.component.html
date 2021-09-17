@@ -5,15 +5,14 @@
 
   <input
     #searchInput
-    (blur)="onBlur(searchInput)"
-    (input)="onInput(searchInput.value)"
+    (input)="oninput.emit(searchInput.value)"
     (keypress)="onKeyPress($event)"
     class="search"
     type="text"
     placeholder="Search..."
   />
 
-  <div class="ico-wrapper" (click)="onInput(''); searchInput.value = ''">
+  <div class="ico-wrapper" (click)="oninput.emit(''); searchInput.value = ''">
     <img class="clean-ico" src="assets/backspace-black-18dp.svg" alt="Clear Text Icon" width="18" />
   </div>
 </div>

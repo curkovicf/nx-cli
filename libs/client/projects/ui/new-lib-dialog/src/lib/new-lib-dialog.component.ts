@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NxCliDialogFormClass } from '@nx-cli/client/projects/util';
-import { IpcEventDtos } from '@nx-cli/shared/data-access/models';
+import { ProjectsIpcDtos } from '@nx-cli/client/projects/data-access';
 
 @Component({
   selector: 'nx-cli-new-lib-form',
@@ -39,7 +39,7 @@ export class NewLibDialogComponent extends NxCliDialogFormClass<NewLibDialogComp
     this.dialogRef.close(this.generateDto());
   }
 
-  private generateDto(): Partial<IpcEventDtos.GenerateAngularLibrary> {
+  private generateDto(): Partial<ProjectsIpcDtos.GenerateAngularLibrary> {
     return {
       directory: this.form.get('directory').value,
       buildable: this.form.get('buildable').value,

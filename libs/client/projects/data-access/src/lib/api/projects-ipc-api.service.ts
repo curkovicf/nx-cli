@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ElectronService } from 'ngx-electron';
-import { IpcEventDtos, IpcEvents } from '@nx-cli/shared/data-access/models';
 import { ProgressBarFacade } from '@nx-cli/client/shared/data-access';
+import { ProjectsIpcDtos } from '../ipc/projects-ipc-dtos.namespace';
+import { ProjectsIpcEvents } from '../ipc/projects-ipc-events.namespace';
 
 @Injectable({
   providedIn: 'root'
@@ -12,43 +13,43 @@ export class ProjectsIpcApiService {
     private progressBarFacade: ProgressBarFacade,
   ) {}
 
-  public generateComponent(generateDto: IpcEventDtos.GenerateAngularComponent): void {
-    this.progressBarFacade.addNewActiveAction();
-    this.electronService.ipcRenderer.send(IpcEvents.createComponent.fromAngular, generateDto);
+  public generateComponent(generateDto: ProjectsIpcDtos.GenerateAngularComponent): void {
+    this.progressBarFacade.markOperationAsActive();
+    this.electronService.ipcRenderer.send(ProjectsIpcEvents.createComponent.fromAngular, generateDto);
   }
 
-  public generateService(generateDto: IpcEventDtos.GenerateAngularService): void {
-    this.progressBarFacade.addNewActiveAction();
-    this.electronService.ipcRenderer.send(IpcEvents.createService.fromAngular, generateDto);
+  public generateService(generateDto: ProjectsIpcDtos.GenerateAngularService): void {
+    this.progressBarFacade.markOperationAsActive();
+    this.electronService.ipcRenderer.send(ProjectsIpcEvents.createService.fromAngular, generateDto);
   }
 
   public getAllProjects(projectPath: string): void {
-    this.progressBarFacade.addNewActiveAction();
-    this.electronService.ipcRenderer.send(IpcEvents.getAllProjects.fromAngular, projectPath);
+    this.progressBarFacade.markOperationAsActive();
+    this.electronService.ipcRenderer.send(ProjectsIpcEvents.getAllProjects.fromAngular, projectPath);
   }
 
-  public editProject(generateDto: IpcEventDtos.EditProject): void {
-    this.progressBarFacade.addNewActiveAction();
-    this.electronService.ipcRenderer.send(IpcEvents.editProject.fromAngular, generateDto);
+  public editProject(generateDto: ProjectsIpcDtos.EditProject): void {
+    this.progressBarFacade.markOperationAsActive();
+    this.electronService.ipcRenderer.send(ProjectsIpcEvents.editProject.fromAngular, generateDto);
   }
 
-  public deleteProject(deleteProjectDto: IpcEventDtos.DeleteProjectDto): void {
-    this.progressBarFacade.addNewActiveAction();
-    this.electronService.ipcRenderer.send(IpcEvents.deleteProject.fromAngular, deleteProjectDto);
+  public deleteProject(deleteProjectDto: ProjectsIpcDtos.DeleteProjectDto): void {
+    this.progressBarFacade.markOperationAsActive();
+    this.electronService.ipcRenderer.send(ProjectsIpcEvents.deleteProject.fromAngular, deleteProjectDto);
   }
 
-  public createProject(createAppDto: IpcEventDtos.CreateProjectDto): void {
-    this.progressBarFacade.addNewActiveAction();
-    this.electronService.ipcRenderer.send(IpcEvents.createApp.fromAngular, createAppDto);
+  public createProject(createAppDto: ProjectsIpcDtos.CreateProjectDto): void {
+    this.progressBarFacade.markOperationAsActive();
+    this.electronService.ipcRenderer.send(ProjectsIpcEvents.createApp.fromAngular, createAppDto);
   }
 
-  public generateLibrary(generateLibraryDto: IpcEventDtos.GenerateAngularLibrary): void {
-    this.progressBarFacade.addNewActiveAction();
-    this.electronService.ipcRenderer.send(IpcEvents.generateLibrary.fromAngular, generateLibraryDto);
+  public generateLibrary(generateLibraryDto: ProjectsIpcDtos.GenerateAngularLibrary): void {
+    this.progressBarFacade.markOperationAsActive();
+    this.electronService.ipcRenderer.send(ProjectsIpcEvents.generateLibrary.fromAngular, generateLibraryDto);
   }
 
-  public generateApplication(generateApplicationDto: IpcEventDtos.GenerateAngularApplication): void {
-    this.progressBarFacade.addNewActiveAction();
-    this.electronService.ipcRenderer.send(IpcEvents.generateApplication.fromAngular, generateApplicationDto);
+  public generateApplication(generateApplicationDto: ProjectsIpcDtos.GenerateAngularApplication): void {
+    this.progressBarFacade.markOperationAsActive();
+    this.electronService.ipcRenderer.send(ProjectsIpcEvents.generateApplication.fromAngular, generateApplicationDto);
   }
 }

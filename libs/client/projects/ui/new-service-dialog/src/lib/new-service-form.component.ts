@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { NxCliDialogFormClass } from '@nx-cli/client/projects/util';
-import { IpcEventDtos } from '@nx-cli/shared/data-access/models';
+import { ProjectsIpcDtos } from '@nx-cli/client/projects/data-access';
 
 @Component({
   selector: 'nx-cli-generate-service-form',
@@ -33,7 +33,7 @@ export class NewServiceFormComponent extends NxCliDialogFormClass<NewServiceForm
     this.dialogRef.close(this.generateDto());
   }
 
-  private generateDto(): Partial<IpcEventDtos.GenerateAngularService> {
+  private generateDto(): Partial<ProjectsIpcDtos.GenerateAngularService> {
     return {
       name: this.form.get('name').value,
       directory: this.form.get('directory').value,

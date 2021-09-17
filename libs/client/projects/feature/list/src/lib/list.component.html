@@ -13,13 +13,13 @@
 </section>
 
 <section class="projects-list">
-  <dev-workspace-project-list-item
+  <nx-cli-project-list-item
     *ngFor="let project of (listVmStore.vm$ | async).projectsInView"
     [project]="project"
     (click)="listVmStore.selectProject(project)"
   >
     <dev-workspace-list-item-badge [projectType]="project.type"></dev-workspace-list-item-badge>
-  </dev-workspace-project-list-item>
+  </nx-cli-project-list-item>
 </section>
 
 <section class="actions">

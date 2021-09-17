@@ -891,31 +891,6 @@
         }
       }
     },
-    "client-shared-ui-single-input-form-dialog": {
-      "projectType": "library",
-      "root": "libs/client/shared/ui/single-input-form-dialog",
-      "sourceRoot": "libs/client/shared/ui/single-input-form-dialog/src",
-      "prefix": "nx-cli",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/shared/ui/single-input-form-dialog"],
-          "options": {
-            "jestConfig": "libs/client/shared/ui/single-input-form-dialog/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/client/shared/ui/single-input-form-dialog/src/**/*.ts",
-              "libs/client/shared/ui/single-input-form-dialog/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
     "client-shared-util": {
       "projectType": "library",
       "root": "libs/client/shared/util",

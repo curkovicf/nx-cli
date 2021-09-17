@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Project } from '@nx-cli/client/projects/data-access';
 
 @Component({
-  selector: 'dev-workspace-project-list-item',
+  selector: 'nx-cli-project-list-item',
   templateUrl: './list-item.component.html',
   styleUrls: ['./list-item.component.scss'],
 })
