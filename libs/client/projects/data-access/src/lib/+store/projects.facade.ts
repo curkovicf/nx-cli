@@ -23,4 +23,8 @@ export class ProjectsFacade {
   public selectProject(selectedProject: Project): void {
     this.store.dispatch(ProjectsActions.setSelectedProject({ selectedProject }));
   }
+
+  public resetProjects(): void {
+    this.store.dispatch(ProjectsActions.addProjects({ projects: [] }));
+  }
 }

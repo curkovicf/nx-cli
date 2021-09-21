@@ -14,7 +14,7 @@ import { Workspace } from '@nx-cli/shared/data-access/models';
   animations: [drawerAnimation],
 })
 export class LayoutComponent {
-  public isDrawerOpen = false;
+  isDrawerOpen = false;
 
   constructor(
     public workspacesFacade: WorkspacesFacade,
@@ -27,27 +27,32 @@ export class LayoutComponent {
     this.localStorageService.initData();
   }
 
-  public onSelectWorkspace(selectedWorkspace: Workspace): void {
+  onSelectWorkspace(selectedWorkspace: Workspace): void {
     this.workspacesFacade.selectWorkspace(selectedWorkspace);
     this.localStorageService.save();
   }
 
-  public toggleDrawer(): void {
+  toggleDrawer(): void {
     this.isDrawerOpen = !this.isDrawerOpen;
   }
 
-  public onCreateWorkspace(workspace: Workspace): void {
+  onCreateWorkspace(workspace: Workspace): void {
     this.workspacesFacade.addWorkspace(workspace);
     this.localStorageService.save();
     this.toggleDrawer();
   }
 
-  public onShowError(): void {
+  onShowError(): void {
     const data: ConfirmDialogContent = {
       title: '🚨 IMPORTANT 🚨',
       bodyText: `Machine has to have installed nx globally, and every project should have proper node_modules. Install Nx Workspaces: npm install -g nx, and (if) project does not have node_modules run: npm i in the project dir.`,
     };
 
     this.dialog.open(ConfirmDialogComponent, { data, width: '55rem' }).afterClosed().subscribe();
+  }
+
+  deleteWorkspace($event: Workspace) {
+    this.workspacesFacade.deleteWorkspace($event);
+    this.localStorageService.save();
   }
 }
