@@ -12,10 +12,10 @@ export class ProgressBarFacade {
   constructor(private store: Store<ProgressBarState>) {}
 
   public markOperationAsActive(): void {
-    this.store.dispatch(ProgressServiceActions.setActiveOperationState({ value: 1 }));
+    this.store.dispatch(ProgressServiceActions.addActiveOperation());
   }
 
   public markOperationAsComplete(): void {
-    this.store.dispatch(ProgressServiceActions.setActiveOperationState({ value: -1 }));
+    this.store.dispatch(ProgressServiceActions.removeActiveOperation());
   }
 }

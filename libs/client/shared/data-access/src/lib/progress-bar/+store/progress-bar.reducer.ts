@@ -14,5 +14,6 @@ const initialState: ProgressBarState = {
 
 export const progressBarReducer = createReducer(
   initialState,
-  on(ProgressBarActions.setActiveOperationState, (state, { value }) => ({ numberOfActiveActions: state.numberOfActiveActions + value }))
+  on(ProgressBarActions.addActiveOperation, (state) => ({ numberOfActiveActions: state.numberOfActiveActions + 1 })),
+  on(ProgressBarActions.removeActiveOperation, (state) => ({ numberOfActiveActions: state.numberOfActiveActions - 1 })),
 );

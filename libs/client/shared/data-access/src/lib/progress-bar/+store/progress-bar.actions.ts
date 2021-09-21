@@ -1,3 +1,5 @@
-import { createAction, props } from '@ngrx/store';
+import { createAction } from '@ngrx/store';
 
-export const setActiveOperationState = createAction('[Progress Bar] set/remove action as active', props<{ value: number }>());
+export const addActiveOperation = createAction('[Progress Bar] set action as active');
+
+export const removeActiveOperation = createAction('[Progress Bar] remove action as active');

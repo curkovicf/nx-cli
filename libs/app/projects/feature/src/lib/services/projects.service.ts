@@ -215,6 +215,8 @@ export class ProjectsService implements IProjectsService {
       dto.importPath ? `--importPath ${dto.importPath}` : ''
     ];
 
+    console.log('ARGS ', args);
+
     const result = await NodeUtils.executeCommand(cmd, args, workspacePath, 'CREATE');
 
     logs.push(result?.log ?? '');
