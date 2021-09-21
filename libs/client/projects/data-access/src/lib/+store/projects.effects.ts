@@ -21,7 +21,10 @@ export class ProjectsEffects {
 
   deleteWorkspace$ = createEffect(() => this.actions$.pipe(
     ofType(deleteWorkspace),
-    tap(() => this.projectsFacade.resetProjects())),
+    tap(() => {
+      this.projectsFacade.resetProjects();
+      this.projectsFacade.selectProject(null);
+    })),
     { dispatch: false }
   );
 }
