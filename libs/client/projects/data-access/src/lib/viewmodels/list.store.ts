@@ -65,6 +65,7 @@ export class listStore extends ComponentStore<ProjectsState> {
       });
   }
 
+  //  TODO: Fix duplication
   private openDialog(component: ComponentType<unknown>, config?: MatDialogConfig): Observable<any> {
     return combineLatest([
       this.dialog.open(component, config).afterClosed(),
