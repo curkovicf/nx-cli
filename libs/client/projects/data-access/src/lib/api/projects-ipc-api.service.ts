@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ElectronService } from 'ngx-electron';
 import { ProgressBarFacade } from '@nx-cli/client/shared/data-access';
-import { ProjectsIpcDtos } from '../ipc/projects-ipc-dtos.namespace';
-import { ProjectsIpcEvents } from '../ipc/projects-ipc-events.namespace';
+import { ProjectsIpcDtos, ProjectsIpcEvents } from '@nx-cli/shared/data-access/models';
 
 @Injectable({
   providedIn: 'root'

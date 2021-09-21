@@ -2,9 +2,19 @@ import * as path from 'path';
 import * as fsExtra from 'fs-extra';
 import * as fs from 'fs';
 
-import { AngularComponent, AngularModule, Project, ProjectType } from '@nx-cli/client/projects/data-access';
-import { FileType, fileTypes, FolderType, folderTypes, ProjectFolder } from '../interfaces/folder-tree.interface';
+
 import { OsUtils } from '@nx-cli/app/shared/util';
+import {
+  AngularComponent,
+  AngularModule,
+  FileType,
+  fileTypes,
+  FolderType,
+  folderTypes,
+  Project,
+  ProjectFolder,
+  ProjectType
+} from '@nx-cli/shared/data-access/models';
 
 interface ObjWithRootField {
   root: string;

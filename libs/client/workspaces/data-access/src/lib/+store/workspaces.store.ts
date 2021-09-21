@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
 import { Observable } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
-import { Workspace } from '../models/workspace.model';
+import { Workspace } from '@nx-cli/shared/data-access/models';
 
 export interface WorkspacesState {
   workspaces: Workspace[];

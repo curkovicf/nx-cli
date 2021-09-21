@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { combineLatest } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { Workspace, WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
+import { WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 import { ProjectsFacade } from '@nx-cli/client/projects/data-access';
+import { Workspace } from '@nx-cli/shared/data-access/models';
 
 interface StoredData {
   workspaces: Workspace[];

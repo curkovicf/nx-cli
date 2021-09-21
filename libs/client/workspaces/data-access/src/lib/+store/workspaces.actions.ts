@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { WorkspacesState } from './workspaces.reducer';
-import { Workspace } from '../models/workspace.model';
+import { Workspace } from '@nx-cli/shared/data-access/models';
 
 
 export const setWorkspacesState = createAction('[Workspaces] Set workspaces state', props<{ workspacesState: WorkspacesState }>());

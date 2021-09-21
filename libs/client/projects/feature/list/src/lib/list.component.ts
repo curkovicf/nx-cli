@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-
 import { listStore } from '@nx-cli/client/projects/data-access';
 import { WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 

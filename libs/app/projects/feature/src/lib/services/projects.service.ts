@@ -1,9 +1,9 @@
 import * as fs from 'fs-extra';
 
-import { IpcResponseData, IpcResponseWithLogs, OsUtils, StringUtils, NodeUtils } from '@nx-cli/app/shared/util';
-import { Project, ProjectsIpcDtos, ProjectType } from '@nx-cli/client/projects/data-access';
+import { OsUtils, StringUtils, NodeUtils } from '@nx-cli/app/shared/util';
 import { IProjectsService } from './projects-service.interface';
 import { ProjectsRepository } from '../repositories/projects.repository';
+import { Project, ProjectsIpcDtos, ProjectType, IpcResponses } from '@nx-cli/shared/data-access/models';
 
 
 export class ProjectsService implements IProjectsService {
@@ -13,7 +13,7 @@ export class ProjectsService implements IProjectsService {
    * Gets all libs and apps for a specific nx workspace
    * @param workspacePath root workspace path
    */
-  async getAllProjects(workspacePath: string): Promise<IpcResponseData<Project[]>> {
+  async getAllProjects(workspacePath: string): Promise<IpcResponses.ResponseWithData<Project[]>> {
     const projects = this.projectsRepository.getAllProjects(workspacePath, workspacePath);
 
     const angularJsonExists = await fs.pathExists(`${workspacePath}${OsUtils.getPlatformPathSeparator()}angular.json`).catch(() => false);
@@ -33,7 +33,7 @@ export class ProjectsService implements IProjectsService {
    *
    * @param dto
    */
-  async editProject(dto: ProjectsIpcDtos.EditProject): Promise<IpcResponseWithLogs> {
+  async editProject(dto: ProjectsIpcDtos.EditProject): Promise<IpcResponses.ResponseWithLogs> {
     const { oldName, newName, newDirectory, oldDirectory, workspacePath, project } = dto;
     const dir = StringUtils.removeSpecialCharFrontBack(OsUtils.parsePath(
       newDirectory
@@ -75,7 +75,7 @@ export class ProjectsService implements IProjectsService {
    *
    * @param dto
    */
-  async createProject(dto: ProjectsIpcDtos.CreateProjectDto): Promise<IpcResponseWithLogs> {
+  async createProject(dto: ProjectsIpcDtos.CreateProjectDto): Promise<IpcResponses.ResponseWithLogs> {
     const { workspacePath, path, type } = dto;
     const logs: string[] = [];
     const cmd = OsUtils.parsePath(`nx g ${type === 'app' ? 'app' : 'lib'} ${path}`);
@@ -102,7 +102,7 @@ export class ProjectsService implements IProjectsService {
    *
    * @param dto
    */
-  async deleteProject(dto: ProjectsIpcDtos.DeleteProjectDto): Promise<IpcResponseWithLogs> {
+  async deleteProject(dto: ProjectsIpcDtos.DeleteProjectDto): Promise<IpcResponses.ResponseWithLogs> {
     const { projectNameInNxJson, workspacePath, type } = dto;
     const logs: string[] = [];
     const cmd = OsUtils.parsePath(`nx g rm --project ${projectNameInNxJson}`);
@@ -136,7 +136,7 @@ export class ProjectsService implements IProjectsService {
    *
    * @param dto
    */
-  async generateComponent(dto: ProjectsIpcDtos.GenerateAngularComponent): Promise<IpcResponseWithLogs> {
+  async generateComponent(dto: ProjectsIpcDtos.GenerateAngularComponent): Promise<IpcResponses.ResponseWithLogs> {
     const { name, project, directory, workspacePath } = dto;
     const logs: string[] = [];
     const dir = StringUtils.removeSpecialCharFrontBack(OsUtils.parsePath(directory));
@@ -171,7 +171,7 @@ export class ProjectsService implements IProjectsService {
    *
    * @param dto
    */
-  async generateService(dto: ProjectsIpcDtos.GenerateAngularService): Promise<IpcResponseWithLogs> {
+  async generateService(dto: ProjectsIpcDtos.GenerateAngularService): Promise<IpcResponses.ResponseWithLogs> {
     const { name, project, directory, workspacePath } = dto;
     const logs: string[] = [];
     const dir = StringUtils.removeSpecialCharFrontBack(OsUtils.parsePath(directory));
@@ -199,7 +199,7 @@ export class ProjectsService implements IProjectsService {
     };
   }
 
-  async generateLibrary(dto: ProjectsIpcDtos.GenerateAngularLibrary): Promise<IpcResponseWithLogs> {
+  async generateLibrary(dto: ProjectsIpcDtos.GenerateAngularLibrary): Promise<IpcResponses.ResponseWithLogs> {
     const { workspacePath, directory, name } = dto;
     const logs: string[] = [];
     const dir = StringUtils.removeSpecialCharFrontBack(OsUtils.parsePath(directory));
@@ -237,7 +237,7 @@ export class ProjectsService implements IProjectsService {
    *
    * @param dto
    */
-  async generateApplication(dto: ProjectsIpcDtos.GenerateAngularApplication): Promise<IpcResponseWithLogs> {
+  async generateApplication(dto: ProjectsIpcDtos.GenerateAngularApplication): Promise<IpcResponses.ResponseWithLogs> {
     const { workspacePath, directory, name } = dto;
     const logs: string[] = [];
     const dir = StringUtils.removeSpecialCharFrontBack(OsUtils.parsePath(directory));

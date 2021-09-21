@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ProjectType } from '@nx-cli/client/projects/data-access';
+import { ProjectType } from '@nx-cli/shared/data-access/models';
 
 @Component({
   selector: 'dev-workspace-list-item-badge',

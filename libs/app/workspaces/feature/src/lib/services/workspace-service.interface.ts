@@ -1,6 +1,6 @@
-import { IpcResponseData } from '@nx-cli/app/shared/util';
-import { Workspace } from '@nx-cli/client/workspaces/data-access';
+import { Workspace, IpcResponses } from '@nx-cli/shared/data-access/models';
+
 
 export interface IWorkspaceService {
-  validateWorkspacePath(workspacePath: string): Promise<IpcResponseData<Workspace>>;
+  validateWorkspacePath(workspacePath: string): Promise<IpcResponses.ResponseWithData<Workspace>>;
 }

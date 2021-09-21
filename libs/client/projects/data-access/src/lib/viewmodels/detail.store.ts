@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
 import { ProjectsFacade } from '../+store/projects.facade';
-import { Project } from '../models/project.model';
+import { Project } from '@nx-cli/shared/data-access/models';
 import { ProjectsIpcApiService } from '../api/projects-ipc-api.service';
 import { NewComponentDialogComponent } from '@nx-cli/client/projects/ui/new-component-dialog';
 import { NewServiceFormComponent } from '@nx-cli/client/projects/ui/new-service-dialog';

@@ -1,4 +1,4 @@
-import { EventChannel } from '@nx-cli/shared/data-access/models';
+import { EventChannel } from './event-channel.interface';
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace WorkspacesIpcEvents {

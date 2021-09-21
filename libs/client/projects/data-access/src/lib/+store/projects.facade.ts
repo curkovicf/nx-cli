@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { ProjectsState } from './projects.reducer';
-import { Project } from '../models/project.model';
+import { Project } from '@nx-cli/shared/data-access/models';
 
 import * as ProjectsActions from './projects.actions';
 import * as ProjectsSelectors from './projects.selectors';

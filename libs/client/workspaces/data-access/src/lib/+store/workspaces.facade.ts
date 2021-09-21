@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { WorkspacesState } from './workspaces.store';
-import { Workspace } from '../models/workspace.model';
+import { Workspace } from '@nx-cli/shared/data-access/models';
 
 import * as WorkspacesSelectors from './workspaces.selectors';
 import * as WorkspacesActions from './workspaces.actions';
+
 
 @Injectable()
 export class WorkspacesFacade {

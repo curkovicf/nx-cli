@@ -1,4 +1,4 @@
-import { ProjectType } from '../models/project-type.enum';
+import { ProjectType } from '../api/project-type.enum';
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace ProjectsIpcDtos {

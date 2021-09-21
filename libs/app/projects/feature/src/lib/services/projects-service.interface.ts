@@ -1,13 +1,13 @@
-import { IpcResponseData, IpcResponseWithLogs } from '@nx-cli/app/shared/util';
-import { Project, ProjectsIpcDtos } from '@nx-cli/client/projects/data-access';
+import { Project, ProjectsIpcDtos, IpcResponses } from '@nx-cli/shared/data-access/models';
+
 
 export interface IProjectsService {
-  getAllProjects(workspacePath: string): Promise<IpcResponseData<Project[]>>;
-  editProject(dto: ProjectsIpcDtos.EditProject): Promise<IpcResponseWithLogs>;
-  createProject(dto: ProjectsIpcDtos.CreateProjectDto): Promise<IpcResponseWithLogs>;
-  deleteProject(dto: ProjectsIpcDtos.DeleteProjectDto): Promise<IpcResponseWithLogs>;
-  generateComponent(dto: ProjectsIpcDtos.GenerateAngularComponent): Promise<IpcResponseWithLogs>;
-  generateService(dto: ProjectsIpcDtos.GenerateAngularService): Promise<IpcResponseWithLogs>;
-  generateLibrary(dto: ProjectsIpcDtos.GenerateAngularLibrary): Promise<IpcResponseWithLogs>;
-  generateApplication(dto: ProjectsIpcDtos.GenerateAngularApplication): Promise<IpcResponseWithLogs>;
+  getAllProjects(workspacePath: string): Promise<IpcResponses.ResponseWithData<Project[]>>;
+  editProject(dto: ProjectsIpcDtos.EditProject): Promise<IpcResponses.ResponseWithLogs>;
+  createProject(dto: ProjectsIpcDtos.CreateProjectDto): Promise<IpcResponses.ResponseWithLogs>;
+  deleteProject(dto: ProjectsIpcDtos.DeleteProjectDto): Promise<IpcResponses.ResponseWithLogs>;
+  generateComponent(dto: ProjectsIpcDtos.GenerateAngularComponent): Promise<IpcResponses.ResponseWithLogs>;
+  generateService(dto: ProjectsIpcDtos.GenerateAngularService): Promise<IpcResponses.ResponseWithLogs>;
+  generateLibrary(dto: ProjectsIpcDtos.GenerateAngularLibrary): Promise<IpcResponses.ResponseWithLogs>;
+  generateApplication(dto: ProjectsIpcDtos.GenerateAngularApplication): Promise<IpcResponses.ResponseWithLogs>;
 }

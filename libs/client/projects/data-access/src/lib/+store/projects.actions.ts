@@ -1,6 +1,6 @@
 
 import { createAction, props } from '@ngrx/store';
-import { Project } from '../models/project.model';
+import { Project } from '@nx-cli/shared/data-access/models';
 
 
 export const addProjects = createAction('[Projects] Add projects', props<{ projects: Project[] }>());

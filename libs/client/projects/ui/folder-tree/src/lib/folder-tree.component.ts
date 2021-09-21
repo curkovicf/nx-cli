@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ProjectFolder } from '@nx-cli/app/projects/feature';
+import { ProjectFolder } from '@nx-cli/shared/data-access/models';
 
 @Component({
   selector: 'nx-cli-folder-tree',

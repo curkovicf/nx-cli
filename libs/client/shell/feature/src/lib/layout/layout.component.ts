@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { drawerAnimation } from '@nx-cli/client/shell/ui/drawer';
 import { UtilLocalStorageService } from '@nx-cli/client/shared/util';
-import { Workspace, WorkspacesFacade, WorkspacesIpcEventsService } from '@nx-cli/client/workspaces/data-access';
+import { WorkspacesFacade, WorkspacesIpcEventsService } from '@nx-cli/client/workspaces/data-access';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogContent } from '@nx-cli/client/shared/ui/confirm-dialog';
 import { ProgressBarFacade } from '@nx-cli/client/shared/data-access';
+import { Workspace } from '@nx-cli/shared/data-access/models';
 
 @Component({
   selector: 'nx-cli-layout',

@@ -2,8 +2,8 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Observable, timer } from 'rxjs';
-import { IpcResponseData } from '@nx-cli/app/shared/util';
-import { Workspace, WorkspacesIpcApiService } from '@nx-cli/client/workspaces/data-access';
+import { WorkspacesIpcApiService } from '@nx-cli/client/workspaces/data-access';
+import { Workspace, IpcResponses } from '@nx-cli/shared/data-access/models';
 
 @Component({
   selector: 'nx-cli-new-workspace',
@@ -43,7 +43,7 @@ export class NewWorkspaceComponent {
       switchMap(() => {
         return this.workspacesIpcApiService.validatePath(control.value)
           .pipe(
-            map((response: IpcResponseData<Workspace>): ValidationErrors | null => {
+            map((response: IpcResponses.ResponseWithData<Workspace>): ValidationErrors | null => {
               if (response.data) {
                 this.workspace = response.data;
 

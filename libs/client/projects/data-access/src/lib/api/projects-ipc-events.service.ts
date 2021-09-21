@@ -1,6 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { IpcResponse, IpcResponseData } from '@nx-cli/app/shared/util';
-import { Project } from '../models/project.model';
+import { Project, ProjectsIpcEvents, IpcResponses } from '@nx-cli/shared/data-access/models';
 import { first, tap } from 'rxjs/operators';
 import { ElectronService } from 'ngx-electron';
 import { ProjectsIpcApiService } from './projects-ipc-api.service';
@@ -8,7 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 import { ProjectsFacade } from '../+store/projects.facade';
 import { ProgressBarFacade } from '@nx-cli/client/shared/data-access';
-import { ProjectsIpcEvents } from '../ipc/projects-ipc-events.namespace';
+
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +34,7 @@ export class ProjectsIpcEventsService {
     //  Get all projects result
     this.electronService.ipcRenderer.on(
       ProjectsIpcEvents.getAllProjects.fromElectron,
-      (event, response: IpcResponseData<Project[]>) => {
+      (event, response: IpcResponses.ResponseWithData<Project[]>) => {
         //  FIXME:
         this.ngZone.run(() => {
           this.progressBarFacade.markOperationAsComplete();
@@ -62,7 +61,7 @@ export class ProjectsIpcEventsService {
    * @private
    */
   private initGenericResponseChannel(): void {
-    this.electronService.ipcRenderer.on(ProjectsIpcEvents.defaultChannel.fromElectron, (event, response: IpcResponse) => {
+    this.electronService.ipcRenderer.on(ProjectsIpcEvents.defaultChannel.fromElectron, (event, response: IpcResponses.Response) => {
       const { workspacePath, error, success } = response;
 
       this.progressBarFacade.markOperationAsComplete();

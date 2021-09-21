@@ -1,7 +1,7 @@
 import { ComponentStore } from '@ngrx/component-store';
 import { Injectable } from '@angular/core';
 import { filter, first, map } from 'rxjs/operators';
-import { Project } from '../models/project.model';
+import { Project } from '@nx-cli/shared/data-access/models';
 import { WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 import { combineLatest, Observable } from 'rxjs';
 import { ProjectsIpcApiService } from '../api/projects-ipc-api.service';
