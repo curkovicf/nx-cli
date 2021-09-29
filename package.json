@@ -27,9 +27,9 @@
     "start": "run-p ng:start electron:start",
     "ng:start": "nx serve client",
     "electron:start": "wait-on tcp:4200 && nx run app:serve",
-    "make:exec": "npm run nx-build:prod && npm run nx-package:prod",
     "nx-build:prod": "nx run-many --target=build --projects=client,app --parallel --prod",
     "nx-package:prod": "nx run app:package --frontendProject=client",
+    "make:exec": "npm run nx-build:prod && npm run nx-package:prod",
     "nx-make": "nx run app:make --frontendProject=client"
   },
   "private": true,
@@ -57,7 +57,8 @@
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "wait-on": "^6.0.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "electron-devtools-installer": "^3.2.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^12.1.0",

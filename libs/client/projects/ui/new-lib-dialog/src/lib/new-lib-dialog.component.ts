@@ -25,7 +25,7 @@ export class NewLibDialogComponent extends NxCliDialogFormClass<NewLibDialogComp
       buildable: new FormControl(false),
       enableIvy: new FormControl(false),
       // publishable: new FormControl(false),
-      simpleModuleName: new FormControl(false),
+      // simpleModuleName: new FormControl(false),
       prefix: new FormControl(''),
       tags: new FormControl(''),
     });
@@ -49,7 +49,7 @@ export class NewLibDialogComponent extends NxCliDialogFormClass<NewLibDialogComp
       name: this.form.get('name').value,
       prefix: this.form.get('prefix').value,
       publishable: false,
-      simpleModuleName: this.form.get('simpleModuleName').value,
+      simpleModuleName: false,
       addModuleSpecFile: this.form.get('addModuleSpecFile').value
     };
   }

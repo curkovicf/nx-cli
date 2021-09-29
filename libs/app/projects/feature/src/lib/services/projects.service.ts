@@ -205,7 +205,6 @@ export class ProjectsService implements IProjectsService {
     const dir = StringUtils.removeSpecialCharFrontBack(OsUtils.parsePath(directory));
     const cmd = OsUtils.parsePath(`nx g lib ${dir ? dir + '/' : ''}${StringUtils.removeSpecialCharacters(name)}`);
     const args = [
-      `--simpleModuleName ${dto.simpleModuleName}`,
       `--publishable ${dto.publishable}`,
       `--buildable ${dto.buildable}`,
       `--addModuleSpecFile ${dto.addModuleSpecFile}`,

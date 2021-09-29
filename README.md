@@ -6,19 +6,7 @@ Manage your Nx projects like a boss. Don't spend too much time on the CLI, and f
 
 <br>
 
-> :construction: USE WITH CAUTION :construction: 
- 
-App is usable, but its not production ready. 
-
-<br>
-
-### 🧪 Working app screenshots taken on [Manjaro](https://manjaro.org/) 🧪
-
-![plot](./resources/1.png)
-![plot](./resources/2.png)
-![plot](./resources/3.png)
-![plot](./resources/4.png)
-
+![plot](./resources/nx-cli.gif)
 
 <br>
 
