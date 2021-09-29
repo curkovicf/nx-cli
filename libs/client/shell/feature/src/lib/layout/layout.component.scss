@@ -5,6 +5,7 @@
   display: block;
   @include box-max;
   @include center-flex-X;
+  @include default_border(top);
 
   & > nx-cli-side-nav {
     box-shadow: $shadow--mat-4;
