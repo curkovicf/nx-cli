@@ -44,8 +44,8 @@ export class LayoutComponent {
 
   public onShowError(): void {
     const data: ConfirmDialogContent = {
-      title: '🚨 IMPORTANT 🚨',
-      bodyText: `Machine has to have installed nx globally, and every project should have proper node_modules. Install Nx Workspaces: npm install -g nx, and (if) project does not have node_modules run: npm i in the project dir.`,
+      title: '🚨 IMPORTANT: Make sure you have all dependencies installed 🚨',
+      bodyText: `NOTE: If you use NPM, make sure you have node_modules folder. Install Nx Workspaces: npm install -g @nrwl/cli, npm i -g @nrwl/workspace.`,
     };
 
     this.dialog.open(ConfirmDialogComponent, { data, width: '55rem' }).afterClosed().subscribe();
