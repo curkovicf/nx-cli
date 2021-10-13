@@ -13,6 +13,7 @@ import { combineLatest, Observable } from 'rxjs';
 import { filter, first, map } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
+import { NewTagDialogComponent } from '@nx-cli/client/projects/ui/new-tag-dialog';
 
 export interface DetailState {
   tabs: string[];
@@ -93,6 +94,10 @@ export class DetailStore extends ComponentStore<DetailState> {
           project: project.nameInNxJson
         })
       );
+  }
+
+  public addNewTag(): void {
+    this.openDialog(NewTagDialogComponent).subscribe();
   }
 
   private openDialog(component: ComponentType<unknown>, config?: MatDialogConfig): Observable<any> {

@@ -2,7 +2,12 @@
 @import 'styles/global.variables';
 
 :host {
+  display: block;
   position: relative;
+
+  & > nx-cli-button {
+    @include position(absolute, 0, 0, null, null);
+  }
 
   & > .tag {
     margin-bottom: 0.3rem;

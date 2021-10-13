@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'nx-cli-tags',
@@ -6,5 +6,9 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./tags.component.scss'],
 })
 export class TagsComponent {
-  @Input() tags: string[];
+  @Input()
+  tags: string[];
+
+  @Output()
+  onaddnewtag: EventEmitter<void> = new EventEmitter();
 }
