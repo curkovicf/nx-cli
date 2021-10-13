@@ -1,9 +1,10 @@
 import * as fs from 'fs-extra';
 
-import { OsUtils, StringUtils, NodeUtils } from '@nx-cli/app/shared/util';
+import { NodeUtils, OsUtils, StringUtils } from '@nx-cli/app/shared/util';
 import { IProjectsService } from './projects-service.interface';
 import { ProjectsRepository } from '../repositories/projects.repository';
-import { Project, ProjectsIpcDtos, ProjectType, IpcResponses } from '@nx-cli/shared/data-access/models';
+import { IpcResponses, Project, ProjectsIpcDtos, ProjectType } from '@nx-cli/shared/data-access/models';
+import Platform = OsUtils.Platform;
 
 
 export class ProjectsService implements IProjectsService {
@@ -214,8 +215,6 @@ export class ProjectsService implements IProjectsService {
       dto.importPath ? `--importPath ${dto.importPath}` : ''
     ];
 
-    console.log('ARGS ', args);
-
     const result = await NodeUtils.executeCommand(cmd, args, workspacePath, 'CREATE');
 
     logs.push(result?.log ?? '');
@@ -267,6 +266,23 @@ export class ProjectsService implements IProjectsService {
         workspacePath,
         logs
       }
+    };
+  }
+
+  /**
+   *
+   * @param workspacePath
+   */
+  async startDepGraph(workspacePath: string): Promise<IpcResponses.Response> {
+    const unixCmd = 'nx dep-graph';
+    const winCmd = 'start cmd.exe /K nx dep-graph';
+
+    const result = await NodeUtils.executeCommand(OsUtils.getOs() === Platform.unix ? unixCmd : winCmd, [], workspacePath, 'Dep graph started');
+
+    return {
+      workspacePath,
+      success: result ? `Dep graph successfully started.` : '',
+      error: !result ? `Dep graph has not successfully started.` : ''
     };
   }
 }

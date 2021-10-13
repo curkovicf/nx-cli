@@ -38,4 +38,12 @@
     (onbtnclick)="listVmStore.createLibrary()"
   >
   </nx-cli-button>
+
+  <nx-cli-button
+    [isDisabled]="(workspacesFacade.workspaces$ | async)?.length === 0"
+    [buttonText]="'Start dep graph'"
+    buttonType="primary"
+    (onbtnclick)="listVmStore.startDepGraph()"
+  >
+  </nx-cli-button>
 </section>

@@ -51,4 +51,8 @@ export class ProjectsIpcApiService {
     this.progressBarFacade.markOperationAsActive();
     this.electronService.ipcRenderer.send(ProjectsIpcEvents.generateApplication.fromAngular, generateApplicationDto);
   }
+
+  public startDepGraph(workspacePath: string): void {
+    this.electronService.ipcRenderer.send(ProjectsIpcEvents.startDepGraph.fromAngular, workspacePath);
+  }
 }

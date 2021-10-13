@@ -1,8 +1,15 @@
 import { ipcMain } from 'electron';
 import { ProjectsService } from '../services/projects.service';
-import { IController } from '@nx-cli/app/shared/util';
+import { IController, OsUtils } from '@nx-cli/app/shared/util';
 import { IProjectsService } from '../services/projects-service.interface';
-import { Project, ProjectsIpcDtos, ProjectsIpcEvents, WorkspacesIpcEvents, IpcResponses } from '@nx-cli/shared/data-access/models';
+import {
+  IpcResponses,
+  Project,
+  ProjectsIpcDtos,
+  ProjectsIpcEvents,
+  WorkspacesIpcEvents
+} from '@nx-cli/shared/data-access/models';
+import Platform = OsUtils.Platform;
 
 
 export class ProjectsController implements IController {
@@ -17,6 +24,7 @@ export class ProjectsController implements IController {
     this.initEditProject();
     this.initGenerateLibrary();
     this.initGenerateApplication();
+    this.startDepGraph();
 
     console.warn('\n********** Init Projects Controller');
   }
@@ -81,6 +89,13 @@ export class ProjectsController implements IController {
       const response: IpcResponses.ResponseWithLogs = await this.projectsService.generateApplication(dto);
       event.sender.send(ProjectsIpcEvents.defaultChannel.fromElectron, response.result);
       event.sender.send(WorkspacesIpcEvents.loggingChannel.fromElectron, response.logResponse);
+    });
+  }
+
+  private startDepGraph() {
+    ipcMain.on(ProjectsIpcEvents.startDepGraph.fromAngular, async (event, workspacePath: string) => {
+      const response: IpcResponses.Response = await this.projectsService.startDepGraph(workspacePath);
+      event.sender.send(ProjectsIpcEvents.defaultChannel.fromElectron, response);
     });
   }
 }

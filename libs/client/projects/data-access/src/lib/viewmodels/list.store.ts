@@ -65,6 +65,10 @@ export class listStore extends ComponentStore<ProjectsState> {
       });
   }
 
+  public startDepGraph(): void {
+    this.workspacesFacade.getSelectedWorkspacePath().subscribe(workspacePath => this.projectsIpcApiService.startDepGraph(workspacePath));
+  }
+
   //  TODO: Fix duplication
   private openDialog(component: ComponentType<unknown>, config?: MatDialogConfig): Observable<any> {
     return combineLatest([

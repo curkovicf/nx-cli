@@ -42,4 +42,8 @@ export namespace ProjectsIpcEvents {
     fromAngular: 'GENERIC',
     fromElectron: 'GENERIC_RESULT'
   };
+  export const startDepGraph: EventChannel = {
+    fromAngular: 'START_DEP_GRAPH',
+    fromElectron: 'START_DEP_GRAPH_RESULT'
+  };
 }

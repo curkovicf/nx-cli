@@ -3,11 +3,11 @@
 
 :host {
   display: block;
-  background-color: #2d3436;
   z-index: 11;
   padding: 1rem 0;
   @include box(3.5rem, 70%);
   @include center-flex-Y;
+  @include default_border(right);
   justify-content: space-between;
 
   & > div {

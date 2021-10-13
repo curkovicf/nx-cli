@@ -1,5 +1,5 @@
 // @ts-ignore
-import { ChildProcess, spawn } from 'child_process';
+import { ChildProcess, spawn, exec } from 'child_process';
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace NodeUtils {

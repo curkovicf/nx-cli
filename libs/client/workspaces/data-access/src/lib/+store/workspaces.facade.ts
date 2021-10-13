@@ -5,6 +5,8 @@ import { Workspace } from '@nx-cli/shared/data-access/models';
 
 import * as WorkspacesSelectors from './workspaces.selectors';
 import * as WorkspacesActions from './workspaces.actions';
+import { Observable } from 'rxjs';
+import { first, map } from 'rxjs/operators';
 
 
 @Injectable()
@@ -36,5 +38,9 @@ export class WorkspacesFacade {
 
   public clearConsole(workspacePath: string): void {
     this.store.dispatch(WorkspacesActions.clearLog({ workspacePath }));
+  }
+
+  public getSelectedWorkspacePath(): Observable<string> {
+    return this.selectedWorkspace$.pipe(first(), map((w) => w?.path));
   }
 }
