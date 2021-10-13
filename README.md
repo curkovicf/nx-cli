@@ -64,8 +64,8 @@ While working at my current job with Nx monorepos I have noticed that I spend a 
 | :white_check_mark: | User can see outputs of commands | Add console to the app so user can see and interact with the console logs |
 | :white_check_mark: | User can see if Nx is not installed on his machine | Add notification if user doesn't have Nx installed on his machine |
 | :white_check_mark: | User can see lib or app tree | Once app or lib is selected, user can see folder tree in the detail view |
+| :white_check_mark: | User can start dep graph | User can run nx dep graph from the app |
 | :x: | User can add/delete tags | Ability to add tags for a selected app or lib |
-| :x: | User can start dep graph | User can run nx dep graph from the app |
 | :x: | User can create dependencies between tags | Ability to add tags dependencies between tags |
 | :x: | User can use all installed nx generators | Ability to create all supported libs/apps |
 
@@ -82,7 +82,7 @@ While working at my current job with Nx monorepos I have noticed that I spend a 
 | :white_check_mark: | Add console to the app so user can see and interact with the console logs |
 | :white_check_mark: | Add notification if user doesn't have Nx installed on his machine |
 | :white_check_mark: | Once app or lib is selected, user can see folder tree in the detail view |
-| :x: | User can run nx dep graph from the app |
+| :white_check_mark: | User can run nx dep graph from the app |
 | :x: | Ability to add tags for a selected app or lib |
 | :x: | Ability to add tags dependencies |
 | :x: | User can use all installed nx generators |
