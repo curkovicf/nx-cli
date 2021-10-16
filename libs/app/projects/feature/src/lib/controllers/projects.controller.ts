@@ -1,6 +1,6 @@
 import { ipcMain } from 'electron';
 import { ProjectsService } from '../services/projects.service';
-import { IController, OsUtils } from '@nx-cli/app/shared/util';
+import { IController } from '@nx-cli/app/shared/util';
 import { IProjectsService } from '../services/projects-service.interface';
 import {
   IpcResponses,
@@ -9,7 +9,7 @@ import {
   ProjectsIpcEvents,
   WorkspacesIpcEvents
 } from '@nx-cli/shared/data-access/models';
-import Platform = OsUtils.Platform;
+
 
 
 export class ProjectsController implements IController {

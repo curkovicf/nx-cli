@@ -9,6 +9,7 @@ export class WorkspacesController implements IController {
 
   initRoutes(): void {
     this.initValidateWorkspacePath();
+    this.initGetAllTags();
 
     console.warn('\n********** Init Workspaces Controller');
   }
@@ -16,6 +17,13 @@ export class WorkspacesController implements IController {
   private initValidateWorkspacePath(): void {
     ipcMain.on(WorkspacesIpcEvents.validateWorkspacePath.fromAngular, async (event, workspacePath: string) => {
       event.returnValue = await this.workspacesService.validateWorkspacePath(workspacePath);
+    });
+  }
+
+  private initGetAllTags(): void {
+    ipcMain.on(WorkspacesIpcEvents.tags.fromAngular, async (event, workspacePath: string) => {
+      const response = await this.workspacesService.getAllTags(workspacePath);
+      event.sender.send(WorkspacesIpcEvents.tags.fromElectron, response);
     });
   }
 }

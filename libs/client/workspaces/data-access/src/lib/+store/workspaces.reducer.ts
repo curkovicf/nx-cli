@@ -19,7 +19,7 @@ export const initialState: WorkspacesState = {
 export const workspacesReducer = createReducer(
   initialState,
   on(WorkspacesActions.setWorkspacesState, (state, { workspacesState }) => ({ ...workspacesState })),
-  on(WorkspacesActions.setActiveWorkspace, (state, { selectedWorkspace }) => ({ ...state, selectedWorkspace })),
+  on(WorkspacesActions.switchCurrentWorkspace, (state, { selectedWorkspace }) => ({ ...state, selectedWorkspace })),
   on(WorkspacesActions.addWorkspace, (state, { newWorkspace }) => ({
     ...state,
     workspaces: [...state.workspaces, newWorkspace]
@@ -43,5 +43,6 @@ export const workspacesReducer = createReducer(
     workspaces: [
       ...state.workspaces.map(w => w.path === workspacePath ? { ...w, consoleLogs: [] } : w)
     ]
-  }))
+  })),
+  on(WorkspacesActions.addTags, (state, { tags }) => ({ ...state, selectedWorkspace: { ...state.selectedWorkspace, tags } }))
 );
