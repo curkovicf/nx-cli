@@ -11,4 +11,5 @@ export interface IProjectsService {
   generateLibrary(dto: ProjectsIpcDtos.GenerateAngularLibrary): Promise<IpcResponses.ResponseWithLogs>;
   generateApplication(dto: ProjectsIpcDtos.GenerateAngularApplication): Promise<IpcResponses.ResponseWithLogs>;
   startDepGraph(workspacePath: string): Promise<IpcResponses.Response>;
+  removeTag(dto: ProjectsIpcDtos.RemoveTag): Promise<IpcResponses.ResponseWithData<ProjectsIpcDtos.RemoveTag>>;
 }

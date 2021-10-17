@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { ProjectsState } from './projects.reducer';
-import { Project } from '@nx-cli/shared/data-access/models';
+import { Project, ProjectsIpcDtos } from '@nx-cli/shared/data-access/models';
 
 import * as ProjectsActions from './projects.actions';
 import * as ProjectsSelectors from './projects.selectors';
@@ -26,5 +26,9 @@ export class ProjectsFacade {
 
   public resetProjects(): void {
     this.store.dispatch(ProjectsActions.addProjects({ projects: [] }));
+  }
+
+  public removeTag(data: ProjectsIpcDtos.RemoveTag) {
+    this.store.dispatch(ProjectsActions.removeTag({ projectName: data.selectedProject, tagToDelete: data.tagToDelete }));
   }
 }

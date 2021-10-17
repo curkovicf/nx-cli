@@ -9,6 +9,7 @@ import {
   ProjectsIpcEvents,
   WorkspacesIpcEvents
 } from '@nx-cli/shared/data-access/models';
+import RemoveTag = ProjectsIpcDtos.RemoveTag;
 
 
 
@@ -24,7 +25,8 @@ export class ProjectsController implements IController {
     this.initEditProject();
     this.initGenerateLibrary();
     this.initGenerateApplication();
-    this.startDepGraph();
+    this.initStartDepGraph();
+    this.initRemoveTag();
 
     console.warn('\n********** Init Projects Controller');
   }
@@ -92,10 +94,17 @@ export class ProjectsController implements IController {
     });
   }
 
-  private startDepGraph() {
+  private initStartDepGraph() {
     ipcMain.on(ProjectsIpcEvents.startDepGraph.fromAngular, async (event, workspacePath: string) => {
       const response: IpcResponses.Response = await this.projectsService.startDepGraph(workspacePath);
       event.sender.send(ProjectsIpcEvents.defaultChannel.fromElectron, response);
+    });
+  }
+
+  private initRemoveTag(): void {
+    ipcMain.on(ProjectsIpcEvents.removeTag.fromAngular, async (event, dto: ProjectsIpcDtos.RemoveTag) => {
+      const response: IpcResponses.ResponseWithData<RemoveTag> = await this.projectsService.removeTag(dto);
+      event.sender.send(ProjectsIpcEvents.removeTag.fromElectron, response);
     });
   }
 }

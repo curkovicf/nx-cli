@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { Project, ProjectsIpcEvents, IpcResponses } from '@nx-cli/shared/data-access/models';
+import { Project, ProjectsIpcEvents, IpcResponses, ProjectsIpcDtos } from '@nx-cli/shared/data-access/models';
 import { first, tap } from 'rxjs/operators';
 import { ElectronService } from 'ngx-electron';
 import { ProjectsIpcApiService } from './projects-ipc-api.service';
@@ -24,6 +24,7 @@ export class ProjectsIpcEventsService {
   ) {
     this.initGenericResponseChannel();
     this.initGetAllProjectsChannel();
+    this.initRemoveTag();
   }
 
   /**
@@ -70,5 +71,19 @@ export class ProjectsIpcEventsService {
 
       this.ngZone.run(() => this.snackBar.open(success || error, null));
     });
+  }
+
+  private initRemoveTag(): void {
+    this.electronService.ipcRenderer.on(ProjectsIpcEvents.removeTag.fromElectron, (event, response: IpcResponses.ResponseWithData<ProjectsIpcDtos.RemoveTag>) => {
+      const { error, success } = response;
+
+      if (success) {
+        this.ngZone.run(() => this.projectsFacade.removeTag(response.data));
+
+        return;
+      }
+
+      this.ngZone.run(() => this.snackBar.open(success || error, null));
+    })
   }
 }

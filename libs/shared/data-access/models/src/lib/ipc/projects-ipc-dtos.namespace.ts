@@ -69,4 +69,10 @@ export namespace ProjectsIpcDtos {
     newDirectory: string;
     oldDirectory: string;
   }
+
+  export interface RemoveTag {
+    workspacePath: string;
+    tagToDelete: string;
+    selectedProject: string;
+  }
 }

@@ -17,6 +17,8 @@ export class WorkspacesRepository {
     const pathToNxJson = `${workspacePath}${OsUtils.getPlatformPathSeparator()}nx.json`;
     const nxJson = await fsExtra.readJSON(pathToNxJson);
 
+    console.log(nxJson);
+
     Object.entries(nxJson.projects).forEach(([key, value]) => tags.push(...(value as { tags: string[] }).tags));
 
     return tags;

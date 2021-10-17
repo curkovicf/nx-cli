@@ -5,6 +5,7 @@ import { IProjectsService } from './projects-service.interface';
 import { ProjectsRepository } from '../repositories/projects.repository';
 import { IpcResponses, Project, ProjectsIpcDtos, ProjectType } from '@nx-cli/shared/data-access/models';
 import Platform = OsUtils.Platform;
+import RemoveTag = ProjectsIpcDtos.RemoveTag;
 
 
 export class ProjectsService implements IProjectsService {
@@ -283,6 +284,14 @@ export class ProjectsService implements IProjectsService {
       workspacePath,
       success: result ? `Dep graph successfully started.` : '',
       error: !result ? `Dep graph has not successfully started.` : ''
+    };
+  }
+
+  async removeTag(dto: ProjectsIpcDtos.RemoveTag): Promise<IpcResponses.ResponseWithData<RemoveTag>> {
+    const result = await this.projectsRepository.removeTag(dto);
+    return {
+      success: result ? 'Tag successfully removed' : '',
+      data: dto
     };
   }
 }

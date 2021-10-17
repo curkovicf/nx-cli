@@ -11,4 +11,7 @@ export class TagsComponent {
 
   @Output()
   onaddnewtag: EventEmitter<void> = new EventEmitter();
+
+  @Output()
+  onremovetag: EventEmitter<string> = new EventEmitter();
 }

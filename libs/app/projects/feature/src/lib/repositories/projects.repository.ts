@@ -12,7 +12,7 @@ import {
   FolderType,
   folderTypes,
   Project,
-  ProjectFolder,
+  ProjectFolder, ProjectsIpcDtos,
   ProjectType
 } from '@nx-cli/shared/data-access/models';
 
@@ -313,6 +313,33 @@ export class ProjectsRepository {
 
   /**
    *
+   * @param dto
+   */
+  async removeTag(dto: ProjectsIpcDtos.RemoveTag): Promise<boolean> {
+    let isSuccess = false;
+    const { tagToDelete, selectedProject, workspacePath } = dto;
+
+    const pathToNxJson = `${workspacePath}${OsUtils.getPlatformPathSeparator()}nx.json`;
+    const nxJson = await fsExtra.readJSON(pathToNxJson);
+
+    Object.entries(nxJson.projects).forEach(([key, value]) => {
+      if (key === selectedProject) {
+        const projectObj = (value as { tags: string[] });
+        const tagIndex = projectObj.tags.indexOf(tagToDelete);
+
+        projectObj.tags.splice(tagIndex, 1);
+
+        isSuccess = true;
+      }
+    });
+
+    await fsExtra.writeJSON(pathToNxJson, nxJson).catch(() => isSuccess = false);
+
+    return isSuccess;
+  }
+
+  /**
+   *
    * @param file
    * @param files
    */
@@ -332,5 +359,4 @@ export class ProjectsRepository {
   trimToRelativePath(pwd: string, rootPath: string): string {
     return pwd.replace(rootPath, '');
   }
-
 }

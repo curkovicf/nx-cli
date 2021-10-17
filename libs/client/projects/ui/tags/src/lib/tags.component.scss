@@ -9,10 +9,30 @@
     @include position(absolute, 0, 0, null, null);
   }
 
-  & > .tag {
+  & > .tag-wrapper {
     margin-bottom: 0.3rem;
     color: gray;
+    @include box(100%, 1rem);
+    @include center-flex-X;
 
-    & > p {}
+    .img-wrapper {
+      width: 1.4rem;
+      height: inherit;
+      @include center-flex-X;
+
+      & > img {
+        @include box(1rem, 1rem);
+        @include cursor-pointer;
+      }
+    }
+
+    .text-wrapper {
+      width: calc(100% - 1rem);
+      height: inherit;
+      @include center-flex-X;
+      justify-content: flex-start;
+
+      & > p {}
+    }
   }
 }
