@@ -75,4 +75,16 @@ export namespace ProjectsIpcDtos {
     tagToDelete: string;
     selectedProject: string;
   }
+
+  export interface Tag {
+    tags: string;
+    workspacePath: string;
+    selectedProjectName: string;
+  }
+
+  export interface AddTagResult {
+    tags: string[];
+    workspacePath: string;
+    selectedProjectName: string;
+  }
 }

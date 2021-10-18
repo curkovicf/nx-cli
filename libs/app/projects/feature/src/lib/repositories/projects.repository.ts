@@ -340,6 +340,34 @@ export class ProjectsRepository {
 
   /**
    *
+   * @param dto
+   */
+  async addTag(dto: ProjectsIpcDtos.Tag): Promise<string[]> {
+    const { workspacePath, tags, selectedProjectName } = dto;
+
+    const pathToNxJson = `${workspacePath}${OsUtils.getPlatformPathSeparator()}nx.json`;
+    const nxJson = await fsExtra.readJSON(pathToNxJson);
+
+    const newTags = [
+      ...tags.split(',')
+        .filter(el => Boolean(el))
+        .map(el => el.trim())
+    ];
+
+    Object.entries(nxJson.projects).forEach(([key, value]) => {
+      if (key === selectedProjectName) {
+        const projectObj = (value as { tags: string[] });
+        projectObj.tags.push(...newTags);
+      }
+    });
+
+    await fsExtra.writeJSON(pathToNxJson, nxJson);
+
+    return newTags;
+  }
+
+  /**
+   *
    * @param file
    * @param files
    */

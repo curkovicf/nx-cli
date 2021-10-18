@@ -20,23 +20,4 @@ export abstract class NxCliDialogFormClass<T> {
 
     return true;
   }
-
-  public convertFlagsToStrings(): string[] {
-    const { flat, skipTests, exportComponent } = this.form.value;
-    const stringFlags = [];
-
-    if (flat) {
-      stringFlags.push('--flat');
-    }
-
-    if (skipTests) {
-      stringFlags.push('--skipTests');
-    }
-
-    if (exportComponent) {
-      stringFlags.push('--export');
-    }
-
-    return stringFlags;
-  }
 }

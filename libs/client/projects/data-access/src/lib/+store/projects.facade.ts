@@ -28,7 +28,11 @@ export class ProjectsFacade {
     this.store.dispatch(ProjectsActions.addProjects({ projects: [] }));
   }
 
-  public removeTag(data: ProjectsIpcDtos.RemoveTag) {
-    this.store.dispatch(ProjectsActions.removeTag({ projectName: data.selectedProject, tagToDelete: data.tagToDelete }));
+  public removeTag(dto: ProjectsIpcDtos.RemoveTag) {
+    this.store.dispatch(ProjectsActions.removeTag({ projectName: dto.selectedProject, tagToDelete: dto.tagToDelete }));
+  }
+
+  public addTags(dto: ProjectsIpcDtos.AddTagResult): void {
+    return this.store.dispatch(ProjectsActions.addTags({ dto }));
   }
 }

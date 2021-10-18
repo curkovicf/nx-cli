@@ -25,7 +25,7 @@ export const projectsReducer = createReducer(
         return {
           ...project,
           tags: project.tags.filter(tag => tag !== tagToDelete)
-        }
+        };
       }
 
       return project;
@@ -33,6 +33,16 @@ export const projectsReducer = createReducer(
     selectedProject: {
       ...state.selectedProject,
       tags: projectName === state.selectedProject.nameInNxJson ? state.selectedProject.tags.filter(tag => tag !== tagToDelete) : state.selectedProject.tags
+    }
+  })),
+  on(ProjectsActions.addTags, (state, { dto }) => ({
+    projects: state.projects.map(project => project.nameInNxJson === dto.selectedProjectName ? ({
+      ...project,
+      tags: [...project.tags, ...dto.tags]
+    }) : project),
+    selectedProject: {
+      ...state.selectedProject,
+      tags: state.selectedProject.nameInNxJson === dto.selectedProjectName ? [...state.selectedProject.tags, ...dto.tags] : state.selectedProject.tags
     }
   }))
 );

@@ -97,7 +97,35 @@ export class DetailStore extends ComponentStore<DetailState> {
   }
 
   public addNewTag(): void {
-    this.openDialog(NewTagDialogComponent).subscribe();
+    combineLatest([
+      this.openDialog(NewTagDialogComponent),
+      this.projectsFacade.selectedProject$,
+      this.workspacesFacade.getSelectedWorkspacePath()
+    ]).pipe(
+      first(),
+      tap(([tags, selectedProject, workspacePath]) => {
+        if (!tags[0]) {
+          return;
+        } else if (selectedProject.tags.includes(tags[0])) {
+          const data: ConfirmDialogContent = {
+            title: 'ALERT: Tag already exists in this project.',
+            bodyText: 'Please try again.',
+            isConfirmDialog: false
+          };
+
+          this.openDialog(ConfirmDialogComponent, { data }).subscribe();
+
+          return;
+        }
+
+        this.projectsIpcApiService.addTag({
+          workspacePath,
+          tags: tags[0],  //  FIXME: Check why is this arr
+          selectedProjectName: selectedProject.nameInNxJson,
+        });
+
+      })
+    ).subscribe();
   }
 
   private openDialog(component: ComponentType<unknown>, config?: MatDialogConfig): Observable<any> {

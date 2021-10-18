@@ -25,6 +25,7 @@ export class ProjectsIpcEventsService {
     this.initGenericResponseChannel();
     this.initGetAllProjectsChannel();
     this.initRemoveTag();
+    this.initAddTags();
   }
 
   /**
@@ -79,6 +80,21 @@ export class ProjectsIpcEventsService {
 
       if (success) {
         this.ngZone.run(() => this.projectsFacade.removeTag(response.data));
+
+        return;
+      }
+
+      this.ngZone.run(() => this.snackBar.open(success || error, null));
+    })
+  }
+
+  private initAddTags(): void {
+    this.electronService.ipcRenderer.on(ProjectsIpcEvents.addTag.fromElectron, (event, response: IpcResponses.ResponseWithData<ProjectsIpcDtos.AddTagResult>) => {
+      const { error, success, data } = response;
+
+      if (success) {
+        console.log(response);
+        this.ngZone.run(() => this.projectsFacade.addTags(data));
 
         return;
       }

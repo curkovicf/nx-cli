@@ -51,4 +51,8 @@ export namespace ProjectsIpcEvents {
     fromAngular: 'REMOVE_TAG',
     fromElectron: 'REMOVE_TAG_RESULT'
   };
+  export const addTag: EventChannel = {
+    fromAngular: 'ADD_TAG',
+    fromElectron: 'ADD_TAG_RESULT'
+  };
 }

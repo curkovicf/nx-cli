@@ -294,4 +294,16 @@ export class ProjectsService implements IProjectsService {
       data: dto
     };
   }
+
+  async addTag(dto: ProjectsIpcDtos.Tag): Promise<IpcResponses.ResponseWithData<ProjectsIpcDtos.AddTagResult>> {
+    const result = await this.projectsRepository.addTag(dto);
+    return {
+      success: result ? 'Tag successfully created' : '',
+      data: {
+        tags: result,
+        workspacePath: dto.workspacePath,
+        selectedProjectName: dto.selectedProjectName
+      }
+    };
+  }
 }
