@@ -1,5 +1,6 @@
 import { EventChannel } from './event-channel.interface';
 
+
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace ProjectsIpcEvents {
   export const getAllProjects: EventChannel = {
@@ -45,5 +46,13 @@ export namespace ProjectsIpcEvents {
   export const startDepGraph: EventChannel = {
     fromAngular: 'START_DEP_GRAPH',
     fromElectron: 'START_DEP_GRAPH_RESULT'
+  };
+  export const removeTag: EventChannel = {
+    fromAngular: 'REMOVE_TAG',
+    fromElectron: 'REMOVE_TAG_RESULT'
+  };
+  export const addTag: EventChannel = {
+    fromAngular: 'ADD_TAG',
+    fromElectron: 'ADD_TAG_RESULT'
   };
 }

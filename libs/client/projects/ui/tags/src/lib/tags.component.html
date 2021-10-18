@@ -1,3 +1,21 @@
-<div *ngFor='let tag of tags' class='tag'>
-  <p>{{ tag }}</p>
+<nx-cli-button
+  [buttonText]="'Add new tag'"
+  buttonType="primary"
+  (onbtnclick)="onaddnewtag.emit()"
+>
+</nx-cli-button>
+
+<div *ngFor='let tag of tags' class='tag-wrapper'>
+  <div class='img-wrapper'>
+    <img
+      (click)='onremovetag.emit(tag)'
+      class='delete-icon'
+      src='assets/icons8-delete.svg'
+      alt='Delete icon'
+    />
+  </div>
+
+  <div class='text-wrapper'>
+    <p>{{ tag }}</p>
+  </div>
 </div>

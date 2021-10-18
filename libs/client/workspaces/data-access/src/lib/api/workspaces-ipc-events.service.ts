@@ -15,6 +15,7 @@ export class WorkspacesIpcEventsService {
 
   public initChannels(): void {
     this.initLoggingChannel();
+    this.initTagsChannel();
   }
 
   private initLoggingChannel(): void {
@@ -24,6 +25,21 @@ export class WorkspacesIpcEventsService {
       if (!logs) { return; }
 
       this.ngZone.run(() => this.workspacesFacade.addLog(workspacePath, logs));
+    });
+  }
+
+  private initTagsChannel(): void {
+    this.electronService.ipcRenderer.on(WorkspacesIpcEvents.tags.fromElectron, (event, response: IpcResponses.ResponseWithData<string[]>) => {
+      const { success, error, data } = response;
+
+      console.log(data);
+
+      if (error) {
+        //  TODO: Impl snackbar
+        alert('ERR WITH TAGS');
+      }
+
+      this.ngZone.run(() => this.workspacesFacade.addTags(data))
     });
   }
 }

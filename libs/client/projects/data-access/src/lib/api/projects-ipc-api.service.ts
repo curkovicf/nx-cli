@@ -55,4 +55,12 @@ export class ProjectsIpcApiService {
   public startDepGraph(workspacePath: string): void {
     this.electronService.ipcRenderer.send(ProjectsIpcEvents.startDepGraph.fromAngular, workspacePath);
   }
+
+  public removeTag(removeTagDto: ProjectsIpcDtos.RemoveTag): void {
+    this.electronService.ipcRenderer.send(ProjectsIpcEvents.removeTag.fromAngular, removeTagDto);
+  }
+
+  public addTag(tagDto: ProjectsIpcDtos.Tag): void {
+    this.electronService.ipcRenderer.send(ProjectsIpcEvents.addTag.fromAngular, tagDto);
+  }
 }

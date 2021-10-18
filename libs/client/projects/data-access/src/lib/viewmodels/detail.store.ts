@@ -10,9 +10,10 @@ import { ConfirmDialogComponent, ConfirmDialogContent } from '@nx-cli/client/sha
 import { ComponentType } from '@angular/cdk/portal/portal';
 import { MatDialogConfig } from '@angular/material/dialog/dialog-config';
 import { combineLatest, Observable } from 'rxjs';
-import { filter, first, map } from 'rxjs/operators';
+import { filter, first, map, tap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
+import { NewTagDialogComponent } from '@nx-cli/client/projects/ui/new-tag-dialog';
 
 export interface DetailState {
   tabs: string[];
@@ -95,6 +96,38 @@ export class DetailStore extends ComponentStore<DetailState> {
       );
   }
 
+  public addNewTag(): void {
+    combineLatest([
+      this.openDialog(NewTagDialogComponent),
+      this.projectsFacade.selectedProject$,
+      this.workspacesFacade.getSelectedWorkspacePath()
+    ]).pipe(
+      first(),
+      tap(([tags, selectedProject, workspacePath]) => {
+        if (!tags[0]) {
+          return;
+        } else if (selectedProject.tags.includes(tags[0])) {
+          const data: ConfirmDialogContent = {
+            title: 'ALERT: Tag already exists in this project.',
+            bodyText: 'Please try again.',
+            isConfirmDialog: false
+          };
+
+          this.openDialog(ConfirmDialogComponent, { data }).subscribe();
+
+          return;
+        }
+
+        this.projectsIpcApiService.addTag({
+          workspacePath,
+          tags: tags[0],  //  FIXME: Check why is this arr
+          selectedProjectName: selectedProject.nameInNxJson,
+        });
+
+      })
+    ).subscribe();
+  }
+
   private openDialog(component: ComponentType<unknown>, config?: MatDialogConfig): Observable<any> {
     return combineLatest([
       this.dialog.open(component, config).afterClosed(),
@@ -103,5 +136,31 @@ export class DetailStore extends ComponentStore<DetailState> {
       first(),
       filter(([data, workspacePath]) => !!data || !workspacePath)
     );
+  }
+
+  public removeTag(tag: string): void {
+    const data: ConfirmDialogContent = {
+      title: 'WARNING: Are you sure you want to delete project ?',
+      bodyText: 'This action is irreversible.',
+      isConfirmDialog: true
+    };
+
+    combineLatest([
+      this.openDialog(ConfirmDialogComponent, { data }),
+      this.projectsFacade.selectedProject$,
+      this.workspacesFacade.selectedWorkspace$
+    ])
+      .pipe(
+        first(),
+        tap(([isConfirm, selectedProject, selectedWorkspace]) =>
+          isConfirm ? this.projectsIpcApiService.removeTag({
+              selectedProject: selectedProject.nameInNxJson,
+              tagToDelete: tag,
+              workspacePath: selectedWorkspace.path
+            }) :
+            null
+        )
+      )
+      .subscribe();
   }
 }

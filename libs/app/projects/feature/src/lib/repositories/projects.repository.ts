@@ -12,7 +12,7 @@ import {
   FolderType,
   folderTypes,
   Project,
-  ProjectFolder,
+  ProjectFolder, ProjectsIpcDtos,
   ProjectType
 } from '@nx-cli/shared/data-access/models';
 
@@ -313,6 +313,61 @@ export class ProjectsRepository {
 
   /**
    *
+   * @param dto
+   */
+  async removeTag(dto: ProjectsIpcDtos.RemoveTag): Promise<boolean> {
+    let isSuccess = false;
+    const { tagToDelete, selectedProject, workspacePath } = dto;
+
+    const pathToNxJson = `${workspacePath}${OsUtils.getPlatformPathSeparator()}nx.json`;
+    const nxJson = await fsExtra.readJSON(pathToNxJson);
+
+    Object.entries(nxJson.projects).forEach(([key, value]) => {
+      if (key === selectedProject) {
+        const projectObj = (value as { tags: string[] });
+        const tagIndex = projectObj.tags.indexOf(tagToDelete);
+
+        projectObj.tags.splice(tagIndex, 1);
+
+        isSuccess = true;
+      }
+    });
+
+    await fsExtra.writeJSON(pathToNxJson, nxJson).catch(() => isSuccess = false);
+
+    return isSuccess;
+  }
+
+  /**
+   *
+   * @param dto
+   */
+  async addTag(dto: ProjectsIpcDtos.Tag): Promise<string[]> {
+    const { workspacePath, tags, selectedProjectName } = dto;
+
+    const pathToNxJson = `${workspacePath}${OsUtils.getPlatformPathSeparator()}nx.json`;
+    const nxJson = await fsExtra.readJSON(pathToNxJson);
+
+    const newTags = [
+      ...tags.split(',')
+        .filter(el => Boolean(el))
+        .map(el => el.trim())
+    ];
+
+    Object.entries(nxJson.projects).forEach(([key, value]) => {
+      if (key === selectedProjectName) {
+        const projectObj = (value as { tags: string[] });
+        projectObj.tags.push(...newTags);
+      }
+    });
+
+    await fsExtra.writeJSON(pathToNxJson, nxJson);
+
+    return newTags;
+  }
+
+  /**
+   *
    * @param file
    * @param files
    */
@@ -332,5 +387,4 @@ export class ProjectsRepository {
   trimToRelativePath(pwd: string, rootPath: string): string {
     return pwd.replace(rootPath, '');
   }
-
 }

@@ -21,7 +21,7 @@ export class NewWorkspaceComponent {
   oncancel: EventEmitter<void> = new EventEmitter<void>();
 
   public form: FormGroup;
-  private workspace: Workspace = { path: '', name: '', consoleLogs: [] };
+  private workspace: Workspace = { path: '', name: '', consoleLogs: [], tags: [] };
 
   constructor(private workspacesIpcApiService: WorkspacesIpcApiService) {
     this.form = new FormGroup({

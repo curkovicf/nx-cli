@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DetailStore } from '../../../../data-access/src/lib/viewmodels/detail.store';
+import { DetailStore } from '@nx-cli/client/projects/data-access';
 
 @Component({
   selector: 'nx-cli-project-detail',

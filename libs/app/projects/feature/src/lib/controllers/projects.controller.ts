@@ -1,6 +1,6 @@
 import { ipcMain } from 'electron';
 import { ProjectsService } from '../services/projects.service';
-import { IController, OsUtils } from '@nx-cli/app/shared/util';
+import { IController } from '@nx-cli/app/shared/util';
 import { IProjectsService } from '../services/projects-service.interface';
 import {
   IpcResponses,
@@ -9,7 +9,9 @@ import {
   ProjectsIpcEvents,
   WorkspacesIpcEvents
 } from '@nx-cli/shared/data-access/models';
-import Platform = OsUtils.Platform;
+import RemoveTag = ProjectsIpcDtos.RemoveTag;
+import Tag = ProjectsIpcDtos.Tag;
+
 
 
 export class ProjectsController implements IController {
@@ -24,7 +26,9 @@ export class ProjectsController implements IController {
     this.initEditProject();
     this.initGenerateLibrary();
     this.initGenerateApplication();
-    this.startDepGraph();
+    this.initStartDepGraph();
+    this.initRemoveTag();
+    this.initAddTag();
 
     console.warn('\n********** Init Projects Controller');
   }
@@ -92,10 +96,24 @@ export class ProjectsController implements IController {
     });
   }
 
-  private startDepGraph() {
+  private initStartDepGraph() {
     ipcMain.on(ProjectsIpcEvents.startDepGraph.fromAngular, async (event, workspacePath: string) => {
       const response: IpcResponses.Response = await this.projectsService.startDepGraph(workspacePath);
       event.sender.send(ProjectsIpcEvents.defaultChannel.fromElectron, response);
+    });
+  }
+
+  private initRemoveTag(): void {
+    ipcMain.on(ProjectsIpcEvents.removeTag.fromAngular, async (event, dto: ProjectsIpcDtos.RemoveTag) => {
+      const response: IpcResponses.ResponseWithData<RemoveTag> = await this.projectsService.removeTag(dto);
+      event.sender.send(ProjectsIpcEvents.removeTag.fromElectron, response);
+    });
+  }
+
+  private initAddTag(): void {
+    ipcMain.on(ProjectsIpcEvents.addTag.fromAngular, async (event, dto: ProjectsIpcDtos.Tag) => {
+      const response: IpcResponses.ResponseWithData<ProjectsIpcDtos.AddTagResult> = await this.projectsService.addTag(dto);
+      event.sender.send(ProjectsIpcEvents.addTag.fromElectron, response);
     });
   }
 }

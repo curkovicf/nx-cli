@@ -12,12 +12,30 @@ export class WorkspacesService implements IWorkspaceService {
     if (await this.workspacesRepository.isPathNxWorkspace(workspacePath)) {
       const packageJson = await this.workspacesRepository.getWorkspaceName(workspacePath);
       return {
-        data: { path: workspacePath, name: packageJson.name, consoleLogs: [] },
+        data: {
+          path: workspacePath,
+          name: packageJson.name,
+          consoleLogs: [],
+          tags: (await this.getAllTags(workspacePath)).data
+        },
       };
     }
 
     return {
       data: undefined,
+    };
+  }
+
+  /**
+   *
+   * @param workspacePath
+   */
+  async getAllTags(workspacePath: string): Promise<IpcResponses.ResponseWithData<string[]>> {
+    const data = await this.workspacesRepository.getAllTags(workspacePath);
+    return {
+      data,
+      workspacePath,
+      success: data.length > 0 ? 'Found couple of tags' : ''
     };
   }
 }

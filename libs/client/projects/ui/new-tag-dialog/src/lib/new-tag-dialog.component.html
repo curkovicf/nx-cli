@@ -1,0 +1,11 @@
+<h4 mat-dialog-title>@nrwl/angular:service</h4>
+
+<form [formGroup]='form' (ngSubmit)='onSubmit()' mat-dialog-content>
+  <nx-cli-input formControlName='tagName' title='tag name' description='Enter new tag name.'></nx-cli-input>
+
+  <div class='actions'>
+    <nx-cli-button type='submit' buttonText='Submit' buttonType='primary'></nx-cli-button>
+    <nx-cli-button type='button' buttonText='Cancel' buttonType='warn' (onbtnclick)='onCancel()'></nx-cli-button>
+  </div>
+</form>
+

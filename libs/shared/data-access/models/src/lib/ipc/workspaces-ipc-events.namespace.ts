@@ -10,4 +10,8 @@ export namespace WorkspacesIpcEvents {
     fromAngular: 'LOGGING',
     fromElectron: 'LOGGING_RESULT'
   };
+  export const tags: EventChannel = {
+    fromAngular: 'TAGS',
+    fromElectron: 'TAGS_RESULT'
+  };
 }

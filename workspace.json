@@ -597,6 +597,31 @@
         }
       }
     },
+    "client-projects-ui-new-tag-dialog": {
+      "projectType": "library",
+      "root": "libs/client/projects/ui/new-tag-dialog",
+      "sourceRoot": "libs/client/projects/ui/new-tag-dialog/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/ui/new-tag-dialog"],
+          "options": {
+            "jestConfig": "libs/client/projects/ui/new-tag-dialog/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/ui/new-tag-dialog/src/**/*.ts",
+              "libs/client/projects/ui/new-tag-dialog/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "client-projects-ui-tab-item": {
       "projectType": "library",
       "root": "libs/client/projects/ui/tab-item",

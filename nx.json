@@ -91,6 +91,9 @@
     "client-projects-ui-new-service-dialog": {
       "tags": []
     },
+    "client-projects-ui-new-tag-dialog": {
+      "tags": []
+    },
     "client-projects-ui-tab-item": {
       "tags": []
     },

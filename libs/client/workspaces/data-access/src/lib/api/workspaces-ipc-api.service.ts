@@ -19,4 +19,8 @@ export class WorkspacesIpcApiService {
     return of(this.electronService.ipcRenderer.sendSync(WorkspacesIpcEvents.validateWorkspacePath.fromAngular, workspacePath))
       .pipe(tap(() => this.progressBarFacade.markOperationAsComplete()));
   }
+
+  public getTags(workspacePath: string): void {
+    this.electronService.ipcRenderer.send(WorkspacesIpcEvents.tags.fromAngular, workspacePath);
+  }
 }
