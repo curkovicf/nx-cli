@@ -47,9 +47,10 @@
   }
 
   & > .actions {
+    position: relative;
     @include center-flex-Y;
     @include default_border(top);
-    @include box(100%, 9rem);
+    @include box(100%, 6rem);
     justify-content: space-evenly;
 
     & > nx-cli-button {

@@ -1,0 +1,17 @@
+@import 'styles/global.mixins';
+@import 'styles/global.variables';
+
+:host {
+  @include center-flex-X;
+  @include box(100%, 5.5rem);
+  @include position(absolute, -5.5rem, null, null, null);
+  border-radius: 4px;
+  background-color: whitesmoke;
+  box-shadow: $shadow--mat-5;
+  z-index: 1000000000000;
+
+  & > nx-cli-input {
+    @include box(90%, 100%);
+    min-height: auto;
+  }
+}

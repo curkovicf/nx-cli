@@ -124,6 +124,12 @@
     "client-shared-ui-material-modules": {
       "tags": ["angular", "angular-material"]
     },
+    "client-shared-ui-overlay": {
+      "tags": []
+    },
+    "client-shared-ui-popup-search": {
+      "tags": []
+    },
     "client-shared-ui-progress-bar": {
       "tags": []
     },

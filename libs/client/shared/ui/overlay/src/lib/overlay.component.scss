@@ -1,0 +1,10 @@
+@import 'styles/global.mixins';
+@import 'styles/global.variables';
+
+:host {
+  display: inline-block;
+  @include position(fixed, 0, null, null, 0);
+  z-index: 100000000;
+  //background-color: black;
+  opacity: 0.5;
+}

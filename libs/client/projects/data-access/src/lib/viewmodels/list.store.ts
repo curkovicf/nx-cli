@@ -1,6 +1,6 @@
 import { ComponentStore } from '@ngrx/component-store';
 import { Injectable } from '@angular/core';
-import { filter, first, map } from 'rxjs/operators';
+import { filter, first, map, tap } from 'rxjs/operators';
 import { Project } from '@nx-cli/shared/data-access/models';
 import { WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 import { combineLatest, Observable } from 'rxjs';
@@ -15,6 +15,7 @@ import { ProjectsFacade } from '../+store/projects.facade';
 export interface ProjectsState {
   projectsLoadedInView: Project[];
   filterKeyword: string;
+  isPopupSearchVisible: boolean;
 }
 
 @Injectable()
@@ -22,7 +23,9 @@ export class listStore extends ComponentStore<ProjectsState> {
   readonly vm$ = this.select(
     this.projectsFacade.projects$,
     this.state$,
-    (projects, { filterKeyword }) => ({ projectsInView: projects.filter((project) => project.name.includes(filterKeyword)) })
+    (projects, { filterKeyword, isPopupSearchVisible }) => ({
+      projectsInView: projects.filter((project) => project.name.includes(filterKeyword)), isPopupSearchVisible
+    })
   );
 
   constructor(
@@ -78,5 +81,12 @@ export class listStore extends ComponentStore<ProjectsState> {
       first(),
       filter(([data, workspacePath]) => !!data)
     );
+  }
+
+  public togglePopupSearch(): void {
+    this.vm$.pipe(
+      first(),
+      tap(vm => this.patchState({ isPopupSearchVisible: !vm.isPopupSearchVisible }))
+    ).subscribe();
   }
 }

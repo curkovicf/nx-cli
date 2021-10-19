@@ -866,6 +866,56 @@
         }
       }
     },
+    "client-shared-ui-overlay": {
+      "projectType": "library",
+      "root": "libs/client/shared/ui/overlay",
+      "sourceRoot": "libs/client/shared/ui/overlay/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shared/ui/overlay"],
+          "options": {
+            "jestConfig": "libs/client/shared/ui/overlay/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shared/ui/overlay/src/**/*.ts",
+              "libs/client/shared/ui/overlay/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-shared-ui-popup-search": {
+      "projectType": "library",
+      "root": "libs/client/shared/ui/popup-search",
+      "sourceRoot": "libs/client/shared/ui/popup-search/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shared/ui/popup-search"],
+          "options": {
+            "jestConfig": "libs/client/shared/ui/popup-search/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shared/ui/popup-search/src/**/*.ts",
+              "libs/client/shared/ui/popup-search/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "client-shared-ui-progress-bar": {
       "projectType": "library",
       "root": "libs/client/shared/ui/progress-bar",

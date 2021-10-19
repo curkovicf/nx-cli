@@ -23,19 +23,13 @@
 </section>
 
 <section class="actions">
-  <nx-cli-button
-    [isDisabled]="(workspacesFacade.workspaces$ | async)?.length === 0"
-    [buttonText]="'Create Angular application'"
-    buttonType="primary"
-    (onbtnclick)="listVmStore.createApplication()"
-  >
-  </nx-cli-button>
+  <nx-cli-popup-search *ngIf='(listVmStore.vm$ | async).isPopupSearchVisible'></nx-cli-popup-search>
 
   <nx-cli-button
     [isDisabled]="(workspacesFacade.workspaces$ | async)?.length === 0"
-    [buttonText]="'Create Angular library'"
+    [buttonText]="'Generate'"
     buttonType="primary"
-    (onbtnclick)="listVmStore.createLibrary()"
+    (onbtnclick)="listVmStore.togglePopupSearch()"
   >
   </nx-cli-button>
 
@@ -47,3 +41,9 @@
   >
   </nx-cli-button>
 </section>
+
+<nx-cli-overlay
+  [isOverlayVisible]='(listVmStore.vm$ | async).isPopupSearchVisible'
+  [backgroundColor]='"black"'
+  (click)='listVmStore.togglePopupSearch()'
+></nx-cli-overlay>
