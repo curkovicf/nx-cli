@@ -719,6 +719,31 @@
         }
       }
     },
+    "client-shared-ui-autocomplete-search": {
+      "projectType": "library",
+      "root": "libs/client/shared/ui/autocomplete-search",
+      "sourceRoot": "libs/client/shared/ui/autocomplete-search/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shared/ui/autocomplete-search"],
+          "options": {
+            "jestConfig": "libs/client/shared/ui/autocomplete-search/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shared/ui/autocomplete-search/src/**/*.ts",
+              "libs/client/shared/ui/autocomplete-search/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "client-shared-ui-button": {
       "projectType": "library",
       "root": "libs/client/shared/ui/button",

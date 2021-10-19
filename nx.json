@@ -106,6 +106,9 @@
     "client-shared-data-access": {
       "tags": []
     },
+    "client-shared-ui-autocomplete-search": {
+      "tags": []
+    },
     "client-shared-ui-button": {
       "tags": []
     },

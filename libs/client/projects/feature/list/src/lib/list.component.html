@@ -23,8 +23,6 @@
 </section>
 
 <section class="actions">
-  <nx-cli-popup-search *ngIf='(listVmStore.vm$ | async).isPopupSearchVisible'></nx-cli-popup-search>
-
   <nx-cli-button
     [isDisabled]="(workspacesFacade.workspaces$ | async)?.length === 0"
     [buttonText]="'Generate'"
@@ -41,9 +39,3 @@
   >
   </nx-cli-button>
 </section>
-
-<nx-cli-overlay
-  [isOverlayVisible]='(listVmStore.vm$ | async).isPopupSearchVisible'
-  [backgroundColor]='"black"'
-  (click)='listVmStore.togglePopupSearch()'
-></nx-cli-overlay>

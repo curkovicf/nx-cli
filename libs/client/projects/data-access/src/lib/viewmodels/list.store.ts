@@ -11,6 +11,7 @@ import { NewAppDialogComponent } from '@nx-cli/client/projects/ui/new-app-dialog
 import { NewLibDialogComponent } from '@nx-cli/client/projects/ui/new-lib-dialog';
 import { MatDialogConfig } from '@angular/material/dialog/dialog-config';
 import { ProjectsFacade } from '../+store/projects.facade';
+import { AutocompleteSearchComponent } from '@nx-cli/client/shared/ui/autocomplete-search';
 
 export interface ProjectsState {
   projectsLoadedInView: Project[];
@@ -24,7 +25,8 @@ export class listStore extends ComponentStore<ProjectsState> {
     this.projectsFacade.projects$,
     this.state$,
     (projects, { filterKeyword, isPopupSearchVisible }) => ({
-      projectsInView: projects.filter((project) => project.name.includes(filterKeyword)), isPopupSearchVisible
+      projectsInView: projects.filter((project) => project.name.includes(filterKeyword)),
+      isPopupSearchVisible
     })
   );
 
@@ -69,7 +71,19 @@ export class listStore extends ComponentStore<ProjectsState> {
   }
 
   public startDepGraph(): void {
-    this.workspacesFacade.getSelectedWorkspacePath().subscribe(workspacePath => this.projectsIpcApiService.startDepGraph(workspacePath));
+    this.workspacesFacade
+      .getSelectedWorkspacePath()
+      .subscribe(workspacePath => this.projectsIpcApiService.startDepGraph(workspacePath));
+  }
+
+  public togglePopupSearch(): void {
+    const data = ['aa', 'bb', 'ccc', 'ddddd', 'eeeee', 'sssssss', 'njnjnj'];
+
+    this.dialog.open(AutocompleteSearchComponent, { data })
+      .afterClosed()
+      .subscribe(element => {
+        this.createApplication();
+      });
   }
 
   //  TODO: Fix duplication
@@ -81,12 +95,5 @@ export class listStore extends ComponentStore<ProjectsState> {
       first(),
       filter(([data, workspacePath]) => !!data)
     );
-  }
-
-  public togglePopupSearch(): void {
-    this.vm$.pipe(
-      first(),
-      tap(vm => this.patchState({ isPopupSearchVisible: !vm.isPopupSearchVisible }))
-    ).subscribe();
   }
 }
