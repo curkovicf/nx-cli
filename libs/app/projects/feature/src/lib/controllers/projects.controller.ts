@@ -10,8 +10,6 @@ import {
   WorkspacesIpcEvents
 } from '@nx-cli/shared/data-access/models';
 import RemoveTag = ProjectsIpcDtos.RemoveTag;
-import Tag = ProjectsIpcDtos.Tag;
-
 
 
 export class ProjectsController implements IController {
@@ -29,6 +27,7 @@ export class ProjectsController implements IController {
     this.initStartDepGraph();
     this.initRemoveTag();
     this.initAddTag();
+    this.initGetNxGenerators();
 
     console.warn('\n********** Init Projects Controller');
   }
@@ -115,5 +114,12 @@ export class ProjectsController implements IController {
       const response: IpcResponses.ResponseWithData<ProjectsIpcDtos.AddTagResult> = await this.projectsService.addTag(dto);
       event.sender.send(ProjectsIpcEvents.addTag.fromElectron, response);
     });
+  }
+
+  private initGetNxGenerators(): void {
+    ipcMain.on(ProjectsIpcEvents.getAvailableGenerators.fromAngular, async (event, dto: ProjectsIpcDtos.Generators) => {
+      const response: IpcResponses.ResponseWithData<ProjectsIpcDtos.Generators> = await this.projectsService.getAvailableNxGenerators(dto);
+      event.sender.send(ProjectsIpcEvents.getAvailableGenerators.fromElectron, response);
+    })
   }
 }

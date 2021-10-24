@@ -13,4 +13,5 @@ export interface IProjectsService {
   startDepGraph(workspacePath: string): Promise<IpcResponses.Response>;
   removeTag(dto: ProjectsIpcDtos.RemoveTag): Promise<IpcResponses.ResponseWithData<ProjectsIpcDtos.RemoveTag>>;
   addTag(dto: ProjectsIpcDtos.Tag): Promise<IpcResponses.ResponseWithData<ProjectsIpcDtos.AddTagResult>>;
+  getAvailableNxGenerators(dto: ProjectsIpcDtos.Generators): Promise<IpcResponses.ResponseWithData<ProjectsIpcDtos.Generators>>;
 }

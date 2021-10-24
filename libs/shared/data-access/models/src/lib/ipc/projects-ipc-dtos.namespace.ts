@@ -1,4 +1,5 @@
 import { ProjectType } from '../api/project-type.enum';
+import { NxGenerator } from '../api/nx-generator.model';
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace ProjectsIpcDtos {
@@ -86,5 +87,10 @@ export namespace ProjectsIpcDtos {
     tags: string[];
     workspacePath: string;
     selectedProjectName: string;
+  }
+
+  export interface Generators {
+    workspacePath: string;
+    generators: NxGenerator[];
   }
 }

@@ -55,4 +55,8 @@ export namespace ProjectsIpcEvents {
     fromAngular: 'ADD_TAG',
     fromElectron: 'ADD_TAG_RESULT'
   };
+  export const getAvailableGenerators: EventChannel = {
+    fromAngular: 'GET_AVAILABLE_GENERATORS',
+    fromElectron: 'GET_AVAILABLE_GENERATORS_RESULT'
+  };
 }

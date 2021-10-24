@@ -306,4 +306,8 @@ export class ProjectsService implements IProjectsService {
       }
     };
   }
+
+  async getAvailableNxGenerators(dto: ProjectsIpcDtos.Generators): Promise<IpcResponses.ResponseWithData<ProjectsIpcDtos.Generators>> {
+    throw new Error('Method not implemented.');
+  }
 }
