@@ -307,7 +307,14 @@ export class ProjectsService implements IProjectsService {
     };
   }
 
-  async getAvailableNxGenerators(dto: ProjectsIpcDtos.Generators): Promise<IpcResponses.ResponseWithData<ProjectsIpcDtos.Generators>> {
-    throw new Error('Method not implemented.');
+  async getAvailableNxGenerators(workspacePath: string): Promise<IpcResponses.ResponseWithData<ProjectsIpcDtos.Generators>> {
+    const result = await this.projectsRepository.getAvailableNxGenerators(workspacePath);
+    return {
+      success: result ? 'Nx generators successfully analyzed' : '',
+      data: {
+        generators: result,
+        workspacePath
+      }
+    }
   }
 }

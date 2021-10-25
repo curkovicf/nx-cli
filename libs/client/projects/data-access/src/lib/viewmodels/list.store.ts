@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { filter, first, map, tap } from 'rxjs/operators';
 import { Project } from '@nx-cli/shared/data-access/models';
 import { WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
-import { combineLatest, Observable } from 'rxjs';
+import { combineLatest, Observable, pipe } from 'rxjs';
 import { ProjectsIpcApiService } from '../api/projects-ipc-api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ComponentType } from '@angular/cdk/portal/portal';
@@ -78,6 +78,12 @@ export class listStore extends ComponentStore<ProjectsState> {
 
   public togglePopupSearch(): void {
     const data = ['aa', 'bb', 'ccc', 'ddddd', 'eeeee', 'sssssss', 'njnjnj'];
+
+    this.workspacesFacade.getSelectedWorkspacePath()
+      .pipe(
+        first(),
+        tap(workspacePath => this.projectsIpcApiService.getAvailableNxGenerators(workspacePath))
+      ).subscribe();
 
     this.dialog.open(AutocompleteSearchComponent, { data })
       .afterClosed()

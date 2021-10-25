@@ -117,8 +117,8 @@ export class ProjectsController implements IController {
   }
 
   private initGetNxGenerators(): void {
-    ipcMain.on(ProjectsIpcEvents.getAvailableGenerators.fromAngular, async (event, dto: ProjectsIpcDtos.Generators) => {
-      const response: IpcResponses.ResponseWithData<ProjectsIpcDtos.Generators> = await this.projectsService.getAvailableNxGenerators(dto);
+    ipcMain.on(ProjectsIpcEvents.getAvailableGenerators.fromAngular, async (event, workspacePath: string) => {
+      const response: IpcResponses.ResponseWithData<ProjectsIpcDtos.Generators> = await this.projectsService.getAvailableNxGenerators(workspacePath);
       event.sender.send(ProjectsIpcEvents.getAvailableGenerators.fromElectron, response);
     })
   }
