@@ -1,6 +1,6 @@
 import { IWorkspaceService } from './workspace-service.interface';
 import { WorkspacesRepository } from '../repositories/workspaces.repository';
-import { Workspace, IpcResponses } from '@nx-cli/shared/data-access/models';
+import { Workspace, IpcResponses, WorkspacesIpcDtos } from '@nx-cli/shared/data-access/models';
 
 export class WorkspacesService implements IWorkspaceService {
   constructor(private workspacesRepository = new WorkspacesRepository()) {}
@@ -16,7 +16,8 @@ export class WorkspacesService implements IWorkspaceService {
           path: workspacePath,
           name: packageJson.name,
           consoleLogs: [],
-          tags: (await this.getAllTags(workspacePath)).data
+          tags: (await this.getAllTags(workspacePath)).data,
+          generators: (await this.getAvailableNxGenerators(workspacePath)).data.generators
         },
       };
     }
@@ -37,5 +38,20 @@ export class WorkspacesService implements IWorkspaceService {
       workspacePath,
       success: data.length > 0 ? 'Found couple of tags' : ''
     };
+  }
+
+  /**
+   *
+   * @param workspacePath
+   */
+  async getAvailableNxGenerators(workspacePath: string): Promise<IpcResponses.ResponseWithData<WorkspacesIpcDtos.Generators>> {
+    const result = await this.workspacesRepository.getAvailableNxGenerators(workspacePath);
+    return {
+      success: result ? 'Nx generators successfully analyzed' : '',
+      data: {
+        generators: result,
+        workspacePath
+      }
+    }
   }
 }

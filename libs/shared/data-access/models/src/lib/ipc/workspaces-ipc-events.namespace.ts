@@ -14,4 +14,8 @@ export namespace WorkspacesIpcEvents {
     fromAngular: 'TAGS',
     fromElectron: 'TAGS_RESULT'
   };
+  export const getAvailableGenerators: EventChannel = {
+    fromAngular: 'GET_AVAILABLE_GENERATORS',
+    fromElectron: 'GET_AVAILABLE_GENERATORS_RESULT'
+  };
 }

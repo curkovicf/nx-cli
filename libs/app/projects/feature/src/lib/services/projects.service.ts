@@ -306,15 +306,4 @@ export class ProjectsService implements IProjectsService {
       }
     };
   }
-
-  async getAvailableNxGenerators(workspacePath: string): Promise<IpcResponses.ResponseWithData<ProjectsIpcDtos.Generators>> {
-    const result = await this.projectsRepository.getAvailableNxGenerators(workspacePath);
-    return {
-      success: result ? 'Nx generators successfully analyzed' : '',
-      data: {
-        generators: result,
-        workspacePath
-      }
-    }
-  }
 }

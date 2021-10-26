@@ -11,13 +11,10 @@ import {
   fileTypes,
   FolderType,
   folderTypes,
-  getNxGenerator,
-  NxGenerator,
   Project,
   ProjectFolder,
   ProjectsIpcDtos,
-  ProjectType,
-  supportedNxPackagesAsList
+  ProjectType
 } from '@nx-cli/shared/data-access/models';
 
 interface ObjWithRootField {
@@ -390,43 +387,5 @@ export class ProjectsRepository {
    */
   trimToRelativePath(pwd: string, rootPath: string): string {
     return pwd.replace(rootPath, '');
-  }
-
-  /**
-   *
-   * @param workspacePath
-   */
-  async getAvailableNxGenerators(workspacePath: string): Promise<NxGenerator[]> {
-    const installedGenerators: NxGenerator[] = [];
-
-    const filePath = `${workspacePath}${OsUtils.getPlatformPathSeparator()}package.json`;
-    const packageJson = await fsExtra.readJSON(filePath);
-
-    const dependencies = [...Object.entries(packageJson.dependencies), ...Object.entries(packageJson.devDependencies)];
-
-    outer:
-    for (const dependencyPair of dependencies) {
-      for (const supportedNxGenerator of supportedNxPackagesAsList) {
-        //   [ 'eslint', '7.22.0' ]
-        const dependencyName = dependencyPair[0];
-
-        if (dependencyName.includes(supportedNxGenerator)) {
-          //  TODO: Do a one liner
-          const generator = getNxGenerator(supportedNxGenerator);
-
-          if (!generator) {
-            continue;
-          }
-
-          installedGenerators.push(...getNxGenerator(supportedNxGenerator));
-
-          continue outer;
-        }
-      }
-    }
-
-    console.log(installedGenerators);
-
-    return installedGenerators;
   }
 }

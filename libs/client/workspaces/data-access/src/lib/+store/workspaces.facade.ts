@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { WorkspacesState } from './workspaces.store';
-import { Workspace } from '@nx-cli/shared/data-access/models';
+import { Workspace, WorkspacesIpcDtos } from '@nx-cli/shared/data-access/models';
 
 import { Observable } from 'rxjs';
 import { first, map } from 'rxjs/operators';
@@ -17,35 +17,39 @@ export class WorkspacesFacade {
 
   constructor(private store: Store<WorkspacesState>) {}
 
-  setWorkspacesState(workspacesState: WorkspacesState): void {
+  public setWorkspacesState(workspacesState: WorkspacesState): void {
     this.store.dispatch(WorkspacesActions.setWorkspacesState({ workspacesState }));
   }
 
-  selectWorkspace(selectedWorkspace: Workspace): void {
+  public selectWorkspace(selectedWorkspace: Workspace): void {
     this.store.dispatch(WorkspacesActions.switchCurrentWorkspace({ selectedWorkspace }));
   }
 
-  addWorkspace(newWorkspace: Workspace): void {
+  public addWorkspace(newWorkspace: Workspace): void {
     this.store.dispatch(WorkspacesActions.addWorkspace({ newWorkspace }));
   }
 
-  deleteWorkspace(workspace: Workspace): void {
+  public deleteWorkspace(workspace: Workspace): void {
     this.store.dispatch(WorkspacesActions.deleteWorkspace({ workspace }));
   }
 
-  addLog(workspacePath: string, logs: string[]): void {
+  public addLog(workspacePath: string, logs: string[]): void {
     this.store.dispatch(WorkspacesActions.addLogs({ workspacePath, logs }));
   }
 
-  clearConsole(workspacePath: string): void {
+  public clearConsole(workspacePath: string): void {
     this.store.dispatch(WorkspacesActions.clearLog({ workspacePath }));
   }
 
-  getSelectedWorkspacePath(): Observable<string> {
+  public getSelectedWorkspacePath(): Observable<string> {
     return this.selectedWorkspace$.pipe(first(), map((w) => w?.path));
   }
 
-  addTags(tags: string[]): void {
+  public addTags(tags: string[]): void {
     this.store.dispatch(WorkspacesActions.addTags({ tags }));
+  }
+
+  public addNxGenerators(nxGenerators: WorkspacesIpcDtos.Generators): void {
+    this.store.dispatch(WorkspacesActions.addNxGenerators({ nxGenerators }));
   }
 }

@@ -2,7 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { ElectronService } from 'ngx-electron';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { WorkspacesFacade } from '../+store/workspaces.facade';
-import { WorkspacesIpcEvents, IpcResponses } from '@nx-cli/shared/data-access/models';
+import { WorkspacesIpcEvents, IpcResponses, WorkspacesIpcDtos } from '@nx-cli/shared/data-access/models';
 
 @Injectable()
 export class WorkspacesIpcEventsService {
@@ -16,6 +16,7 @@ export class WorkspacesIpcEventsService {
   public initChannels(): void {
     this.initLoggingChannel();
     this.initTagsChannel();
+    this.initNxGeneratorsChannel();
   }
 
   private initLoggingChannel(): void {
@@ -40,6 +41,19 @@ export class WorkspacesIpcEventsService {
       }
 
       this.ngZone.run(() => this.workspacesFacade.addTags(data))
+    });
+  }
+
+  private initNxGeneratorsChannel(): void {
+    this.electronService.ipcRenderer.on(WorkspacesIpcEvents.getAvailableGenerators.fromElectron, (event, response: IpcResponses.ResponseWithData<WorkspacesIpcDtos.Generators>) => {
+      const { success, error, data } = response;
+
+      if (error) {
+        //  TODO: Impl snackbar
+        alert('ERR WITH GENERATORS');
+      }
+
+      this.ngZone.run(() => this.workspacesFacade.addNxGenerators(data))
     });
   }
 }

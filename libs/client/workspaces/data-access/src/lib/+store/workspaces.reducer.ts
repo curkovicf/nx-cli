@@ -28,7 +28,7 @@ export const workspacesReducer = createReducer(
     workspaces: state.workspaces.filter(w => w.name !== workspace.name),
     selectedWorkspace: null
   })),
-  on(WorkspacesActions.addLogs, (state, { workspacePath , logs }) => ({
+  on(WorkspacesActions.addLogs, (state, { workspacePath, logs }) => ({
     selectedWorkspace: state.selectedWorkspace && state.selectedWorkspace.path === workspacePath ?
       { ...state.selectedWorkspace, consoleLogs: [...state.selectedWorkspace.consoleLogs, ...logs] } :
       state.selectedWorkspace,
@@ -44,5 +44,18 @@ export const workspacesReducer = createReducer(
       ...state.workspaces.map(w => w.path === workspacePath ? { ...w, consoleLogs: [] } : w)
     ]
   })),
-  on(WorkspacesActions.addTags, (state, { tags }) => ({ ...state, selectedWorkspace: { ...state.selectedWorkspace, tags } }))
+  on(WorkspacesActions.addTags, (state, { tags }) => ({
+    ...state,
+    selectedWorkspace: { ...state.selectedWorkspace, tags }
+  })),
+  on(WorkspacesActions.addNxGenerators, (state, { nxGenerators: nxGeneratorsDto }) => ({
+    workspaces: state.workspaces.map(w => w.path === nxGeneratorsDto.workspacePath ? {
+      ...w,
+      generators: nxGeneratorsDto.generators
+    } : w),
+    selectedWorkspace: state.selectedWorkspace.path === nxGeneratorsDto.workspacePath ? {
+      ...state.selectedWorkspace,
+      generators: nxGeneratorsDto.generators
+    } : state.selectedWorkspace
+  }))
 );

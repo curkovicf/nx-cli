@@ -18,6 +18,7 @@ export class WorkspacesEffects {
     ofType(switchCurrentWorkspace),
     tap(({ selectedWorkspace }) => {
       this.workspacesIpcApiService.getTags(selectedWorkspace.path);
+      this.workspacesIpcApiService.getAvailableNxGenerators(selectedWorkspace.path);
     })
   ), { dispatch: false });
 }

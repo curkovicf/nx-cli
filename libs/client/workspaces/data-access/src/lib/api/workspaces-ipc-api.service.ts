@@ -23,4 +23,8 @@ export class WorkspacesIpcApiService {
   public getTags(workspacePath: string): void {
     this.electronService.ipcRenderer.send(WorkspacesIpcEvents.tags.fromAngular, workspacePath);
   }
+
+  public getAvailableNxGenerators(workspacePath: string): void {
+    this.electronService.ipcRenderer.send(WorkspacesIpcEvents.getAvailableGenerators.fromAngular, workspacePath);
+  }
 }
