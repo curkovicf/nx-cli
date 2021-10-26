@@ -1,3 +1,5 @@
+import { angularNxGenerators } from '../nx-generators/angular.generator';
+
 export interface NxGenerator {
   name: string;
   form: NxGeneratorForm;
@@ -27,7 +29,19 @@ export interface ITextInput extends BaseFormElement {
   input?: string;
 }
 
-export enum SupportedNxGenerators {
+// export const supportedNxPackages: NxPackage[] = [
+//   { name: 'Angular', npmName: '@nrwl/angular' },
+//   { name: 'Nx Workspaces', npmName: '@nrwl/workspace' },
+//   { name: 'Electron', npmName: 'nx-electron' },
+//   { name: 'Flutter', npmName: '@nxrocks/nx-flutter' },
+//   { name: 'Vue', npmName: '@nx-plus/vue' },
+//   { name: 'React', npmName: '@nrwl/react' },
+//   { name: 'Nest', npmName: '@nrwl/nest' },
+//   { name: 'Svelte', npmName: '@nxext/svelte' },
+//   { name: 'Web Components', npmName: '@nrwl/web' },
+// ];
+
+export enum SupportedNxPackages {
   angular = '@nrwl/angular',
   workspace = '@nrwl/workspace',
   electron = 'nx-electron',
@@ -40,54 +54,32 @@ export enum SupportedNxGenerators {
   web = '@nrwl/web',
 }
 
-export const supportedNxGeneratorsAsList = Object.values(SupportedNxGenerators);
+SupportedNxPackages.angular.valueOf()
+
+export const supportedNxPackagesAsList = Object.values(SupportedNxPackages);
 
 
-export const angularNxGenerator: NxGenerator = {
-  //  TODO: Add later, currently it is breaking the app for some reason
-  //  checkbox: publishable, placeholder: Generate a publishable library
-  //  checkbox: simpleModuleName, placeholder: Keep the module name simple while using &#45;&#45;directory
-  name: SupportedNxGenerators.angular,
-  form: {
-    textInputs: [
-      { isRequired: true, title: 'name', placeholder: 'The name of the library' },
-      { title: 'directory', placeholder: 'The name of the library', },
-      { title: 'prefix', placeholder: 'Prefix to apply to generated selectors', },
-      { title: 'tags', placeholder: 'Add tags to the library', },
-      { title: 'importPath', placeholder: 'The library name used to import it, like `@myorg/my-awesome-lib`. Must be a valid npm name.', },
-    ],
-    checkboxes: [
-      { title: 'buildable', placeholder: 'Generate a buildable library' },
-      { title: 'enableIvy', placeholder: 'Enable Ivy for lib in tsconfig.lib.prod.json' },
-      { title: 'addModuleSpecFile', placeholder: 'Add a module spec file' },
-      { title: 'buildable', placeholder: 'Generate a buildable library' },
-    ],
-  }
-}
-
-
-
-export function getNxGenerator(supportedNxGenerator: SupportedNxGenerators): NxGenerator {
+export function getNxGenerator(supportedNxGenerator: SupportedNxPackages): NxGenerator[] {
   switch (supportedNxGenerator) {
-    case SupportedNxGenerators.angular:
-      return angularNxGenerator;
-    case SupportedNxGenerators.workspace:
+    case SupportedNxPackages.angular:
+      return angularNxGenerators;
+    case SupportedNxPackages.workspace:
       break;
-    case SupportedNxGenerators.electron:
+    case SupportedNxPackages.electron:
       break;
-    case SupportedNxGenerators.flutter:
+    case SupportedNxPackages.flutter:
       break;
-    case SupportedNxGenerators.vue:
+    case SupportedNxPackages.vue:
       break;
-    case SupportedNxGenerators.react:
+    case SupportedNxPackages.react:
       break;
-    case SupportedNxGenerators.nestjs:
+    case SupportedNxPackages.nestjs:
       break;
-    case SupportedNxGenerators.node:
+    case SupportedNxPackages.node:
       break;
-    case SupportedNxGenerators.svelte:
+    case SupportedNxPackages.svelte:
       break;
-    case SupportedNxGenerators.web:
+    case SupportedNxPackages.web:
       break;
   }
 

@@ -1,21 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NxCliDialogFormClass } from '@nx-cli/client/projects/util';
-import { ProjectsIpcDtos } from '@nx-cli/shared/data-access/models';
+import { NxGenerator, ProjectsIpcDtos } from '@nx-cli/shared/data-access/models';
 
 @Component({
   selector: 'nx-cli-new-lib-form',
-  templateUrl: './new-lib-dialog.component.html',
-  styleUrls: ['./new-lib-dialog.component.scss']
+  templateUrl: './generator-dialog.component.html',
+  styleUrls: ['./generator-dialog.component.scss'],
 })
-export class NewLibDialogComponent extends NxCliDialogFormClass<NewLibDialogComponent> implements OnInit {
+export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDialogComponent> implements OnInit {
   form: FormGroup;
 
-  constructor(public dialogRef: MatDialogRef<NewLibDialogComponent>) {
+  constructor(
+    public dialogRef: MatDialogRef<GeneratorDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: NxGenerator
+  ) {
     super(dialogRef);
   }
 
+  //  Form array reference
+  //  https://www.telerik.com/blogs/angular-basics-creating-dynamic-forms-using-formarray-angular
   ngOnInit(): void {
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),
@@ -50,7 +55,7 @@ export class NewLibDialogComponent extends NxCliDialogFormClass<NewLibDialogComp
       prefix: this.form.get('prefix').value,
       publishable: false,
       simpleModuleName: false,
-      addModuleSpecFile: this.form.get('addModuleSpecFile').value
+      addModuleSpecFile: this.form.get('addModuleSpecFile').value,
     };
   }
 }

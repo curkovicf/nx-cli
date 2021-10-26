@@ -73,6 +73,9 @@
     "client-projects-ui-folder-tree": {
       "tags": []
     },
+    "client-projects-ui-generator-dialog": {
+      "tags": []
+    },
     "client-projects-ui-list-item": {
       "tags": []
     },
@@ -83,9 +86,6 @@
       "tags": []
     },
     "client-projects-ui-new-component-dialog": {
-      "tags": []
-    },
-    "client-projects-ui-new-lib-dialog": {
       "tags": []
     },
     "client-projects-ui-new-service-dialog": {

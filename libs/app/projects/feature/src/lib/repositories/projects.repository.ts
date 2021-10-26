@@ -17,7 +17,7 @@ import {
   ProjectFolder,
   ProjectsIpcDtos,
   ProjectType,
-  supportedNxGeneratorsAsList
+  supportedNxPackagesAsList
 } from '@nx-cli/shared/data-access/models';
 
 interface ObjWithRootField {
@@ -406,12 +406,19 @@ export class ProjectsRepository {
 
     outer:
     for (const dependencyPair of dependencies) {
-      for (const supportedNxGenerator of supportedNxGeneratorsAsList) {
+      for (const supportedNxGenerator of supportedNxPackagesAsList) {
         //   [ 'eslint', '7.22.0' ]
         const dependencyName = dependencyPair[0];
 
         if (dependencyName.includes(supportedNxGenerator)) {
-          installedGenerators.push(getNxGenerator(supportedNxGenerator));
+          //  TODO: Do a one liner
+          const generator = getNxGenerator(supportedNxGenerator);
+
+          if (!generator) {
+            continue;
+          }
+
+          installedGenerators.push(...getNxGenerator(supportedNxGenerator));
 
           continue outer;
         }
@@ -422,6 +429,4 @@ export class ProjectsRepository {
 
     return installedGenerators;
   }
-
-
 }

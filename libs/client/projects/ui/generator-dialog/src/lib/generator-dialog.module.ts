@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NewLibDialogComponent } from './new-lib-dialog.component';
+import { GeneratorDialogComponent } from './generator-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from '@nx-cli/client/shared/ui/button';
@@ -16,8 +16,8 @@ import { DropdownModule } from '@nx-cli/client/shared/ui/dropdown';
     ButtonModule,
     CheckboxModule,
     InputModule,
-    DropdownModule
+    DropdownModule,
   ],
-  declarations: [NewLibDialogComponent],
+  declarations: [GeneratorDialogComponent],
 })
-export class NewLibDialogModule {}
+export class GeneratorDialogModule {}

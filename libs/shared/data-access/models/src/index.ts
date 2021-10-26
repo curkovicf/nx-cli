@@ -11,4 +11,5 @@ export * from './lib/api/project.model';
 export * from './lib/api/angular-module.model';
 export * from './lib/api/folder-tree.model';
 export * from './lib/api/nx-generator.model';
-// export * from './lib/api/';
+
+export * from './lib/nx-generators/angular.generator';

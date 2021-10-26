@@ -447,6 +447,31 @@
         }
       }
     },
+    "client-projects-ui-generator-dialog": {
+      "projectType": "library",
+      "root": "libs/client/projects/ui/generator-dialog",
+      "sourceRoot": "libs/client/projects/ui/generator-dialog/src",
+      "prefix": "nx-cli",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/ui/generator-dialog"],
+          "options": {
+            "jestConfig": "libs/client/projects/ui/generator-dialog/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/ui/generator-dialog/src/**/*.ts",
+              "libs/client/projects/ui/generator-dialog/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "client-projects-ui-list-item": {
       "projectType": "library",
       "root": "libs/client/projects/ui/list-item",
@@ -542,31 +567,6 @@
             "lintFilePatterns": [
               "libs/client/projects/ui/new-component-dialog/src/**/*.ts",
               "libs/client/projects/ui/new-component-dialog/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "client-projects-ui-new-lib-dialog": {
-      "projectType": "library",
-      "root": "libs/client/projects/ui/new-lib-dialog",
-      "sourceRoot": "libs/client/projects/ui/new-lib-dialog/src",
-      "prefix": "nx-cli",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/projects/ui/new-lib-dialog"],
-          "options": {
-            "jestConfig": "libs/client/projects/ui/new-lib-dialog/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/client/projects/ui/new-lib-dialog/src/**/*.ts",
-              "libs/client/projects/ui/new-lib-dialog/src/**/*.html"
             ]
           }
         }

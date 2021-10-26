@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'client-projects-ui-new-lib-dialog',
+  displayName: 'client-projects-ui-generator-dialog',
   preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,7 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../../../../coverage/libs/client/projects/ui/new-lib-dialog',
+  coverageDirectory: '../../../../../coverage/libs/client/projects/ui/generator-dialog',
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',
   },

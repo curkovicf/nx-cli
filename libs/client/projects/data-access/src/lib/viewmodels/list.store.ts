@@ -8,7 +8,7 @@ import { ProjectsIpcApiService } from '../api/projects-ipc-api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ComponentType } from '@angular/cdk/portal/portal';
 import { NewAppDialogComponent } from '@nx-cli/client/projects/ui/new-app-dialog';
-import { NewLibDialogComponent } from '@nx-cli/client/projects/ui/new-lib-dialog';
+import { GeneratorDialogComponent } from '@nx-cli/client/projects/ui/generator-dialog';
 import { MatDialogConfig } from '@angular/material/dialog/dialog-config';
 import { ProjectsFacade } from '../+store/projects.facade';
 import { AutocompleteSearchComponent } from '@nx-cli/client/shared/ui/autocomplete-search';
@@ -26,7 +26,7 @@ export class listStore extends ComponentStore<ProjectsState> {
     this.state$,
     (projects, { filterKeyword, isPopupSearchVisible }) => ({
       projectsInView: projects.filter((project) => project.name.includes(filterKeyword)),
-      isPopupSearchVisible
+      isPopupSearchVisible,
     })
   );
 
@@ -38,7 +38,7 @@ export class listStore extends ComponentStore<ProjectsState> {
   ) {
     super(<ProjectsState>{
       projectsLoadedInView: [],
-      filterKeyword: ''
+      filterKeyword: '',
     });
   }
 
@@ -48,8 +48,11 @@ export class listStore extends ComponentStore<ProjectsState> {
 
   public fetchProjects(): void {
     this.workspacesFacade.selectedWorkspace$
-      .pipe(first(), filter(data => !!data))
-      .subscribe(workspace => this.projectsIpcApiService.getAllProjects(workspace.path));
+      .pipe(
+        first(),
+        filter((data) => !!data)
+      )
+      .subscribe((workspace) => this.projectsIpcApiService.getAllProjects(workspace.path));
   }
 
   public selectProject(selectedProject: Project): void {
@@ -57,37 +60,40 @@ export class listStore extends ComponentStore<ProjectsState> {
   }
 
   public createApplication(): void {
-    this.openDialog(NewAppDialogComponent)
-      .subscribe(([data, workspacePath]) => this.projectsIpcApiService.generateApplication({ ...data, workspacePath }));
+    this.openDialog(NewAppDialogComponent).subscribe(([data, workspacePath]) =>
+      this.projectsIpcApiService.generateApplication({ ...data, workspacePath })
+    );
   }
 
   public createLibrary(): void {
-    this.openDialog(NewLibDialogComponent, { maxHeight: '90vh' })
-      .subscribe(([data, workspacePath]) => {
-        console.log(data);
-        console.log(workspacePath);
-        this.projectsIpcApiService.generateLibrary({ ...data, workspacePath })
-      });
+    this.openDialog(GeneratorDialogComponent, { maxHeight: '90vh' }).subscribe(([data, workspacePath]) => {
+      console.log(data);
+      console.log(workspacePath);
+      this.projectsIpcApiService.generateLibrary({ ...data, workspacePath });
+    });
   }
 
   public startDepGraph(): void {
     this.workspacesFacade
       .getSelectedWorkspacePath()
-      .subscribe(workspacePath => this.projectsIpcApiService.startDepGraph(workspacePath));
+      .subscribe((workspacePath) => this.projectsIpcApiService.startDepGraph(workspacePath));
   }
 
   public togglePopupSearch(): void {
     const data = ['aa', 'bb', 'ccc', 'ddddd', 'eeeee', 'sssssss', 'njnjnj'];
 
-    this.workspacesFacade.getSelectedWorkspacePath()
+    this.workspacesFacade
+      .getSelectedWorkspacePath()
       .pipe(
         first(),
-        tap(workspacePath => this.projectsIpcApiService.getAvailableNxGenerators(workspacePath))
-      ).subscribe();
+        tap((workspacePath) => this.projectsIpcApiService.getAvailableNxGenerators(workspacePath))
+      )
+      .subscribe();
 
-    this.dialog.open(AutocompleteSearchComponent, { data })
+    this.dialog
+      .open(AutocompleteSearchComponent, { data })
       .afterClosed()
-      .subscribe(element => {
+      .subscribe((element) => {
         this.createApplication();
       });
   }
@@ -96,7 +102,10 @@ export class listStore extends ComponentStore<ProjectsState> {
   private openDialog(component: ComponentType<unknown>, config?: MatDialogConfig): Observable<any> {
     return combineLatest([
       this.dialog.open(component, config).afterClosed(),
-      this.workspacesFacade.selectedWorkspace$.pipe(first(), map((w) => w?.path)),
+      this.workspacesFacade.selectedWorkspace$.pipe(
+        first(),
+        map((w) => w?.path)
+      ),
     ]).pipe(
       first(),
       filter(([data, workspacePath]) => !!data)
