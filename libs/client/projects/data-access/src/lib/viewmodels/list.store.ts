@@ -2,8 +2,8 @@ import { ComponentStore } from '@ngrx/component-store';
 import { Injectable } from '@angular/core';
 import { filter, first, map, switchMap, tap } from 'rxjs/operators';
 import { Project } from '@nx-cli/shared/data-access/models';
-import { WorkspacesFacade, WorkspacesIpcApiService } from '@nx-cli/client/workspaces/data-access';
-import { combineLatest, Observable, pipe } from 'rxjs';
+import { WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
+import { combineLatest, Observable } from 'rxjs';
 import { ProjectsIpcApiService } from '../api/projects-ipc-api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ComponentType } from '@angular/cdk/portal/portal';
@@ -80,24 +80,19 @@ export class listStore extends ComponentStore<ProjectsState> {
   }
 
   public togglePopupSearch(): void {
-    const data = ['aa', 'bb', 'ccc', 'ddddd', 'eeeee', 'sssssss', 'njnjnj'];
-
-    // this.workspacesFacade
-    //   .getSelectedWorkspacePath()
-    //   .pipe(
-    //     first(),
-    //     tap((workspacePath) => this.workspacesIpcApiService.getAvailableNxGenerators(workspacePath))
-    //   )
-    //   .subscribe();
-
     this.workspacesFacade.selectedWorkspace$
       .pipe(
         first(),
         switchMap(selectedWorkspace => this.dialog
           .open(AutocompleteSearchComponent, { data: selectedWorkspace.generators.map(g => g.name) })
           .afterClosed()
-        ),
-        tap()
+          .pipe(
+            switchMap(selectedGeneratorName => this.openDialog(GeneratorDialogComponent, {
+              data: selectedWorkspace.generators.find(g => g.name === selectedGeneratorName),
+              maxHeight: '90vh'
+            }))
+          )
+        )
       )
       .subscribe();
   }

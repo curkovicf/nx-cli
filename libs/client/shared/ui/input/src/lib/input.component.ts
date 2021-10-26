@@ -21,6 +21,9 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
   inputElement: ElementRef;
 
   @Input()
+  formControlName: string;
+
+  @Input()
   initialValue: string;
 
   @Input()

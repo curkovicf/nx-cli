@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, Inject, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NxCliDialogFormClass } from '@nx-cli/client/projects/util';
 import { NxGenerator, ProjectsIpcDtos } from '@nx-cli/shared/data-access/models';
 import { InputComponent } from '../../../../../shared/ui/input/src/lib/input.component';
@@ -12,7 +12,7 @@ import { CheckboxComponent } from '@nx-cli/client/shared/ui/checkbox';
   styleUrls: ['./generator-dialog.component.scss'],
 })
 export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDialogComponent> implements OnInit {
-  @ViewChild('mainForm', { read: ViewContainerRef })
+  @ViewChild('mainForm', { read: ViewContainerRef, static: true })
   readonly mainForm: ViewContainerRef;
 
   public form: FormGroup;
@@ -32,38 +32,44 @@ export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDial
 
   //  Form array reference
   //  https://www.telerik.com/blogs/angular-basics-creating-dynamic-forms-using-formarray-angular
+  //  https://www.youtube.com/watch?v=aOQ1xFC3amw
   ngOnInit(): void {
+    console.log(this.data);
 
-    // this.form = new FormGroup({
-    //   name: new FormControl('', [Validators.required]),
-    //   directory: new FormControl(''),
-    //   importPath: new FormControl(''),
-    //   addModuleSpecFile: new FormControl(false),
-    //   buildable: new FormControl(false),
-    //   enableIvy: new FormControl(false),
-    //   // publishable: new FormControl(false),
-    //   // simpleModuleName: new FormControl(false),
-    //   prefix: new FormControl(''),
-    //   tags: new FormControl(''),
-    // });
+    this.form = this.formBuilder.group({
+      mainForm: this.formBuilder.array([
+        ...this.data.form.checkboxes.map(checkboxItem => ({ [checkboxItem.title]: this.formBuilder.control(false) })),
+        ...this.data.form.textInputs.map(textBoxItem => ({
+          [textBoxItem.title]: textBoxItem.isRequired ?
+            this.formBuilder.control('', [Validators.required]) :
+            this.formBuilder.control('')
+        }))
+      ])
+    });
 
-    this.form = this.formBuilder.group({});
     this.injectForm();
   }
 
   private injectForm(): void {
     this.data?.form.textInputs.forEach(textInput => {
-      this.mainForm
-        .createComponent(this.createInputComponent())
-        .changeDetectorRef
-        .detectChanges();
+      const component = this.mainForm.createComponent(this.createInputComponent());
+
+      component.instance.formControlName = textInput.title;
+      component.instance.title = textInput.title;
+      component.instance.description = textInput.placeholder;
+
+      component.changeDetectorRef.detectChanges();
     })
 
     this.data?.form.checkboxes.forEach(checkbox => {
-      this.mainForm
-        .createComponent(this.createCheckboxComponent())
-        .changeDetectorRef
-        .detectChanges();
+      const component = this.mainForm.createComponent(this.createCheckboxComponent());
+
+      component.instance.formControlName = checkbox.title;
+      component.instance.title = checkbox.title;
+      component.instance.description = checkbox.placeholder;
+      component.instance.isChecked = false;
+
+      component.changeDetectorRef.detectChanges();
     })
   }
 
@@ -76,11 +82,17 @@ export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDial
   }
 
   public onSubmit(): void {
+    console.log(this.form);
+
+    const arr = this.form.get('mainForm') as FormArray;
+    console.log(arr);
+    // console.log(arr);
+
     if (!this.isFormValid()) {
       return;
     }
 
-    this.dialogRef.close(this.generateDto());
+    this.dialogRef.close();
   }
 
   private generateDto(): Partial<ProjectsIpcDtos.GenerateAngularLibrary> {
