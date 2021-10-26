@@ -94,7 +94,7 @@ export class listStore extends ComponentStore<ProjectsState> {
       .open(AutocompleteSearchComponent, { data })
       .afterClosed()
       .subscribe((element) => {
-        this.createApplication();
+        this.createLibrary();
       });
   }
 

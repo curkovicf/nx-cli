@@ -1,8 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, Inject, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { NxCliDialogFormClass } from '@nx-cli/client/projects/util';
 import { NxGenerator, ProjectsIpcDtos } from '@nx-cli/shared/data-access/models';
+import { InputComponent } from '../../../../../shared/ui/input/src/lib/input.component';
+import { CheckboxComponent } from '@nx-cli/client/shared/ui/checkbox';
 
 @Component({
   selector: 'nx-cli-new-lib-form',
@@ -10,30 +12,67 @@ import { NxGenerator, ProjectsIpcDtos } from '@nx-cli/shared/data-access/models'
   styleUrls: ['./generator-dialog.component.scss'],
 })
 export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDialogComponent> implements OnInit {
-  form: FormGroup;
+  @ViewChild('mainForm', { read: ViewContainerRef })
+  readonly mainForm: ViewContainerRef;
+
+  public form: FormGroup;
 
   constructor(
-    public dialogRef: MatDialogRef<GeneratorDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: NxGenerator
+    private readonly componentFactory: ComponentFactoryResolver,
+    private readonly formBuilder: FormBuilder,
+    public readonly dialogRef: MatDialogRef<GeneratorDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public readonly data: NxGenerator
   ) {
     super(dialogRef);
+  }
+
+  get generatorForm(): FormArray {
+    return this.form.controls["nx-generator"] as FormArray;
   }
 
   //  Form array reference
   //  https://www.telerik.com/blogs/angular-basics-creating-dynamic-forms-using-formarray-angular
   ngOnInit(): void {
-    this.form = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      directory: new FormControl(''),
-      importPath: new FormControl(''),
-      addModuleSpecFile: new FormControl(false),
-      buildable: new FormControl(false),
-      enableIvy: new FormControl(false),
-      // publishable: new FormControl(false),
-      // simpleModuleName: new FormControl(false),
-      prefix: new FormControl(''),
-      tags: new FormControl(''),
-    });
+
+    // this.form = new FormGroup({
+    //   name: new FormControl('', [Validators.required]),
+    //   directory: new FormControl(''),
+    //   importPath: new FormControl(''),
+    //   addModuleSpecFile: new FormControl(false),
+    //   buildable: new FormControl(false),
+    //   enableIvy: new FormControl(false),
+    //   // publishable: new FormControl(false),
+    //   // simpleModuleName: new FormControl(false),
+    //   prefix: new FormControl(''),
+    //   tags: new FormControl(''),
+    // });
+
+    this.form = this.formBuilder.group({});
+    this.injectForm();
+  }
+
+  private injectForm(): void {
+    this.data?.form.textInputs.forEach(textInput => {
+      this.mainForm
+        .createComponent(this.createInputComponent())
+        .changeDetectorRef
+        .detectChanges();
+    })
+
+    this.data?.form.checkboxes.forEach(checkbox => {
+      this.mainForm
+        .createComponent(this.createCheckboxComponent())
+        .changeDetectorRef
+        .detectChanges();
+    })
+  }
+
+  private createInputComponent() {
+    return this.componentFactory.resolveComponentFactory(InputComponent);
+  }
+
+  private createCheckboxComponent() {
+    return this.componentFactory.resolveComponentFactory(CheckboxComponent);
   }
 
   public onSubmit(): void {
