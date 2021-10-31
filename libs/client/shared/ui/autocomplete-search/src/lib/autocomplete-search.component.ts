@@ -1,8 +1,16 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Inject,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatAutocomplete } from '@angular/material/autocomplete';
 
 
 @Component({
@@ -11,11 +19,18 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./autocomplete-search.component.scss']
 })
 export class AutocompleteSearchComponent implements OnInit {
-  control = new FormControl();
-  filteredElements: Observable<string[]>;
+  @ViewChild('inputField', { static: true })
+  readonly inputField: ElementRef;
+
+  @ViewChild(MatAutocomplete, { static: true })
+  readonly autoCompleteElement: MatAutocomplete;
+
+  public control = new FormControl();
+  public filteredElements: Observable<string[]>;
 
   constructor(
-    public dialogRef: MatDialogRef<AutocompleteSearchComponent>,
+    public readonly dialogRef: MatDialogRef<AutocompleteSearchComponent>,
+    private readonly changeDetectorRef: ChangeDetectorRef,
     @Inject(MAT_DIALOG_DATA) public data: string[]
   ) {}
 
@@ -24,6 +39,10 @@ export class AutocompleteSearchComponent implements OnInit {
       startWith(''),
       map(value => this.filter(value))
     );
+
+    this.changeDetectorRef.detectChanges();
+
+    setTimeout(() => this.inputField.nativeElement.focus(), 150);
   }
 
   private filter(value: string): string[] {

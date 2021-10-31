@@ -1,42 +1,7 @@
-<h4 mat-dialog-title>ng generate @nrwl/angular:library</h4>
+<h4 mat-dialog-title>{{ data.name }}</h4>
 
-<form #mainForm [formGroup]="form" (ngSubmit)="onSubmit()" mat-dialog-content>
-
-<!--  <ng-container  formArrayName='"nx-generator"'></ng-container>-->
-<!--  <nx-cli-input formControlName="name" title="name" description="The name of the library"></nx-cli-input>-->
-<!--  <nx-cli-input-->
-<!--    formControlName="directory"-->
-<!--    title="directory"-->
-<!--    description="A directory where the library is placed"-->
-<!--  ></nx-cli-input>-->
-<!--  <nx-cli-input-->
-<!--    formControlName="prefix"-->
-<!--    title="prefix"-->
-<!--    description="Prefix to apply to generated selectors"-->
-<!--  ></nx-cli-input>-->
-<!--  <nx-cli-input formControlName="tags" title="tags" description="Add tags to the library"></nx-cli-input>-->
-<!--  <nx-cli-input-->
-<!--    formControlName="importPath"-->
-<!--    title="importPath"-->
-<!--    description="The library name used to import it, like `@myorg/my-awesome-lib`. Must be a valid npm name."-->
-<!--  ></nx-cli-input>-->
-<!--  <nx-cli-checkbox-->
-<!--    formControlName="buildable"-->
-<!--    title="buildable"-->
-<!--    description="Generate a buildable library"-->
-<!--  ></nx-cli-checkbox>-->
-  <!--  <nx-cli-checkbox formControlName='publishable' title='publishable' description='Generate a publishable library'></nx-cli-checkbox>-->
-<!--  <nx-cli-checkbox-->
-<!--    formControlName="enableIvy"-->
-<!--    title="enableIvy"-->
-<!--    description="Enable Ivy for lib in tsconfig.lib.prod.json"-->
-<!--  ></nx-cli-checkbox>-->
-<!--  <nx-cli-checkbox-->
-<!--    formControlName="addModuleSpecFile"-->
-<!--    title="addModuleSpecFile"-->
-<!--    description="Add a module spec file"-->
-<!--  ></nx-cli-checkbox>-->
-  <!--  <nx-cli-checkbox formControlName='simpleModuleName' title='simpleModuleName' description='Keep the module name simple while using &#45;&#45;directory'></nx-cli-checkbox>-->
+<form [formGroup]="form" (ngSubmit)="onSubmit()" mat-dialog-content>
+  <ng-container #mainForm class='inputs-wrapper'></ng-container>
 
   <div class="actions">
     <nx-cli-button type="submit" buttonText="Submit" buttonType="primary"></nx-cli-button>

@@ -1,4 +1,12 @@
-import { Component, ComponentFactoryResolver, Inject, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ComponentFactoryResolver,
+  Inject,
+  OnInit,
+  ViewChild,
+  ViewContainerRef
+} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NxCliDialogFormClass } from '@nx-cli/client/projects/util';
@@ -20,10 +28,13 @@ export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDial
   constructor(
     private readonly componentFactory: ComponentFactoryResolver,
     private readonly formBuilder: FormBuilder,
+    private readonly changeDetectorRef: ChangeDetectorRef,
     public readonly dialogRef: MatDialogRef<GeneratorDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public readonly data: NxGenerator
   ) {
     super(dialogRef);
+
+    this.changeDetectorRef.detach();
   }
 
   get generatorForm(): FormArray {
@@ -34,8 +45,14 @@ export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDial
   //  https://www.telerik.com/blogs/angular-basics-creating-dynamic-forms-using-formarray-angular
   //  https://www.youtube.com/watch?v=aOQ1xFC3amw
   ngOnInit(): void {
-    console.log(this.data);
+    this.createForm();
+    this.injectForm();
 
+    this.changeDetectorRef.reattach();
+    this.changeDetectorRef.detectChanges();
+  }
+
+  private createForm(): void {
     this.form = this.formBuilder.group({
       mainForm: this.formBuilder.array([
         ...this.data.form.checkboxes.map(checkboxItem => ({ [checkboxItem.title]: this.formBuilder.control(false) })),
@@ -46,8 +63,6 @@ export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDial
         }))
       ])
     });
-
-    this.injectForm();
   }
 
   private injectForm(): void {

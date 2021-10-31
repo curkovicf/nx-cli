@@ -1,9 +1,9 @@
 import { ComponentStore } from '@ngrx/component-store';
 import { Injectable } from '@angular/core';
-import { filter, first, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, defaultIfEmpty, filter, first, map, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { Project } from '@nx-cli/shared/data-access/models';
 import { WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
-import { combineLatest, Observable } from 'rxjs';
+import { combineLatest, iif, Observable, of } from 'rxjs';
 import { ProjectsIpcApiService } from '../api/projects-ipc-api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ComponentType } from '@angular/cdk/portal/portal';
@@ -87,10 +87,12 @@ export class listStore extends ComponentStore<ProjectsState> {
           .open(AutocompleteSearchComponent, { data: selectedWorkspace.generators.map(g => g.name) })
           .afterClosed()
           .pipe(
-            switchMap(selectedGeneratorName => this.openDialog(GeneratorDialogComponent, {
-              data: selectedWorkspace.generators.find(g => g.name === selectedGeneratorName),
-              maxHeight: '90vh'
-            }))
+            filter(selectedGeneratorName => selectedGeneratorName !== undefined),
+            tap(selectedGeneratorName => this.openDialog(GeneratorDialogComponent, {
+                data: selectedWorkspace.generators.find(g => g.name === selectedGeneratorName),
+                maxHeight: '90vh'
+              })
+            )
           )
         )
       )
