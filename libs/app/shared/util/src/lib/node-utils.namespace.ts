@@ -18,7 +18,7 @@ export namespace NodeUtils {
       const result = await spawnPromise(cmd, args, pwd);
       return {
         isSuccess: result.includes(successKeyword),
-        log: result.trim()
+        log: result.trim(),
       };
     } catch (err) {
       return null;
@@ -34,8 +34,12 @@ export namespace NodeUtils {
         cwd: path,
       });
 
-      if (!process.stdin) { throw new Error('Unable to open stream, stdin'); }
-      if (!process.stdout) { throw new Error('Unable to open stream, stdout'); }
+      if (!process.stdin) {
+        throw new Error('Unable to open stream, stdin');
+      }
+      if (!process.stdout) {
+        throw new Error('Unable to open stream, stdout');
+      }
 
       let std_out = '';
 
@@ -49,7 +53,7 @@ export namespace NodeUtils {
       process.stderr.on('data', () => resolve(std_out));
 
       process.on('error', (err: any) => reject(err));
-      process.on('exit', () => resolve(std_out))
+      process.on('exit', () => resolve(std_out));
     });
   }
 }

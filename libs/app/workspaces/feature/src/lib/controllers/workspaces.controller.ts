@@ -2,11 +2,7 @@ import { ipcMain } from 'electron';
 import { IController } from '@nx-cli/app/shared/util';
 import { WorkspacesService } from '../services/workspaces.service';
 import { IWorkspaceService } from '../services/workspace-service.interface';
-import {
-  IpcResponses,
-  WorkspacesIpcDtos,
-  WorkspacesIpcEvents
-} from '@nx-cli/shared/data-access/models';
+import { IpcResponses, WorkspacesIpcDtos, WorkspacesIpcEvents } from '@nx-cli/shared/data-access/models';
 
 export class WorkspacesController implements IController {
   private workspacesService: IWorkspaceService = new WorkspacesService();
@@ -34,8 +30,9 @@ export class WorkspacesController implements IController {
 
   private initGetNxGenerators(): void {
     ipcMain.on(WorkspacesIpcEvents.getAvailableGenerators.fromAngular, async (event, workspacePath: string) => {
-      const response: IpcResponses.ResponseWithData<WorkspacesIpcDtos.Generators> = await this.workspacesService.getAvailableNxGenerators(workspacePath);
+      const response: IpcResponses.ResponseWithData<WorkspacesIpcDtos.Generators> =
+        await this.workspacesService.getAvailableNxGenerators(workspacePath);
       event.sender.send(WorkspacesIpcEvents.getAvailableGenerators.fromElectron, response);
-    })
+    });
   }
 }

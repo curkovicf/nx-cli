@@ -20,8 +20,8 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
   @ViewChild('inputElement')
   inputElement: ElementRef;
 
-  @Input()
-  formControlName: string;
+  // @Input()
+  // formControlName: string;
 
   @Input()
   initialValue: string;

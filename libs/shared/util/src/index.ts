@@ -1,1 +1,1 @@
-export * from './lib/util-string.namespace';
+export * from './lib/string-utils.namespace';

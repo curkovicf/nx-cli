@@ -1,3 +1,3 @@
 export interface IController {
-  initRoutes(): void
+  initRoutes(): void;
 }

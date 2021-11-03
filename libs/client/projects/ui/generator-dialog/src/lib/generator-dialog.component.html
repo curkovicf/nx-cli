@@ -1,7 +1,21 @@
-<h4 mat-dialog-title>{{ data.name }}</h4>
+<h4 mat-dialog-title>{{ data.nxGenerator.name }}</h4>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()" mat-dialog-content>
-  <ng-container #mainForm class='inputs-wrapper'></ng-container>
+<!--  <ng-container #mainForm class='inputs-wrapper'></ng-container>-->
+  <ng-container #mainForm class='inputs-wrapper'>
+    <div formArrayName='mainForm' *ngFor='let c of generatorForm.controls; let i = index'>
+      <nx-cli-input
+        *ngIf='i < data.nxGenerator.form.textInputs.length'
+        [title]='data.nxGenerator.form.textInputs[i].title'
+        [description]='data.nxGenerator.form.textInputs[i].placeholder'
+        [formControlName]='i'
+      >
+      </nx-cli-input>
+      <pre>
+        {{ data.nxGenerator.form.textInputs[i] | json }}
+      </pre>
+    </div>
+  </ng-container>
 
   <div class="actions">
     <nx-cli-button type="submit" buttonText="Submit" buttonType="primary"></nx-cli-button>

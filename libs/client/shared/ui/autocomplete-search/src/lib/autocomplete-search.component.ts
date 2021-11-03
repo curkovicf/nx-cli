@@ -42,6 +42,7 @@ export class AutocompleteSearchComponent implements OnInit {
 
     this.changeDetectorRef.detectChanges();
 
+    //  FIXME: Remove timeout
     setTimeout(() => this.inputField.nativeElement.focus(), 150);
   }
 

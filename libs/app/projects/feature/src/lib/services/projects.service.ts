@@ -1,12 +1,12 @@
 import * as fs from 'fs-extra';
 
-import { NodeUtils, OsUtils, StringUtils } from '@nx-cli/app/shared/util';
+import { NodeUtils, OsUtils } from '@nx-cli/app/shared/util';
 import { IProjectsService } from './projects-service.interface';
 import { ProjectsRepository } from '../repositories/projects.repository';
 import { IpcResponses, Project, ProjectsIpcDtos, ProjectType } from '@nx-cli/shared/data-access/models';
 import Platform = OsUtils.Platform;
 import RemoveTag = ProjectsIpcDtos.RemoveTag;
-
+import { StringUtils } from '@nx-cli/shared/util';
 
 export class ProjectsService implements IProjectsService {
   constructor(private projectsRepository: ProjectsRepository = new ProjectsRepository()) {}
@@ -18,9 +18,15 @@ export class ProjectsService implements IProjectsService {
   async getAllProjects(workspacePath: string): Promise<IpcResponses.ResponseWithData<Project[]>> {
     const projects = this.projectsRepository.getAllProjects(workspacePath, workspacePath);
 
-    const angularJsonExists = await fs.pathExists(`${workspacePath}${OsUtils.getPlatformPathSeparator()}angular.json`).catch(() => false);
+    const angularJsonExists = await fs
+      .pathExists(`${workspacePath}${OsUtils.getPlatformPathSeparator()}angular.json`)
+      .catch(() => false);
 
-    await this.projectsRepository.getProjectsNames(workspacePath, angularJsonExists ? 'angular.json' : 'workspace.json', projects);
+    await this.projectsRepository.getProjectsNames(
+      workspacePath,
+      angularJsonExists ? 'angular.json' : 'workspace.json',
+      projects
+    );
 
     await this.projectsRepository.getTagsOfAllProjectsWithinNxJsonFile(workspacePath, projects);
 
@@ -37,14 +43,14 @@ export class ProjectsService implements IProjectsService {
    */
   async editProject(dto: ProjectsIpcDtos.EditProject): Promise<IpcResponses.ResponseWithLogs> {
     const { oldName, newName, newDirectory, oldDirectory, workspacePath, project } = dto;
-    const dir = StringUtils.removeSpecialCharFrontBack(OsUtils.parsePath(
-      newDirectory
-        .replace('/libs/', '')
-        .replace('\\libs\\', '')
-        .replace('/apps/', '')
-        .replace('\\apps\\', '')
-    ));
-    const cmd = OsUtils.parsePath(`nx g mv --project ${project} ${dir ? dir + '/' : ''}${StringUtils.removeSpecialCharacters(newName)}`);
+    const dir = StringUtils.removeSpecialCharFrontBack(
+      OsUtils.parsePath(
+        newDirectory.replace('/libs/', '').replace('\\libs\\', '').replace('/apps/', '').replace('\\apps\\', '')
+      )
+    );
+    const cmd = OsUtils.parsePath(
+      `nx g mv --project ${project} ${dir ? dir + '/' : ''}${StringUtils.removeSpecialCharacters(newName)}`
+    );
     const cmdTest = OsUtils.parsePath(`nx g mv --project ${project}-e2e ${dir}${newName}-e2e`);
     const logs: string[] = [];
 
@@ -55,21 +61,27 @@ export class ProjectsService implements IProjectsService {
     logs.push(result?.log ?? '');
 
     if (OsUtils.getOs() === OsUtils.Platform.windows) {
-      await this.projectsRepository.cleanEmptyDirWinFunction(`${workspacePath}${OsUtils.getPlatformPathSeparator()}libs`);
-      await this.projectsRepository.cleanEmptyDirWinFunction(`${workspacePath}${OsUtils.getPlatformPathSeparator()}apps`);
+      await this.projectsRepository.cleanEmptyDirWinFunction(
+        `${workspacePath}${OsUtils.getPlatformPathSeparator()}libs`
+      );
+      await this.projectsRepository.cleanEmptyDirWinFunction(
+        `${workspacePath}${OsUtils.getPlatformPathSeparator()}apps`
+      );
     }
 
     return {
       result: {
         workspacePath,
         targetName: newName,
-        success: result?.isSuccess ? `${oldDirectory}/${oldName} successfully moved to ${newDirectory}/${newName}.` : '',
-        error: !result?.isSuccess ? `${oldName} has not been successfully moved/renamed.` : ''
+        success: result?.isSuccess
+          ? `${oldDirectory}/${oldName} successfully moved to ${newDirectory}/${newName}.`
+          : '',
+        error: !result?.isSuccess ? `${oldName} has not been successfully moved/renamed.` : '',
       },
       logResponse: {
         workspacePath,
-        logs
-      }
+        logs,
+      },
     };
   }
 
@@ -95,9 +107,9 @@ export class ProjectsService implements IProjectsService {
       },
       logResponse: {
         workspacePath,
-        logs
-      }
-    }
+        logs,
+      },
+    };
   }
 
   /**
@@ -129,8 +141,8 @@ export class ProjectsService implements IProjectsService {
       },
       logResponse: {
         workspacePath,
-        logs
-      }
+        logs,
+      },
     };
   }
 
@@ -142,16 +154,14 @@ export class ProjectsService implements IProjectsService {
     const { name, project, directory, workspacePath } = dto;
     const logs: string[] = [];
     const dir = StringUtils.removeSpecialCharFrontBack(OsUtils.parsePath(directory));
-    const cmd = OsUtils.parsePath(`nx g c ${dir ? dir + '/' : ''}${name} --project ${StringUtils.removeSpecialCharacters(project)}`);
-    const args: string[] = [
-      `--flat ${dto.flat}`,
-      `--skipTests ${dto.skipTests}`,
-      `--export ${dto.export}`,
-    ];
+    const cmd = OsUtils.parsePath(
+      `nx g c ${dir ? dir + '/' : ''}${name} --project ${StringUtils.removeSpecialCharacters(project)}`
+    );
+    const args: string[] = [`--flat ${dto.flat}`, `--skipTests ${dto.skipTests}`, `--export ${dto.export}`];
 
     const result = await NodeUtils.executeCommand(cmd, args, workspacePath, 'CREATE');
 
-    console.log("RESUlT ", result);
+    console.log('RESUlT ', result);
 
     logs.push(result?.log ?? '');
 
@@ -164,8 +174,8 @@ export class ProjectsService implements IProjectsService {
       },
       logResponse: {
         workspacePath,
-        logs
-      }
+        logs,
+      },
     };
   }
 
@@ -177,11 +187,10 @@ export class ProjectsService implements IProjectsService {
     const { name, project, directory, workspacePath } = dto;
     const logs: string[] = [];
     const dir = StringUtils.removeSpecialCharFrontBack(OsUtils.parsePath(directory));
-    const cmd = OsUtils.parsePath(`nx g s ${dir ? dir + '/' : ''}${name} --project ${StringUtils.removeSpecialCharacters(project)}`);
-    const args: string[] = [
-      `--flat ${dto.flat}`,
-      `--skipTests ${dto.skipTests}`,
-    ];
+    const cmd = OsUtils.parsePath(
+      `nx g s ${dir ? dir + '/' : ''}${name} --project ${StringUtils.removeSpecialCharacters(project)}`
+    );
+    const args: string[] = [`--flat ${dto.flat}`, `--skipTests ${dto.skipTests}`];
 
     const result = await NodeUtils.executeCommand(cmd, args, workspacePath, 'CREATE');
 
@@ -196,8 +205,8 @@ export class ProjectsService implements IProjectsService {
       },
       logResponse: {
         workspacePath,
-        logs
-      }
+        logs,
+      },
     };
   }
 
@@ -213,7 +222,7 @@ export class ProjectsService implements IProjectsService {
       `--enableIvy ${dto.enableIvy}`,
       dto.tags ? `--tags ${StringUtils.removeConsecutiveCommas(dto.tags)}` : '',
       dto.prefix ? `--prefix ${dto.prefix}` : '',
-      dto.importPath ? `--importPath ${dto.importPath}` : ''
+      dto.importPath ? `--importPath ${dto.importPath}` : '',
     ];
 
     const result = await NodeUtils.executeCommand(cmd, args, workspacePath, 'CREATE');
@@ -229,8 +238,8 @@ export class ProjectsService implements IProjectsService {
       },
       logResponse: {
         workspacePath,
-        logs
-      }
+        logs,
+      },
     };
   }
 
@@ -249,7 +258,7 @@ export class ProjectsService implements IProjectsService {
       dto.prefix ? `--prefix ${dto.prefix}` : '',
       dto.host ? `--host ${dto.host}` : '',
       dto.port ? `--port ${dto.port}` : '',
-      dto.tags ? `--tags ${StringUtils.removeConsecutiveCommas(dto.tags)}` : ''
+      dto.tags ? `--tags ${StringUtils.removeConsecutiveCommas(dto.tags)}` : '',
     ];
 
     const result = await NodeUtils.executeCommand(cmd, args, workspacePath, 'CREATE');
@@ -265,8 +274,8 @@ export class ProjectsService implements IProjectsService {
       },
       logResponse: {
         workspacePath,
-        logs
-      }
+        logs,
+      },
     };
   }
 
@@ -278,12 +287,17 @@ export class ProjectsService implements IProjectsService {
     const unixCmd = 'nx dep-graph';
     const winCmd = 'start cmd.exe /K nx dep-graph';
 
-    const result = await NodeUtils.executeCommand(OsUtils.getOs() === Platform.unix ? unixCmd : winCmd, [], workspacePath, 'Dep graph started');
+    const result = await NodeUtils.executeCommand(
+      OsUtils.getOs() === Platform.unix ? unixCmd : winCmd,
+      [],
+      workspacePath,
+      'Dep graph started'
+    );
 
     return {
       workspacePath,
       success: result ? `Dep graph successfully started.` : '',
-      error: !result ? `Dep graph has not successfully started.` : ''
+      error: !result ? `Dep graph has not successfully started.` : '',
     };
   }
 
@@ -291,7 +305,7 @@ export class ProjectsService implements IProjectsService {
     const result = await this.projectsRepository.removeTag(dto);
     return {
       success: result ? 'Tag successfully removed' : '',
-      data: dto
+      data: dto,
     };
   }
 
@@ -302,8 +316,8 @@ export class ProjectsService implements IProjectsService {
       data: {
         tags: result,
         workspacePath: dto.workspacePath,
-        selectedProjectName: dto.selectedProjectName
-      }
+        selectedProjectName: dto.selectedProjectName,
+      },
     };
   }
 }

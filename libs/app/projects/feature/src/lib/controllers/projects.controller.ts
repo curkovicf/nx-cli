@@ -7,10 +7,9 @@ import {
   Project,
   ProjectsIpcDtos,
   ProjectsIpcEvents,
-  WorkspacesIpcEvents
+  WorkspacesIpcEvents,
 } from '@nx-cli/shared/data-access/models';
 import RemoveTag = ProjectsIpcDtos.RemoveTag;
-
 
 export class ProjectsController implements IController {
   private projectsService: IProjectsService = new ProjectsService();
@@ -33,7 +32,9 @@ export class ProjectsController implements IController {
 
   private initGetAllProjects(): void {
     ipcMain.on(ProjectsIpcEvents.getAllProjects.fromAngular, async (event, workspacePath: string) => {
-      const response: IpcResponses.ResponseWithData<Project[]> = await this.projectsService.getAllProjects(workspacePath);
+      const response: IpcResponses.ResponseWithData<Project[]> = await this.projectsService.getAllProjects(
+        workspacePath
+      );
       event.sender.send(ProjectsIpcEvents.getAllProjects.fromElectron, response);
     });
   }
@@ -55,19 +56,25 @@ export class ProjectsController implements IController {
   }
 
   private initGenerateComponent(): void {
-    ipcMain.on(ProjectsIpcEvents.createComponent.fromAngular, async (event, dto: ProjectsIpcDtos.GenerateAngularComponent) => {
-      const response: IpcResponses.ResponseWithLogs = await this.projectsService.generateComponent(dto);
-      event.sender.send(ProjectsIpcEvents.defaultChannel.fromElectron, response.result);
-      event.sender.send(WorkspacesIpcEvents.loggingChannel.fromElectron, response.logResponse);
-    });
+    ipcMain.on(
+      ProjectsIpcEvents.createComponent.fromAngular,
+      async (event, dto: ProjectsIpcDtos.GenerateAngularComponent) => {
+        const response: IpcResponses.ResponseWithLogs = await this.projectsService.generateComponent(dto);
+        event.sender.send(ProjectsIpcEvents.defaultChannel.fromElectron, response.result);
+        event.sender.send(WorkspacesIpcEvents.loggingChannel.fromElectron, response.logResponse);
+      }
+    );
   }
 
   private initGenerateService(): void {
-    ipcMain.on(ProjectsIpcEvents.createService.fromAngular, async (event, dto: ProjectsIpcDtos.GenerateAngularService) => {
-      const response: IpcResponses.ResponseWithLogs = await this.projectsService.generateService(dto);
-      event.sender.send(ProjectsIpcEvents.defaultChannel.fromElectron, response.result);
-      event.sender.send(WorkspacesIpcEvents.loggingChannel.fromElectron, response.logResponse);
-    });
+    ipcMain.on(
+      ProjectsIpcEvents.createService.fromAngular,
+      async (event, dto: ProjectsIpcDtos.GenerateAngularService) => {
+        const response: IpcResponses.ResponseWithLogs = await this.projectsService.generateService(dto);
+        event.sender.send(ProjectsIpcEvents.defaultChannel.fromElectron, response.result);
+        event.sender.send(WorkspacesIpcEvents.loggingChannel.fromElectron, response.logResponse);
+      }
+    );
   }
 
   private initEditProject(): void {
@@ -79,19 +86,25 @@ export class ProjectsController implements IController {
   }
 
   private initGenerateLibrary(): void {
-    ipcMain.on(ProjectsIpcEvents.generateLibrary.fromAngular, async (event, dto: ProjectsIpcDtos.GenerateAngularLibrary) => {
-      const response: IpcResponses.ResponseWithLogs = await this.projectsService.generateLibrary(dto);
-      event.sender.send(ProjectsIpcEvents.defaultChannel.fromElectron, response.result);
-      event.sender.send(WorkspacesIpcEvents.loggingChannel.fromElectron, response.logResponse);
-    });
+    ipcMain.on(
+      ProjectsIpcEvents.generateLibrary.fromAngular,
+      async (event, dto: ProjectsIpcDtos.GenerateAngularLibrary) => {
+        const response: IpcResponses.ResponseWithLogs = await this.projectsService.generateLibrary(dto);
+        event.sender.send(ProjectsIpcEvents.defaultChannel.fromElectron, response.result);
+        event.sender.send(WorkspacesIpcEvents.loggingChannel.fromElectron, response.logResponse);
+      }
+    );
   }
 
   private initGenerateApplication(): void {
-    ipcMain.on(ProjectsIpcEvents.generateApplication.fromAngular, async (event, dto: ProjectsIpcDtos.GenerateAngularApplication) => {
-      const response: IpcResponses.ResponseWithLogs = await this.projectsService.generateApplication(dto);
-      event.sender.send(ProjectsIpcEvents.defaultChannel.fromElectron, response.result);
-      event.sender.send(WorkspacesIpcEvents.loggingChannel.fromElectron, response.logResponse);
-    });
+    ipcMain.on(
+      ProjectsIpcEvents.generateApplication.fromAngular,
+      async (event, dto: ProjectsIpcDtos.GenerateAngularApplication) => {
+        const response: IpcResponses.ResponseWithLogs = await this.projectsService.generateApplication(dto);
+        event.sender.send(ProjectsIpcEvents.defaultChannel.fromElectron, response.result);
+        event.sender.send(WorkspacesIpcEvents.loggingChannel.fromElectron, response.logResponse);
+      }
+    );
   }
 
   private initStartDepGraph() {
@@ -110,7 +123,9 @@ export class ProjectsController implements IController {
 
   private initAddTag(): void {
     ipcMain.on(ProjectsIpcEvents.addTag.fromAngular, async (event, dto: ProjectsIpcDtos.Tag) => {
-      const response: IpcResponses.ResponseWithData<ProjectsIpcDtos.AddTagResult> = await this.projectsService.addTag(dto);
+      const response: IpcResponses.ResponseWithData<ProjectsIpcDtos.AddTagResult> = await this.projectsService.addTag(
+        dto
+      );
       event.sender.send(ProjectsIpcEvents.addTag.fromElectron, response);
     });
   }

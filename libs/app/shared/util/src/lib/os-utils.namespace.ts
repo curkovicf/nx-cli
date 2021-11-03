@@ -6,7 +6,7 @@ export namespace OsUtils {
   export enum Platform {
     windows,
     unix,
-    other
+    other,
   }
 
   export function getOs(): Platform {
@@ -32,6 +32,6 @@ export namespace OsUtils {
   }
 
   export function parsePath(path: string): string {
-    return path.replace(/\\/g, "/");
+    return path.replace(/\\/g, '/');
   }
 }
