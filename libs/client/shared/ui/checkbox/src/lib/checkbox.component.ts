@@ -16,9 +16,6 @@ import { ControlValueAccessor, NgControl } from '@angular/forms';
 })
 export class CheckboxComponent implements ControlValueAccessor {
   @Input()
-  formControlName: string;
-
-  @Input()
   initialValue: boolean;
 
   @Input()

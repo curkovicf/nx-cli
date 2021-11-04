@@ -1,24 +1,32 @@
 <h4 mat-dialog-title>{{ data.nxGenerator.name }}</h4>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()" mat-dialog-content>
-<!--  <ng-container #mainForm class='inputs-wrapper'></ng-container>-->
-  <ng-container #mainForm class='inputs-wrapper'>
-    <div formArrayName='mainForm' *ngFor='let c of generatorForm.controls; let i = index'>
-      <nx-cli-input
-        *ngIf='i < data.nxGenerator.form.textInputs.length'
-        [title]='data.nxGenerator.form.textInputs[i].title'
-        [description]='data.nxGenerator.form.textInputs[i].placeholder'
-        [formControlName]='i'
-      >
-      </nx-cli-input>
-      <pre>
-        {{ data.nxGenerator.form.textInputs[i] | json }}
-      </pre>
-    </div>
-  </ng-container>
+  <section formArrayName='mainForm' class='form-array-section'>
+    <ng-container *ngFor='let c of generatorForm.controls; let i = index'>
+      <ng-container class='inputs-wrapper'>
+        <nx-cli-input
+          *ngIf='i < textInputsCount'
+          [title]='data.nxGenerator.form.textInputs[i].title'
+          [description]='data.nxGenerator.form.textInputs[i].placeholder'
+          [formControlName]='i'
+        >
+        </nx-cli-input>
+      </ng-container>
 
-  <div class="actions">
+      <ng-container class='checkboxes-wrapper'>
+        <nx-cli-checkbox
+          *ngIf='i < (checkboxesCount + textInputsCount) && i >= textInputsCount'
+          [title]='data.nxGenerator.form.checkboxes[i - textInputsCount].title'
+          [description]='data.nxGenerator.form.checkboxes[i - textInputsCount].placeholder'
+          [formControlName]='i'
+        >
+        </nx-cli-checkbox>
+      </ng-container>
+    </ng-container>
+  </section>
+
+  <section class='actions'>
     <nx-cli-button type="submit" buttonText="Submit" buttonType="primary"></nx-cli-button>
     <nx-cli-button type="button" buttonText="Cancel" buttonType="warn" (onbtnclick)="onCancel()"></nx-cli-button>
-  </div>
+  </section>
 </form>

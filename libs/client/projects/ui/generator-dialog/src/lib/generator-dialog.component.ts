@@ -10,17 +10,21 @@ import {
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NxCliDialogFormClass } from '@nx-cli/client/projects/util';
-import { BaseFormElement, NxGenerator, ProjectsIpcDtos } from '@nx-cli/shared/data-access/models';
-import { InputComponent } from '@nx-cli/client/shared/ui/input';
-import { CheckboxComponent } from '@nx-cli/client/shared/ui/checkbox';
+import { BaseFormElement, NxGenerator } from '@nx-cli/shared/data-access/models';
+import { ObjectUtils } from '@nx-cli/shared/util';
+import deepCopy = ObjectUtils.deepCopy;
 
-export type NxGeneratorParseFn<T extends NxGenerator> = (nxGenerator: T) => { cmd: string, args: string[] };
 
 export interface MatDialogData {
   nxGenerator: NxGenerator;
   parseFn: <T extends NxGenerator>(nxGenerator: T) => { cmd: string, args: string[] };
 }
 
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+//////  FIXME: Find better solution for this component
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
 @Component({
   selector: 'nx-cli-new-lib-form',
   templateUrl: './generator-dialog.component.html',
@@ -52,14 +56,23 @@ export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDial
     return [...this.data.nxGenerator.form.checkboxes, ...this.data.nxGenerator.form.textInputs];
   }
 
+  get textInputsCount(): number {
+    return this.data.nxGenerator.form.textInputs.length;
+  }
+
+  get checkboxesCount(): number {
+    return this.data.nxGenerator.form.checkboxes.length;
+  }
+
+  get dropdownsCount(): number {
+    return this.data.nxGenerator.form.dropDowns.length;
+  }
+
   //  Form array reference
   //  https://www.telerik.com/blogs/angular-basics-creating-dynamic-forms-using-formarray-angular
   //  https://www.youtube.com/watch?v=aOQ1xFC3amw
   ngOnInit(): void {
     this.createForm();
-    // this.injectForm();
-
-    this.generatorForm.valueChanges.subscribe(changes => console.log(changes))
 
     this.changeDetectorRef.reattach();
     this.changeDetectorRef.detectChanges();
@@ -68,79 +81,32 @@ export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDial
   private createForm(): void {
     this.form = this.formBuilder.group({
       mainForm: this.formBuilder.array([
-        ...this.data.nxGenerator.form.textInputs.map(textBoxItem => textBoxItem.isRequired ?
-          this.formBuilder.control('', [Validators.required]) :
-          this.formBuilder.control('')),
+        ...this.data.nxGenerator.form.textInputs.map(textBoxItem =>
+          textBoxItem.isRequired ?
+            this.formBuilder.control('', [Validators.required]) :
+            this.formBuilder.control('')),
         ...this.data.nxGenerator.form.checkboxes.map(checkboxItem => ({ [checkboxItem.title]: this.formBuilder.control(false) }))
       ])
     });
   }
 
-  private injectForm(): void {
-    this.data?.nxGenerator.form.textInputs.forEach(textInput => {
-      const component = this.mainForm.createComponent(this.createInputComponent());
-
-      // component.instance.formControlName = textInput.title;
-      component.instance.title = textInput.title;
-      component.instance.description = textInput.placeholder;
-
-      component.changeDetectorRef.detectChanges();
-    })
-
-    this.data?.nxGenerator.form.checkboxes.forEach(checkbox => {
-      const component = this.mainForm.createComponent(this.createCheckboxComponent());
-
-      // component.instance.formControlName = checkbox.title;
-      component.instance.title = checkbox.title;
-      component.instance.description = checkbox.placeholder;
-      component.instance.isChecked = false;
-
-      component.changeDetectorRef.detectChanges();
-    })
-  }
-
-  private createInputComponent() {
-    return this.componentFactory.resolveComponentFactory(InputComponent);
-  }
-
-  private createCheckboxComponent() {
-    return this.componentFactory.resolveComponentFactory(CheckboxComponent);
-  }
-
   public onSubmit(): void {
-    console.log(this.generatorForm.controls[0].value);
-
-    console.log(this.data.parseFn({
-      ...this.data.nxGenerator,
-      form: {
-        textInputs: this.generatorForm.controls
-          .map((textInput, index) => (index <= this.data.nxGenerator.form.textInputs.length ? {
-            ...this.combinedFormElements[index]
-          } : null))
-          .filter(textInput => !!textInput)
-      }
-    }));
-    // console.log(arr);
-
     if (!this.isFormValid()) {
       return;
     }
 
-    this.dialogRef.close();
+    this.dialogRef.close(this.updateNxGeneratorObject());
   }
 
-  private generateDto(): Partial<ProjectsIpcDtos.GenerateAngularLibrary> {
-    return {
-      directory: this.form.get('directory').value,
-      buildable: this.form.get('buildable').value,
-      enableIvy: this.form.get('enableIvy').value,
-      importPath: this.form.get('importPath').value,
-      tags: this.form.get('tags').value,
-      name: this.form.get('name').value,
-      prefix: this.form.get('prefix').value,
-      publishable: false,
-      simpleModuleName: false,
-      addModuleSpecFile: this.form.get('addModuleSpecFile').value,
-    };
+  private updateNxGeneratorObject(): NxGenerator {
+    const nxGenerator = deepCopy<NxGenerator>(this.data.nxGenerator);
+    const formArrayValues = this.generatorForm.value;
+
+    nxGenerator.form.textInputs
+      .forEach((textInputElement, index) => textInputElement.input = formArrayValues[index]);
+    nxGenerator.form.checkboxes
+      .forEach((checkBoxElement, index) => checkBoxElement.isChecked = formArrayValues[index + this.textInputsCount]);
+
+    return nxGenerator;
   }
 }

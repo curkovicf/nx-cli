@@ -3,7 +3,8 @@
 
 :host {
   & > form {
-    & > nx-cli-input.ng-invalid.ng-touched {
+
+    nx-cli-input.ng-invalid.ng-touched {
       &::ng-deep > input {
         @include input_focus(null);
         border: 1px solid red;
