@@ -63,4 +63,8 @@ export class ProjectsIpcApiService {
   public addTag(tagDto: ProjectsIpcDtos.Tag): void {
     this.electronService.ipcRenderer.send(ProjectsIpcEvents.addTag.fromAngular, tagDto);
   }
+
+  public generateArtifact(nxGenerator: ProjectsIpcDtos.GenerateArtifact): void {
+    this.electronService.ipcRenderer.send(ProjectsIpcEvents.generateArtifact.fromAngular, nxGenerator);
+  }
 }

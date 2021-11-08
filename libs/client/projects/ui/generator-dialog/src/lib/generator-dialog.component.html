@@ -1,5 +1,7 @@
 <h4 mat-dialog-title>{{ data.nxGenerator.name }}</h4>
 
+<!-- TODO: Find better way -->
+
 <form [formGroup]="form" (ngSubmit)="onSubmit()" mat-dialog-content>
   <section formArrayName='mainForm' class='form-array-section'>
     <ng-container *ngFor='let c of generatorForm.controls; let i = index'>

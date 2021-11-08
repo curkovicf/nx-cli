@@ -104,8 +104,18 @@ export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDial
 
     nxGenerator.form.textInputs
       .forEach((textInputElement, index) => textInputElement.input = formArrayValues[index]);
+
     nxGenerator.form.checkboxes
-      .forEach((checkBoxElement, index) => checkBoxElement.isChecked = formArrayValues[index + this.textInputsCount]);
+      .forEach((checkBoxElement, index) => {
+        const currCheckbox = formArrayValues[index + this.textInputsCount];
+
+        if (typeof currCheckbox == "boolean") {
+          checkBoxElement.isChecked = formArrayValues[index + this.textInputsCount]
+        } else {
+          checkBoxElement.isChecked = false;
+        }
+
+      });
 
     return nxGenerator;
   }

@@ -55,4 +55,8 @@ export namespace ProjectsIpcEvents {
     fromAngular: 'ADD_TAG',
     fromElectron: 'ADD_TAG_RESULT'
   };
+  export const generateArtifact: EventChannel = {
+    fromAngular: 'GENERATE_ARTIFACT',
+    fromElectron: 'GENERATE_ARTIFACT_RESULT'
+  };
 }
