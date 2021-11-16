@@ -4,23 +4,30 @@
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()" mat-dialog-content>
   <section formArrayName='mainForm' class='form-array-section'>
-    <ng-container *ngFor='let c of generatorForm.controls; let i = index'>
-      <ng-container class='inputs-wrapper'>
+    <ng-container *ngFor='let control of generatorForm.controls; let i = index'>
+      <ng-container [ngSwitch]='htmlFormElements[i]'>
         <nx-cli-input
-          *ngIf='i < textInputsCount'
+          *ngSwitchCase='"text-input"'
           [title]='data.nxGenerator.form.textInputs[i].title'
           [description]='data.nxGenerator.form.textInputs[i].placeholder'
           [formControlName]='i'
         >
         </nx-cli-input>
-      </ng-container>
 
-      <ng-container class='checkboxes-wrapper'>
+        <nx-cli-dropdown
+          *ngSwitchCase='"dropdown"'
+          [title]='data.nxGenerator.form.dropDowns[i - textInputsCount].title'
+          [description]='data.nxGenerator.form.dropDowns[i - textInputsCount].placeholder'
+          [formControlName]='i - textInputsCount'
+          [options]='this.data.nxGenerator.form.dropDowns[i - textInputsCount].items'
+        >
+        </nx-cli-dropdown>
+
         <nx-cli-checkbox
-          *ngIf='i < (checkboxesCount + textInputsCount) && i >= textInputsCount'
-          [title]='data.nxGenerator.form.checkboxes[i - textInputsCount].title'
-          [description]='data.nxGenerator.form.checkboxes[i - textInputsCount].placeholder'
-          [formControlName]='i'
+          *ngSwitchCase='"checkbox"'
+          [title]='data.nxGenerator.form.checkboxes[i - textInputsCount - dropdownsCount].title'
+          [description]='data.nxGenerator.form.checkboxes[i - textInputsCount - dropdownsCount].placeholder'
+          [formControlName]='i - textInputsCount - dropdownsCount'
         >
         </nx-cli-checkbox>
       </ng-container>

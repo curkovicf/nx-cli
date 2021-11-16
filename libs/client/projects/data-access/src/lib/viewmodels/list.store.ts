@@ -1,7 +1,7 @@
 import { ComponentStore } from '@ngrx/component-store';
 import { Injectable } from '@angular/core';
 import { filter, first, map, switchMap } from 'rxjs/operators';
-import { Project } from '@nx-cli/shared/data-access/models';
+import { NxGenerator, Project } from '@nx-cli/shared/data-access/models';
 import { WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 import { combineLatest, Observable} from 'rxjs';
 import { ProjectsIpcApiService } from '../api/projects-ipc-api.service';
@@ -11,6 +11,7 @@ import { GeneratorDialogComponent, MatDialogData } from '@nx-cli/client/projects
 import { MatDialogConfig } from '@angular/material/dialog/dialog-config';
 import { ProjectsFacade } from '../+store/projects.facade';
 import { AutocompleteSearchComponent } from '@nx-cli/client/shared/ui/autocomplete-search';
+import { ObjectUtils } from '@nx-cli/shared/util';
 
 export interface ProjectsState {
   projectsLoadedInView: Project[];
@@ -65,22 +66,28 @@ export class listStore extends ComponentStore<ProjectsState> {
   }
 
   public togglePopupSearch(): void {
-    this.workspacesFacade.selectedWorkspace$
+    combineLatest([this.workspacesFacade.selectedWorkspace$, this.projectsFacade.projects$])
       .pipe(
         first(),
-        switchMap(selectedWorkspace => this.dialog
+        switchMap(([selectedWorkspace, projects]) => this.dialog
           .open(AutocompleteSearchComponent, { data: selectedWorkspace.generators.map(g => g.name) })
           .afterClosed()
           .pipe(
             filter(selectedGeneratorName => selectedGeneratorName !== undefined),
             switchMap(selectedGeneratorName => {
-                const nxGenerator = selectedWorkspace.generators.find(g => g.name === selectedGeneratorName);
+                //  TODO: check if this should have generator
+                const nxGenerator = ObjectUtils.deepCopy<NxGenerator>(selectedWorkspace.generators.find(g => g.name === selectedGeneratorName));
+
+                nxGenerator.form.dropDowns.forEach(dropdownElement => dropdownElement.title === 'project' ? dropdownElement.items.push(
+                  ...projects.map(project => project.nameInNxJson)
+                ) : null);
+
                 const data: MatDialogData = { nxGenerator };
 
                 return this.openDialog(GeneratorDialogComponent, { data, maxHeight: '90vh' });
               }
             )
-          ),
+          )
         ),
         switchMap(([nxGenerator, workspacePath]) => this.projectsFacade.selectedProject$
           .pipe(

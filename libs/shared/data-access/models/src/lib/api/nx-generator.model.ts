@@ -22,6 +22,12 @@ export function getNxGeneratorFieldValue(nxGenerator: NxGenerator, field: string
   return nxGenerator.form.textInputs.find(o => o.title === field)?.input;
 }
 
+export enum FormType {
+  text,
+  checkbox,
+  dropdown
+}
+
 export interface BaseFormElement {
   title: string;
   placeholder: string;
@@ -34,6 +40,7 @@ export interface ICheckbox extends BaseFormElement {
 
 export interface IDropdown extends BaseFormElement {
   items: string[];
+  selected?: string;
 }
 
 export interface ITextInput extends BaseFormElement {
@@ -150,6 +157,9 @@ export const angularNxGenerators: NxGenerator[] = [
       ],
       checkboxes: [
         { title: 'routing', placeholder: 'Generate a routing module' }
+      ],
+      dropDowns: [
+        { title: 'style', placeholder: 'The file extension or preprocessor to use for style files, or "none" to skip generating the style file.', items: ['scss', 'sass', 'css', 'less', 'none'] },
       ]
     }
   },
@@ -175,6 +185,12 @@ export const angularNxGenerators: NxGenerator[] = [
         { title: 'inlineTemplate', placeholder: 'Include template inline in the component.ts file. By default, an external template file is created and referenced in the component.ts file.' },
         { title: 'displayBlock', placeholder: 'Specifies if the style will contain `:host { display: block; }`.' },
         { title: 'skipImport', placeholder: 'Do not import this component into the owning NgModule.' },
+      ],
+      dropDowns: [
+        { title: 'project', placeholder: 'The name of the project.', items: [], isRequired: true },
+        { title: 'style', placeholder: 'The file extension or preprocessor to use for style files, or "none" to skip generating the style file.', items: ['scss', 'sass', 'css', 'less', 'none'] },
+        { title: 'changeDetection', placeholder: 'The change detection strategy to use in the new component.', items: ['Default', 'OnPush'] },
+        { title: 'viewEncapsulation', placeholder: 'The view encapsulation strategy to use in the new component.', items: ['Emulated', 'ShadowDom', 'None'] },
       ]
     }
   },
@@ -194,6 +210,9 @@ export const angularNxGenerators: NxGenerator[] = [
       checkboxes: [
         { title: 'flat', placeholder: 'Create service at the source root rather than its own directory' },
         { title: 'skipTests', placeholder: 'When true, does not create "spec.ts" test files for the new service.' },
+      ],
+      dropDowns: [
+        { title: 'project', placeholder: 'The name of the project.', items: [], isRequired: true },
       ]
     }
   },
@@ -215,6 +234,9 @@ export const angularNxGenerators: NxGenerator[] = [
         { title: 'flat', placeholder: 'Create pipe at the source root rather than its own directory' },
         { title: 'skipTests', placeholder: 'When true, does not create "spec.ts" test files for the new pipe.' },
         { title: 'skipImport', placeholder: 'Do not import this pipe into the owning NgModule.' },
+      ],
+      dropDowns: [
+        { title: 'project', placeholder: 'The name of the project.', items: [], isRequired: true },
       ]
     }
   },
@@ -236,6 +258,9 @@ export const angularNxGenerators: NxGenerator[] = [
         { title: 'flat', placeholder: 'Create directive at the source root rather than its own directory' },
         { title: 'skipTests', placeholder: 'When true, does not create "spec.ts" test files for the new directive.' },
         { title: 'skipImport', placeholder: 'Do not import this directive into the owning NgModule.' },
+      ],
+      dropDowns: [
+        { title: 'project', placeholder: 'The name of the project.', items: [], isRequired: true },
       ]
     }
   },

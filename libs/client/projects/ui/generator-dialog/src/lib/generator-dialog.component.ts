@@ -33,6 +33,7 @@ export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDial
   @ViewChild('mainForm', { read: ViewContainerRef, static: true })
   readonly mainForm: ViewContainerRef;
 
+  public htmlFormElements: string[];
   public form: FormGroup;
 
   constructor(
@@ -44,15 +45,17 @@ export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDial
   ) {
     super(dialogRef);
 
+    this.htmlFormElements = [
+      ...this.data.nxGenerator.form.textInputs.map(() => 'text-input'),
+      ...this.data.nxGenerator.form.dropDowns.map(() => 'dropdown'),
+      ...this.data.nxGenerator.form.checkboxes.map(() => 'checkbox'),
+    ]
+
     this.changeDetectorRef.detach();
   }
 
   get generatorForm(): FormArray {
     return this.form.controls["mainForm"] as FormArray;
-  }
-
-  get combinedFormElements(): BaseFormElement[] {
-    return [...this.data.nxGenerator.form.checkboxes, ...this.data.nxGenerator.form.textInputs];
   }
 
   get textInputsCount(): number {
@@ -84,6 +87,9 @@ export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDial
           textBoxItem.isRequired ?
             this.formBuilder.control('', [Validators.required]) :
             this.formBuilder.control('')),
+        ...this.data.nxGenerator.form.dropDowns.map(dropdownItem => ({ [dropdownItem.title]: this.formBuilder.control({
+            ...dropdownItem.items
+          }) })),
         ...this.data.nxGenerator.form.checkboxes.map(checkboxItem => ({ [checkboxItem.title]: this.formBuilder.control(false) }))
       ])
     });
