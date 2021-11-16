@@ -1,13 +1,12 @@
 import { ComponentStore } from '@ngrx/component-store';
 import { Injectable } from '@angular/core';
-import { filter, first, map, switchMap, tap } from 'rxjs/operators';
-import { getParserFunction, NxGenerator, Project } from '@nx-cli/shared/data-access/models';
+import { filter, first, map, switchMap } from 'rxjs/operators';
+import { Project } from '@nx-cli/shared/data-access/models';
 import { WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 import { combineLatest, Observable} from 'rxjs';
 import { ProjectsIpcApiService } from '../api/projects-ipc-api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ComponentType } from '@angular/cdk/portal/portal';
-import { NewAppDialogComponent } from '@nx-cli/client/projects/ui/new-app-dialog';
 import { GeneratorDialogComponent, MatDialogData } from '@nx-cli/client/projects/ui/generator-dialog';
 import { MatDialogConfig } from '@angular/material/dialog/dialog-config';
 import { ProjectsFacade } from '../+store/projects.facade';
@@ -59,20 +58,6 @@ export class listStore extends ComponentStore<ProjectsState> {
     this.projectsFacade.selectProject(selectedProject);
   }
 
-  public createApplication(): void {
-    this.openDialog(NewAppDialogComponent).subscribe(([data, workspacePath]) =>
-      this.projectsIpcApiService.generateApplication({ ...data, workspacePath })
-    );
-  }
-
-  public createLibrary(): void {
-    this.openDialog(GeneratorDialogComponent, { maxHeight: '90vh' }).subscribe(([data, workspacePath]) => {
-      console.log(data);
-      console.log(workspacePath);
-      this.projectsIpcApiService.generateLibrary({ ...data, workspacePath });
-    });
-  }
-
   public startDepGraph(): void {
     this.workspacesFacade
       .getSelectedWorkspacePath()
@@ -88,21 +73,23 @@ export class listStore extends ComponentStore<ProjectsState> {
           .afterClosed()
           .pipe(
             filter(selectedGeneratorName => selectedGeneratorName !== undefined),
-            tap(selectedGeneratorName => {
+            switchMap(selectedGeneratorName => {
                 const nxGenerator = selectedWorkspace.generators.find(g => g.name === selectedGeneratorName);
-                const data: MatDialogData = { nxGenerator, parseFn: getParserFunction(nxGenerator) };
+                const data: MatDialogData = { nxGenerator };
 
-                this.openDialog(GeneratorDialogComponent, { data, maxHeight: '90vh' })
-                  .subscribe(([nxGenerator, workspacePath]) => this.projectsIpcApiService.generateArtifact({
-                    nxGenerator,
-                    workspacePath
-                  }));
+                return this.openDialog(GeneratorDialogComponent, { data, maxHeight: '90vh' });
               }
             )
+          ),
+        ),
+        switchMap(([nxGenerator, workspacePath]) => this.projectsFacade.selectedProject$
+          .pipe(
+            first(),
+            map(selectedProject => ({ nxGenerator, workspacePath, selectedProjectName: selectedProject?.name }))
           )
         )
       )
-      .subscribe();
+      .subscribe((nxGenerator) => this.projectsIpcApiService.generateArtifact(nxGenerator));
   }
 
   //  TODO: Fix duplication

@@ -26,6 +26,7 @@ export class ProjectsController implements IController {
     this.initStartDepGraph();
     this.initRemoveTag();
     this.initAddTag();
+    this.initNxGenerator();
 
     console.warn('\n********** Init Projects Controller');
   }
@@ -127,6 +128,14 @@ export class ProjectsController implements IController {
         dto
       );
       event.sender.send(ProjectsIpcEvents.addTag.fromElectron, response);
+    });
+  }
+
+  private initNxGenerator(): void {
+    ipcMain.on(ProjectsIpcEvents.generateArtifact.fromAngular, async (event, dto: ProjectsIpcDtos.GenerateArtifact) => {
+      const response: IpcResponses.ResponseWithLogs = await this.projectsService.generateArtifact(dto);
+      event.sender.send(ProjectsIpcEvents.defaultChannel.fromElectron, response.result);
+      event.sender.send(WorkspacesIpcEvents.loggingChannel.fromElectron, response.logResponse);
     });
   }
 }

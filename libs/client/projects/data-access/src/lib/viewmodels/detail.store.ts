@@ -3,8 +3,6 @@ import { ComponentStore } from '@ngrx/component-store';
 import { ProjectsFacade } from '../+store/projects.facade';
 import { Project } from '@nx-cli/shared/data-access/models';
 import { ProjectsIpcApiService } from '../api/projects-ipc-api.service';
-import { NewComponentDialogComponent } from '@nx-cli/client/projects/ui/new-component-dialog';
-import { NewServiceFormComponent } from '@nx-cli/client/projects/ui/new-service-dialog';
 import { EditProjectDialogComponent } from '@nx-cli/client/projects/ui/edit-project-dialog';
 import { ConfirmDialogComponent, ConfirmDialogContent } from '@nx-cli/client/shared/ui/confirm-dialog';
 import { ComponentType } from '@angular/cdk/portal/portal';
@@ -58,26 +56,6 @@ export class DetailStore extends ComponentStore<DetailState> {
         workspacePath,
         projectNameInNxJson: project.nameInNxJson,
         type: project.type
-      })
-    );
-  }
-
-  public generateComponent(project: Project): void {
-    this.openDialog(NewComponentDialogComponent).subscribe(([data, workspacePath]) =>
-      this.projectsIpcApiService.generateComponent({
-        ...data,
-        workspacePath,
-        project: project.nameInNxJson
-      })
-    );
-  }
-
-  public generateService(project: Project): void {
-    this.openDialog(NewServiceFormComponent).subscribe(([data, workspacePath]) =>
-      this.projectsIpcApiService.generateService({
-        ...data,
-        workspacePath,
-        project: project.nameInNxJson
       })
     );
   }

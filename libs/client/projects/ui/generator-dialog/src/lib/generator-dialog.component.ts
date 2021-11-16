@@ -17,7 +17,6 @@ import deepCopy = ObjectUtils.deepCopy;
 
 export interface MatDialogData {
   nxGenerator: NxGenerator;
-  parseFn: <T extends NxGenerator>(nxGenerator: T) => { cmd: string, args: string[] };
 }
 
 ///////////////////////////////////////////////////////////

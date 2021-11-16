@@ -92,5 +92,6 @@ export namespace ProjectsIpcDtos {
   export interface GenerateArtifact {
     nxGenerator: NxGenerator;
     workspacePath: string;
+    selectedProjectName: string;
   }
 }

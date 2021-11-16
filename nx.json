@@ -82,15 +82,6 @@
     "client-projects-ui-list-item-badge": {
       "tags": []
     },
-    "client-projects-ui-new-app-dialog": {
-      "tags": []
-    },
-    "client-projects-ui-new-component-dialog": {
-      "tags": []
-    },
-    "client-projects-ui-new-service-dialog": {
-      "tags": []
-    },
     "client-projects-ui-new-tag-dialog": {
       "tags": []
     },

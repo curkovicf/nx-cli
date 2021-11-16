@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
 import { drawerAnimation } from '@nx-cli/client/shell/ui/drawer';
 import { UtilLocalStorageService } from '@nx-cli/client/shared/util';
-import { WorkspacesFacade, WorkspacesIpcEventsService } from '@nx-cli/client/workspaces/data-access';
+import {
+  WorkspacesFacade,
+  WorkspacesIpcApiService,
+  WorkspacesIpcEventsService
+} from '@nx-cli/client/workspaces/data-access';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogContent } from '@nx-cli/client/shared/ui/confirm-dialog';
 import { ProgressBarFacade } from '@nx-cli/client/shared/data-access';
 import { Workspace } from '@nx-cli/shared/data-access/models';
+import { first, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'nx-cli-layout',
@@ -21,10 +26,18 @@ export class LayoutComponent {
     public progressBarFacade: ProgressBarFacade,
     private localStorageService: UtilLocalStorageService,
     private workspacesIpcEventsService: WorkspacesIpcEventsService,
+    private workspacesIpcApiService: WorkspacesIpcApiService,
     private dialog: MatDialog
   ) {
     this.workspacesIpcEventsService.initChannels();
     this.localStorageService.initData();
+
+    this.workspacesFacade.selectedWorkspace$
+      .pipe(
+        first(),
+        tap(({ path }) => this.workspacesIpcApiService.getAvailableNxGenerators(path))
+      )
+      .subscribe();
   }
 
   public onSelectWorkspace(selectedWorkspace: Workspace): void {

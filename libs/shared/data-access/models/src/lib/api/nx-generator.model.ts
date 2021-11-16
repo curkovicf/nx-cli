@@ -1,22 +1,25 @@
-import { StringUtils } from '@nx-cli/shared/util';
-
-
 export interface NxGenerator {
   name: string;
   cmd: string;
   form: NxGeneratorForm;
-  type: GeneratorType;
-}
-
-export enum GeneratorType {
-  ngLibrary,
-  ngApp
 }
 
 export interface NxGeneratorForm {
   checkboxes?: ICheckbox[];
   dropDowns?: IDropdown[];
   textInputs?: ITextInput[];
+}
+
+export function getNxGeneratorDir(nxGenerator: NxGenerator): string | undefined {
+  return nxGenerator.form.textInputs.find(o => o.title === 'directory').input;
+}
+
+export function getNxGeneratorName(nxGenerator: NxGenerator): string | undefined {
+  return nxGenerator.form.textInputs.find(o => o.title === 'directory').input;
+}
+
+export function getNxGeneratorFieldValue(nxGenerator: NxGenerator, field: string): string | undefined {
+  return nxGenerator.form.textInputs.find(o => o.title === field)?.input;
 }
 
 export interface BaseFormElement {
@@ -86,7 +89,7 @@ export function getNxGenerator(supportedNxGenerator: SupportedNxPackages): NxGen
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
-/////////////// GENERATORS IMPL
+/////////////// GENERATORS
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -95,24 +98,27 @@ export function getNxGenerator(supportedNxGenerator: SupportedNxPackages): NxGen
 
 
 
+/************************************************
+ ************************************************
+ ************ Angular Generators
+ ************************************************
+************************************************/
 export const angularNxGenerators: NxGenerator[] = [
   /////////////////////////////////////////////////
   /////////////////////////////////////////////////
   /////////////// Angular lib
   /////////////////////////////////////////////////
   /////////////////////////////////////////////////
-
   //  TODO: Add later, currently it is breaking the app for some reason
   //  checkbox: publishable, placeholder: Generate a publishable library
   //  checkbox: simpleModuleName, placeholder: Keep the module name simple while using &#45;&#45;directory
   {
     name: `@nrwl/angular - library`,
-    cmd: 'nx g lib',
-    type: GeneratorType.ngLibrary,
+    cmd: 'nx generate @nrwl/angular:lib',
     form: {
       textInputs: [
         { isRequired: true, input: '', title: 'name', placeholder: 'The name of the library' },
-        { input: '', title: 'directory', placeholder: 'The name of the library', },
+        { input: '', title: 'directory', placeholder: 'A directory where the library is placed', },
         { input: '', title: 'prefix', placeholder: 'Prefix to apply to generated selectors', },
         { input: '', title: 'tags', placeholder: 'Add tags to the library', },
         { input: '', title: 'importPath', placeholder: 'The library name used to import it, like `@myorg/my-awesome-lib`. Must be a valid npm name.', },
@@ -129,98 +135,108 @@ export const angularNxGenerators: NxGenerator[] = [
   /////////////// Angular application
   /////////////////////////////////////////////////
   /////////////////////////////////////////////////
-  // {
-  //   name: `@nrwl/angular - application`,
-  //   cmd: 'nx g app',
-  //   form: {
-  //     textInputs: [
-  //       { title: 'name', placeholder: 'The name of the application', isRequired: true },
-  //       { title: 'directory', placeholder: 'A directory where the application is placed', isRequired: true },
-  //       { title: 'prefix', placeholder: 'Prefix to apply to generated selectors', isRequired: true },
-  //       { title: 'tags', placeholder: 'Add tags to the application', isRequired: true },
-  //       { title: 'backendProject', placeholder: 'Backend project that provides data to this application. This sets up proxy.config.json', isRequired: true },
-  //       { title: 'host', placeholder: 'The name of the host application that the remote application will be consumed by', isRequired: true },
-  //       { title: 'port', placeholder: 'The port at which the remote application should be served', isRequired: true },
-  //     ],
-  //     checkboxes: [
-  //       { title: 'routing', placeholder: 'Generate a routing module' }
-  //     ]
-  //   }
-  // }
+  {
+    name: `@nrwl/angular - application`,
+    cmd: 'nx generate @nrwl/angular:application',
+    form: {
+      textInputs: [
+        { title: 'name', placeholder: 'The name of the application', isRequired: true },
+        { title: 'directory', placeholder: 'A directory where the application is placed' },
+        { title: 'prefix', placeholder: 'Prefix to apply to generated selectors' },
+        { title: 'tags', placeholder: 'Add tags to the application' },
+        { title: 'backendProject', placeholder: 'Backend project that provides data to this application. This sets up proxy.config.json' },
+        { title: 'host', placeholder: 'The name of the host application that the remote application will be consumed by' },
+        { title: 'port', placeholder: 'The port at which the remote application should be served' },
+      ],
+      checkboxes: [
+        { title: 'routing', placeholder: 'Generate a routing module' }
+      ]
+    }
+  },
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  /////////////// Angular component
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  {
+    name: `@nrwl/angular - component`,
+    cmd: 'nx generate @nrwl/angular:component',
+    form: {
+      textInputs: [
+        { title: 'name', placeholder: 'The name of the component.', isRequired: true },
+        { title: 'directory', placeholder: 'A directory where the component is placed.' },
+        { title: 'selector', placeholder: 'The HTML selector to use for this component.' },
+      ],
+      checkboxes: [
+        { title: 'export', placeholder: 'When true, the component is exported from the project index.ts (if it exists).' },
+        { title: 'flat', placeholder: 'Create component at the source root rather than its own directory' },
+        { title: 'skipTests', placeholder: 'When true, does not create "spec.ts" test files for the new component.' },
+        { title: 'inlineStyle', placeholder: 'Include styles inline in the component.ts file. Only CSS styles can be included inline. By default, an external styles file is created and referenced in the component.ts file.' },
+        { title: 'inlineTemplate', placeholder: 'Include template inline in the component.ts file. By default, an external template file is created and referenced in the component.ts file.' },
+        { title: 'displayBlock', placeholder: 'Specifies if the style will contain `:host { display: block; }`.' },
+        { title: 'skipImport', placeholder: 'Do not import this component into the owning NgModule.' },
+      ]
+    }
+  },
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  /////////////// Angular service
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  {
+    name: `@nrwl/angular - service`,
+    cmd: 'nx generate @nrwl/angular:service',
+    form: {
+      textInputs: [
+        { title: 'name', placeholder: 'The name of the service.', isRequired: true },
+        { title: 'directory', placeholder: 'A directory where the service is placed.' },
+      ],
+      checkboxes: [
+        { title: 'flat', placeholder: 'Create service at the source root rather than its own directory' },
+        { title: 'skipTests', placeholder: 'When true, does not create "spec.ts" test files for the new service.' },
+      ]
+    }
+  },
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  /////////////// Angular pipe
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  {
+    name: `@nrwl/angular - pipe`,
+    cmd: 'nx generate @nrwl/angular:pipe',
+    form: {
+      textInputs: [
+        { title: 'name', placeholder: 'The name of the pipe.', isRequired: true },
+        { title: 'directory', placeholder: 'A directory where the pipe is placed.' },
+      ],
+      checkboxes: [
+        { title: 'flat', placeholder: 'Create pipe at the source root rather than its own directory' },
+        { title: 'skipTests', placeholder: 'When true, does not create "spec.ts" test files for the new pipe.' },
+        { title: 'skipImport', placeholder: 'Do not import this pipe into the owning NgModule.' },
+      ]
+    }
+  },
+  /////////////////////////////////////////////////
+  /////////////// Angular directive
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  {
+    name: `@nrwl/angular - directive`,
+    cmd: 'nx generate @nrwl/angular:directive',
+    form: {
+      textInputs: [
+        { title: 'name', placeholder: 'The name of the directive.', isRequired: true },
+        { title: 'directory', placeholder: 'A directory where the directive is placed.' },
+        { title: 'selector', placeholder: 'The HTML selector to use for this directive.' },
+      ],
+      checkboxes: [
+        { title: 'export', placeholder: 'When true, the directive is exported from the project index.ts (if it exists).' },
+        { title: 'flat', placeholder: 'Create directive at the source root rather than its own directory' },
+        { title: 'skipTests', placeholder: 'When true, does not create "spec.ts" test files for the new directive.' },
+        { title: 'skipImport', placeholder: 'Do not import this directive into the owning NgModule.' },
+      ]
+    }
+  },
 ];
-
-/*****************************************************
- /*****************************************************
- /********* GENERATOR PARSES
- /*****************************************************
- /*****************************************************/
-
-
-
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-/////////////// Angular lib
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// export function parseNgLibFormGenerator(form: NxGeneratorForm): { cmd: string, args: string[] } {
-//   const dir = StringUtils.removeSpecialCharFrontBack(OsUtils.parsePath(directory));
-//   const cmd = OsUtils.parsePath(`nx g lib ${dir ? dir + '/' : ''}${StringUtils.removeSpecialCharacters(name)}`);
-//   const args = [
-//     `--publishable ${form.publishable}`,
-//     `--buildable ${form.buildable}`,
-//     `--addModuleSpecFile ${form.addModuleSpecFile}`,
-//     `--enableIvy ${form.enableIvy}`,
-//     form.tags ? `--tags ${StringUtils.removeConsecutiveCommas(form.tags)}` : '',
-//     form.prefix ? `--prefix ${form.prefix}` : '',
-//     form.importPath ? `--importPath ${form.importPath}` : ''
-//   ];
-//
-//   return { cmd, args };
-// }
-
-export type NxGeneratorParseFn = (nxGenerator: NxGenerator) => { cmd: string, args: string[] };
-
-export const getParserFunction = (nxGenerator: NxGenerator) => {
-  switch (nxGenerator.type) {
-    case GeneratorType.ngLibrary:
-      return parseNgLibGenerator;
-    case GeneratorType.ngApp:
-      return null;
-  }
-};
-
-export const parseNgLibGenerator: NxGeneratorParseFn = (nxGenerator => {
-  const dirLocation = nxGenerator.form.textInputs.find((o) => o.title === 'directory').input;
-  const libName = nxGenerator.form.textInputs.find((o) => o.title === 'name').input;
-
-  console.log(nxGenerator);
-  console.log('DIRR ', dirLocation);
-  console.log('LIBB ', libName);
-
-  const dir = StringUtils.removeSpecialCharFrontBack(dirLocation);
-  const cmd = `nx g lib ${dir ? dir + '/' : ''}${StringUtils.removeSpecialCharacters(libName)}`;
-  const args = [...parseInputForm(nxGenerator.form.textInputs), ...parseCheckboxForm(nxGenerator.form.checkboxes)];
-
-  return { cmd, args };
-});
-
-// export function parseForm(nxGeneratorForm: NxGenerator): { cmd: string, args: string[] } {
-//   const dirLocation = this.form.textInputs.find((o) => o.title === 'directory').input;
-//   const libName = this.form.textInputs.find((o) => o.title === 'name').input;
-//
-//   const dir = StringUtils.removeSpecialCharFrontBack(dirLocation);
-//   const cmd = `nx g lib ${dir ? dir + '/' : ''}${StringUtils.removeSpecialCharacters(libName)}`;
-//   const args = [...this.parseInputForm(this.form.textInputs), ...this.parseCheckboxForm(this.form.checkboxes)];
-//
-//   return { cmd, args };
-// }
-
-export function parseCheckboxForm(checkboxes: ICheckbox[]): string[] {
-  return checkboxes.map(checkbox => `--${checkbox.title} ${checkbox.isChecked}`);
-}
-
-export function parseInputForm(textInputs: ITextInput[]): string[] {
-  return textInputs
-    .map(textInput => textInput.input ? `--${textInput.title} ${textInput.input}` : '')
-    .filter(parsedInput => !!parsedInput);
-}

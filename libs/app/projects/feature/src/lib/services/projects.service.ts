@@ -11,6 +11,7 @@ import { StringUtils } from '@nx-cli/shared/util';
 export class ProjectsService implements IProjectsService {
   constructor(private projectsRepository: ProjectsRepository = new ProjectsRepository()) {}
 
+
   /**
    * Gets all libs and apps for a specific nx workspace
    * @param workspacePath root workspace path
@@ -317,6 +318,23 @@ export class ProjectsService implements IProjectsService {
         tags: result,
         workspacePath: dto.workspacePath,
         selectedProjectName: dto.selectedProjectName,
+      },
+    };
+  }
+
+  async generateArtifact(dto: ProjectsIpcDtos.GenerateArtifact): Promise<IpcResponses.ResponseWithLogs> {
+    const result = await this.projectsRepository.generateNxArtifact(dto);
+
+    return {
+      result: {
+        workspacePath: dto.workspacePath,
+        targetName: dto.nxGenerator.name,
+        success: result ? `${dto.nxGenerator.name} successfully executed.` : '',
+        error: !result ? `${dto.nxGenerator.name} has not been successfully executed.` : '',
+      },
+      logResponse: {
+        workspacePath: dto.workspacePath,
+        logs: [result?.log],
       },
     };
   }

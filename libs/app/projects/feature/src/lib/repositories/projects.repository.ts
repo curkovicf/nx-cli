@@ -3,19 +3,20 @@ import * as fsExtra from 'fs-extra';
 import * as fs from 'fs';
 
 
-import { OsUtils } from '@nx-cli/app/shared/util';
+import { NodeUtils, OsUtils } from '@nx-cli/app/shared/util';
 import {
   AngularComponent,
   AngularModule,
   FileType,
   fileTypes,
   FolderType,
-  folderTypes,
+  folderTypes, getNxGeneratorFieldValue,
   Project,
   ProjectFolder,
   ProjectsIpcDtos,
   ProjectType
 } from '@nx-cli/shared/data-access/models';
+import { StringUtils } from '@nx-cli/shared/util';
 
 interface ObjWithRootField {
   root: string;
@@ -387,5 +388,37 @@ export class ProjectsRepository {
    */
   trimToRelativePath(pwd: string, rootPath: string): string {
     return pwd.replace(rootPath, '');
+  }
+
+  /**
+   *
+   * @param dto
+   */
+  async generateNxArtifact(dto: ProjectsIpcDtos.GenerateArtifact): Promise<NodeUtils.ExecuteCommandResponse> {
+    const { nxGenerator, workspacePath, selectedProjectName } = dto;
+
+    const name = getNxGeneratorFieldValue(nxGenerator, 'name');
+    const directory = getNxGeneratorFieldValue(nxGenerator, 'directory');
+    const project = `--project ${selectedProjectName}`;
+
+    const dir = StringUtils.removeSpecialCharFrontBack(OsUtils.parsePath(directory));
+    const cmd = OsUtils.parsePath(`${nxGenerator.cmd} ${selectedProjectName ? project : ''} ${dir ? dir + '/' : ''}${StringUtils.removeSpecialCharacters(name)}`);
+    const args: string[] = [];
+
+    const { textInputs, checkboxes, dropDowns } = nxGenerator.form;
+
+    textInputs.forEach(textInput => textInput.input ? args.push(`--${textInput.title} ${textInput.input}`) : null);
+    checkboxes.forEach(checkBoxInput => checkBoxInput.isChecked ? args.push(`--${checkBoxInput.title} ${checkBoxInput.isChecked}`) : null);
+    //  TODO: Impl dropdown as well
+
+    console.log('CMD ', cmd);
+    console.log('ARGS ', args);
+
+    const result = await NodeUtils.executeCommand(cmd, args, workspacePath, 'CREATE');
+
+    return {
+      isSuccess: true,
+      log: result?.log
+    };
   }
 }

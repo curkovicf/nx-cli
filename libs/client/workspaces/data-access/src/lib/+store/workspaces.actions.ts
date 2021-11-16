@@ -2,6 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { WorkspacesState } from './workspaces.reducer';
 import { Workspace, WorkspacesIpcDtos } from '@nx-cli/shared/data-access/models';
 
+export const initWorkspaces = createAction('[Workspaces] Initial setup');
 
 export const setWorkspacesState = createAction('[Workspaces] Set workspaces state', props<{ workspacesState: WorkspacesState }>());
 

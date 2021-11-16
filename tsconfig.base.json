@@ -33,7 +33,6 @@
       "@nx-cli/client/projects/ui/list-item-badge": ["libs/client/projects/ui/list-item-badge/src/index.ts"],
       "@nx-cli/client/projects/ui/new-app-dialog": ["libs/client/projects/ui/new-app-dialog/src/index.ts"],
       "@nx-cli/client/projects/ui/new-component-dialog": ["libs/client/projects/ui/new-component-dialog/src/index.ts"],
-      "@nx-cli/client/projects/ui/new-service-dialog": ["libs/client/projects/ui/new-service-dialog/src/index.ts"],
       "@nx-cli/client/projects/ui/new-tag-dialog": ["libs/client/projects/ui/new-tag-dialog/src/index.ts"],
       "@nx-cli/client/projects/ui/tab-item": ["libs/client/projects/ui/tab-item/src/index.ts"],
       "@nx-cli/client/projects/ui/tags": ["libs/client/projects/ui/tags/src/index.ts"],

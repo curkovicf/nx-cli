@@ -16,16 +16,6 @@
   </header>
 
   <div class="action-buttons">
-    <nx-cli-button
-      [buttonText]="'Create Component'"
-      buttonType="primary"
-      (onbtnclick)="detailVmStore.generateComponent(project)"
-    ></nx-cli-button>
-    <nx-cli-button
-      [buttonText]="'Create Service'"
-      buttonType="primary"
-      (onbtnclick)="detailVmStore.generateService(project)"
-    ></nx-cli-button>
     <nx-cli-button [buttonText]="'Edit project'" buttonType="warn" (onbtnclick)="detailVmStore.editProject(project)"></nx-cli-button>
     <nx-cli-button [buttonText]="'Delete project'" buttonType="warn" (onbtnclick)="detailVmStore.deleteProject(project)"></nx-cli-button>
   </div>
