@@ -58,9 +58,6 @@ export class WorkspacesRepository {
         }
       }
 
-    console.log('AAAAAAAAAAAAAAAAA *************************');
-    console.log(installedGenerators);
-
     return installedGenerators;
   }
 }

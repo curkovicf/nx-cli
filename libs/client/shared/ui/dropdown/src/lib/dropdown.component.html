@@ -3,6 +3,12 @@
 <label for='dropdown'>{{ description }}</label>
 
 <select id='dropdown' (change)='onInputChange($event)'>
-  <option *ngFor='let option of options' [value]='option'>{{ option }}</option>
+  <option
+    *ngFor='let option of options'
+    [value]='option'
+    [selected]='option === initialItem'
+  >
+    {{ option }}
+  </option>
 </select>
 

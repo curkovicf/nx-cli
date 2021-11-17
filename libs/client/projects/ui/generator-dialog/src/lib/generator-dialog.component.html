@@ -20,6 +20,8 @@
           [description]='data.nxGenerator.form.dropDowns[i - textInputsCount].placeholder'
           [formControlName]='i - textInputsCount'
           [options]='this.data.nxGenerator.form.dropDowns[i - textInputsCount].items'
+          [initialItem]='this.data.nxGenerator.form.dropDowns[i - textInputsCount].selectedItem'
+          (onchange)='onDropdownChange(i - textInputsCount, $event)'
         >
         </nx-cli-dropdown>
 

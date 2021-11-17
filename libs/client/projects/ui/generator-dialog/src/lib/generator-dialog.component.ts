@@ -10,7 +10,7 @@ import {
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NxCliDialogFormClass } from '@nx-cli/client/projects/util';
-import { BaseFormElement, NxGenerator } from '@nx-cli/shared/data-access/models';
+import { NxGenerator } from '@nx-cli/shared/data-access/models';
 import { ObjectUtils } from '@nx-cli/shared/util';
 import deepCopy = ObjectUtils.deepCopy;
 
@@ -112,16 +112,21 @@ export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDial
 
     nxGenerator.form.checkboxes
       .forEach((checkBoxElement, index) => {
-        const currCheckbox = formArrayValues[index + this.textInputsCount];
+        const currCheckbox = formArrayValues[index + this.dropdownsCount + this.textInputsCount];
 
         if (typeof currCheckbox == "boolean") {
           checkBoxElement.isChecked = formArrayValues[index + this.textInputsCount]
         } else {
           checkBoxElement.isChecked = false;
         }
-
       });
 
+    console.log(nxGenerator);
+
     return nxGenerator;
+  }
+
+  public onDropdownChange(index: number, $event: string): void {
+    this.data.nxGenerator.form.dropDowns[index].selectedItem = $event;
   }
 }

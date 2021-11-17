@@ -5,9 +5,9 @@ export interface NxGenerator {
 }
 
 export interface NxGeneratorForm {
-  checkboxes?: ICheckbox[];
-  dropDowns?: IDropdown[];
-  textInputs?: ITextInput[];
+  checkboxes: ICheckbox[];
+  dropDowns: IDropdown[];
+  textInputs: ITextInput[];
 }
 
 export function getNxGeneratorDir(nxGenerator: NxGenerator): string | undefined {
@@ -40,7 +40,7 @@ export interface ICheckbox extends BaseFormElement {
 
 export interface IDropdown extends BaseFormElement {
   items: string[];
-  selected?: string;
+  selectedItem?: string;
 }
 
 export interface ITextInput extends BaseFormElement {
@@ -127,7 +127,6 @@ export const angularNxGenerators: NxGenerator[] = [
         { isRequired: true, input: '', title: 'name', placeholder: 'The name of the library' },
         { input: '', title: 'directory', placeholder: 'A directory where the library is placed', },
         { input: '', title: 'prefix', placeholder: 'Prefix to apply to generated selectors', },
-        { input: '', title: 'tags', placeholder: 'Add tags to the library', },
         { input: '', title: 'importPath', placeholder: 'The library name used to import it, like `@myorg/my-awesome-lib`. Must be a valid npm name.', },
       ],
       checkboxes: [
@@ -135,6 +134,7 @@ export const angularNxGenerators: NxGenerator[] = [
         { isChecked: false, title: 'enableIvy', placeholder: 'Enable Ivy for lib in tsconfig.lib.prod.json' },
         { isChecked: false, title: 'addModuleSpecFile', placeholder: 'Add a module spec file' },
       ],
+      dropDowns: []
     }
   },
   /////////////////////////////////////////////////
@@ -150,7 +150,6 @@ export const angularNxGenerators: NxGenerator[] = [
         { title: 'name', placeholder: 'The name of the application', isRequired: true },
         { title: 'directory', placeholder: 'A directory where the application is placed' },
         { title: 'prefix', placeholder: 'Prefix to apply to generated selectors' },
-        { title: 'tags', placeholder: 'Add tags to the application' },
         { title: 'backendProject', placeholder: 'Backend project that provides data to this application. This sets up proxy.config.json' },
         { title: 'host', placeholder: 'The name of the host application that the remote application will be consumed by' },
         { title: 'port', placeholder: 'The port at which the remote application should be served' },
@@ -159,7 +158,7 @@ export const angularNxGenerators: NxGenerator[] = [
         { title: 'routing', placeholder: 'Generate a routing module' }
       ],
       dropDowns: [
-        { title: 'style', placeholder: 'The file extension or preprocessor to use for style files, or "none" to skip generating the style file.', items: ['scss', 'sass', 'css', 'less', 'none'] },
+        { title: 'style', placeholder: 'The file extension or preprocessor to use for style files, or "none" to skip generating the style file.', items: ['scss', 'sass', 'css', 'less', 'none'], selectedItem: 'scss' },
       ]
     }
   },
@@ -188,9 +187,9 @@ export const angularNxGenerators: NxGenerator[] = [
       ],
       dropDowns: [
         { title: 'project', placeholder: 'The name of the project.', items: [], isRequired: true },
-        { title: 'style', placeholder: 'The file extension or preprocessor to use for style files, or "none" to skip generating the style file.', items: ['scss', 'sass', 'css', 'less', 'none'] },
-        { title: 'changeDetection', placeholder: 'The change detection strategy to use in the new component.', items: ['Default', 'OnPush'] },
-        { title: 'viewEncapsulation', placeholder: 'The view encapsulation strategy to use in the new component.', items: ['Emulated', 'ShadowDom', 'None'] },
+        { title: 'style', placeholder: 'The file extension or preprocessor to use for style files, or "none" to skip generating the style file.', items: ['scss', 'sass', 'css', 'less', 'none'], selectedItem: 'scss' },
+        { title: 'changeDetection', placeholder: 'The change detection strategy to use in the new component.', items: ['Default', 'OnPush'], selectedItem: 'Default' },
+        { title: 'viewEncapsulation', placeholder: 'The view encapsulation strategy to use in the new component.', items: ['Emulated', 'ShadowDom', 'None'], selectedItem: 'ShadowDom' },
       ]
     }
   },

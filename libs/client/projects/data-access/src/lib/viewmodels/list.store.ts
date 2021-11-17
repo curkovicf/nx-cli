@@ -78,13 +78,14 @@ export class listStore extends ComponentStore<ProjectsState> {
                 //  TODO: check if this should have generator
                 const nxGenerator = ObjectUtils.deepCopy<NxGenerator>(selectedWorkspace.generators.find(g => g.name === selectedGeneratorName));
 
-                nxGenerator.form.dropDowns.forEach(dropdownElement => dropdownElement.title === 'project' ? dropdownElement.items.push(
-                  ...projects.map(project => project.nameInNxJson)
-                ) : null);
+                nxGenerator.form.dropDowns.forEach(dropdownElement => {
+                  if (dropdownElement.title === 'project') {
+                    dropdownElement.items.push(...projects.map(project => project.nameInNxJson));
+                    dropdownElement.selectedItem = dropdownElement.items[0];
+                  }
+                });
 
-                const data: MatDialogData = { nxGenerator };
-
-                return this.openDialog(GeneratorDialogComponent, { data, maxHeight: '90vh' });
+                return this.openDialog(GeneratorDialogComponent, { data: { nxGenerator }, maxHeight: '90vh' });
               }
             )
           )

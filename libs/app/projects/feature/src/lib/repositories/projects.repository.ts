@@ -93,7 +93,6 @@ export class ProjectsRepository {
     }
 
     if (fileNames.length === 0) {
-      console.log('Removing: ', workspacePath);
       await fsExtra.rmdir(workspacePath);
     }
   }
@@ -401,6 +400,11 @@ export class ProjectsRepository {
     const directory = getNxGeneratorFieldValue(nxGenerator, 'directory');
     const project = `--project ${selectedProjectName}`;
 
+    console.log('FORM   ', nxGenerator);
+    console.log('TEXT INPUTS ', nxGenerator.form.textInputs);
+    console.log('DIRECTOREYY ', directory);
+    console.log('NAMEEE ', name);
+
     const dir = StringUtils.removeSpecialCharFrontBack(OsUtils.parsePath(directory));
     const cmd = OsUtils.parsePath(`${nxGenerator.cmd} ${selectedProjectName ? project : ''} ${dir ? dir + '/' : ''}${StringUtils.removeSpecialCharacters(name)}`);
     const args: string[] = [];
@@ -409,7 +413,7 @@ export class ProjectsRepository {
 
     textInputs.forEach(textInput => textInput.input ? args.push(`--${textInput.title} ${textInput.input}`) : null);
     checkboxes.forEach(checkBoxInput => checkBoxInput.isChecked ? args.push(`--${checkBoxInput.title} ${checkBoxInput.isChecked}`) : null);
-    //  TODO: Impl dropdown as well
+    dropDowns.forEach(dropDownInput => dropDownInput.selectedItem ? args.push(`--${dropDownInput.title} ${dropDownInput.selectedItem}`) : null);
 
     console.log('CMD ', cmd);
     console.log('ARGS ', args);

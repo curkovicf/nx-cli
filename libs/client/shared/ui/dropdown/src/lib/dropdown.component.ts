@@ -19,8 +19,11 @@ export class DropdownComponent implements ControlValueAccessor {
   @Input()
   description: string;
 
+  @Input()
+  initialItem: string;
+
   @Output()
-  onchange: EventEmitter<boolean> = new EventEmitter();
+  onchange: EventEmitter<string> = new EventEmitter();
 
   value = '';
 
@@ -77,5 +80,7 @@ export class DropdownComponent implements ControlValueAccessor {
   onInputChange($event: Event) {
     // @ts-ignore
     this.onChange($event.target.options[$event.target.options.selectedIndex].value);
+    // @ts-ignore
+    this.onchange.emit($event.target.options[$event.target.options.selectedIndex].value);
   }
 }
