@@ -33,7 +33,6 @@ export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDial
   @ViewChild('mainForm', { read: ViewContainerRef, static: true })
   readonly mainForm: ViewContainerRef;
 
-  public htmlFormElements: string[];
   public form: FormGroup;
 
   constructor(
@@ -45,29 +44,19 @@ export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDial
   ) {
     super(dialogRef);
 
-    this.htmlFormElements = [
-      ...this.data.nxGenerator.form.textInputs.map(() => 'text-input'),
-      ...this.data.nxGenerator.form.dropDowns.map(() => 'dropdown'),
-      ...this.data.nxGenerator.form.checkboxes.map(() => 'checkbox'),
-    ]
-
     this.changeDetectorRef.detach();
   }
 
-  get generatorForm(): FormArray {
-    return this.form.controls["mainForm"] as FormArray;
+  get textInputsForm(): FormArray {
+    return this.form.controls["textInputs"] as FormArray;
   }
 
-  get textInputsCount(): number {
-    return this.data.nxGenerator.form.textInputs.length;
+  get dropdownsForm(): FormArray {
+    return this.form.controls["dropdowns"] as FormArray;
   }
 
-  get checkboxesCount(): number {
-    return this.data.nxGenerator.form.checkboxes.length;
-  }
-
-  get dropdownsCount(): number {
-    return this.data.nxGenerator.form.dropDowns.length;
+  get checkboxesForm(): FormArray {
+    return this.form.controls["checkboxes"] as FormArray;
   }
 
   //  Form array reference
@@ -82,14 +71,20 @@ export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDial
 
   private createForm(): void {
     this.form = this.formBuilder.group({
-      mainForm: this.formBuilder.array([
+      textInputs: this.formBuilder.array([
         ...this.data.nxGenerator.form.textInputs.map(textBoxItem =>
           textBoxItem.isRequired ?
             this.formBuilder.control('', [Validators.required]) :
-            this.formBuilder.control('')),
-        ...this.data.nxGenerator.form.dropDowns.map(dropdownItem => ({ [dropdownItem.title]: this.formBuilder.control({
+            this.formBuilder.control(''))
+      ]),
+      dropdowns: this.formBuilder.array([
+        ...this.data.nxGenerator.form.dropDowns.map(dropdownItem => ({
+          [dropdownItem.title]: this.formBuilder.control({
             ...dropdownItem.items
-          }) })),
+          })
+        }))
+      ]),
+      checkboxes: this.formBuilder.array([
         ...this.data.nxGenerator.form.checkboxes.map(checkboxItem => ({ [checkboxItem.title]: this.formBuilder.control(false) }))
       ])
     });
@@ -104,22 +99,19 @@ export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDial
   }
 
   private updateNxGeneratorObject(): NxGenerator {
+    const textInputs = this.textInputsForm.value;
+    const dropdowns = this.dropdownsForm.value;
+    const checkboxes = this.checkboxesForm.value;
+
     const nxGenerator = deepCopy<NxGenerator>(this.data.nxGenerator);
-    const formArrayValues = this.generatorForm.value;
 
     nxGenerator.form.textInputs
-      .forEach((textInputElement, index) => textInputElement.input = formArrayValues[index]);
+      .forEach((textInputElement, index) => textInputElement.input = textInputs[index]);
 
-    nxGenerator.form.checkboxes
-      .forEach((checkBoxElement, index) => {
-        const currCheckbox = formArrayValues[index + this.dropdownsCount + this.textInputsCount];
+    nxGenerator.form.checkboxes = nxGenerator.form.checkboxes
+      .map((checkBoxElement, index) => ({ ...checkBoxElement, isChecked: checkboxes[index] }))
+      .filter(checkboxElement => typeof checkboxElement.isChecked === 'boolean' && checkboxElement.isChecked);
 
-        if (typeof currCheckbox == "boolean") {
-          checkBoxElement.isChecked = formArrayValues[index + this.textInputsCount]
-        } else {
-          checkBoxElement.isChecked = false;
-        }
-      });
 
     console.log(nxGenerator);
 

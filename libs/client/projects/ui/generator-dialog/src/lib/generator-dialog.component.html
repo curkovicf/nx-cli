@@ -1,43 +1,41 @@
 <h4 mat-dialog-title>{{ data.nxGenerator.name }}</h4>
 
-<!-- TODO: Find better way -->
+<form [formGroup]='form' (ngSubmit)='onSubmit()' mat-dialog-content>
+  <section formArrayName='textInputs' class='form-array-section'>
+    <nx-cli-input
+      *ngFor='let control of textInputsForm.controls; let i = index'
+      [title]='data.nxGenerator.form.textInputs[i].title'
+      [description]='data.nxGenerator.form.textInputs[i].placeholder'
+      [formControlName]='i'
+    >
+    </nx-cli-input>
+  </section>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()" mat-dialog-content>
-  <section formArrayName='mainForm' class='form-array-section'>
-    <ng-container *ngFor='let control of generatorForm.controls; let i = index'>
-      <ng-container [ngSwitch]='htmlFormElements[i]'>
-        <nx-cli-input
-          *ngSwitchCase='"text-input"'
-          [title]='data.nxGenerator.form.textInputs[i].title'
-          [description]='data.nxGenerator.form.textInputs[i].placeholder'
-          [formControlName]='i'
-        >
-        </nx-cli-input>
+  <section formArrayName='dropdowns' class='form-array-section'>
+    <nx-cli-dropdown
+      *ngFor='let control of dropdownsForm.controls; let i = index'
+      [title]='data.nxGenerator.form.dropDowns[i].title'
+      [description]='data.nxGenerator.form.dropDowns[i].placeholder'
+      [formControlName]='i'
+      [options]='this.data.nxGenerator.form.dropDowns[i].items'
+      [initialItem]='this.data.nxGenerator.form.dropDowns[i].selectedItem'
+      (onchange)='onDropdownChange(i, $event)'
+    >
+    </nx-cli-dropdown>
+  </section>
 
-        <nx-cli-dropdown
-          *ngSwitchCase='"dropdown"'
-          [title]='data.nxGenerator.form.dropDowns[i - textInputsCount].title'
-          [description]='data.nxGenerator.form.dropDowns[i - textInputsCount].placeholder'
-          [formControlName]='i - textInputsCount'
-          [options]='this.data.nxGenerator.form.dropDowns[i - textInputsCount].items'
-          [initialItem]='this.data.nxGenerator.form.dropDowns[i - textInputsCount].selectedItem'
-          (onchange)='onDropdownChange(i - textInputsCount, $event)'
-        >
-        </nx-cli-dropdown>
-
-        <nx-cli-checkbox
-          *ngSwitchCase='"checkbox"'
-          [title]='data.nxGenerator.form.checkboxes[i - textInputsCount - dropdownsCount].title'
-          [description]='data.nxGenerator.form.checkboxes[i - textInputsCount - dropdownsCount].placeholder'
-          [formControlName]='i - textInputsCount - dropdownsCount'
-        >
-        </nx-cli-checkbox>
-      </ng-container>
-    </ng-container>
+  <section formArrayName='checkboxes' class='form-array-section'>
+    <nx-cli-checkbox
+      *ngFor='let control of checkboxesForm.controls; let i = index'
+      [title]='data.nxGenerator.form.checkboxes[i].title'
+      [description]='data.nxGenerator.form.checkboxes[i].placeholder'
+      [formControlName]='i'
+    >
+    </nx-cli-checkbox>
   </section>
 
   <section class='actions'>
-    <nx-cli-button type="submit" buttonText="Submit" buttonType="primary"></nx-cli-button>
-    <nx-cli-button type="button" buttonText="Cancel" buttonType="warn" (onbtnclick)="onCancel()"></nx-cli-button>
+    <nx-cli-button type='submit' buttonText='Submit' buttonType='primary'></nx-cli-button>
+    <nx-cli-button type='button' buttonText='Cancel' buttonType='warn' (onbtnclick)='onCancel()'></nx-cli-button>
   </section>
 </form>
