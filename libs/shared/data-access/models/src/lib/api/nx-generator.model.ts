@@ -67,27 +67,11 @@ export function getNxGenerator(supportedNxGenerator: SupportedNxPackages): NxGen
   switch (supportedNxGenerator) {
     case SupportedNxPackages.angular:
       return angularNxGenerators;
-    case SupportedNxPackages.workspace:
-      break;
-    case SupportedNxPackages.electron:
-      break;
-    case SupportedNxPackages.flutter:
-      break;
-    case SupportedNxPackages.vue:
-      break;
     case SupportedNxPackages.react:
-      break;
-    case SupportedNxPackages.nestjs:
-      break;
-    case SupportedNxPackages.node:
-      break;
-    case SupportedNxPackages.svelte:
-      break;
-    case SupportedNxPackages.web:
-      break;
+      return reactNxGenerators;
+    default:
+      return null;
   }
-
-  return null;
 }
 
 
@@ -263,4 +247,252 @@ export const angularNxGenerators: NxGenerator[] = [
       ]
     }
   },
+  /////////////////////////////////////////////////
+  /////////////// Angular interceptor
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  {
+    name: `@nrwl/angular - interceptor`,
+    cmd: 'nx generate @nrwl/angular:interceptor',
+    form: {
+      textInputs: [
+        { title: 'name', placeholder: 'The name of the interceptor.', isRequired: true },
+        { title: 'directory', placeholder: 'A directory where the interceptor is placed.' },
+      ],
+      checkboxes: [
+        { title: 'flat', placeholder: 'Create interceptor at the source root rather than its own directory' },
+        { title: 'skipTests', placeholder: 'When true, does not create "spec.ts" test files for the new interceptor.' },
+      ],
+      dropDowns: [
+        { title: 'project', placeholder: 'The name of the project.', items: [], isRequired: true },
+      ]
+    }
+  },
+  /////////////////////////////////////////////////
+  /////////////// Angular class
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  {
+    name: `@nrwl/angular - class`,
+    cmd: 'nx generate @nrwl/angular:class',
+    form: {
+      textInputs: [
+        { title: 'name', placeholder: 'The name of the new class.', isRequired: true },
+        { title: 'directory', placeholder: 'The path at which to create the class, relative to the workspace root.' },
+        { title: 'type', placeholder: 'Adds a developer-defined type to the filename, in the format "name.type.ts".' },
+      ],
+      checkboxes: [
+        { title: 'skipTests', placeholder: 'Do not create "spec.ts" test files for the new class.' },
+      ],
+      dropDowns: [
+        { title: 'project', placeholder: 'The name of the project.', items: [], isRequired: true },
+      ]
+    }
+  },
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  /////////////// Angular app-shell
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  {
+    name: `@nrwl/angular - app-shell`,
+    cmd: 'nx generate @nrwl/angular:app-shell',
+    form: {
+      textInputs: [
+        { title: 'name', placeholder: 'The name of the new app-shell.', isRequired: true },
+        { title: 'appDir', placeholder: 'The name of the application directory.' },
+        { title: 'appId', placeholder: 'The app ID to use in withServerTransition().' },
+        { title: 'main', placeholder: 'The name of the main entry-point file.' },
+        { title: 'rootModuleClassName', placeholder: 'The name of the root module class.' },
+        { title: 'rootModuleFileName', placeholder: 'The name of the root module file.' },
+        { title: 'route', placeholder: 'Route path used to produce the app shell.' },
+      ],
+      checkboxes: [
+        { title: 'skipTests', placeholder: 'Do not create "spec.ts" test files for the new app-shell.' },
+      ],
+      dropDowns: [
+        { title: 'project', placeholder: 'The name of the project.', items: [], isRequired: true },
+      ]
+    }
+  },
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  /////////////// Angular ngrx
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  {
+    name: `@nrwl/angular - ngrx`,
+    cmd: 'nx generate @nrwl/angular:ngrx',
+    form: {
+      textInputs: [
+        { title: 'name', placeholder: 'Name of the NgRx feature state, such as `products` or `users`. Recommended to use the plural form of the name.', isRequired: true },
+        { title: 'module ', placeholder: 'The path to the `NgModule` where the feature state will be registered. The host directory will create/use the new state directory.', isRequired: true },
+        { title: 'directory', placeholder: 'The name of the folder used to contain/group the generated NgRx files.' },
+      ],
+      checkboxes: [
+        { title: 'barrels', placeholder: 'Use barrels to re-export actions, state and selectors.' },
+        { title: 'facade', placeholder: 'Create a Facade class for the the feature.' },
+        { title: 'minimal', placeholder: 'Only register the root state management setup or feature state.' },
+        { title: 'root', placeholder: 'Setup root or feature state management with NgRx.' },
+        { title: 'skipFormat', placeholder: 'Skip formatting files.' },
+        { title: 'skipImport', placeholder: 'Generate NgRx feature files without registering the feature in the NgModule.' },
+        { title: 'skipPackageJson', placeholder: 'Do not update the `package.json` with NgRx dependencies.' },
+        { title: 'useDataPersistence', placeholder: 'Generate NgRx Effects with the `DataPersistence` helper service. Set to false to use plain effects data persistence operators.' },
+      ],
+      dropDowns: [
+        { title: 'syntax', placeholder: 'Specifies whether to use class-based or creator functions for actions, reducers, and effects.', items: ['creators', 'classes'] },
+      ]
+    }
+  },
+];
+
+
+/************************************************
+ ************************************************
+ ************ React Generators
+ ************************************************
+ ************************************************/
+export const reactNxGenerators: NxGenerator[] = [
+  /////////////////////////////////////////////////
+  /////////////// React application
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  {
+    name: `@nrwl/react - application`,
+    cmd: 'npx ng generate @nrwl/react:application',
+    form: {
+      textInputs: [
+        { title: 'name', placeholder: 'The name of the application', isRequired: true },
+        { title: 'directory', placeholder: 'A directory where the application is placed' },
+        { title: 'prefix', placeholder: 'Prefix to apply to generated selectors' },
+        { title: 'backendProject', placeholder: 'Backend project that provides data to this application. This sets up proxy.config.json' },
+        { title: 'host', placeholder: 'The name of the host application that the remote application will be consumed by' },
+        { title: 'port', placeholder: 'The port at which the remote application should be served' },
+      ],
+      checkboxes: [
+        { title: 'js', placeholder: 'Generate JavaScript files rather than TypeScript files.' },
+        { title: 'globalCss', placeholder: 'Default is false. When true, the component is generated with *.css/*.scss instead of *.module.css/*.module.scss' },
+        { title: 'classComponent', placeholder: 'Use class components instead of functional component.' },
+        { title: 'pascalCaseFiles', placeholder: 'Use pascal case component file name (e.g. App.tsx).' },
+        { title: 'routing', placeholder: 'Generate application with routes.' },
+        { title: 'setParserOptionsProject', placeholder: 'Whether or not to configure the ESLint "parserOptions.project" option. We do not do this by default for lint performance reasons.' },
+        { title: 'skipFormat', placeholder: 'Skip formatting files.' },
+        { title: 'strict', placeholder: 'Creates an application with stricter type checking and build optimization options.' },
+      ],
+      dropDowns: [
+        { title: 'style', placeholder: 'The file extension or preprocessor to use for style files, or "none" to skip generating the style file.', items: ['scss', 'styl', 'less', 'styled-components', '@emotion/styled', 'styled-jsx', 'none'], selectedItem: 'scss' },
+      ]
+    }
+  },
+  /////////////////////////////////////////////////
+  /////////////// React library
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  {
+    name: `@nrwl/react - library`,
+    cmd: 'npx ng generate @nrwl/react:library',
+    form: {
+      textInputs: [
+        { title: 'name', placeholder: 'The name of the library', isRequired: true },
+        { title: 'directory', placeholder: 'A directory where the library is placed' },
+        { title: 'importPath', placeholder: 'The library name used to import it, like @myorg/my-awesome-lib' },
+        { title: 'appProject', placeholder: 'The application project to add the library route to.' },
+      ],
+      checkboxes: [
+        { title: 'buildable', placeholder: 'Generate a buildable library.' },
+        { title: 'component', placeholder: 'Generate a default component.' },
+        { title: 'publishable', placeholder: 'Create a publishable library.' },
+        { title: 'setParserOptionsProject', placeholder: 'Whether or not to configure the ESLint "parserOptions.project" option. We do not do this by default for lint performance reasons.' },
+        { title: 'skipTsConfig', placeholder: 'Do not update tsconfig.json for development experience.' },
+        { title: 'standaloneConfig', placeholder: 'Split the project configuration into <projectRoot>/project.json rather than including it inside workspace.json' },
+        { title: 'js', placeholder: 'Generate JavaScript files rather than TypeScript files.' },
+        { title: 'globalCss', placeholder: 'Default is false. When true, the component is generated with *.css/*.scss instead of *.module.css/*.module.scss' },
+        { title: 'classComponent', placeholder: 'Use class components instead of functional component.' },
+        { title: 'pascalCaseFiles', placeholder: 'Use pascal case component file name (e.g. App.tsx).' },
+        { title: 'routing', placeholder: 'Generate library with routes.' },
+        { title: 'skipFormat', placeholder: 'Skip formatting files.' },
+        { title: 'strict', placeholder: 'Creates an library with stricter type checking and build optimization options.' },
+      ],
+      dropDowns: [
+        { title: 'style', placeholder: 'The file extension or preprocessor to use for style files, or "none" to skip generating the style file.', items: ['scss', 'styl', 'less', 'styled-components', '@emotion/styled', 'styled-jsx', 'none'], selectedItem: 'scss' },
+        { title: 'unitTestRunner', placeholder: 'Test runner to use for unit tests.', items: ['jest', 'none'], selectedItem: 'jest' },
+        { title: 'linter', placeholder: 'The tool to use for running lint checks.', items: ['eslint', 'tslint'], selectedItem: 'eslint' },
+      ]
+    }
+  },
+  /////////////////////////////////////////////////
+  /////////////// React component
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  {
+    name: `@nrwl/react - component`,
+    cmd: 'npx ng generate @nrwl/react:component',
+    form: {
+      textInputs: [
+        { title: 'name', placeholder: 'The name of the component', isRequired: true },
+        { title: 'directory', placeholder: 'A directory where the component is placed' },
+      ],
+      checkboxes: [
+        { title: 'js', placeholder: 'Generate JavaScript files rather than TypeScript files.' },
+        { title: 'globalCss', placeholder: 'Default is false. When true, the component is generated with *.css/*.scss instead of *.module.css/*.module.scss' },
+        { title: 'pascalCaseFiles', placeholder: 'Use pascal case component file name (e.g. App.tsx).' },
+        { title: 'pascalCaseDirectory', placeholder: 'Use pascal case directory name (e.g. App/App.tsx).' },
+        { title: 'routing', placeholder: 'Generate component with routes.' },
+        { title: 'classComponent', placeholder: 'Use class components instead of functional component.' },
+        { title: 'skipTests', placeholder: 'When true, does not create "spec.ts" test files for the new component.' },
+      ],
+      dropDowns: [
+        { title: 'style', placeholder: 'The file extension or preprocessor to use for style files, or "none" to skip generating the style file.', items: ['scss', 'styl', 'less', 'styled-components', '@emotion/styled', 'styled-jsx', 'none'], selectedItem: 'scss' },
+        { title: 'project', placeholder: 'The name of the project.', items: [], isRequired: true },
+      ]
+    }
+  },
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  /////////////// React hook
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  {
+    name: `@nrwl/react - hook`,
+    cmd: 'npx ng generate @nrwl/react:hook',
+    form: {
+      textInputs: [
+        { title: 'name', placeholder: 'The name of the hook', isRequired: true },
+        { title: 'directory', placeholder: 'A directory where the hook is placed' },
+      ],
+      checkboxes: [
+        { title: 'js', placeholder: 'Generate JavaScript files rather than TypeScript files.' },
+        { title: 'pascalCaseFiles', placeholder: 'Use pascal case hook file name (e.g. App.tsx).' },
+        { title: 'pascalCaseDirectory', placeholder: 'Use pascal case directory name (e.g. App/App.tsx).' },
+        { title: 'flat', placeholder: 'Create hook at the source root rather than its own directory.' },
+        { title: 'export', placeholder: 'When true, the hook is exported from the project index.ts (if it exists).' },
+        { title: 'skipTests', placeholder: 'When true, does not create "spec.ts" test files for the new hook.' },
+      ],
+      dropDowns: [
+        { title: 'project', placeholder: 'The name of the project.', items: [], isRequired: true },
+      ]
+    }
+  },
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  /////////////// React redux
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+  {
+    name: `@nrwl/react - redux`,
+    cmd: 'npx ng generate @nrwl/react:redux',
+    form: {
+      textInputs: [
+        { title: 'name', placeholder: 'Redux slice name.', isRequired: true },
+        { title: 'directory', placeholder: 'The name of the folder used to contain/group the generated Redux files.' },
+        { title: 'appProject', placeholder: 'The application project to add the slice to.' },
+      ],
+      checkboxes: [
+        { title: 'js', placeholder: 'Generate JavaScript files rather than TypeScript files.' },
+      ],
+      dropDowns: [
+        { title: 'project', placeholder: 'The name of the project to add the slice to. If it is an application, then the store configuration will be updated too.', items: [], isRequired: true },
+      ]
+    }
+  }
 ];
