@@ -44,6 +44,10 @@
   & > .projects-list {
     overflow-y: auto;
     @include box(100%, calc(100% - 14rem));
+
+    & > .selected-item {
+      background-color: #E5E4E2;
+    }
   }
 
   & > .actions {

@@ -16,6 +16,7 @@
   <nx-cli-project-list-item
     *ngFor="let project of (listVmStore.vm$ | async).projectsInView"
     [project]="project"
+    [ngClass]='{ "selected-item": (listVmStore.vm$ | async).selectedProject?.nameInNxJson === project?.nameInNxJson }'
     (click)="listVmStore.selectProject(project)"
   >
     <dev-workspace-list-item-badge [projectType]="project.type"></dev-workspace-list-item-badge>

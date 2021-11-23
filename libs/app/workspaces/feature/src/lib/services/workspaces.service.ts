@@ -16,6 +16,7 @@ export class WorkspacesService implements IWorkspaceService {
           path: workspacePath,
           name: packageJson.name,
           consoleLogs: [],
+          selectedProject: null,
           tags: (await this.getAllTags(workspacePath)).data,
           generators: (await this.getAvailableNxGenerators(workspacePath)).data.generators
         },

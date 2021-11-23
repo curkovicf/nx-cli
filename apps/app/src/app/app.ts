@@ -136,7 +136,6 @@ export default class App {
         .catch((err) => console.log('An error occurred: ', err));
     });
 
-
     nativeTheme.themeSource = 'light';
   }
 }

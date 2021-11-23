@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { WorkspacesState } from './workspaces.store';
-import { Workspace, WorkspacesIpcDtos } from '@nx-cli/shared/data-access/models';
+import { Project, Workspace, WorkspacesIpcDtos } from '@nx-cli/shared/data-access/models';
 
 import { Observable } from 'rxjs';
 import { first, map } from 'rxjs/operators';
@@ -14,6 +14,7 @@ import * as WorkspacesActions from './workspaces.actions';
 export class WorkspacesFacade {
   workspaces$ = this.store.pipe(select(WorkspacesSelectors.getWorkspaces));
   selectedWorkspace$ = this.store.pipe(select(WorkspacesSelectors.getSelectedWorkspace));
+  selectedProject$ = this.store.pipe(select(WorkspacesSelectors.getSelectedProject));
 
   constructor(private store: Store<WorkspacesState>) {}
 
@@ -51,5 +52,9 @@ export class WorkspacesFacade {
 
   public addNxGenerators(nxGenerators: WorkspacesIpcDtos.Generators): void {
     this.store.dispatch(WorkspacesActions.addNxGenerators({ nxGenerators }));
+  }
+
+  public selectProject(workspacePath: string, selectedProject: Project): void {
+    this.store.dispatch(WorkspacesActions.setSelectedProject({ workspacePath, selectedProject }));
   }
 }

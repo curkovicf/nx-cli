@@ -12,16 +12,11 @@ import * as ProjectsSelectors from './projects.selectors';
 })
 export class ProjectsFacade {
   public projects$ = this.store.pipe(select(ProjectsSelectors.getProjects));
-  public selectedProject$ = this.store.pipe(select(ProjectsSelectors.getSelectedProject));
 
   constructor(private store: Store<ProjectsState>) {}
 
   public addProjects(projects: Project[]): void {
     this.store.dispatch(ProjectsActions.addProjects({ projects }));
-  }
-
-  public selectProject(selectedProject: Project): void {
-    this.store.dispatch(ProjectsActions.setSelectedProject({ selectedProject }));
   }
 
   public resetProjects(): void {

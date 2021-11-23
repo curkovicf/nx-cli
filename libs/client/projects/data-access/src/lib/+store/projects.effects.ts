@@ -23,7 +23,7 @@ export class ProjectsEffects {
     ofType(deleteWorkspace),
     tap(() => {
       this.projectsFacade.resetProjects();
-      this.projectsFacade.selectProject(null);
+      // this.projectsFacade.selectProject(null);
     })),
     { dispatch: false }
   );

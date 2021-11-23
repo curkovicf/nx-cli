@@ -1,13 +1,13 @@
 import { ComponentStore } from '@ngrx/component-store';
 import { Injectable } from '@angular/core';
-import { filter, first, map, switchMap } from 'rxjs/operators';
+import { filter, first, map, switchMap, tap } from 'rxjs/operators';
 import { NxGenerator, Project } from '@nx-cli/shared/data-access/models';
 import { WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
 import { combineLatest, Observable} from 'rxjs';
 import { ProjectsIpcApiService } from '../api/projects-ipc-api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ComponentType } from '@angular/cdk/portal/portal';
-import { GeneratorDialogComponent, MatDialogData } from '@nx-cli/client/projects/ui/generator-dialog';
+import { GeneratorDialogComponent } from '@nx-cli/client/projects/ui/generator-dialog';
 import { MatDialogConfig } from '@angular/material/dialog/dialog-config';
 import { ProjectsFacade } from '../+store/projects.facade';
 import { AutocompleteSearchComponent } from '@nx-cli/client/shared/ui/autocomplete-search';
@@ -23,10 +23,12 @@ export interface ProjectsState {
 export class listStore extends ComponentStore<ProjectsState> {
   readonly vm$ = this.select(
     this.projectsFacade.projects$,
+    this.workspacesFacade.selectedProject$,
     this.state$,
-    (projects, { filterKeyword, isPopupSearchVisible }) => ({
+    (projects, selectedProject, { filterKeyword, isPopupSearchVisible }) => ({
       projectsInView: projects.filter((project) => project.name.includes(filterKeyword)),
-      isPopupSearchVisible,
+      selectedProject,
+      isPopupSearchVisible
     })
   );
 
@@ -56,7 +58,13 @@ export class listStore extends ComponentStore<ProjectsState> {
   }
 
   public selectProject(selectedProject: Project): void {
-    this.projectsFacade.selectProject(selectedProject);
+    this.workspacesFacade
+      .getSelectedWorkspacePath()
+      .pipe(
+        first(),
+        tap(path => this.workspacesFacade.selectProject(path, selectedProject))
+      )
+      .subscribe();
   }
 
   public startDepGraph(): void {
@@ -90,7 +98,7 @@ export class listStore extends ComponentStore<ProjectsState> {
             )
           )
         ),
-        switchMap(([nxGenerator, workspacePath]) => this.projectsFacade.selectedProject$
+        switchMap(([nxGenerator, workspacePath]) => this.workspacesFacade.selectedProject$
           .pipe(
             first(),
             map(selectedProject => ({ nxGenerator, workspacePath, selectedProjectName: selectedProject?.name }))

@@ -6,5 +6,3 @@ export const getProjectsState = createFeatureSelector<ProjectsState>(PROJECTS_FE
 
 export const getProjects = createSelector(getProjectsState, (state) => state.projects);
 
-export const getSelectedProject = createSelector(getProjectsState, (state) => state.selectedProject);
-

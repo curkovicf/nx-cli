@@ -22,7 +22,7 @@ export interface DetailState {
 @Injectable()
 export class DetailStore extends ComponentStore<DetailState> {
   readonly vm$ = this.select(
-    this.projectsFacade.selectedProject$,
+    this.workspacesFacade.selectedProject$,
     this.state$,
     (selectedProject, { tabs, activeTab }) => ({ selectedProject, tabs, activeTab })
   );
@@ -77,7 +77,7 @@ export class DetailStore extends ComponentStore<DetailState> {
   public addNewTag(): void {
     combineLatest([
       this.openDialog(NewTagDialogComponent),
-      this.projectsFacade.selectedProject$,
+      this.workspacesFacade.selectedProject$,
       this.workspacesFacade.getSelectedWorkspacePath()
     ]).pipe(
       first(),
@@ -125,7 +125,7 @@ export class DetailStore extends ComponentStore<DetailState> {
 
     combineLatest([
       this.openDialog(ConfirmDialogComponent, { data }),
-      this.projectsFacade.selectedProject$,
+      this.workspacesFacade.selectedProject$,
       this.workspacesFacade.selectedWorkspace$
     ])
       .pipe(

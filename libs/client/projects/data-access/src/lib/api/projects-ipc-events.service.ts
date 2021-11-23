@@ -41,14 +41,14 @@ export class ProjectsIpcEventsService {
         this.ngZone.run(() => {
           this.progressBarFacade.markOperationAsComplete();
 
-          this.projectsFacade.selectedProject$
+          this.workspacesFacade.selectedProject$
             .pipe(
               first(),
               tap((_selectedProject) => {
                 const { data } = response;
 
                 this.projectsFacade.addProjects([...data]);
-                this.projectsFacade.selectProject(data.find((project) => project.nameInNxJson === _selectedProject?.nameInNxJson));
+                // this.projectsFacade.selectProject(data.find((project) => project.nameInNxJson === _selectedProject?.nameInNxJson));
 
               })
             )

@@ -57,5 +57,13 @@ export const workspacesReducer = createReducer(
       ...state.selectedWorkspace,
       generators: nxGeneratorsDto.generators
     } : state.selectedWorkspace
+  })),
+  on(WorkspacesActions.setSelectedProject, (state, { workspacePath, selectedProject }) => ({
+    ...state,
+    workspaces: state.workspaces.map(w => w.path === workspacePath ? ({ ...w, selectedProject }) : w),
+    selectedWorkspace: {
+      ...state.selectedWorkspace,
+      selectedProject
+    }
   }))
 );

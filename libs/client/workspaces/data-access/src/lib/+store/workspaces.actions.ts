@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { WorkspacesState } from './workspaces.reducer';
-import { Workspace, WorkspacesIpcDtos } from '@nx-cli/shared/data-access/models';
+import { Project, Workspace, WorkspacesIpcDtos } from '@nx-cli/shared/data-access/models';
 
 export const initWorkspaces = createAction('[Workspaces] Initial setup');
 
@@ -19,3 +19,5 @@ export const clearLog = createAction('[Workspaces] Clear log from workspace', pr
 export const addTags = createAction('[Workspaces] Add tags to selected workspace', props<{ tags: string[] }>());
 
 export const addNxGenerators = createAction('[Workspaces] Add nx generators to current workspace', props<{ nxGenerators: WorkspacesIpcDtos.Generators }>());
+
+export const setSelectedProject = createAction('[Workspaces] Set selected project name', props<{ workspacePath: string, selectedProject: Project }>());

@@ -1,4 +1,4 @@
-import { NxGenerator } from '@nx-cli/shared/data-access/models';
+import { NxGenerator } from '../api/nx-generator.model';
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace WorkspacesIpcDtos {

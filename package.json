@@ -50,6 +50,8 @@
     "@ngrx/router-store": "~12.2.0",
     "@ngrx/store": "~12.2.0",
     "child_process": "^1.0.2",
+    "custom-electron-titlebar": "^3.2.7",
+    "electron-devtools-installer": "^3.2.0",
     "fs-extra": "^10.0.0",
     "ngx-childprocess": "0.0.6",
     "ngx-electron": "^2.2.0",
@@ -57,8 +59,7 @@
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "wait-on": "^6.0.0",
-    "zone.js": "~0.11.4",
-    "electron-devtools-installer": "^3.2.0"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^12.1.0",
