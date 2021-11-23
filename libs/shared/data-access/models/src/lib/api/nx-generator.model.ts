@@ -359,7 +359,7 @@ export const reactNxGenerators: NxGenerator[] = [
   /////////////////////////////////////////////////
   {
     name: `@nrwl/react - application`,
-    cmd: 'npx ng generate @nrwl/react:application',
+    cmd: 'npx nx generate @nrwl/react:application',
     form: {
       textInputs: [
         { title: 'name', placeholder: 'The name of the application', isRequired: true },
@@ -390,7 +390,7 @@ export const reactNxGenerators: NxGenerator[] = [
   /////////////////////////////////////////////////
   {
     name: `@nrwl/react - library`,
-    cmd: 'npx ng generate @nrwl/react:library',
+    cmd: 'npx nx generate @nrwl/react:library',
     form: {
       textInputs: [
         { title: 'name', placeholder: 'The name of the library', isRequired: true },
@@ -426,7 +426,7 @@ export const reactNxGenerators: NxGenerator[] = [
   /////////////////////////////////////////////////
   {
     name: `@nrwl/react - component`,
-    cmd: 'npx ng generate @nrwl/react:component',
+    cmd: 'npx nx generate @nrwl/react:component',
     form: {
       textInputs: [
         { title: 'name', placeholder: 'The name of the component', isRequired: true },
@@ -449,38 +449,12 @@ export const reactNxGenerators: NxGenerator[] = [
   },
   /////////////////////////////////////////////////
   /////////////////////////////////////////////////
-  /////////////// React hook
-  /////////////////////////////////////////////////
-  /////////////////////////////////////////////////
-  {
-    name: `@nrwl/react - hook`,
-    cmd: 'npx ng generate @nrwl/react:hook',
-    form: {
-      textInputs: [
-        { title: 'name', placeholder: 'The name of the hook', isRequired: true },
-        { title: 'directory', placeholder: 'A directory where the hook is placed' },
-      ],
-      checkboxes: [
-        { title: 'js', placeholder: 'Generate JavaScript files rather than TypeScript files.' },
-        { title: 'pascalCaseFiles', placeholder: 'Use pascal case hook file name (e.g. App.tsx).' },
-        { title: 'pascalCaseDirectory', placeholder: 'Use pascal case directory name (e.g. App/App.tsx).' },
-        { title: 'flat', placeholder: 'Create hook at the source root rather than its own directory.' },
-        { title: 'export', placeholder: 'When true, the hook is exported from the project index.ts (if it exists).' },
-        { title: 'skipTests', placeholder: 'When true, does not create "spec.ts" test files for the new hook.' },
-      ],
-      dropDowns: [
-        { title: 'project', placeholder: 'The name of the project.', items: [], isRequired: true },
-      ]
-    }
-  },
-  /////////////////////////////////////////////////
-  /////////////////////////////////////////////////
   /////////////// React redux
   /////////////////////////////////////////////////
   /////////////////////////////////////////////////
   {
     name: `@nrwl/react - redux`,
-    cmd: 'npx ng generate @nrwl/react:redux',
+    cmd: 'npx nx generate @nrwl/react:redux',
     form: {
       textInputs: [
         { title: 'name', placeholder: 'Redux slice name.', isRequired: true },

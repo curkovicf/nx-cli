@@ -415,8 +415,6 @@ export class ProjectsRepository {
 
     dropDowns.forEach(dropDownInput => dropDownInput.selectedItem ? args.push(`--${dropDownInput.title} ${dropDownInput.selectedItem}`) : null);
 
-    console.log('CMD ', cmd);
-    console.log('ARGS ', args);
 
     const result = await NodeUtils.executeCommand(cmd, args, workspacePath, 'CREATE');
 
