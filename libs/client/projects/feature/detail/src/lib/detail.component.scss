@@ -49,6 +49,10 @@
 
     & > nx-cli-button {
       margin: 0.3rem;
+
+      &::ng-deep > button {
+        height: 2.3rem;
+      }
     }
   }
 

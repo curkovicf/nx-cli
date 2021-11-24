@@ -74,6 +74,10 @@ export class ProjectsIpcEventsService {
     });
   }
 
+  /**
+   *
+   * @private
+   */
   private initRemoveTag(): void {
     this.electronService.ipcRenderer.on(ProjectsIpcEvents.removeTag.fromElectron, (event, response: IpcResponses.ResponseWithData<ProjectsIpcDtos.RemoveTag>) => {
       const { error, success } = response;
@@ -88,6 +92,10 @@ export class ProjectsIpcEventsService {
     })
   }
 
+  /**
+   *
+   * @private
+   */
   private initAddTags(): void {
     this.electronService.ipcRenderer.on(ProjectsIpcEvents.addTag.fromElectron, (event, response: IpcResponses.ResponseWithData<ProjectsIpcDtos.AddTagResult>) => {
       const { error, success, data } = response;

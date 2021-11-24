@@ -59,6 +59,13 @@
 
     & > nx-cli-button {
       width: 95%;
+      @include center-flex-X;
+
+      &::ng-deep > button {
+        padding: 0;
+        height: 2.3rem;
+        width: 95%;
+      }
     }
   }
 }
