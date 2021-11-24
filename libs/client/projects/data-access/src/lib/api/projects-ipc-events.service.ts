@@ -88,7 +88,10 @@ export class ProjectsIpcEventsService {
         return;
       }
 
-      this.ngZone.run(() => this.snackBar.open(success || error, null));
+      this.ngZone.run(() => {
+        this.snackBar.open(success || error, null);
+        this.progressBarFacade.markOperationAsComplete();
+      });
     })
   }
 

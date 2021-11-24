@@ -3,6 +3,7 @@ import { ElectronService } from 'ngx-electron';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { WorkspacesFacade } from '../+store/workspaces.facade';
 import { WorkspacesIpcEvents, IpcResponses, WorkspacesIpcDtos } from '@nx-cli/shared/data-access/models';
+import { ProgressBarFacade } from '@nx-cli/client/shared/data-access';
 
 @Injectable()
 export class WorkspacesIpcEventsService {
@@ -10,6 +11,7 @@ export class WorkspacesIpcEventsService {
     private electronService: ElectronService,
     private snackBar: MatSnackBar,
     private workspacesFacade: WorkspacesFacade,
+    private progressBarFacade: ProgressBarFacade,
     private ngZone: NgZone
   ) {}
 
@@ -40,7 +42,10 @@ export class WorkspacesIpcEventsService {
         alert('ERR WITH TAGS');
       }
 
-      this.ngZone.run(() => this.workspacesFacade.addTags(data))
+      this.ngZone.run(() => {
+        this.workspacesFacade.addTags(data);
+        this.progressBarFacade.markOperationAsComplete();
+      })
     });
   }
 
