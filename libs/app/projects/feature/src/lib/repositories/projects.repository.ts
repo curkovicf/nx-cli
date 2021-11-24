@@ -255,12 +255,24 @@ export class ProjectsRepository {
     return splitPath[splitPath.length - 1];
   }
 
+  /**
+   *
+   * @param workspacePath
+   * @param file
+   * @param projects
+   */
   async getProjectsNames(workspacePath: string, file: string, projects: Project[]): Promise<void> {
     const filePath = `${workspacePath}${OsUtils.getPlatformPathSeparator()}${file}`;
     const fileAsJson = await fsExtra.readJSON(filePath);
 
     Object.entries(fileAsJson.projects).forEach(([key, value]) => {
-      const currentProjectPath = OsUtils.parsePath((value as ObjWithRootField).root);
+      let currentProjectPath: string;
+
+      if (file === 'workspace.json') {
+        currentProjectPath = OsUtils.parsePath(value as string);
+      } else {
+        currentProjectPath = OsUtils.parsePath((value as ObjWithRootField).root ?? '');
+      }
 
       projects.forEach((project) => {
         const trimmedPath = OsUtils.parsePath(this.trimToRelativePath(project.path, workspacePath).substring(1));
