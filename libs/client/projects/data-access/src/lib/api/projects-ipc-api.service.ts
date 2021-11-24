@@ -32,12 +32,10 @@ export class ProjectsIpcApiService {
   }
 
   public removeTag(removeTagDto: ProjectsIpcDtos.RemoveTag): void {
-    this.progressBarFacade.markOperationAsActive();
     this.electronService.ipcRenderer.send(ProjectsIpcEvents.removeTag.fromAngular, removeTagDto);
   }
 
   public addTag(tagDto: ProjectsIpcDtos.Tag): void {
-    this.progressBarFacade.markOperationAsActive();
     this.electronService.ipcRenderer.send(ProjectsIpcEvents.addTag.fromAngular, tagDto);
   }
 
