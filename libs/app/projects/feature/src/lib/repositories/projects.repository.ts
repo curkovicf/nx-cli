@@ -294,13 +294,14 @@ export class ProjectsRepository {
     const pathToNxJson = `${workspacePath}${OsUtils.getPlatformPathSeparator()}nx.json`;
     const nxJson = await fsExtra.readJSON(pathToNxJson);
 
-    Object.entries(nxJson.projects).forEach(([key, value]) => {
-      projects.forEach((project) => {
-        if (project.nameInNxJson === key) {
-          project.tags.push(...(value as ObjWithTagsField).tags);
-        }
-      });
-    });
+    //  FIXME: Tags are breaking
+    // Object.entries(nxJson.projects).forEach(([key, value]) => {
+    //   projects.forEach((project) => {
+    //     if (project.nameInNxJson === key) {
+    //       project.tags.push(...(value as ObjWithTagsField).tags);
+    //     }
+    //   });
+    // });
   }
 
   /**

@@ -15,12 +15,12 @@ export class WorkspacesRepository {
 
   async getAllTags(workspacePath: string): Promise<string[]> {
     const tags: string[] = [];
-    const pathToNxJson = `${workspacePath}${OsUtils.getPlatformPathSeparator()}nx.json`;
-    const nxJson = await fsExtra.readJSON(pathToNxJson);
+    // const pathToNxJson = `${workspacePath}${OsUtils.getPlatformPathSeparator()}nx.json`;
+    // const nxJson = await fsExtra.readJSON(pathToNxJson);
 
-    console.log(nxJson);
+    // console.log(nxJson);
 
-    Object.entries(nxJson.projects).forEach(([key, value]) => tags.push(...(value as { tags: string[] }).tags));
+    // Object.entries(nxJson.projects).forEach(([key, value]) => tags.push(...(value as { tags: string[] }).tags));
 
     return tags;
   }
