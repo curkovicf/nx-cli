@@ -66,24 +66,9 @@ While working at my current job with Nx monorepos I have noticed that I spend a 
 | :white_check_mark: | User can see lib or app tree | Once app or lib is selected, user can see folder tree in the detail view |
 | :white_check_mark: | User can start dep graph | User can run nx dep graph from the app |
 | :white_check_mark: | User can add/delete tags | Ability to add tags for a selected app or lib |
-| :x: | User can use all installed nx generators | Ability to create all supported libs/apps |
+| :white_check_mark: | User can use React & Angular Nx generators | Ability to create all supported artifacts |
 
-<br>
 
-### ⏩ What happens next
-
-| Status | Topic |
-| ----------- | ----------- |
-| :white_check_mark: | Polish and bugfix |
-| :white_check_mark: | User can remove workspace from app |
-| :white_check_mark: | Add additional flags for lib generation |
-| :white_check_mark: | Add additional flags for app generation |
-| :white_check_mark: | Add console to the app so user can see and interact with the console logs |
-| :white_check_mark: | Add notification if user doesn't have Nx installed on his machine |
-| :white_check_mark: | Once app or lib is selected, user can see folder tree in the detail view |
-| :white_check_mark: | User can run nx dep graph from the app |
-| :white_check_mark: | Ability to add tags for a selected app or lib |
-| :x: | User can use all installed nx generators |
 
 <br>
 
