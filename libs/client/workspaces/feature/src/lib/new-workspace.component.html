@@ -15,7 +15,7 @@
   </main>
 
   <footer>
-    <button class="save" [disabled]="!form.valid || !form.touched" [style.cursor]="!form.valid || !form.touched ? 'auto' : 'pointer'">
+    <button class="save" [disabled]="!form.valid" [style.cursor]="!form.valid || !form.touched ? 'auto' : 'pointer'">
       Save
     </button>
     <button type="reset" class="cancel" (click)="onCancel()">Cancel</button>
