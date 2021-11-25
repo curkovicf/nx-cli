@@ -1,8 +1,8 @@
 import * as fs from 'fs-extra';
 
+import { ProjectsRepository } from '@nx-cli/app/projects/repository';
 import { NodeUtils, OsUtils } from '@nx-cli/app/shared/util';
 import { IProjectsService } from './projects-service.interface';
-import { ProjectsRepository } from '../repositories/projects.repository';
 import { IpcResponses, Project, ProjectsIpcDtos, ProjectType } from '@nx-cli/shared/data-access/models';
 import Platform = OsUtils.Platform;
 import RemoveTag = ProjectsIpcDtos.RemoveTag;
@@ -11,13 +11,12 @@ import { StringUtils } from '@nx-cli/shared/util';
 export class ProjectsService implements IProjectsService {
   constructor(private projectsRepository: ProjectsRepository = new ProjectsRepository()) {}
 
-
   /**
    * Gets all libs and apps for a specific nx workspace
    * @param workspacePath root workspace path
    */
   async getAllProjects(workspacePath: string): Promise<IpcResponses.ResponseWithData<Project[]>> {
-    const projects = this.projectsRepository.getAllProjects(workspacePath, workspacePath);
+    const projects = await this.projectsRepository.getAllProjectsV2(workspacePath, workspacePath);
 
     const angularJsonExists = await fs
       .pathExists(`${workspacePath}${OsUtils.getPlatformPathSeparator()}angular.json`)

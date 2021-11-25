@@ -18,6 +18,7 @@
     "baseUrl": ".",
     "paths": {
       "@nx-cli/app/projects/feature": ["libs/app/projects/feature/src/index.ts"],
+      "@nx-cli/app/projects/repository": ["libs/app/projects/repository/src/index.ts"],
       "@nx-cli/app/shared/util": ["libs/app/shared/util/src/index.ts"],
       "@nx-cli/app/shell/feature": ["libs/app/shell/feature/src/index.ts"],
       "@nx-cli/app/workspaces/feature": ["libs/app/workspaces/feature/src/index.ts"],

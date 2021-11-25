@@ -1,22 +1,22 @@
 import * as path from 'path';
 import * as fsExtra from 'fs-extra';
-import * as fs from 'fs';
 
 
 import { NodeUtils, OsUtils } from '@nx-cli/app/shared/util';
+import { StringUtils } from '@nx-cli/shared/util';
 import {
   AngularComponent,
   AngularModule,
   FileType,
   fileTypes,
   FolderType,
-  folderTypes, getNxGeneratorFieldValue,
+  folderTypes,
+  getNxGeneratorFieldValue,
   Project,
   ProjectFolder,
   ProjectsIpcDtos,
   ProjectType
 } from '@nx-cli/shared/data-access/models';
-import { StringUtils } from '@nx-cli/shared/util';
 
 interface ObjWithRootField {
   root: string;
@@ -26,44 +26,45 @@ interface ObjWithTagsField {
   tags: string[];
 }
 
-//  FIXME: Impl everything as async
 
 export class ProjectsRepository {
+
   /**
    *
-   * @param pwd
-   * @param rootPath
+   * @param currPath
+   * @param workspacePath
    */
-  getAllProjects(pwd: string, rootPath: string): Project[] {
+  async getAllProjectsV2(currPath: string, workspacePath: string): Promise<Project[]> {
     let projects: Project[] = [];
     let matchingNameCounter = 0;
-    const files = fs.readdirSync(pwd);
 
-    files.forEach((file: string) => {
-      const absolutePath = path.join(pwd, file);
-      const isFileDirectory = fs.statSync(absolutePath).isDirectory();
+    const files = await fsExtra.readdir(currPath);
+
+    for await (const file of files) {
+      const absolutePath = path.join(currPath, file);
+      const isFileDirectory = (await fsExtra.stat(absolutePath)).isDirectory();
 
       if (isFileDirectory && !file.includes('node_modules') && !file.includes('dist')) {
-        projects = [...projects, ...this.getAllProjects(absolutePath, rootPath)];
+        projects = [...projects, ...await this.getAllProjectsV2(absolutePath, workspacePath)];
       } else if (this.isProject(file, files)) {
         matchingNameCounter++;
       }
 
       if (matchingNameCounter > 1) {
         projects.push({
-          name: this.getProjectName(pwd),
-          path: pwd,
-          relativePath: this.trimToRelativePath(pwd, rootPath),
-          type: this.getProjectType(pwd, rootPath),
+          name: this.getProjectName(currPath),
+          path: currPath,
+          relativePath: this.trimToRelativePath(currPath, workspacePath),
+          type: this.getProjectType(currPath, workspacePath),
           nameInNxJson: '',
-          angularModules: this.getAngularModules(pwd),
-          folderTree: this.getProjectFolderTree(pwd),
+          angularModules: await this.getAngularModules(currPath),
+          folderTree: await this.getProjectFolderTree(currPath),
           tags: [],
         });
 
         matchingNameCounter = 0;
       }
-    });
+    }
 
     return projects;
   }
@@ -101,20 +102,20 @@ export class ProjectsRepository {
    *
    * @param projectPath
    */
-  getAngularModules(projectPath: string): AngularModule[] {
+  async getAngularModules(projectPath: string): Promise<AngularModule[]> {
     const angularModules: AngularModule[] = [];
-    const files = fs.readdirSync(projectPath); //  Open lib
+    const files = await fsExtra.readdir(projectPath); //  Open lib
 
     //  Recursively look for all angular modules
-    files.forEach((file: string) => {
+    for await (const file of files) {
       const absolutePath = path.join(projectPath, file);
-      const isFileDirectory = fs.statSync(absolutePath).isDirectory();
+      const isFileDirectory = (await fsExtra.stat(absolutePath)).isDirectory();
 
       if (isFileDirectory) {
-        angularModules.push(...this.getAngularModules(absolutePath));
+        angularModules.push(...await this.getAngularModules(absolutePath));
       } else if (file.includes('.module.')) {
         //  Angular module is found
-        const angularModuleTxt = fs.readFileSync(absolutePath, 'utf8');
+        const angularModuleTxt = await fsExtra.readFile(absolutePath, 'utf8');
 
         angularModules.push({
           className: this.getClassName(angularModuleTxt),
@@ -123,7 +124,7 @@ export class ProjectsRepository {
           components: this.findDeclaredComponents(angularModuleTxt),
         });
       }
-    });
+    }
 
     return angularModules;
   }
@@ -197,7 +198,7 @@ export class ProjectsRepository {
    *
    * @param pwd
    */
-  getProjectFolderTree(pwd: string): ProjectFolder {
+  async getProjectFolderTree(pwd: string): Promise<ProjectFolder> {
     const name = pwd.split(OsUtils.getPlatformPathSeparator()).pop();
     let folderType;
 
@@ -215,15 +216,15 @@ export class ProjectsRepository {
       dirType: folderType ?? FolderType.unknown
     };
 
-    const files = fs.readdirSync(pwd);
+    const files = await fsExtra.readdir(pwd);
 
-    files.forEach((file: string) => {
+    for await (const file of files) {
       //  Check if its folder, and if it is call recursively
       const absolutePath = path.join(pwd, file);
-      const isDir = fs.statSync(absolutePath).isDirectory();
+      const isDir = (await fsExtra.stat(absolutePath)).isDirectory();
 
       if (isDir) {
-        projectTree.folderContent.push(this.getProjectFolderTree(absolutePath));
+        projectTree.folderContent.push(await this.getProjectFolderTree(absolutePath));
       } else {
         let fileType;
 
@@ -241,7 +242,7 @@ export class ProjectsRepository {
           fileType: fileType ?? FileType.unknown
         });
       }
-    });
+    }
 
     return projectTree;
   }
