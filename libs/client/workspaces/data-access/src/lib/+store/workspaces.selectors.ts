@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { WorkspacesState } from './workspaces.store';
+import { WorkspacesState } from './workspaces.reducer';
 import { WORKSPACES_FEATURE_KEY } from './workspaces.reducer';
 
 

@@ -42,10 +42,7 @@ export class WorkspacesIpcEventsService {
         alert('ERR WITH TAGS');
       }
 
-      this.ngZone.run(() => {
-        this.workspacesFacade.addTags(data);
-        this.progressBarFacade.markOperationAsComplete();
-      })
+      this.ngZone.run(() => this.workspacesFacade.addTags(data));
     });
   }
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { WorkspacesState } from './workspaces.store';
+import { WorkspacesState } from './workspaces.reducer';
 import { Project, Workspace, WorkspacesIpcDtos } from '@nx-cli/shared/data-access/models';
 
 import { Observable } from 'rxjs';
@@ -8,7 +8,6 @@ import { first, map } from 'rxjs/operators';
 
 import * as WorkspacesSelectors from './workspaces.selectors';
 import * as WorkspacesActions from './workspaces.actions';
-import { ProgressBarFacade } from '@nx-cli/client/shared/data-access';
 
 
 @Injectable()
@@ -17,17 +16,13 @@ export class WorkspacesFacade {
   selectedWorkspace$ = this.store.pipe(select(WorkspacesSelectors.getSelectedWorkspace));
   selectedProject$ = this.store.pipe(select(WorkspacesSelectors.getSelectedProject));
 
-  constructor(
-    private store: Store<WorkspacesState>,
-    private progressBarFacade: ProgressBarFacade
-  ) {}
+  constructor(private store: Store<WorkspacesState>) {}
 
   public setWorkspacesState(workspacesState: WorkspacesState): void {
     this.store.dispatch(WorkspacesActions.setWorkspacesState({ workspacesState }));
   }
 
   public selectWorkspace(selectedWorkspace: Workspace): void {
-    this.progressBarFacade.markOperationAsActive();
     this.store.dispatch(WorkspacesActions.switchCurrentWorkspace({ selectedWorkspace }));
   }
 
