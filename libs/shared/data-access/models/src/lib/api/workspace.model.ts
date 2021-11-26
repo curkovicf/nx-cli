@@ -1,5 +1,5 @@
-import { NxGenerator } from './nx-generator.model';
-import { Project } from './project.model';
+import {NxGenerator} from './nx-generator.model';
+import {Project} from './project.model';
 
 export interface Workspace {
   name: string;
@@ -7,5 +7,5 @@ export interface Workspace {
   tags: string[];
   selectedProject?: Project;
   consoleLogs: string[];
-  generators: NxGenerator[]
+  generators: NxGenerator[];
 }

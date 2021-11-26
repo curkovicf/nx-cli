@@ -1,5 +1,5 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { Workspace } from '@nx-cli/shared/data-access/models';
+import {Component, Input, EventEmitter, Output} from '@angular/core';
+import {Workspace} from '@nx-cli/shared/data-access/models';
 
 @Component({
   selector: 'dev-workspace-chips-bar',

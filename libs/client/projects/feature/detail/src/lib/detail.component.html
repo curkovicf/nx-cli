@@ -1,9 +1,13 @@
-<ng-container *ngIf="(detailVmStore.vm$ | async).selectedProject as project else message">
+<ng-container
+  *ngIf="(detailVmStore.vm$ | async).selectedProject as project; else message"
+>
   <header>
     <div class="title-wrapper">
       <h4 class="title">{{ project.name }}</h4>
 
-      <dev-workspace-list-item-badge [projectType]="project.type"></dev-workspace-list-item-badge>
+      <dev-workspace-list-item-badge
+        [projectType]="project.type"
+      ></dev-workspace-list-item-badge>
     </div>
 
     <div class="nx-json-name-wrapper">
@@ -16,32 +20,46 @@
   </header>
 
   <div class="action-buttons">
-    <nx-cli-button [buttonText]="'Edit project'" buttonType="warn" (onbtnclick)="detailVmStore.editProject(project)"></nx-cli-button>
-    <nx-cli-button [buttonText]="'Delete project'" buttonType="warn" (onbtnclick)="detailVmStore.deleteProject(project)"></nx-cli-button>
+    <nx-cli-button
+      [buttonText]="'Edit project'"
+      buttonType="warn"
+      (onbtnclick)="detailVmStore.editProject(project)"
+    ></nx-cli-button>
+    <nx-cli-button
+      [buttonText]="'Delete project'"
+      buttonType="warn"
+      (onbtnclick)="detailVmStore.deleteProject(project)"
+    ></nx-cli-button>
   </div>
 
   <div class="tabs">
     <nx-cli-tab-item
-      *ngFor='let tab of (detailVmStore.vm$ | async).tabs'
-      [title]='tab'
-      [class.selected-tab]='tab === (detailVmStore.vm$  | async).activeTab'
-      (click)='detailVmStore.switchTab(tab)'
+      *ngFor="let tab of (detailVmStore.vm$ | async).tabs"
+      [title]="tab"
+      [class.selected-tab]="tab === (detailVmStore.vm$ | async).activeTab"
+      (click)="detailVmStore.switchTab(tab)"
     ></nx-cli-tab-item>
   </div>
 
   <main>
-    <ng-container [ngSwitch]='(detailVmStore.vm$ | async).activeTab'>
-      <nx-cli-folder-tree *ngSwitchCase="'Folder Tree'" [folderTree]='project.folderTree'></nx-cli-folder-tree>
-<!--      <nx-cli-tags-->
-<!--        *ngSwitchCase="'Nx tags'"-->
-<!--        [tags]='project.tags'-->
-<!--        (onaddnewtag)='detailVmStore.addNewTag()'-->
-<!--        (onremovetag)='detailVmStore.removeTag($event)'-->
-<!--      ></nx-cli-tags>-->
+    <ng-container [ngSwitch]="(detailVmStore.vm$ | async).activeTab">
+      <nx-cli-folder-tree
+        *ngSwitchCase="'Folder Tree'"
+        [folderTree]="project.folderTree"
+      ></nx-cli-folder-tree>
+      <!--      <nx-cli-tags-->
+      <!--        *ngSwitchCase="'Nx tags'"-->
+      <!--        [tags]='project.tags'-->
+      <!--        (onaddnewtag)='detailVmStore.addNewTag()'-->
+      <!--        (onremovetag)='detailVmStore.removeTag($event)'-->
+      <!--      ></nx-cli-tags>-->
     </ng-container>
   </main>
 </ng-container>
 
 <ng-template #message>
-  <h4>Wow, such emptiness 😭. If you don't have any Nx Workspace added yet you can do so via top left add icon. 🚀🚀🚀</h4>
+  <h4>
+    Wow, such emptiness 😭. If you don't have any Nx Workspace added yet you can do so via
+    top left add icon. 🚀🚀🚀
+  </h4>
 </ng-template>

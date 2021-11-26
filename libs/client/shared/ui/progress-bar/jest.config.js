@@ -8,8 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory:
-    '../../../../../coverage/libs/client/shared/ui/progress-bar',
+  coverageDirectory: '../../../../../coverage/libs/client/shared/ui/progress-bar',
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',
   },

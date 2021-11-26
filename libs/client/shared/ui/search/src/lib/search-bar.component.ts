@@ -1,4 +1,4 @@
-import { Component, ElementRef, Output, ViewChild, EventEmitter } from '@angular/core';
+import {Component, ElementRef, Output, ViewChild, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'dev-workspace-search-bar',

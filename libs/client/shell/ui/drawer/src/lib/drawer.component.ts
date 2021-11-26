@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
-import { drawerAnimation } from '@nx-cli/client/shell/ui/drawer';
+import {Component} from '@angular/core';
+import {drawerAnimation} from '@nx-cli/client/shell/ui/drawer';
 
 @Component({
   selector: 'nx-cli-drawer',
-  template: `
-    <ng-content select='.drawer-content'></ng-content>
-  `,
+  template: ` <ng-content select=".drawer-content"></ng-content> `,
   styleUrls: ['./drawer.component.scss'],
-  animations: [drawerAnimation]
+  animations: [drawerAnimation],
 })
 export class DrawerComponent {}

@@ -11,15 +11,15 @@
   <mat-chip
     *ngFor="let workspace of workspaces"
     (click)="onselectworkspace.emit(workspace)"
-    [ngClass]="{ 'selected-chip': this.selectedWorkspace?.name === workspace.name }"
+    [ngClass]="{'selected-chip': this.selectedWorkspace?.name === workspace.name}"
     class="chip"
   >
     {{ workspace.name }}
     <img
-      (click)='onDeleteWorkspace($event, workspace)'
-      class='delete-icon'
-      src='assets/icons8-delete.svg'
-      alt='Delete icon'
+      (click)="onDeleteWorkspace($event, workspace)"
+      class="delete-icon"
+      src="assets/icons8-delete.svg"
+      alt="Delete icon"
     />
   </mat-chip>
 </mat-chip-list>

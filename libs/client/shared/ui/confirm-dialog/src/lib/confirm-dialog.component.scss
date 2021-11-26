@@ -1,5 +1,5 @@
-@import "styles/global.mixins";
-@import "styles/global.variables";
+@import 'styles/global.mixins';
+@import 'styles/global.variables';
 
 :host {
   @include center-flex-Y;
@@ -16,7 +16,7 @@
 
   & > .actions {
     width: 100%;
-    padding: .3rem;
+    padding: 0.3rem;
     @include center-flex-X;
     justify-content: space-evenly;
 

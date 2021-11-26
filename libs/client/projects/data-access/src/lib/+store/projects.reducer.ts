@@ -1,5 +1,5 @@
-import { createReducer, on } from '@ngrx/store';
-import { Project } from '@nx-cli/shared/data-access/models';
+import {createReducer, on} from '@ngrx/store';
+import {Project} from '@nx-cli/shared/data-access/models';
 
 import * as ProjectsActions from './projects.actions';
 
@@ -10,29 +10,32 @@ export interface ProjectsState {
 }
 
 export const initialState: ProjectsState = {
-  projects: []
+  projects: [],
 };
 
 export const projectsReducer = createReducer(
   initialState,
-  on(ProjectsActions.addProjects, (state, { projects }) => ({ ...state, projects })),
-  on(ProjectsActions.removeTag, (state, { projectName, tagToDelete }) => ({
+  on(ProjectsActions.addProjects, (state, {projects}) => ({...state, projects})),
+  on(ProjectsActions.removeTag, (state, {projectName, tagToDelete}) => ({
     projects: state.projects.map(project => {
       if (project.nameInNxJson === projectName) {
         return {
           ...project,
-          tags: project.tags.filter(tag => tag !== tagToDelete)
+          tags: project.tags.filter(tag => tag !== tagToDelete),
         };
       }
 
       return project;
-    })
+    }),
   })),
-  on(ProjectsActions.addTags, (state, { dto }) => ({
-    projects: state.projects.map(project => project.nameInNxJson === dto.selectedProjectName ? ({
-      ...project,
-      tags: [...project.tags, ...dto.tags]
-    }) : project)
-  }))
+  on(ProjectsActions.addTags, (state, {dto}) => ({
+    projects: state.projects.map(project =>
+      project.nameInNxJson === dto.selectedProjectName
+        ? {
+            ...project,
+            tags: [...project.tags, ...dto.tags],
+          }
+        : project,
+    ),
+  })),
 );
-

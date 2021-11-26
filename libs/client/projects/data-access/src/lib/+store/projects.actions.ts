@@ -1,10 +1,17 @@
+import {createAction, props} from '@ngrx/store';
+import {Project, ProjectsIpcDtos} from '@nx-cli/shared/data-access/models';
 
-import { createAction, props } from '@ngrx/store';
-import { Project, ProjectsIpcDtos } from '@nx-cli/shared/data-access/models';
+export const addProjects = createAction(
+  '[Projects] Add projects',
+  props<{projects: Project[]}>(),
+);
 
+export const removeTag = createAction(
+  '[Projects] Remove tag from project',
+  props<{projectName: string; tagToDelete: string}>(),
+);
 
-export const addProjects = createAction('[Projects] Add projects', props<{ projects: Project[] }>());
-
-export const removeTag = createAction('[Projects] Remove tag from project', props<{ projectName: string; tagToDelete: string }>());
-
-export const addTags = createAction('[Projects] Add tags to project', props<{ dto: ProjectsIpcDtos.AddTagResult }>());
+export const addTags = createAction(
+  '[Projects] Add tags to project',
+  props<{dto: ProjectsIpcDtos.AddTagResult}>(),
+);

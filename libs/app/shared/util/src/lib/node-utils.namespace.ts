@@ -1,5 +1,5 @@
 // @ts-ignore
-import { ChildProcess, spawn, exec } from 'child_process';
+import {ChildProcess, spawn, exec} from 'child_process';
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace NodeUtils {
@@ -12,7 +12,7 @@ export namespace NodeUtils {
     cmd: string,
     args: string[],
     pwd: string,
-    successKeyword: string
+    successKeyword: string,
   ): Promise<ExecuteCommandResponse | null> {
     try {
       const result = await spawnPromise(cmd, args, pwd);
@@ -25,7 +25,11 @@ export namespace NodeUtils {
     }
   }
 
-  export function spawnPromise(command: string, args: string[], path: string): Promise<string> {
+  export function spawnPromise(
+    command: string,
+    args: string[],
+    path: string,
+  ): Promise<string> {
     // *** Return the promise
     return new Promise((resolve, reject) => {
       const process: ChildProcess = spawn(command, args, {

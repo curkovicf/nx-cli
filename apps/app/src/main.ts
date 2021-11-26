@@ -1,10 +1,10 @@
 import SquirrelEvents from './app/events/squirrel.events';
 import ElectronEvents from './app/events/electron.events';
 
-import { app, BrowserWindow } from 'electron';
+import {app, BrowserWindow} from 'electron';
 import App from './app/app';
 
-import { NxCliShell } from '@nx-cli/app/shell/feature';
+import {NxCliShell} from '@nx-cli/app/shell/feature';
 
 const nxCliShell = new NxCliShell();
 

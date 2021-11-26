@@ -1,5 +1,5 @@
-@import "styles/global.variables";
-@import "styles/global.mixins";
+@import 'styles/global.variables';
+@import 'styles/global.mixins';
 
 :host {
   min-height: 5rem;
@@ -18,10 +18,11 @@
 
     & > input {
       margin-right: 1rem;
-      margin-left: .2rem;
+      margin-left: 0.2rem;
       transform: scale(1.5);
     }
 
-    & > label {}
+    & > label {
+    }
   }
 }

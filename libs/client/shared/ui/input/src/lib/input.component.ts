@@ -7,14 +7,14 @@ import {
   Optional,
   Output,
   Self,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import {ControlValueAccessor, NgControl} from '@angular/forms';
 
 @Component({
   selector: 'nx-cli-input',
   templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss']
+  styleUrls: ['./input.component.scss'],
 })
 export class InputComponent implements ControlValueAccessor, AfterViewInit {
   @ViewChild('inputElement')
@@ -43,7 +43,6 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
 
   value = '';
 
-
   constructor(
     // Retrieve the dependency only from the local injector,
     // not from parent or ancestors.
@@ -51,7 +50,7 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
     // We want to be able to use the component without a form,
     // so we mark the dependency as optional.
     @Optional()
-    private ngControl: NgControl
+    private ngControl: NgControl,
   ) {
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
@@ -59,11 +58,12 @@ export class InputComponent implements ControlValueAccessor, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (!this.initialValue) { return; }
+    if (!this.initialValue) {
+      return;
+    }
 
     this.inputElement.nativeElement.value = this.initialValue;
   }
-
 
   /**
    * Write form value to the DOM element (model => view)

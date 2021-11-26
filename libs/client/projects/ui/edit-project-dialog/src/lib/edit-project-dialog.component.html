@@ -1,18 +1,41 @@
 <h4 mat-dialog-title>Change name or move project to another directory</h4>
 
-<form [formGroup]='form' (ngSubmit)='onSubmit()' mat-dialog-content>
-  <div class='row'>
-    <nx-cli-input [disabled]='true' [initialValue]='data.currName' title='current name' description='The current name of the project.'></nx-cli-input>
-    <nx-cli-input formControlName='newName' title='new name' description='The new name of the project.'></nx-cli-input>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" mat-dialog-content>
+  <div class="row">
+    <nx-cli-input
+      [disabled]="true"
+      [initialValue]="data.currName"
+      title="current name"
+      description="The current name of the project."
+    ></nx-cli-input>
+    <nx-cli-input
+      formControlName="newName"
+      title="new name"
+      description="The new name of the project."
+    ></nx-cli-input>
   </div>
 
-  <div class='row'>
-    <nx-cli-input [disabled]='true' [initialValue]='data.currDirectory' title='current directory' description='The current directory of the project.'></nx-cli-input>
-    <nx-cli-input formControlName='newDirectory' title='new directory' description='The new directory of the project.'></nx-cli-input>
+  <div class="row">
+    <nx-cli-input
+      [disabled]="true"
+      [initialValue]="data.currDirectory"
+      title="current directory"
+      description="The current directory of the project."
+    ></nx-cli-input>
+    <nx-cli-input
+      formControlName="newDirectory"
+      title="new directory"
+      description="The new directory of the project."
+    ></nx-cli-input>
   </div>
 
-  <div class='actions'>
-    <nx-cli-button type='submit' buttonText='Submit' buttonType='primary'></nx-cli-button>
-    <nx-cli-button type='button' buttonText='Cancel' buttonType='warn' (onbtnclick)='onCancel()'></nx-cli-button>
+  <div class="actions">
+    <nx-cli-button type="submit" buttonText="Submit" buttonType="primary"></nx-cli-button>
+    <nx-cli-button
+      type="button"
+      buttonText="Cancel"
+      buttonType="warn"
+      (onbtnclick)="onCancel()"
+    ></nx-cli-button>
   </div>
 </form>

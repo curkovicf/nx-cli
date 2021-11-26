@@ -5,17 +5,17 @@
 >
 </nx-cli-button>
 
-<div *ngFor='let tag of tags' class='tag-wrapper'>
-  <div class='img-wrapper'>
+<div *ngFor="let tag of tags" class="tag-wrapper">
+  <div class="img-wrapper">
     <img
-      (click)='onremovetag.emit(tag)'
-      class='delete-icon'
-      src='assets/icons8-delete.svg'
-      alt='Delete icon'
+      (click)="onremovetag.emit(tag)"
+      class="delete-icon"
+      src="assets/icons8-delete.svg"
+      alt="Delete icon"
     />
   </div>
 
-  <div class='text-wrapper'>
+  <div class="text-wrapper">
     <p>{{ tag }}</p>
   </div>
 </div>

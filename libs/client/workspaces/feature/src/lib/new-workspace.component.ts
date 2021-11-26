@@ -1,9 +1,15 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { map, switchMap } from 'rxjs/operators';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { Observable, timer } from 'rxjs';
-import { WorkspacesIpcApiService } from '@nx-cli/client/workspaces/data-access';
-import { Workspace, IpcResponses } from '@nx-cli/shared/data-access/models';
+import {Component, Output, EventEmitter, Input} from '@angular/core';
+import {map, switchMap} from 'rxjs/operators';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
+import {Observable, timer} from 'rxjs';
+import {WorkspacesIpcApiService} from '@nx-cli/client/workspaces/data-access';
+import {Workspace, IpcResponses} from '@nx-cli/shared/data-access/models';
 
 @Component({
   selector: 'nx-cli-new-workspace',
@@ -21,7 +27,14 @@ export class NewWorkspaceComponent {
   oncancel: EventEmitter<void> = new EventEmitter<void>();
 
   public form: FormGroup;
-  private workspace: Workspace = { path: '', name: '', consoleLogs: [], selectedProject: null, tags: [], generators: [] };
+  private workspace: Workspace = {
+    path: '',
+    name: '',
+    consoleLogs: [],
+    selectedProject: null,
+    tags: [],
+    generators: [],
+  };
 
   constructor(private workspacesIpcApiService: WorkspacesIpcApiService) {
     this.form = new FormGroup({
@@ -41,26 +54,31 @@ export class NewWorkspaceComponent {
   validatePath(control: AbstractControl): Observable<ValidationErrors | null> {
     return timer(1500).pipe(
       switchMap(() => {
-        return this.workspacesIpcApiService.validatePath(control.value)
-          .pipe(
-            map((response: IpcResponses.ResponseWithData<Workspace>): ValidationErrors | null => {
+        return this.workspacesIpcApiService.validatePath(control.value).pipe(
+          map(
+            (
+              response: IpcResponses.ResponseWithData<Workspace>,
+            ): ValidationErrors | null => {
               if (response.data) {
                 this.workspace = response.data;
 
                 //  TODO: Remove quickfix
-                if (!this.workspaces) { return null; }
+                if (!this.workspaces) {
+                  return null;
+                }
 
                 if (this.isWorkspaceDuplicate()) {
-                  return { isNxProject: { valid: false } };
+                  return {isNxProject: {valid: false}};
                 }
 
                 return null;
               } else {
-                return { isNxProject: { valid: false } };
+                return {isNxProject: {valid: false}};
               }
-            }) //  End map
-          );
-      }) //  End switchMap
+            },
+          ), //  End map
+        );
+      }), //  End switchMap
     );
   }
 
@@ -68,7 +86,10 @@ export class NewWorkspaceComponent {
     for (let i = 0; i < this.workspaces.length; i++) {
       const currWorkspace = this.workspaces[i];
 
-      if (currWorkspace.name === this.workspace.name && currWorkspace.path === this.workspace.path) {
+      if (
+        currWorkspace.name === this.workspace.name &&
+        currWorkspace.path === this.workspace.path
+      ) {
         return true;
       }
     }

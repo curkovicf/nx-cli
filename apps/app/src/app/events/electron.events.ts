@@ -3,11 +3,10 @@
  * between the frontend to the electron backend.
  */
 
-import { ipcMain } from 'electron';
+import {ipcMain} from 'electron';
 
 export default class ElectronEvents {
   static bootstrapElectronEvents(): Electron.IpcMain {
     return ipcMain;
   }
 }
-

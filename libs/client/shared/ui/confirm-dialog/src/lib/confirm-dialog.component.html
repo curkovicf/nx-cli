@@ -1,14 +1,26 @@
-<h1 mat-dialog-title class='title'>{{ data.title }}</h1>
+<h1 mat-dialog-title class="title">{{ data.title }}</h1>
 
-<div mat-dialog-content class='prompt-text'>{{ data.bodyText }}</div>
+<div mat-dialog-content class="prompt-text">{{ data.bodyText }}</div>
 
-<div mat-dialog-actions class='actions'>
-  <ng-container *ngIf='data.isConfirmDialog' class='confirm-actions'>
-    <nx-cli-button [buttonText]='"Yes"' buttonType='primary' (onbtnclick)='dialogRef.close(true)'></nx-cli-button>
-    <nx-cli-button [buttonText]='"Cancel"' buttonType='warn' (onbtnclick)='dialogRef.close(false)'></nx-cli-button>
+<div mat-dialog-actions class="actions">
+  <ng-container *ngIf="data.isConfirmDialog" class="confirm-actions">
+    <nx-cli-button
+      [buttonText]="'Yes'"
+      buttonType="primary"
+      (onbtnclick)="dialogRef.close(true)"
+    ></nx-cli-button>
+    <nx-cli-button
+      [buttonText]="'Cancel'"
+      buttonType="warn"
+      (onbtnclick)="dialogRef.close(false)"
+    ></nx-cli-button>
   </ng-container>
 
-  <ng-container *ngIf='!data.isConfirmDialog' class='dismiss-action'>
-    <nx-cli-button [buttonText]='"Dismiss"' buttonType='primary' (onbtnclick)='dialogRef.close()'></nx-cli-button>
+  <ng-container *ngIf="!data.isConfirmDialog" class="dismiss-action">
+    <nx-cli-button
+      [buttonText]="'Dismiss'"
+      buttonType="primary"
+      (onbtnclick)="dialogRef.close()"
+    ></nx-cli-button>
   </ng-container>
 </div>

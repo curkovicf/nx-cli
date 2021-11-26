@@ -3,12 +3,19 @@
     <p>installed apps & libs</p>
 
     <div class="refresh-icon-wrapper" matRipple>
-      <img [ngStyle]="{ visibility: 'visible' }" src="assets/refresh_icon.svg" alt="Refresh icon" (click)="listVmStore.fetchProjects()" />
+      <img
+        [ngStyle]="{visibility: 'visible'}"
+        src="assets/refresh_icon.svg"
+        alt="Refresh icon"
+        (click)="listVmStore.fetchProjects()"
+      />
     </div>
   </header>
 
   <div class="search-wrapper">
-    <dev-workspace-search-bar (oninput)="listVmStore.filterProjects($event)"></dev-workspace-search-bar>
+    <dev-workspace-search-bar
+      (oninput)="listVmStore.filterProjects($event)"
+    ></dev-workspace-search-bar>
   </div>
 </section>
 
@@ -16,10 +23,15 @@
   <nx-cli-project-list-item
     *ngFor="let project of (listVmStore.vm$ | async).projectsInView"
     [project]="project"
-    [ngClass]='{ "selected-item": (listVmStore.vm$ | async).selectedProject?.nameInNxJson === project?.nameInNxJson }'
+    [ngClass]="{
+      'selected-item':
+        (listVmStore.vm$ | async).selectedProject?.nameInNxJson === project?.nameInNxJson
+    }"
     (click)="listVmStore.selectProject(project)"
   >
-    <dev-workspace-list-item-badge [projectType]="project.type"></dev-workspace-list-item-badge>
+    <dev-workspace-list-item-badge
+      [projectType]="project.type"
+    ></dev-workspace-list-item-badge>
   </nx-cli-project-list-item>
 </section>
 

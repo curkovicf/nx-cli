@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ProjectsIpcEventsService } from '@nx-cli/client/projects/data-access';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ProjectsIpcEventsService} from '@nx-cli/client/projects/data-access';
 
 @Component({
   selector: 'nx-cli-projects-layout',

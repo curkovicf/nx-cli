@@ -1,16 +1,19 @@
-import { Component } from '@angular/core';
-import { drawerAnimation } from '@nx-cli/client/shell/ui/drawer';
-import { UtilLocalStorageService } from '@nx-cli/client/shared/util';
+import {Component} from '@angular/core';
+import {drawerAnimation} from '@nx-cli/client/shell/ui/drawer';
+import {UtilLocalStorageService} from '@nx-cli/client/shared/util';
 import {
   WorkspacesFacade,
   WorkspacesIpcApiService,
-  WorkspacesIpcEventsService
+  WorkspacesIpcEventsService,
 } from '@nx-cli/client/workspaces/data-access';
-import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent, ConfirmDialogContent } from '@nx-cli/client/shared/ui/confirm-dialog';
-import { ProgressBarFacade } from '@nx-cli/client/shared/data-access';
-import { Workspace } from '@nx-cli/shared/data-access/models';
-import { filter, first, tap } from 'rxjs/operators';
+import {MatDialog} from '@angular/material/dialog';
+import {
+  ConfirmDialogComponent,
+  ConfirmDialogContent,
+} from '@nx-cli/client/shared/ui/confirm-dialog';
+import {ProgressBarFacade} from '@nx-cli/client/shared/data-access';
+import {Workspace} from '@nx-cli/shared/data-access/models';
+import {filter, first, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'nx-cli-layout',
@@ -27,7 +30,7 @@ export class LayoutComponent {
     private localStorageService: UtilLocalStorageService,
     private workspacesIpcEventsService: WorkspacesIpcEventsService,
     private workspacesIpcApiService: WorkspacesIpcApiService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {
     this.workspacesIpcEventsService.initChannels();
     this.localStorageService.initData();
@@ -36,7 +39,7 @@ export class LayoutComponent {
       .pipe(
         first(),
         filter(selectedWorkspace => !!selectedWorkspace),
-        tap(({ path }) => this.workspacesIpcApiService.getAvailableNxGenerators(path))
+        tap(({path}) => this.workspacesIpcApiService.getAvailableNxGenerators(path)),
       )
       .subscribe();
   }
@@ -62,7 +65,10 @@ export class LayoutComponent {
       bodyText: `NOTE: If you use NPM, make sure you have node_modules folder. Install Nx Workspaces: npm install -g @nrwl/cli, npm i -g @nrwl/workspace.`,
     };
 
-    this.dialog.open(ConfirmDialogComponent, { data, width: '55rem' }).afterClosed().subscribe();
+    this.dialog
+      .open(ConfirmDialogComponent, {data, width: '55rem'})
+      .afterClosed()
+      .subscribe();
   }
 
   public deleteWorkspace($event: Workspace) {

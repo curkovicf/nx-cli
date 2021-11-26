@@ -6,4 +6,4 @@ export * from './lib/+store/projects.actions';
 export * from './lib/+store/projects.facade';
 export * from './lib/+store/projects.selectors';
 export * from './lib/+store/projects.effects';
-export { projectsReducer, PROJECTS_FEATURE_KEY } from './lib/+store/projects.reducer';
+export {projectsReducer, PROJECTS_FEATURE_KEY} from './lib/+store/projects.reducer';

@@ -8,8 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory:
-    '../../../../../coverage/libs/client/shared/ui/material-modules',
+  coverageDirectory: '../../../../../coverage/libs/client/shared/ui/material-modules',
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',
   },

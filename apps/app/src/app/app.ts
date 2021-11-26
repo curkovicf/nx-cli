@@ -1,9 +1,9 @@
-import { BrowserWindow, shell, screen, nativeTheme } from 'electron';
-import { rendererAppName, rendererAppPort } from './constants';
-import { environment } from '../environments/environment';
-import { join } from 'path';
-import { format } from 'url';
-import installExtension, { REDUX_DEVTOOLS } from 'electron-devtools-installer';
+import {BrowserWindow, shell, screen, nativeTheme} from 'electron';
+import {rendererAppName, rendererAppPort} from './constants';
+import {environment} from '../environments/environment';
+import {join} from 'path';
+import {format} from 'url';
+import installExtension, {REDUX_DEVTOOLS} from 'electron-devtools-installer';
 
 export default class App {
   // Keep a global reference of the window object, if you don't, the window will
@@ -14,8 +14,7 @@ export default class App {
 
   public static isDevelopmentMode() {
     const isEnvironmentSet: boolean = 'ELECTRON_IS_DEV' in process.env;
-    const getFromEnvironment: boolean =
-      parseInt(process.env.ELECTRON_IS_DEV, 10) === 1;
+    const getFromEnvironment: boolean = parseInt(process.env.ELECTRON_IS_DEV, 10) === 1;
 
     return isEnvironmentSet ? getFromEnvironment : !environment.production;
   }
@@ -112,7 +111,7 @@ export default class App {
           pathname: join(__dirname, '..', rendererAppName, '/index.html'),
           protocol: 'file:',
           slashes: true,
-        })
+        }),
       );
     }
   }
@@ -132,8 +131,8 @@ export default class App {
 
     App.application.whenReady().then(() => {
       installExtension(REDUX_DEVTOOLS)
-        .then((name) => console.log(`Added Extension:  ${name}`))
-        .catch((err) => console.log('An error occurred: ', err));
+        .then(name => console.log(`Added Extension:  ${name}`))
+        .catch(err => console.log('An error occurred: ', err));
     });
 
     nativeTheme.themeSource = 'light';

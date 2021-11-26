@@ -1,5 +1,5 @@
-@import "styles/global.mixins";
-@import "styles/global.variables";
+@import 'styles/global.mixins';
+@import 'styles/global.variables';
 
 :host {
   position: relative;
@@ -10,5 +10,6 @@
   @include box(19rem, calc(100% - (#{$chips-bar-height})));
   @include position(absolute, $chips-bar-height, 0, 0, null);
 
-  & > .drawer-content {}
+  & > .drawer-content {
+  }
 }

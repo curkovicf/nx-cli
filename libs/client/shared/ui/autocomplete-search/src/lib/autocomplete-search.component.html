@@ -1,16 +1,16 @@
-<input #inputField
-       type='text'
-       placeholder='Search for a generator'
-       [formControl]='control'
-       [matAutocomplete]='auto'>
+<input
+  #inputField
+  type="text"
+  placeholder="Search for a generator"
+  [formControl]="control"
+  [matAutocomplete]="auto"
+/>
 
 <mat-autocomplete
-  #auto='matAutocomplete'
-  (optionSelected)='dialogRef.close($event.option.value)'
+  #auto="matAutocomplete"
+  (optionSelected)="dialogRef.close($event.option.value)"
 >
-
-  <mat-option *ngFor='let item of filteredElements | async' [value]='item'>
-    {{item}}
+  <mat-option *ngFor="let item of filteredElements | async" [value]="item">
+    {{ item }}
   </mat-option>
 </mat-autocomplete>
-

@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import {createReducer, on} from '@ngrx/store';
 
 import * as ProgressBarActions from './progress-bar.actions';
 
@@ -9,11 +9,15 @@ export interface ProgressBarState {
 }
 
 const initialState: ProgressBarState = {
-  numberOfActiveActions: 0
-}
+  numberOfActiveActions: 0,
+};
 
 export const progressBarReducer = createReducer(
   initialState,
-  on(ProgressBarActions.addActiveOperation, (state) => ({ numberOfActiveActions: state.numberOfActiveActions + 1 })),
-  on(ProgressBarActions.removeActiveOperation, (state) => ({ numberOfActiveActions: state.numberOfActiveActions - 1 })),
+  on(ProgressBarActions.addActiveOperation, state => ({
+    numberOfActiveActions: state.numberOfActiveActions + 1,
+  })),
+  on(ProgressBarActions.removeActiveOperation, state => ({
+    numberOfActiveActions: state.numberOfActiveActions - 1,
+  })),
 );

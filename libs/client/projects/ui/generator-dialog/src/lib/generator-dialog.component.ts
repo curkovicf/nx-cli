@@ -5,15 +5,14 @@ import {
   Inject,
   OnInit,
   ViewChild,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NxCliDialogFormClass } from '@nx-cli/client/projects/util';
-import { NxGenerator } from '@nx-cli/shared/data-access/models';
-import { ObjectUtils } from '@nx-cli/shared/util';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {NxCliDialogFormClass} from '@nx-cli/client/projects/util';
+import {NxGenerator} from '@nx-cli/shared/data-access/models';
+import {ObjectUtils} from '@nx-cli/shared/util';
 import deepCopy = ObjectUtils.deepCopy;
-
 
 export interface MatDialogData {
   nxGenerator: NxGenerator;
@@ -29,8 +28,11 @@ export interface MatDialogData {
   templateUrl: './generator-dialog.component.html',
   styleUrls: ['./generator-dialog.component.scss'],
 })
-export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDialogComponent> implements OnInit {
-  @ViewChild('mainForm', { read: ViewContainerRef, static: true })
+export class GeneratorDialogComponent
+  extends NxCliDialogFormClass<GeneratorDialogComponent>
+  implements OnInit
+{
+  @ViewChild('mainForm', {read: ViewContainerRef, static: true})
   readonly mainForm: ViewContainerRef;
 
   public form: FormGroup;
@@ -40,7 +42,7 @@ export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDial
     private readonly formBuilder: FormBuilder,
     private readonly changeDetectorRef: ChangeDetectorRef,
     public readonly dialogRef: MatDialogRef<GeneratorDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public readonly data: MatDialogData
+    @Inject(MAT_DIALOG_DATA) public readonly data: MatDialogData,
   ) {
     super(dialogRef);
 
@@ -48,15 +50,15 @@ export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDial
   }
 
   get textInputsForm(): FormArray {
-    return this.form.controls["textInputs"] as FormArray;
+    return this.form.controls['textInputs'] as FormArray;
   }
 
   get dropdownsForm(): FormArray {
-    return this.form.controls["dropdowns"] as FormArray;
+    return this.form.controls['dropdowns'] as FormArray;
   }
 
   get checkboxesForm(): FormArray {
-    return this.form.controls["checkboxes"] as FormArray;
+    return this.form.controls['checkboxes'] as FormArray;
   }
 
   //  Form array reference
@@ -73,20 +75,23 @@ export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDial
     this.form = this.formBuilder.group({
       textInputs: this.formBuilder.array([
         ...this.data.nxGenerator.form.textInputs.map(textBoxItem =>
-          textBoxItem.isRequired ?
-            this.formBuilder.control('', [Validators.required]) :
-            this.formBuilder.control(''))
+          textBoxItem.isRequired
+            ? this.formBuilder.control('', [Validators.required])
+            : this.formBuilder.control(''),
+        ),
       ]),
       dropdowns: this.formBuilder.array([
         ...this.data.nxGenerator.form.dropDowns.map(dropdownItem => ({
           [dropdownItem.title]: this.formBuilder.control({
-            ...dropdownItem.items
-          })
-        }))
+            ...dropdownItem.items,
+          }),
+        })),
       ]),
       checkboxes: this.formBuilder.array([
-        ...this.data.nxGenerator.form.checkboxes.map(checkboxItem => ({ [checkboxItem.title]: this.formBuilder.control(false) }))
-      ])
+        ...this.data.nxGenerator.form.checkboxes.map(checkboxItem => ({
+          [checkboxItem.title]: this.formBuilder.control(false),
+        })),
+      ]),
     });
   }
 
@@ -105,13 +110,19 @@ export class GeneratorDialogComponent extends NxCliDialogFormClass<GeneratorDial
 
     const nxGenerator = deepCopy<NxGenerator>(this.data.nxGenerator);
 
-    nxGenerator.form.textInputs
-      .forEach((textInputElement, index) => textInputElement.input = textInputs[index]);
+    nxGenerator.form.textInputs.forEach(
+      (textInputElement, index) => (textInputElement.input = textInputs[index]),
+    );
 
     nxGenerator.form.checkboxes = nxGenerator.form.checkboxes
-      .map((checkBoxElement, index) => ({ ...checkBoxElement, isChecked: checkboxes[index] }))
-      .filter(checkboxElement => typeof checkboxElement.isChecked === 'boolean' && checkboxElement.isChecked);
-
+      .map((checkBoxElement, index) => ({
+        ...checkBoxElement,
+        isChecked: checkboxes[index],
+      }))
+      .filter(
+        checkboxElement =>
+          typeof checkboxElement.isChecked === 'boolean' && checkboxElement.isChecked,
+      );
 
     console.log(nxGenerator);
 

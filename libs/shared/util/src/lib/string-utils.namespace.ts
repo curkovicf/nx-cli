@@ -1,7 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace StringUtils {
   export function addBackslashAtEndIfNotThere(inputString: string): string {
-    return inputString.charAt(inputString.length - 1) === '/' ? inputString : `${inputString}/`;
+    return inputString.charAt(inputString.length - 1) === '/'
+      ? inputString
+      : `${inputString}/`;
   }
 
   export function removeConsecutiveCommas(str: string): string {

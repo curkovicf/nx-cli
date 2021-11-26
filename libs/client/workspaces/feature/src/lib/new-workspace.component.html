@@ -8,14 +8,28 @@
     <div class="input-wrapper">
       <input formControlName="path" name="path" type="text" placeholder="Path" />
 
-      <mat-progress-spinner *ngIf="form.get('path')?.pending" class="example-margin" color="primary" diameter="15" mode="indeterminate">
+      <mat-progress-spinner
+        *ngIf="form.get('path')?.pending"
+        class="example-margin"
+        color="primary"
+        diameter="15"
+        mode="indeterminate"
+      >
       </mat-progress-spinner>
-      <mat-icon class="verified" *ngIf="form.get('path')?.valid && !form.get('path')?.pending">verified_user</mat-icon>
+      <mat-icon
+        class="verified"
+        *ngIf="form.get('path')?.valid && !form.get('path')?.pending"
+        >verified_user</mat-icon
+      >
     </div>
   </main>
 
   <footer>
-    <button class="save" [disabled]="!form.valid" [style.cursor]="!form.valid || !form.touched ? 'auto' : 'pointer'">
+    <button
+      class="save"
+      [disabled]="!form.valid"
+      [style.cursor]="!form.valid || !form.touched ? 'auto' : 'pointer'"
+    >
       Save
     </button>
     <button type="reset" class="cancel" (click)="onCancel()">Cancel</button>

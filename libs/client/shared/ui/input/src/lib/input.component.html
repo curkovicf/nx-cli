@@ -1,12 +1,12 @@
-<h5 class='title'>{{ title }}</h5>
+<h5 class="title">{{ title }}</h5>
 
 <label>{{ description }}</label>
 
 <input
   #inputElement
-  [type]='inputType'
-  [value]='value'
-  [disabled]='disabled'
-  (input)='onInputChange($event)'
-  (blur)='onTouched()'>
-
+  [type]="inputType"
+  [value]="value"
+  [disabled]="disabled"
+  (input)="onInputChange($event)"
+  (blur)="onTouched()"
+/>

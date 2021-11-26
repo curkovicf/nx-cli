@@ -1,4 +1,4 @@
-import { AngularComponent } from './angular-component.model';
+import {AngularComponent} from './angular-component.model';
 
 export interface AngularModule {
   className: string;

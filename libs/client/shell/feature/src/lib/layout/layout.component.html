@@ -1,24 +1,24 @@
-<nx-cli-side-nav
-  (onshowerror)='onShowError()'
-></nx-cli-side-nav>
+<nx-cli-side-nav (onshowerror)="onShowError()"></nx-cli-side-nav>
 
-<div class='content'>
+<div class="content">
   <nx-cli-material-progress-bar
-    [style.visibility]="(progressBarFacade.isProgressServiceActive$ | async) ? 'visible' : 'hidden'"
+    [style.visibility]="
+      (progressBarFacade.isProgressServiceActive$ | async) ? 'visible' : 'hidden'
+    "
   ></nx-cli-material-progress-bar>
 
   <dev-workspace-chips-bar
     [workspaces]="workspacesFacade.workspaces$ | async"
-    [selectedWorkspace]='workspacesFacade.selectedWorkspace$ | async'
-    (onselectworkspace)='onSelectWorkspace($event)'
-    (onaddworkspace)='toggleDrawer()'
-    (ondeleteworkspace)='deleteWorkspace($event)'
+    [selectedWorkspace]="workspacesFacade.selectedWorkspace$ | async"
+    (onselectworkspace)="onSelectWorkspace($event)"
+    (onaddworkspace)="toggleDrawer()"
+    (ondeleteworkspace)="deleteWorkspace($event)"
   ></dev-workspace-chips-bar>
 
   <nx-cli-drawer *ngIf="isDrawerOpen" [@slideIn]>
     <nx-cli-new-workspace
       class="drawer-content"
-      [workspaces]='workspacesFacade.workspaces$ | async'
+      [workspaces]="workspacesFacade.workspaces$ | async"
       (oncancel)="toggleDrawer()"
       (onsubmit)="onCreateWorkspace($event)"
     ></nx-cli-new-workspace>
@@ -28,4 +28,3 @@
     <router-outlet></router-outlet>
   </main>
 </div>
-

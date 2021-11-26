@@ -1,10 +1,10 @@
-import { Component, EventEmitter, Input, Optional, Output, Self } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import {Component, EventEmitter, Input, Optional, Output, Self} from '@angular/core';
+import {ControlValueAccessor, NgControl} from '@angular/forms';
 
 @Component({
   selector: 'nx-cli-dropdown',
   templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.scss']
+  styleUrls: ['./dropdown.component.scss'],
 })
 export class DropdownComponent implements ControlValueAccessor {
   @Input()
@@ -27,7 +27,6 @@ export class DropdownComponent implements ControlValueAccessor {
 
   value = '';
 
-
   constructor(
     // Retrieve the dependency only from the local injector,
     // not from parent or ancestors.
@@ -35,13 +34,12 @@ export class DropdownComponent implements ControlValueAccessor {
     // We want to be able to use the component without a form,
     // so we mark the dependency as optional.
     @Optional()
-    private ngControl: NgControl
+    private ngControl: NgControl,
   ) {
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
   }
-
 
   /**
    * Write form value to the DOM element (model => view)

@@ -15,7 +15,7 @@ export enum FileType {
   readme = '.md',
   unknown = 'unknown',
   ngInterceptor = 'interceptor.ts',
-  tsFile = '.ts'
+  tsFile = '.ts',
 }
 
 export enum FolderType {
@@ -46,7 +46,6 @@ export interface ProjectFolder {
   dirType?: FolderType;
   fileType?: FileType;
 }
-
 
 export const folderTypes = Object.values(FolderType);
 export const fileTypes = Object.values(FileType);

@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Optional, Output, Self } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import {Component, EventEmitter, Input, Optional, Output, Self} from '@angular/core';
+import {ControlValueAccessor, NgControl} from '@angular/forms';
 
 /**
  * Ref
@@ -32,7 +32,6 @@ export class CheckboxComponent implements ControlValueAccessor {
 
   isChecked = false;
 
-
   constructor(
     // Retrieve the dependency only from the local injector,
     // not from parent or ancestors.
@@ -40,13 +39,12 @@ export class CheckboxComponent implements ControlValueAccessor {
     // We want to be able to use the component without a form,
     // so we mark the dependency as optional.
     @Optional()
-    private ngControl: NgControl
+    private ngControl: NgControl,
   ) {
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
   }
-
 
   /**
    * Write form value to the DOM element (model => view)

@@ -1,16 +1,16 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import {Component, HostBinding, Input} from '@angular/core';
 
 @Component({
   selector: 'nx-cli-overlay',
   template: '',
-  styleUrls: ['./overlay.component.scss']
+  styleUrls: ['./overlay.component.scss'],
 })
 export class OverlayComponent {
   @HostBinding('style.width.px')
-  width:number;
+  width: number;
 
   @HostBinding('style.height.px')
-  height:number;
+  height: number;
 
   @Input()
   @HostBinding('style.background-color')

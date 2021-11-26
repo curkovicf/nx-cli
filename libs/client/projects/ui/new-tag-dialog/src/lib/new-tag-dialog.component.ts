@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { NxCliDialogFormClass } from '@nx-cli/client/projects/util';
-import { MatDialogRef } from '@angular/material/dialog';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {NxCliDialogFormClass} from '@nx-cli/client/projects/util';
+import {MatDialogRef} from '@angular/material/dialog';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'nx-cli-new-tag-dialog',
   templateUrl: './new-tag-dialog.component.html',
-  styleUrls: ['./new-tag-dialog.component.scss']
+  styleUrls: ['./new-tag-dialog.component.scss'],
 })
-export class NewTagDialogComponent extends NxCliDialogFormClass<NewTagDialogComponent> implements OnInit {
+export class NewTagDialogComponent
+  extends NxCliDialogFormClass<NewTagDialogComponent>
+  implements OnInit
+{
   form: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<NewTagDialogComponent>) {

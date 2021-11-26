@@ -1,14 +1,13 @@
-<h5 class='title'>{{ title }}</h5>
+<h5 class="title">{{ title }}</h5>
 
-<label for='dropdown'>{{ description }}</label>
+<label for="dropdown">{{ description }}</label>
 
-<select id='dropdown' (change)='onInputChange($event)'>
+<select id="dropdown" (change)="onInputChange($event)">
   <option
-    *ngFor='let option of options'
-    [value]='option'
-    [selected]='option === initialItem'
+    *ngFor="let option of options"
+    [value]="option"
+    [selected]="option === initialItem"
   >
     {{ option }}
   </option>
 </select>
-

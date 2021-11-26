@@ -90,31 +90,6 @@
         }
       }
     },
-    "app-projects-repository": {
-      "projectType": "library",
-      "root": "libs/app/projects/repository",
-      "sourceRoot": "libs/app/projects/repository/src",
-      "prefix": "nx-cli",
-      "targets": {
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/app/projects/repository"],
-          "options": {
-            "jestConfig": "libs/app/projects/repository/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/app/projects/repository/src/**/*.ts",
-              "libs/app/projects/repository/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
     "app-shared-util": {
       "projectType": "library",
       "root": "libs/app/shared/util",

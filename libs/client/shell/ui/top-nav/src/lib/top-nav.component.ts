@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'nx-cli-top-nav',
@@ -6,7 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./top-nav.component.scss'],
 })
 export class TopNavComponent {
-  nav_links: { link: string; text: string }[] = [
-    { link: '/projects', text: 'projects' },
-  ];
+  nav_links: {link: string; text: string}[] = [{link: '/projects', text: 'projects'}];
 }

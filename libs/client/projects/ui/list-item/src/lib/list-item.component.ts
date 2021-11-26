@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Project } from '@nx-cli/shared/data-access/models';
-
+import {Component, Input} from '@angular/core';
+import {Project} from '@nx-cli/shared/data-access/models';
 
 @Component({
   selector: 'nx-cli-project-list-item',

@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { tap } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {Actions, createEffect, ofType} from '@ngrx/effects';
+import {tap} from 'rxjs/operators';
 
-import { WorkspacesIpcApiService } from '../api/workspaces-ipc-api.service';
-import { WorkspacesFacade } from './workspaces.facade';
-import { switchCurrentWorkspace } from './workspaces.actions';
+import {WorkspacesIpcApiService} from '../api/workspaces-ipc-api.service';
+import {WorkspacesFacade} from './workspaces.facade';
+import {switchCurrentWorkspace} from './workspaces.actions';
 
 @Injectable()
 export class WorkspacesEffects {
@@ -14,11 +14,15 @@ export class WorkspacesEffects {
     private workspacesFacade: WorkspacesFacade,
   ) {}
 
-  fetchAllTags$ = createEffect(() => this.actions$.pipe(
-    ofType(switchCurrentWorkspace),
-    tap(({ selectedWorkspace }) => {
-      this.workspacesIpcApiService.getTags(selectedWorkspace.path);
-      this.workspacesIpcApiService.getAvailableNxGenerators(selectedWorkspace.path);
-    })
-  ), { dispatch: false });
+  fetchAllTags$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(switchCurrentWorkspace),
+        tap(({selectedWorkspace}) => {
+          this.workspacesIpcApiService.getTags(selectedWorkspace.path);
+          this.workspacesIpcApiService.getAvailableNxGenerators(selectedWorkspace.path);
+        }),
+      ),
+    {dispatch: false},
+  );
 }

@@ -1,13 +1,12 @@
-import { app, autoUpdater, dialog } from 'electron';
-import { platform, arch } from 'os';
-import { updateServerUrl } from '../constants';
+import {app, autoUpdater, dialog} from 'electron';
+import {platform, arch} from 'os';
+import {updateServerUrl} from '../constants';
 import App from '../app';
 
 export default class UpdateEvents {
   // initialize auto update services - most be invoked only in production
   static initAutoUpdateService() {
-    const platform_arch =
-      platform() === 'win32' ? platform() : platform() + '_' + arch();
+    const platform_arch = platform() === 'win32' ? platform() : platform() + '_' + arch();
     const version = app.getVersion();
     const feed: Electron.FeedURLOptions = {
       url: `${updateServerUrl}/update/${platform_arch}/${version}`,
@@ -29,23 +28,20 @@ export default class UpdateEvents {
   }
 }
 
-autoUpdater.on(
-  'update-downloaded',
-  (event, releaseNotes, releaseName, releaseDate) => {
-    const dialogOpts = {
-      type: 'info',
-      buttons: ['Restart', 'Later'],
-      title: 'Application Update',
-      message: process.platform === 'win32' ? releaseNotes : releaseName,
-      detail:
-        'A new version has been downloaded. Restart the application to apply the updates.',
-    };
+autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName, releaseDate) => {
+  const dialogOpts = {
+    type: 'info',
+    buttons: ['Restart', 'Later'],
+    title: 'Application Update',
+    message: process.platform === 'win32' ? releaseNotes : releaseName,
+    detail:
+      'A new version has been downloaded. Restart the application to apply the updates.',
+  };
 
-    dialog.showMessageBox(dialogOpts).then((returnValue) => {
-      if (returnValue.response === 0) autoUpdater.quitAndInstall();
-    });
-  }
-);
+  dialog.showMessageBox(dialogOpts).then(returnValue => {
+    if (returnValue.response === 0) autoUpdater.quitAndInstall();
+  });
+});
 
 autoUpdater.on('checking-for-update', () => {
   console.log('Checking for updates...\n');
@@ -63,7 +59,7 @@ autoUpdater.on('before-quit-for-update', () => {
   console.log('Application update is about to begin...\n');
 });
 
-autoUpdater.on('error', (message) => {
+autoUpdater.on('error', message => {
   console.error('There was a problem updating the application');
   console.error(message, '\n');
 });

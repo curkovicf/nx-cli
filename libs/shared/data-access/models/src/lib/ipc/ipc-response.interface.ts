@@ -25,6 +25,3 @@ export namespace IpcResponses {
     logResponse: LogResponse;
   }
 }
-
-
-

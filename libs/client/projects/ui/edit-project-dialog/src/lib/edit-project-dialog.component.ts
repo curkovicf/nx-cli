@@ -1,21 +1,23 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { NxCliDialogFormClass } from '@nx-cli/client/projects/util';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ProjectsIpcDtos } from '@nx-cli/shared/data-access/models';
-
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {NxCliDialogFormClass} from '@nx-cli/client/projects/util';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ProjectsIpcDtos} from '@nx-cli/shared/data-access/models';
 
 @Component({
   selector: 'nx-cli-move-project-form',
   templateUrl: './edit-project-dialog.component.html',
   styleUrls: ['./edit-project-dialog.component.scss'],
 })
-export class EditProjectDialogComponent extends NxCliDialogFormClass<EditProjectDialogComponent> implements OnInit {
+export class EditProjectDialogComponent
+  extends NxCliDialogFormClass<EditProjectDialogComponent>
+  implements OnInit
+{
   form: FormGroup;
 
   constructor(
     public dialogRef: MatDialogRef<EditProjectDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { currName: string; currDirectory: string; },
+    @Inject(MAT_DIALOG_DATA) public data: {currName: string; currDirectory: string},
   ) {
     super(dialogRef);
   }
@@ -28,7 +30,9 @@ export class EditProjectDialogComponent extends NxCliDialogFormClass<EditProject
   }
 
   public onSubmit(): void {
-    if (!this.isFormValid()) { return; }
+    if (!this.isFormValid()) {
+      return;
+    }
 
     this.dialogRef.close(this.generateDto());
   }
@@ -38,7 +42,7 @@ export class EditProjectDialogComponent extends NxCliDialogFormClass<EditProject
       newName: this.form.get('newName').value,
       newDirectory: this.form.get('newDirectory').value,
       oldName: this.data.currName,
-      oldDirectory: this.data.currDirectory
+      oldDirectory: this.data.currDirectory,
     };
   }
 }

@@ -1,5 +1,5 @@
-import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {Component, Inject} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
 export interface ConfirmDialogContent {
   title: string;
@@ -10,11 +10,11 @@ export interface ConfirmDialogContent {
 @Component({
   selector: 'nx-cli-confirm-dialog',
   templateUrl: './confirm-dialog.component.html',
-  styleUrls: ['./confirm-dialog.component.scss']
+  styleUrls: ['./confirm-dialog.component.scss'],
 })
 export class ConfirmDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<ConfirmDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ConfirmDialogContent
+    @Inject(MAT_DIALOG_DATA) public data: ConfirmDialogContent,
   ) {}
 }
