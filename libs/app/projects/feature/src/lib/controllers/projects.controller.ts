@@ -1,18 +1,21 @@
 import {ipcMain} from 'electron';
 import {ProjectsService} from '../services/projects.service';
 import {IController} from '@nx-cli/app/shared/util';
-import {IProjectsService} from '../services/projects-service.interface';
 import {
   IpcResponses,
-  Project,
-  ProjectsIpcDtos,
   ProjectsIpcEvents,
   WorkspacesIpcEvents,
 } from '@nx-cli/shared/data-access/models';
-import RemoveTag = ProjectsIpcDtos.RemoveTag;
+import { Project } from 'nx-cli-osfn/lib/projects/models/project.model';
+import { AddTagResult } from 'nx-cli-osfn/lib/projects/dtos/add-tag-result.dto';
+import { DeleteProjectDto } from 'nx-cli-osfn/lib/projects/dtos/delete-project.dto';
+import { EditProjectDto } from 'nx-cli-osfn/lib/projects/dtos/edit-project.dto';
+import { RemoveTagDto } from 'nx-cli-osfn/lib/projects/dtos/remove-tag.dto';
+import { TagDto } from 'nx-cli-osfn/lib/projects/dtos/tag.dto';
+import { GenerateArtifactDto } from 'nx-cli-osfn/lib/projects/dtos/generate-artifact.dto';
 
 export class ProjectsController implements IController {
-  private projectsService: IProjectsService = new ProjectsService();
+  private projectsService = new ProjectsService();
 
   public initRoutes(): void {
     this.initGetAllProjects();
@@ -40,7 +43,7 @@ export class ProjectsController implements IController {
   private initDeleteProject(): void {
     ipcMain.on(
       ProjectsIpcEvents.deleteProject.fromAngular,
-      async (event, dto: ProjectsIpcDtos.DeleteProjectDto) => {
+      async (event, dto: DeleteProjectDto) => {
         const response: IpcResponses.ResponseWithLogs =
           await this.projectsService.deleteProject(dto);
         event.sender.send(ProjectsIpcEvents.defaultChannel.fromElectron, response.result);
@@ -55,7 +58,7 @@ export class ProjectsController implements IController {
   private initEditProject(): void {
     ipcMain.on(
       ProjectsIpcEvents.editProject.fromAngular,
-      async (event, dto: ProjectsIpcDtos.EditProject) => {
+      async (event, dto: EditProjectDto) => {
         const response: IpcResponses.ResponseWithLogs =
           await this.projectsService.editProject(dto);
         event.sender.send(ProjectsIpcEvents.defaultChannel.fromElectron, response.result);
@@ -82,8 +85,8 @@ export class ProjectsController implements IController {
   private initRemoveTag(): void {
     ipcMain.on(
       ProjectsIpcEvents.removeTag.fromAngular,
-      async (event, dto: ProjectsIpcDtos.RemoveTag) => {
-        const response: IpcResponses.ResponseWithData<RemoveTag> =
+      async (event, dto: RemoveTagDto) => {
+        const response: IpcResponses.ResponseWithData<RemoveTagDto> =
           await this.projectsService.removeTag(dto);
         event.sender.send(ProjectsIpcEvents.removeTag.fromElectron, response);
       },
@@ -93,8 +96,8 @@ export class ProjectsController implements IController {
   private initAddTag(): void {
     ipcMain.on(
       ProjectsIpcEvents.addTag.fromAngular,
-      async (event, dto: ProjectsIpcDtos.Tag) => {
-        const response: IpcResponses.ResponseWithData<ProjectsIpcDtos.AddTagResult> =
+      async (event, dto: TagDto) => {
+        const response: IpcResponses.ResponseWithData<AddTagResult> =
           await this.projectsService.addTag(dto);
         event.sender.send(ProjectsIpcEvents.addTag.fromElectron, response);
       },
@@ -104,7 +107,7 @@ export class ProjectsController implements IController {
   private initGenerateArtifact(): void {
     ipcMain.on(
       ProjectsIpcEvents.generateArtifact.fromAngular,
-      async (event, dto: ProjectsIpcDtos.GenerateArtifact) => {
+      async (event, dto: GenerateArtifactDto) => {
         const response: IpcResponses.ResponseWithLogs =
           await this.projectsService.generateArtifact(dto);
         event.sender.send(ProjectsIpcEvents.defaultChannel.fromElectron, response.result);

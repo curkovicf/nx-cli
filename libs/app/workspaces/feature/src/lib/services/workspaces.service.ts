@@ -1,10 +1,10 @@
 import {IWorkspaceService} from './workspace-service.interface';
 import {
-  Workspace,
   IpcResponses,
-  WorkspacesIpcDtos,
 } from '@nx-cli/shared/data-access/models';
 import {WorkspacesRepositoryImpl} from 'nx-cli-osfn/lib/workspaces/repositories/workspaces-repository-impl.class';
+import { Workspace } from 'nx-cli-osfn/lib/workspaces/models/workspace.model';
+import { GeneratorsDto } from 'nx-cli-osfn/lib/workspaces/dtos/generators.dto';
 
 export class WorkspacesService implements IWorkspaceService {
   constructor(private workspacesRepository = new WorkspacesRepositoryImpl()) {}
@@ -56,7 +56,7 @@ export class WorkspacesService implements IWorkspaceService {
    */
   async getAvailableNxGenerators(
     workspacePath: string,
-  ): Promise<IpcResponses.ResponseWithData<WorkspacesIpcDtos.Generators>> {
+  ): Promise<IpcResponses.ResponseWithData<GeneratorsDto>> {
     const result = await this.workspacesRepository.getAvailableNxGenerators(
       workspacePath,
     );

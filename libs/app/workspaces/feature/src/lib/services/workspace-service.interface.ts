@@ -1,8 +1,8 @@
 import {
-  Workspace,
   IpcResponses,
-  WorkspacesIpcDtos,
 } from '@nx-cli/shared/data-access/models';
+import { Workspace } from 'nx-cli-osfn/lib/workspaces/models/workspace.model';
+import { GeneratorsDto } from 'nx-cli-osfn/lib/workspaces/dtos/generators.dto';
 
 export interface IWorkspaceService {
   validateWorkspacePath(
@@ -11,5 +11,5 @@ export interface IWorkspaceService {
   getAllTags(workspacePath: string): Promise<IpcResponses.ResponseWithData<string[]>>;
   getAvailableNxGenerators(
     workspacePath: string,
-  ): Promise<IpcResponses.ResponseWithData<WorkspacesIpcDtos.Generators>>;
+  ): Promise<IpcResponses.ResponseWithData<GeneratorsDto>>;
 }

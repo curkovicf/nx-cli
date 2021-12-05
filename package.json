@@ -62,7 +62,7 @@
     "tslib": "^2.0.0",
     "wait-on": "^6.0.0",
     "zone.js": "~0.11.4",
-    "nx-cli-osfn": "git+ssh://git@github.com/curkovicf/nx-cli-osfn.git"
+    "nx-cli-osfn": "git+ssh://git@github.com/curkovicf/nx-cli-osfn.git#master"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^12.1.0",
