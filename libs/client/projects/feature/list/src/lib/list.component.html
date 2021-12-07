@@ -25,7 +25,7 @@
     [project]="project"
     [ngClass]="{
       'selected-item':
-        (listVmStore.vm$ | async).selectedProject?.nameInNxJson === project?.nameInNxJson
+        (listVmStore.vm$ | async).selectedProject?.nameInConfig === project?.nameInConfig
     }"
     (click)="listVmStore.selectProject(project)"
   >

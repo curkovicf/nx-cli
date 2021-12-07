@@ -10,9 +10,9 @@ import {
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NxCliDialogFormClass} from '@nx-cli/client/projects/util';
-import {NxGenerator} from '@nx-cli/shared/data-access/models';
 import {ObjectUtils} from '@nx-cli/shared/util';
 import deepCopy = ObjectUtils.deepCopy;
+import { NxGenerator } from 'nx-cli-osfn/lib/projects/models/nx-generator.model';
 
 export interface MatDialogData {
   nxGenerator: NxGenerator;

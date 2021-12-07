@@ -1,7 +1,7 @@
 import {createReducer, on} from '@ngrx/store';
-import {Workspace} from '@nx-cli/shared/data-access/models';
 
 import * as WorkspacesActions from './workspaces.actions';
+import { Workspace } from 'nx-cli-osfn/lib/workspaces/models/workspace.model';
 
 export const WORKSPACES_FEATURE_KEY = 'workspaces';
 

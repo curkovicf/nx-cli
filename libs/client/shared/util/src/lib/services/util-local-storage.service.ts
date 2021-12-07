@@ -3,7 +3,7 @@ import {combineLatest} from 'rxjs';
 import {first} from 'rxjs/operators';
 import {WorkspacesFacade} from '@nx-cli/client/workspaces/data-access';
 import {ProjectsFacade} from '@nx-cli/client/projects/data-access';
-import {Workspace} from '@nx-cli/shared/data-access/models';
+import { Workspace } from 'nx-cli-osfn/lib/workspaces/models/workspace.model';
 
 interface StoredData {
   workspaces: Workspace[];

@@ -1,64 +1,70 @@
-import {Injectable} from '@angular/core';
-import {ElectronService} from 'ngx-electron';
-import {ProgressBarFacade} from '@nx-cli/client/shared/data-access';
-import {ProjectsIpcDtos, ProjectsIpcEvents} from '@nx-cli/shared/data-access/models';
+import { Injectable } from '@angular/core';
+import { ElectronService } from 'ngx-electron';
+import { ProgressBarFacade } from '@nx-cli/client/shared/data-access';
+import { ProjectsIpcEvents } from '@nx-cli/shared/data-access/models';
+import { EditProjectDto } from 'nx-cli-osfn/lib/projects/dtos/edit-project.dto';
+import { RemoveTagDto } from 'nx-cli-osfn/lib/projects/dtos/remove-tag.dto';
+import { DeleteProjectDto } from 'nx-cli-osfn/lib/projects/dtos/delete-project.dto';
+import { TagDto } from 'nx-cli-osfn/lib/projects/dtos/tag.dto';
+import { GenerateArtifactDto } from 'nx-cli-osfn/lib/projects/dtos/generate-artifact.dto';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ProjectsIpcApiService {
   constructor(
     private electronService: ElectronService,
-    private progressBarFacade: ProgressBarFacade,
-  ) {}
+    private progressBarFacade: ProgressBarFacade
+  ) {
+  }
 
   public getAllProjects(projectPath: string): void {
     this.progressBarFacade.markOperationAsActive();
     this.electronService.ipcRenderer.send(
       ProjectsIpcEvents.getAllProjects.fromAngular,
-      projectPath,
+      projectPath
     );
   }
 
-  public editProject(generateDto: ProjectsIpcDtos.EditProject): void {
+  public editProject(generateDto: EditProjectDto): void {
     this.progressBarFacade.markOperationAsActive();
     this.electronService.ipcRenderer.send(
       ProjectsIpcEvents.editProject.fromAngular,
-      generateDto,
+      generateDto
     );
   }
 
-  public deleteProject(deleteProjectDto: ProjectsIpcDtos.DeleteProjectDto): void {
+  public deleteProject(deleteProjectDto: DeleteProjectDto): void {
     this.progressBarFacade.markOperationAsActive();
     this.electronService.ipcRenderer.send(
       ProjectsIpcEvents.deleteProject.fromAngular,
-      deleteProjectDto,
+      deleteProjectDto
     );
   }
 
   public startDepGraph(workspacePath: string): void {
     this.electronService.ipcRenderer.send(
       ProjectsIpcEvents.startDepGraph.fromAngular,
-      workspacePath,
+      workspacePath
     );
   }
 
-  public removeTag(removeTagDto: ProjectsIpcDtos.RemoveTag): void {
+  public removeTag(removeTagDto: RemoveTagDto): void {
     this.electronService.ipcRenderer.send(
       ProjectsIpcEvents.removeTag.fromAngular,
-      removeTagDto,
+      removeTagDto
     );
   }
 
-  public addTag(tagDto: ProjectsIpcDtos.Tag): void {
+  public addTag(tagDto: TagDto): void {
     this.electronService.ipcRenderer.send(ProjectsIpcEvents.addTag.fromAngular, tagDto);
   }
 
-  public generateArtifact(nxGenerator: ProjectsIpcDtos.GenerateArtifact): void {
+  public generateArtifact(nxGenerator: GenerateArtifactDto): void {
     this.progressBarFacade.markOperationAsActive();
     this.electronService.ipcRenderer.send(
       ProjectsIpcEvents.generateArtifact.fromAngular,
-      nxGenerator,
+      nxGenerator
     );
   }
 }

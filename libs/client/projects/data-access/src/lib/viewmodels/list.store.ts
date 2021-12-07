@@ -1,7 +1,6 @@
 import {ComponentStore} from '@ngrx/component-store';
 import {Injectable} from '@angular/core';
 import {filter, first, map, switchMap, tap} from 'rxjs/operators';
-import {NxGenerator, Project} from '@nx-cli/shared/data-access/models';
 import {WorkspacesFacade} from '@nx-cli/client/workspaces/data-access';
 import {combineLatest, Observable} from 'rxjs';
 import {ProjectsIpcApiService} from '../api/projects-ipc-api.service';
@@ -12,6 +11,8 @@ import {MatDialogConfig} from '@angular/material/dialog/dialog-config';
 import {ProjectsFacade} from '../+store/projects.facade';
 import {AutocompleteSearchComponent} from '@nx-cli/client/shared/ui/autocomplete-search';
 import {ObjectUtils} from '@nx-cli/shared/util';
+import { Project } from 'nx-cli-osfn/lib/projects/models/project.model';
+import { NxGenerator } from 'nx-cli-osfn/lib/projects/models/nx-generator.model';
 
 export interface ProjectsState {
   projectsLoadedInView: Project[];
@@ -101,7 +102,7 @@ export class listStore extends ComponentStore<ProjectsState> {
                 nxGenerator.form.dropDowns.forEach(dropdownElement => {
                   if (dropdownElement.title === 'project') {
                     dropdownElement.items.push(
-                      ...projects.map(project => project.nameInNxJson),
+                      ...projects.map(project => project.nameInConfig),
                     );
                     dropdownElement.selectedItem = dropdownElement.items[0];
                   }

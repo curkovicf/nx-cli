@@ -5,9 +5,9 @@ import {WorkspacesFacade} from '../+store/workspaces.facade';
 import {
   WorkspacesIpcEvents,
   IpcResponses,
-  WorkspacesIpcDtos,
 } from '@nx-cli/shared/data-access/models';
 import {ProgressBarFacade} from '@nx-cli/client/shared/data-access';
+import { GeneratorsDto } from 'nx-cli-osfn/lib/workspaces/dtos/generators.dto';
 
 @Injectable()
 export class WorkspacesIpcEventsService {
@@ -61,7 +61,7 @@ export class WorkspacesIpcEventsService {
   private initNxGeneratorsChannel(): void {
     this.electronService.ipcRenderer.on(
       WorkspacesIpcEvents.getAvailableGenerators.fromElectron,
-      (event, response: IpcResponses.ResponseWithData<WorkspacesIpcDtos.Generators>) => {
+      (event, response: IpcResponses.ResponseWithData<GeneratorsDto>) => {
         const {success, error, data} = response;
 
         if (error) {

@@ -9,7 +9,8 @@ import {
 } from '@angular/forms';
 import {Observable, timer} from 'rxjs';
 import {WorkspacesIpcApiService} from '@nx-cli/client/workspaces/data-access';
-import {Workspace, IpcResponses} from '@nx-cli/shared/data-access/models';
+import {IpcResponses} from '@nx-cli/shared/data-access/models';
+import { Workspace } from 'nx-cli-osfn/lib/workspaces/models/workspace.model';
 
 @Component({
   selector: 'nx-cli-new-workspace',

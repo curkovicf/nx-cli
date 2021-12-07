@@ -12,8 +12,8 @@ import {
   ConfirmDialogContent,
 } from '@nx-cli/client/shared/ui/confirm-dialog';
 import {ProgressBarFacade} from '@nx-cli/client/shared/data-access';
-import {Workspace} from '@nx-cli/shared/data-access/models';
 import {filter, first, tap} from 'rxjs/operators';
+import { Workspace } from 'nx-cli-osfn/lib/workspaces/models/workspace.model';
 
 @Component({
   selector: 'nx-cli-layout',

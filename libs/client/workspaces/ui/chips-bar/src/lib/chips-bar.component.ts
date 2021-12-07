@@ -1,10 +1,10 @@
-import {Component, Input, EventEmitter, Output} from '@angular/core';
-import {Workspace} from '@nx-cli/shared/data-access/models';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Workspace } from 'nx-cli-osfn/lib/workspaces/models/workspace.model';
 
 @Component({
   selector: 'dev-workspace-chips-bar',
   templateUrl: './chips-bar.component.html',
-  styleUrls: ['./chips-bar.component.scss'],
+  styleUrls: ['./chips-bar.component.scss']
 })
 export class ChipsBarComponent {
   @Input()

@@ -1,7 +1,6 @@
 import {IProjectsService} from './projects-service.interface';
 import {
   IpcResponses,
-  ProjectType,
 } from '@nx-cli/shared/data-access/models';
 import Platform = OsUtils.Platform;
 import {StringUtils} from '@nx-cli/shared/util';
@@ -15,6 +14,7 @@ import { TagDto } from 'nx-cli-osfn/lib/projects/dtos/tag.dto';
 import { GenerateArtifactDto } from 'nx-cli-osfn/lib/projects/dtos/generate-artifact.dto';
 import { OsUtils } from 'nx-cli-osfn/lib/shared/util/os-utils.namespace';
 import { NodeUtils } from 'nx-cli-osfn/lib/shared/util/node-utils.namespace';
+import { ProjectType } from 'nx-cli-osfn/lib/projects/models/project-type.enum';
 
 export class ProjectsService implements IProjectsService {
   constructor(

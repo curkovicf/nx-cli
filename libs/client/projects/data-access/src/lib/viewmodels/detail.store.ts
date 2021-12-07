@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ComponentStore} from '@ngrx/component-store';
 import {ProjectsFacade} from '../+store/projects.facade';
-import {Project} from '@nx-cli/shared/data-access/models';
 import {ProjectsIpcApiService} from '../api/projects-ipc-api.service';
 import {EditProjectDialogComponent} from '@nx-cli/client/projects/ui/edit-project-dialog';
 import {
@@ -15,6 +14,7 @@ import {filter, first, map, tap} from 'rxjs/operators';
 import {MatDialog} from '@angular/material/dialog';
 import {WorkspacesFacade} from '@nx-cli/client/workspaces/data-access';
 import {NewTagDialogComponent} from '@nx-cli/client/projects/ui/new-tag-dialog';
+import { Project } from 'nx-cli-osfn/lib/projects/models/project.model';
 
 export interface DetailState {
   tabs: string[];
@@ -57,7 +57,7 @@ export class DetailStore extends ComponentStore<DetailState> {
     this.openDialog(ConfirmDialogComponent, {data}).subscribe(([data, workspacePath]) =>
       this.projectsIpcApiService.deleteProject({
         workspacePath,
-        projectNameInNxJson: project.nameInNxJson,
+        projectNameInNxJson: project.nameInConfig,
         type: project.type,
       }),
     );
@@ -73,7 +73,7 @@ export class DetailStore extends ComponentStore<DetailState> {
       this.projectsIpcApiService.editProject({
         ...data,
         workspacePath,
-        project: project.nameInNxJson,
+        project: project.nameInConfig,
       }),
     );
   }
@@ -103,8 +103,9 @@ export class DetailStore extends ComponentStore<DetailState> {
 
           this.projectsIpcApiService.addTag({
             workspacePath,
-            tags: tags[0], //  FIXME: Check why is this arr
-            selectedProjectName: selectedProject.nameInNxJson,
+            tags: [tags[0]], //  FIXME: Check why is this arr
+            selectedProjectName: selectedProject.nameInConfig,
+            projectPath: selectedProject.path
           });
         }),
       )
@@ -141,7 +142,7 @@ export class DetailStore extends ComponentStore<DetailState> {
         tap(([isConfirm, selectedProject, selectedWorkspace]) =>
           isConfirm
             ? this.projectsIpcApiService.removeTag({
-                selectedProject: selectedProject.nameInNxJson,
+                selectedProject: selectedProject.nameInConfig,
                 tagToDelete: tag,
                 workspacePath: selectedWorkspace.path,
               })

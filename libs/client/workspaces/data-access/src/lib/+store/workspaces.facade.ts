@@ -1,13 +1,15 @@
 import {Injectable} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {WorkspacesState} from './workspaces.reducer';
-import {Project, Workspace, WorkspacesIpcDtos} from '@nx-cli/shared/data-access/models';
 
 import {Observable} from 'rxjs';
 import {first, map} from 'rxjs/operators';
 
 import * as WorkspacesSelectors from './workspaces.selectors';
 import * as WorkspacesActions from './workspaces.actions';
+import { Workspace } from 'nx-cli-osfn/lib/workspaces/models/workspace.model';
+import { GeneratorsDto } from 'nx-cli-osfn/lib/workspaces/dtos/generators.dto';
+import { Project } from 'nx-cli-osfn/lib/projects/models/project.model';
 
 @Injectable()
 export class WorkspacesFacade {
@@ -52,7 +54,7 @@ export class WorkspacesFacade {
     this.store.dispatch(WorkspacesActions.addTags({tags}));
   }
 
-  public addNxGenerators(nxGenerators: WorkspacesIpcDtos.Generators): void {
+  public addNxGenerators(nxGenerators: GeneratorsDto): void {
     this.store.dispatch(WorkspacesActions.addNxGenerators({nxGenerators}));
   }
 

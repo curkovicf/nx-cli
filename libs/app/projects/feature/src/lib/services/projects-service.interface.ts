@@ -1,4 +1,4 @@
-import {IpcResponses} from '@nx-cli/shared/data-access/models';
+import { IpcResponses } from '@nx-cli/shared/data-access/models';
 import { DeleteProjectDto } from 'nx-cli-osfn/lib/projects/dtos/delete-project.dto';
 import { GenerateArtifactDto } from 'nx-cli-osfn/lib/projects/dtos/generate-artifact.dto';
 import { EditProjectDto } from 'nx-cli-osfn/lib/projects/dtos/edit-project.dto';
@@ -9,20 +9,26 @@ import { TagDto } from 'nx-cli-osfn/lib/projects/dtos/tag.dto';
 
 export interface IProjectsService {
   getAllProjects(
-    workspacePath: string,
+    workspacePath: string
   ): Promise<IpcResponses.ResponseWithData<Project[]>>;
+
   editProject(dto: EditProjectDto): Promise<IpcResponses.ResponseWithLogs>;
+
   deleteProject(
-    dto: DeleteProjectDto,
+    dto: DeleteProjectDto
   ): Promise<IpcResponses.ResponseWithLogs>;
+
   startDepGraph(workspacePath: string): Promise<IpcResponses.Response>;
+
   removeTag(
-    dto: RemoveTagDto,
+    dto: RemoveTagDto
   ): Promise<IpcResponses.ResponseWithData<RemoveTagDto>>;
+
   addTag(
-    dto: TagDto,
+    dto: TagDto
   ): Promise<IpcResponses.ResponseWithData<AddTagResult>>;
+
   generateArtifact(
-    dto: GenerateArtifactDto,
+    dto: GenerateArtifactDto
   ): Promise<IpcResponses.ResponseWithLogs>;
 }

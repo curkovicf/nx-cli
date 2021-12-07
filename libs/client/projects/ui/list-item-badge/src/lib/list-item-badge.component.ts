@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ProjectType} from '@nx-cli/shared/data-access/models';
+import { Component, Input } from '@angular/core';
+import { ProjectType } from 'nx-cli-osfn/lib/projects/models/project-type.enum';
 
 @Component({
   selector: 'dev-workspace-list-item-badge',
   templateUrl: './list-item-badge.component.html',
-  styleUrls: ['./list-item-badge.component.scss'],
+  styleUrls: ['./list-item-badge.component.scss']
 })
 export class ListItemBadgeComponent {
   @Input()

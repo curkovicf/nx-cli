@@ -1,6 +1,8 @@
 import {createAction, props} from '@ngrx/store';
 import {WorkspacesState} from './workspaces.reducer';
-import {Project, Workspace, WorkspacesIpcDtos} from '@nx-cli/shared/data-access/models';
+import { Workspace } from 'nx-cli-osfn/lib/workspaces/models/workspace.model';
+import { GeneratorsDto } from 'nx-cli-osfn/lib/workspaces/dtos/generators.dto';
+import { Project } from 'nx-cli-osfn/lib/projects/models/project.model';
 
 export const initWorkspaces = createAction('[Workspaces] Initial setup');
 
@@ -41,7 +43,7 @@ export const addTags = createAction(
 
 export const addNxGenerators = createAction(
   '[Workspaces] Add nx generators to current workspace',
-  props<{nxGenerators: WorkspacesIpcDtos.Generators}>(),
+  props<{nxGenerators: GeneratorsDto}>(),
 );
 
 export const setSelectedProject = createAction(

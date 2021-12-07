@@ -1,9 +1,7 @@
 import {Injectable, NgZone} from '@angular/core';
 import {
-  Project,
   ProjectsIpcEvents,
   IpcResponses,
-  ProjectsIpcDtos,
 } from '@nx-cli/shared/data-access/models';
 import {first, tap} from 'rxjs/operators';
 import {ElectronService} from 'ngx-electron';
@@ -12,6 +10,9 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {WorkspacesFacade} from '@nx-cli/client/workspaces/data-access';
 import {ProjectsFacade} from '../+store/projects.facade';
 import {ProgressBarFacade} from '@nx-cli/client/shared/data-access';
+import { Project } from 'nx-cli-osfn/lib/projects/models/project.model';
+import { RemoveTagDto } from 'nx-cli-osfn/lib/projects/dtos/remove-tag.dto';
+import { AddTagResult } from 'nx-cli-osfn/lib/projects/dtos/add-tag-result.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -89,7 +90,7 @@ export class ProjectsIpcEventsService {
   private initRemoveTag(): void {
     this.electronService.ipcRenderer.on(
       ProjectsIpcEvents.removeTag.fromElectron,
-      (event, response: IpcResponses.ResponseWithData<ProjectsIpcDtos.RemoveTag>) => {
+      (event, response: IpcResponses.ResponseWithData<RemoveTagDto>) => {
         const {error, success} = response;
 
         if (success) {
@@ -113,7 +114,7 @@ export class ProjectsIpcEventsService {
   private initAddTags(): void {
     this.electronService.ipcRenderer.on(
       ProjectsIpcEvents.addTag.fromElectron,
-      (event, response: IpcResponses.ResponseWithData<ProjectsIpcDtos.AddTagResult>) => {
+      (event, response: IpcResponses.ResponseWithData<AddTagResult>) => {
         const {error, success, data} = response;
 
         if (success) {

@@ -5,9 +5,9 @@ import {tap} from 'rxjs/operators';
 import {ProgressBarFacade} from '@nx-cli/client/shared/data-access';
 import {
   WorkspacesIpcEvents,
-  Workspace,
   IpcResponses,
 } from '@nx-cli/shared/data-access/models';
+import { Workspace } from 'nx-cli-osfn/lib/workspaces/models/workspace.model';
 
 @Injectable({
   providedIn: 'root',
