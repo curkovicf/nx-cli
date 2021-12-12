@@ -20,11 +20,13 @@ export class ProjectsEffects {
     () =>
       this.actions$.pipe(
         ofType(switchCurrentWorkspace),
-        tap(({selectedWorkspace}) =>
-          this.projectsIpcApiService.getAllProjects(selectedWorkspace.path),
-        ),
+        tap(({ selectedWorkspace }) => {
+          this.projectsFacade.resetProjects();
+          this.projectsIpcApiService.getAllProjects(selectedWorkspace.path);
+          }
+        )
       ),
-    {dispatch: false},
+    { dispatch: false }
   );
 
   deleteWorkspace$ = createEffect(

@@ -20,19 +20,33 @@
 </section>
 
 <section class="projects-list">
-  <nx-cli-project-list-item
-    *ngFor="let project of (listVmStore.vm$ | async).projectsInView"
-    [project]="project"
-    [ngClass]="{
+  <ng-container *ngIf='((listVmStore.vm$ | async).projectsInView) as projectsInView'>
+    <ng-container *ngIf='projectsInView.length > 0 else spinner'>
+      <nx-cli-project-list-item
+        *ngFor="let project of (listVmStore.vm$ | async).projectsInView"
+        [project]="project"
+        [ngClass]="{
       'selected-item':
         (listVmStore.vm$ | async).selectedProject?.nameInConfig === project?.nameInConfig
     }"
-    (click)="listVmStore.selectProject(project)"
-  >
-    <dev-workspace-list-item-badge
-      [projectType]="project.type"
-    ></dev-workspace-list-item-badge>
-  </nx-cli-project-list-item>
+        (click)="listVmStore.selectProject(project)"
+      >
+        <dev-workspace-list-item-badge
+          [projectType]="project.type"
+        ></dev-workspace-list-item-badge>
+      </nx-cli-project-list-item>
+    </ng-container>
+
+  </ng-container>
+
+  <ng-template #spinner>
+    <mat-progress-spinner
+      color="primary"
+      diameter="30"
+      mode="indeterminate"
+    >
+    </mat-progress-spinner>
+  </ng-template>
 </section>
 
 <section class="actions">

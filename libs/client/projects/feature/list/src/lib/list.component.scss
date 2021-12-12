@@ -42,11 +42,16 @@
   }
 
   & > .projects-list {
+    position: relative;
     overflow-y: auto;
     @include box(100%, calc(100% - 14rem));
 
     & > .selected-item {
       background-color: #e5e4e2;
+    }
+
+    & > mat-progress-spinner {
+      @include absolute-center;
     }
   }
 

@@ -1,15 +1,15 @@
-import {Injectable, NgZone} from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import {
   ProjectsIpcEvents,
-  IpcResponses,
+  IpcResponses
 } from '@nx-cli/shared/data-access/models';
-import {first, tap} from 'rxjs/operators';
-import {ElectronService} from 'ngx-electron';
-import {ProjectsIpcApiService} from './projects-ipc-api.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {WorkspacesFacade} from '@nx-cli/client/workspaces/data-access';
-import {ProjectsFacade} from '../+store/projects.facade';
-import {ProgressBarFacade} from '@nx-cli/client/shared/data-access';
+import { first, tap } from 'rxjs/operators';
+import { ElectronService } from 'ngx-electron';
+import { ProjectsIpcApiService } from './projects-ipc-api.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
+import { ProjectsFacade } from '../+store/projects.facade';
+import { ProgressBarFacade } from '@nx-cli/client/shared/data-access';
 import { Project } from 'nx-cli-osfn/lib/projects/models/project.model';
 import { RemoveTagDto } from 'nx-cli-osfn/lib/projects/dtos/remove-tag.dto';
 import { AddTagResult } from 'nx-cli-osfn/lib/projects/dtos/add-tag-result.dto';
@@ -44,7 +44,7 @@ export class ProjectsIpcEventsService {
       (event, response: IpcResponses.ResponseWithData<Project[]>) => {
         //  FIXME:
         this.ngZone.run(() => {
-          this.progressBarFacade.markOperationAsComplete();
+          // this.progressBarFacade.markOperationAsComplete();
 
           this.workspacesFacade.selectedProject$
             .pipe(
@@ -99,10 +99,7 @@ export class ProjectsIpcEventsService {
           return;
         }
 
-        this.ngZone.run(() => {
-          this.snackBar.open(success || error, null);
-          // this.progressBarFacade.markOperationAsComplete();
-        });
+        this.ngZone.run(() => this.snackBar.open(success || error, null));
       },
     );
   }
@@ -118,7 +115,6 @@ export class ProjectsIpcEventsService {
         const {error, success, data} = response;
 
         if (success) {
-          console.log(response);
           this.ngZone.run(() => this.projectsFacade.addTags(data));
 
           return;

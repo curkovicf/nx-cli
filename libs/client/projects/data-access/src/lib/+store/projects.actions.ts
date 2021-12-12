@@ -1,4 +1,4 @@
-import {createAction, props} from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 import { Project } from 'nx-cli-osfn/lib/projects/models/project.model';
 import { AddTagResult } from 'nx-cli-osfn/lib/projects/dtos/add-tag-result.dto';
 

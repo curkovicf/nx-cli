@@ -18,6 +18,7 @@
     .img-wrapper {
       width: 1.4rem;
       height: inherit;
+      visibility: hidden;
       @include center-flex-X;
 
       & > img {

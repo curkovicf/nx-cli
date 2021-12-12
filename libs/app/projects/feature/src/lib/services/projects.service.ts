@@ -1,10 +1,10 @@
-import {IProjectsService} from './projects-service.interface';
+import { IProjectsService } from './projects-service.interface';
 import {
-  IpcResponses,
+  IpcResponses
 } from '@nx-cli/shared/data-access/models';
 import Platform = OsUtils.Platform;
-import {StringUtils} from '@nx-cli/shared/util';
-import {ProjectsRepositoryImpl} from 'nx-cli-osfn/lib/projects/repositories/projects-repository-impl.class';
+import { StringUtils } from '@nx-cli/shared/util';
+import { ProjectsRepositoryImpl } from 'nx-cli-osfn/lib/projects/repositories/projects-repository-impl.class';
 import { Project } from 'nx-cli-osfn/lib/projects/models/project.model';
 import { EditProjectDto } from 'nx-cli-osfn/lib/projects/dtos/edit-project.dto';
 import { DeleteProjectDto } from 'nx-cli-osfn/lib/projects/dtos/delete-project.dto';
@@ -18,7 +18,7 @@ import { ProjectType } from 'nx-cli-osfn/lib/projects/models/project-type.enum';
 
 export class ProjectsService implements IProjectsService {
   constructor(
-    private projectsRepository: ProjectsRepositoryImpl = new ProjectsRepositoryImpl(),
+    private projectsRepository: ProjectsRepositoryImpl = new ProjectsRepositoryImpl()
   ) {}
 
   /**
@@ -26,7 +26,7 @@ export class ProjectsService implements IProjectsService {
    * @param workspacePath root workspace path
    */
   async getAllProjects(
-    workspacePath: string,
+    workspacePath: string
   ): Promise<IpcResponses.ResponseWithData<Project[]>> {
     await this.projectsRepository.openConfigFiles(workspacePath);
     const projects = await this.projectsRepository.getAllProjectsV2(workspacePath);
@@ -35,7 +35,7 @@ export class ProjectsService implements IProjectsService {
     return {
       data: projects,
       success: projects.length > 0 ? 'Projects successfully fetched.' : '',
-      error: projects.length === 0 ? 'There are no projects installed.' : '',
+      error: projects.length === 0 ? 'There are no projects installed.' : ''
     };
   }
 
@@ -44,25 +44,25 @@ export class ProjectsService implements IProjectsService {
    * @param dto
    */
   async editProject(
-    dto: EditProjectDto,
+    dto: EditProjectDto
   ): Promise<IpcResponses.ResponseWithLogs> {
-    const {oldName, newName, newDirectory, oldDirectory, workspacePath, project} = dto;
+    const { oldName, newName, newDirectory, oldDirectory, workspacePath, project } = dto;
     const dir = StringUtils.removeSpecialCharFrontBack(
       OsUtils.parsePath(
         newDirectory
           .replace('/libs/', '')
           .replace('\\libs\\', '')
           .replace('/apps/', '')
-          .replace('\\apps\\', ''),
-      ),
+          .replace('\\apps\\', '')
+      )
     );
     const cmd = OsUtils.parsePath(
       `nx g @nrwl/workspace:move --project ${project} ${
         dir ? dir + '/' : ''
-      }${StringUtils.removeSpecialCharacters(newName)}`,
+      }${StringUtils.removeSpecialCharacters(newName)}`
     );
     const cmdTest = OsUtils.parsePath(
-      `nx g mv --project ${project}-e2e ${dir}${newName}-e2e`,
+      `nx g mv --project ${project}-e2e ${dir}${newName}-e2e`
     );
     const logs: string[] = [];
 
@@ -70,7 +70,7 @@ export class ProjectsService implements IProjectsService {
       cmdTest,
       [],
       workspacePath,
-      'CREATE',
+      'CREATE'
     );
     const result = await NodeUtils.executeCommand(cmd, [], workspacePath, 'CREATE');
 
@@ -79,10 +79,10 @@ export class ProjectsService implements IProjectsService {
 
     if (OsUtils.getOs() === OsUtils.Platform.windows) {
       await this.projectsRepository.cleanEmptyDirWinFunction(
-        `${workspacePath}${OsUtils.getPlatformPathSeparator()}libs`,
+        `${workspacePath}${OsUtils.getPlatformPathSeparator()}libs`
       );
       await this.projectsRepository.cleanEmptyDirWinFunction(
-        `${workspacePath}${OsUtils.getPlatformPathSeparator()}apps`,
+        `${workspacePath}${OsUtils.getPlatformPathSeparator()}apps`
       );
     }
 
@@ -95,12 +95,12 @@ export class ProjectsService implements IProjectsService {
           : '',
         error: !result?.isSuccess
           ? `${oldName} has not been successfully moved/renamed.`
-          : '',
+          : ''
       },
       logResponse: {
         workspacePath,
-        logs,
-      },
+        logs
+      }
     };
   }
 
@@ -109,12 +109,12 @@ export class ProjectsService implements IProjectsService {
    * @param dto
    */
   async deleteProject(
-    dto: DeleteProjectDto,
+    dto: DeleteProjectDto
   ): Promise<IpcResponses.ResponseWithLogs> {
-    const {projectNameInNxJson, workspacePath, type} = dto;
+    const { projectNameInNxJson, workspacePath, type } = dto;
     const logs: string[] = [];
     const cmd = OsUtils.parsePath(
-      `nx g @nrwl/workspace:remove --project ${projectNameInNxJson}`,
+      `nx g @nrwl/workspace:remove --project ${projectNameInNxJson}`
     );
 
     if (type === ProjectType.app) {
@@ -123,7 +123,7 @@ export class ProjectsService implements IProjectsService {
         cmdTest,
         [],
         workspacePath,
-        'DELETE',
+        'DELETE'
       );
 
       logs.push(e2eResult?.log ?? '');
@@ -140,12 +140,12 @@ export class ProjectsService implements IProjectsService {
         success: result?.isSuccess ? `${projectNameInNxJson} successfully deleted.` : '',
         error: !result?.isSuccess
           ? `${projectNameInNxJson} has not been successfully deleted. If you are trying to delete app, make sure nothing depends on it.`
-          : '',
+          : ''
       },
       logResponse: {
         workspacePath,
-        logs,
-      },
+        logs
+      }
     };
   }
 
@@ -161,45 +161,52 @@ export class ProjectsService implements IProjectsService {
       OsUtils.getOs() === Platform.unix ? unixCmd : winCmd,
       [],
       workspacePath,
-      'Dep graph started',
+      'Dep graph started'
     );
 
     return {
       workspacePath,
       success: result ? `Dep graph successfully started.` : '',
-      error: !result ? `Dep graph has not successfully started.` : '',
+      error: !result ? `Dep graph has not successfully started.` : ''
     };
   }
 
   async removeTag(
-    dto: RemoveTagDto,
+    dto: RemoveTagDto
   ): Promise<IpcResponses.ResponseWithData<RemoveTagDto>> {
+    await this.projectsRepository.openConfigFiles(dto.workspacePath);
     const result = await this.projectsRepository.removeTag(dto);
+    await this.projectsRepository.clean();
+
     return {
       success: result ? 'Tag successfully removed' : '',
-      data: dto,
+      data: dto
     };
   }
 
   async addTag(
-    dto: TagDto,
+    dto: TagDto
   ): Promise<IpcResponses.ResponseWithData<AddTagResult>> {
+    await this.projectsRepository.openConfigFiles(dto.workspacePath);
     await this.projectsRepository.addTagV2(dto);
+    await this.projectsRepository.clean();
     //  FIXME: Add checks
     return {
       success: 'Tag successfully created',
       data: {
         tags: dto.tags,
         workspacePath: dto.workspacePath,
-        selectedProjectName: dto.selectedProjectName,
-      },
+        selectedProjectName: dto.selectedProjectName
+      }
     };
   }
 
   async generateArtifact(
-    dto: GenerateArtifactDto,
+    dto: GenerateArtifactDto
   ): Promise<IpcResponses.ResponseWithLogs> {
+    await this.projectsRepository.openConfigFiles(dto.workspacePath);
     const result = await this.projectsRepository.generateNxArtifact(dto);
+    await this.projectsRepository.clean();
 
     return {
       result: {
@@ -208,12 +215,12 @@ export class ProjectsService implements IProjectsService {
         success: result ? `${dto.nxGenerator.name} successfully executed.` : '',
         error: !result
           ? `${dto.nxGenerator.name} has not been successfully executed.`
-          : '',
+          : ''
       },
       logResponse: {
         workspacePath: dto.workspacePath,
-        logs: [result?.log],
-      },
+        logs: [result?.log]
+      }
     };
   }
 }

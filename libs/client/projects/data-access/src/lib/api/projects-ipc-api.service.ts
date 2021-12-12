@@ -19,7 +19,7 @@ export class ProjectsIpcApiService {
   }
 
   public getAllProjects(projectPath: string): void {
-    this.progressBarFacade.markOperationAsActive();
+    // this.progressBarFacade.markOperationAsActive();
     this.electronService.ipcRenderer.send(
       ProjectsIpcEvents.getAllProjects.fromAngular,
       projectPath

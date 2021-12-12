@@ -6,6 +6,7 @@
 </nx-cli-button>
 
 <div *ngFor="let tag of tags" class="tag-wrapper">
+  <!--  FIXME: Update on remove tag fn  -->
   <div class="img-wrapper">
     <img
       (click)="onremovetag.emit(tag)"

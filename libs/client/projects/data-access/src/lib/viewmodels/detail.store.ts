@@ -1,19 +1,19 @@
-import {Injectable} from '@angular/core';
-import {ComponentStore} from '@ngrx/component-store';
-import {ProjectsFacade} from '../+store/projects.facade';
-import {ProjectsIpcApiService} from '../api/projects-ipc-api.service';
-import {EditProjectDialogComponent} from '@nx-cli/client/projects/ui/edit-project-dialog';
+import { Injectable } from '@angular/core';
+import { ComponentStore } from '@ngrx/component-store';
+import { ProjectsFacade } from '../+store/projects.facade';
+import { ProjectsIpcApiService } from '../api/projects-ipc-api.service';
+import { EditProjectDialogComponent } from '@nx-cli/client/projects/ui/edit-project-dialog';
 import {
   ConfirmDialogComponent,
-  ConfirmDialogContent,
+  ConfirmDialogContent
 } from '@nx-cli/client/shared/ui/confirm-dialog';
-import {ComponentType} from '@angular/cdk/portal/portal';
-import {MatDialogConfig} from '@angular/material/dialog/dialog-config';
-import {combineLatest, Observable} from 'rxjs';
-import {filter, first, map, tap} from 'rxjs/operators';
-import {MatDialog} from '@angular/material/dialog';
-import {WorkspacesFacade} from '@nx-cli/client/workspaces/data-access';
-import {NewTagDialogComponent} from '@nx-cli/client/projects/ui/new-tag-dialog';
+import { ComponentType } from '@angular/cdk/portal/portal';
+import { MatDialogConfig } from '@angular/material/dialog/dialog-config';
+import { combineLatest, Observable } from 'rxjs';
+import { filter, first, map, tap } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { WorkspacesFacade } from '@nx-cli/client/workspaces/data-access';
+import { NewTagDialogComponent } from '@nx-cli/client/projects/ui/new-tag-dialog';
 import { Project } from 'nx-cli-osfn/lib/projects/models/project.model';
 
 export interface DetailState {

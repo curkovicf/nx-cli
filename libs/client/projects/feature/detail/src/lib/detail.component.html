@@ -42,17 +42,18 @@
   </div>
 
   <main>
-    <ng-container [ngSwitch]="(detailVmStore.vm$ | async).activeTab">
+    <ng-container [ngSwitch]='(detailVmStore.vm$ | async).activeTab'>
       <nx-cli-folder-tree
         *ngSwitchCase="'Folder Tree'"
-        [folderTree]="project.folderTree"
+        [folderTree]='project.folderTree'
       ></nx-cli-folder-tree>
-      <!--      <nx-cli-tags-->
-      <!--        *ngSwitchCase="'Nx tags'"-->
-      <!--        [tags]='project.tags'-->
-      <!--        (onaddnewtag)='detailVmStore.addNewTag()'-->
-      <!--        (onremovetag)='detailVmStore.removeTag($event)'-->
-      <!--      ></nx-cli-tags>-->
+
+      <nx-cli-tags
+        *ngSwitchCase="'Nx tags'"
+        [tags]='project.tags'
+        (onaddnewtag)='detailVmStore.addNewTag()'
+        (onremovetag)='detailVmStore.removeTag($event)'
+      ></nx-cli-tags>
     </ng-container>
   </main>
 </ng-container>

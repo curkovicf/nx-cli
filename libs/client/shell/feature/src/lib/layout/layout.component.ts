@@ -1,18 +1,18 @@
-import {Component} from '@angular/core';
-import {drawerAnimation} from '@nx-cli/client/shell/ui/drawer';
-import {UtilLocalStorageService} from '@nx-cli/client/shared/util';
+import { Component } from '@angular/core';
+import { drawerAnimation } from '@nx-cli/client/shell/ui/drawer';
+import { UtilLocalStorageService } from '@nx-cli/client/shared/util';
 import {
   WorkspacesFacade,
   WorkspacesIpcApiService,
-  WorkspacesIpcEventsService,
+  WorkspacesIpcEventsService
 } from '@nx-cli/client/workspaces/data-access';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import {
   ConfirmDialogComponent,
-  ConfirmDialogContent,
+  ConfirmDialogContent
 } from '@nx-cli/client/shared/ui/confirm-dialog';
-import {ProgressBarFacade} from '@nx-cli/client/shared/data-access';
-import {filter, first, tap} from 'rxjs/operators';
+import { ProgressBarFacade } from '@nx-cli/client/shared/data-access';
+import { filter, first, tap } from 'rxjs/operators';
 import { Workspace } from 'nx-cli-osfn/lib/workspaces/models/workspace.model';
 
 @Component({
@@ -66,7 +66,7 @@ export class LayoutComponent {
     };
 
     this.dialog
-      .open(ConfirmDialogComponent, {data, width: '55rem'})
+      .open(ConfirmDialogComponent, { data, width: '55rem' })
       .afterClosed()
       .subscribe();
   }
